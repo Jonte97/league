@@ -5,6 +5,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using MiddleWare;
+using Services;
 
 namespace league_site
 {
@@ -14,6 +16,7 @@ namespace league_site
         {
             Configuration = configuration;
         }
+        
 
         public IConfiguration Configuration { get; }
 
@@ -27,6 +30,11 @@ namespace league_site
             {
                 configuration.RootPath = "ClientApp/build";
             });
+
+            services.AddScoped<ILeagueApiService, LeagueApiService>();
+            services.AddScoped<ILeagueMiddleWare, LeagueMiddleWare>();
+            services.AddSingleton<IConfiguration>(Configuration);
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

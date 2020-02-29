@@ -5,31 +5,34 @@ using Microsoft.AspNetCore.Mvc;
 using static league_site.Controllers.SampleDataController;
 using Newtonsoft;
 using Newtonsoft.Json;
+using Services;
+using Models;
+using System.Threading.Tasks;
+using MiddleWare;
 
 namespace Name.Controllers
 {
     [Route("api/[controller]")]
     public class LeagueApiController : Controller
     {
-        private static string[] Summaries = new[]
+        private readonly ILeagueApiService _leagueApiService;
+        private readonly ILeagueMiddleWare _leagueMiddleWare;
+
+        public LeagueApiController(ILeagueApiService leagueApiService)
         {
-            "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-        };
+            _leagueApiService = leagueApiService;
+        }
+
 
         [HttpGet("[action]")]
-        public string Test()
+        public async Task<string> Test()
         {
-            test t = new test();
-            t.Thing = "testar api";
-            string json = JsonConvert.SerializeObject(t);
+            var summoner = await _leagueApiService.GetSummonerAsync("lönnen");
+            var leagues = await _leagueApiService.GetRankedDataAsync(summoner.Id);
+
+            string json = JsonConvert.SerializeObject(leagues);
             
             return json;
         }
-    }
-
-    class test
-    {
-        [JsonProperty("thing")]
-        public string Thing { get; set; }
     }
 }
