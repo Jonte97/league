@@ -9,6 +9,7 @@ using Services;
 using Models;
 using System.Threading.Tasks;
 using MiddleWare;
+using ViewModels;
 
 namespace Name.Controllers
 {
@@ -30,7 +31,9 @@ namespace Name.Controllers
             var summoner = await _leagueApiService.GetSummonerAsync("lönnen");
             var leagues = await _leagueApiService.GetRankedDataAsync(summoner.Id);
 
-            string json = JsonConvert.SerializeObject(leagues);
+            var profile = new ProfileVM(summoner, leagues);
+
+            string json = JsonConvert.SerializeObject(profile);
             
             return json;
         }
