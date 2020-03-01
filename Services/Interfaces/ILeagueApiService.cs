@@ -1,6 +1,7 @@
 
 using System.Threading.Tasks;
 using Models;
+using QuickType;
 
 namespace Services
 {
@@ -9,6 +10,7 @@ namespace Services
         Task<Summoner> GetSummonerAsync(string name);
         Task<LeagueEntry[]> GetRankedDataAsync(string id);
         Task<Matches> GetMatchHistoryAsync(string accountId);
+        Task<MatchDetailed> GetMatchAsync(string matchId);
 
     }
 }

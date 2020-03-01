@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
 using Models;
 using Newtonsoft.Json;
+using QuickType;
 
 namespace Services
 {
@@ -96,6 +97,25 @@ namespace Services
             catch (System.Exception ex)
             {
                 throw ex;
+            }
+        }
+        public async Task<MatchDetailed> GetMatchAsync(string matchId)
+        {
+            try
+            {
+                string url = $"https://euw1.api.riotgames.com/lol/match/v4/matches/{matchId}";
+
+                var response = await SendRequestAsync(url);
+                var content = await response.Content.ReadAsStringAsync();
+
+                var match = JsonConvert.DeserializeObject<MatchDetailed>(content);
+
+                return match;
+            }
+            catch (System.Exception)
+            {
+                
+                throw;
             }
         }
 

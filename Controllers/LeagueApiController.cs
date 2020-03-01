@@ -31,28 +31,27 @@ namespace Name.Controllers
             var profile = new ProfileVM(summoner, leagues);
 
             string json = JsonConvert.SerializeObject(profile);
-            
+
             return json;
         }
-        
+
         [HttpPost("[action]")]
         public async Task<string> GetMatchHistory([FromBody] string accountId)
         {
             var matches = await _leagueApiService.GetMatchHistoryAsync(accountId);
-            
-            
             string json = JsonConvert.SerializeObject(matches);
-            
+
             return json;
         }
-        
-        [HttpPost("[action]")]
-        public async Task<string> GetMatchById([FromBody] string accountId)
-        {
-            
-            return "ok";
-        }
 
+        [HttpPost("[action]")]
+        public async Task<string> GetMatchById([FromBody] string matchId)
+        {
+            var match = await _leagueApiService.GetMatchAsync(matchId);
+            string json = JsonConvert.SerializeObject(match);
+
+            return json;
+        }
     }
-    
+
 }

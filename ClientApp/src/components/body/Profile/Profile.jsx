@@ -18,7 +18,7 @@ const Profile = (props) => {
             <div className="container">
               <div className="row">
                   {props.leagueEntries.map((item, i) => 
-                    <Queue data={item} />
+                    <Queue data={item} key={i} />
                   )}
               </div>
             </div>

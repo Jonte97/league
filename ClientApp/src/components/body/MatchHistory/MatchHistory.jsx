@@ -44,8 +44,8 @@ const MatchHistory = (props) => {
 	const getMatchHistory = () => {
 		fetch('api/LeagueApi/GetMatchHistory', {
 			method: 'post',
-			headers: { 'Content-Type': 'application/json' },
-			body: JSON.stringify({ accountId: props.summoner.accountId })
+            headers: { 'Content-Type': 'application/json' },
+			body: JSON.stringify(props.summoner.accountId)
 		})
 			.then((response) => response.json())
 			.then((data) => {
