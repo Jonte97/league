@@ -18,15 +18,12 @@ namespace Name.Controllers
     {
         private readonly ILeagueApiService _leagueApiService;
         private readonly ILeagueMiddleWare _leagueMiddleWare;
-
         public LeagueApiController(ILeagueApiService leagueApiService)
         {
             _leagueApiService = leagueApiService;
         }
-
-
         [HttpGet("[action]")]
-        public async Task<string> Test()
+        public async Task<string> GetSummonerData()
         {
             var summoner = await _leagueApiService.GetSummonerAsync("lönnen");
             var leagues = await _leagueApiService.GetRankedDataAsync(summoner.Id);
@@ -37,5 +34,25 @@ namespace Name.Controllers
             
             return json;
         }
+        
+        [HttpPost("[action]")]
+        public async Task<string> GetMatchHistory([FromBody] string accountId)
+        {
+            var matches = await _leagueApiService.GetMatchHistoryAsync(accountId);
+            
+            
+            string json = JsonConvert.SerializeObject(matches);
+            
+            return json;
+        }
+        
+        [HttpPost("[action]")]
+        public async Task<string> GetMatchById([FromBody] string accountId)
+        {
+            
+            return "ok";
+        }
+
     }
+    
 }

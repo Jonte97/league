@@ -27,7 +27,7 @@ namespace Services
             {
                 client.DefaultRequestHeaders.Clear();
 
-                string key = "RGAPI-f4521b48-62f2-47fc-bf20-ce4851b5bfd4";
+                string key = "RGAPI-03aad998-30a1-4bcb-9044-cfb9425df580";
                 client.DefaultRequestHeaders.Add("X-Riot-Token", key);
 
                 response = await client.GetAsync(uri);
@@ -79,6 +79,23 @@ namespace Services
             catch (System.Exception ex)
             {
                 throw ex;                 
+            }
+        }
+        public async Task<Matches> GetMatchHistoryAsync(string accountId)
+        {
+            try
+            {
+                string url = "https://euw1.api.riotgames.com/lol/match/v4/matchlists/by-account/CVJYBZF4gP1K8Yf9qz4yXaRj8VB8HAO8Iw-Di5akt17wMTQ?endIndex=10";
+
+                var response = await SendRequestAsync(url);
+                var content = await response.Content.ReadAsStringAsync();
+                var matches = JsonConvert.DeserializeObject<Matches>(content);
+
+                return matches;
+            }
+            catch (System.Exception ex)
+            {
+                throw ex;
             }
         }
 

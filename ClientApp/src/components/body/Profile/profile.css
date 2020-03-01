@@ -2,7 +2,7 @@
     height: 150px;
 }
 .profile-head{
-    background-color: #9142ff;
+    background-color: #42a8ffd1;
     
 }
 #summonerLvl{
@@ -35,4 +35,7 @@
 
 .queue-title, .queue-lp, .queue-tier, .queue-wins, .queue-losses{
     text-align: left;
+}
+ul{
+    list-style: none;
 }

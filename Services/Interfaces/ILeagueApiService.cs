@@ -8,5 +8,7 @@ namespace Services
     {
         Task<Summoner> GetSummonerAsync(string name);
         Task<LeagueEntry[]> GetRankedDataAsync(string id);
+        Task<Matches> GetMatchHistoryAsync(string accountId);
+
     }
 }
