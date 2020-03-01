@@ -1,0 +1,38 @@
+.emblem{
+    height: 150px;
+}
+.profile-head{
+    background-color: #9142ff;
+    
+}
+#summonerLvl{
+    float: right;
+}
+#summonerName{
+    float: left;
+}
+
+#summonerIcon{
+    border-radius: 50%;
+    border: 5px solid gold;
+}
+.center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+.queue-card{
+    width: 250px;
+    display: inline-block; 
+    border: 2px solid black;
+    padding: 1em;
+}
+
+.row {
+    width: 100%;
+    text-align: center; 
+}
+
+.queue-title, .queue-lp, .queue-tier, .queue-wins, .queue-losses{
+    text-align: left;
+}

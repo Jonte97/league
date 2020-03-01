@@ -7,8 +7,8 @@ const Body = () => {
   
   
   return (
-    <div className="container">
-      <Profile />
+    <div>
+        <Profile />
     </div>
   );
 };

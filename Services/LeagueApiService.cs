@@ -9,17 +9,38 @@ namespace Services
 {
     public class LeagueApiService : ILeagueApiService
     {
-        static readonly HttpClient client = new HttpClient();
+        private readonly static HttpClient client = new HttpClient();
         private IConfiguration _config;
+        private static readonly object threadlock = new object();
+
+
         public LeagueApiService(IConfiguration configuration)
         {
             _config = (IConfigurationRoot)configuration;
+        }
+
+        private async Task<HttpResponseMessage> SendRequestAsync(string uri)
+        {
+            HttpResponseMessage response = null;
+
+            try
+            {
+                client.DefaultRequestHeaders.Clear();
 
                 string key = "RGAPI-f4521b48-62f2-47fc-bf20-ce4851b5bfd4";
-                client.DefaultRequestHeaders.Add("Origin", $"https://developer.riotgames.com");
-                client.DefaultRequestHeaders.Add("Accept-Language", $"sv-SE,sv;q=0.9,en-US;q=0.8,en;q=0.7");
-                client.DefaultRequestHeaders.Add("X-Riot-Token", $"{key}");
+                client.DefaultRequestHeaders.Add("X-Riot-Token", key);
 
+                response = await client.GetAsync(uri);
+
+                response.EnsureSuccessStatusCode();
+
+                return response;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
         }
         
         public async Task<Summoner> GetSummonerAsync(string name)
@@ -27,10 +48,8 @@ namespace Services
             try
             {
                 string url = $"https://euw1.api.riotgames.com/lol/summoner/v4/summoners/by-name/{name}";
+                var response = await SendRequestAsync(url);
 
-                var response = await client.GetAsync(url);
-
-                response.EnsureSuccessStatusCode();
                 var content = await response.Content.ReadAsStringAsync();
 
                 var summoner = JsonConvert.DeserializeObject<Summoner>(content);
@@ -49,9 +68,8 @@ namespace Services
             {
                 string url = $"https://euw1.api.riotgames.com/lol/league/v4/entries/by-summoner/{id}";
 
-                var response = await client.GetAsync(url);
+                var response = await SendRequestAsync(url);
 
-                response.EnsureSuccessStatusCode();
                 var content = await response.Content.ReadAsStringAsync();
 
                 var summoner = JsonConvert.DeserializeObject<LeagueEntry[]>(content);
