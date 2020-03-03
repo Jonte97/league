@@ -1,26 +1,24 @@
 import React from 'react';
 import { useState } from 'react';
-import './matchHistory.css'
-import MoreInfo from './MoreInfo'
-
+import './matchHistory.css';
+import MoreInfo from './MoreInfo';
 
 const Matches = (matches) => {
-
 	console.log(matches.matches.matches.length);
 	if (matches.matches.matches.length != 0) {
 		return (
 			<div>
 				<ul>
 					{matches.matches.matches.map((item, i) => (
-						<li>
+						<li key={i}>
 							<div key={i} className="match-history-item">
-                <div>
-                  <img src="http://ddragon.leagueoflegends.com/cdn/10.4.1/img/champion/Aatrox.png" />
-                  <p>Role: {item.role}</p>
-                  <p>Lane: {item.lane}</p>
-                  <MoreInfo id={item.gameId} />
-                </div>
-              </div>
+								<div>
+									<img src="http://ddragon.leagueoflegends.com/cdn/10.4.1/img/champion/Aatrox.png" />
+									<p>Role: {item.role}</p>
+									<p>Lane: {item.lane}</p>
+									<MoreInfo id={item.gameId} />
+								</div>
+							</div>
 						</li>
 					))}
 				</ul>
@@ -44,7 +42,7 @@ const MatchHistory = (props) => {
 	const getMatchHistory = () => {
 		fetch('api/LeagueApi/GetMatchHistory', {
 			method: 'post',
-            headers: { 'Content-Type': 'application/json' },
+			headers: { 'Content-Type': 'application/json' },
 			body: JSON.stringify(props.summoner.accountId)
 		})
 			.then((response) => response.json())

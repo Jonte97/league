@@ -13,8 +13,6 @@ const Profile = (props) => {
             <ProfileHead summoner={props.summoner}/>
           </div>
             
-            <div className="profile-body">
-            </div>
             <div className="container">
               <div className="row">
                   {props.leagueEntries.map((item, i) => 

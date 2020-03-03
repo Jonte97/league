@@ -28,7 +28,7 @@ namespace Services
             {
                 client.DefaultRequestHeaders.Clear();
 
-                string key = "RGAPI-03aad998-30a1-4bcb-9044-cfb9425df580";
+                string key = "RGAPI-2e3037e8-7ce0-4cc8-82c8-691562c91fe7";
                 client.DefaultRequestHeaders.Add("X-Riot-Token", key);
 
                 response = await client.GetAsync(uri);
@@ -43,7 +43,7 @@ namespace Services
                 throw ex;
             }
         }
-        
+
         public async Task<Summoner> GetSummonerAsync(string name)
         {
             try
@@ -54,12 +54,12 @@ namespace Services
                 var content = await response.Content.ReadAsStringAsync();
 
                 var summoner = JsonConvert.DeserializeObject<Summoner>(content);
-                
+
                 return summoner;
             }
             catch (System.Exception ex)
             {
-                throw ex;                 
+                throw ex;
             }
         }
 
@@ -74,30 +74,23 @@ namespace Services
                 var content = await response.Content.ReadAsStringAsync();
 
                 var summoner = JsonConvert.DeserializeObject<LeagueEntry[]>(content);
-                
+
                 return summoner;
-            }
-            catch (System.Exception ex)
-            {
-                throw ex;                 
-            }
-        }
-        public async Task<Matches> GetMatchHistoryAsync(string accountId)
-        {
-            try
-            {
-                string url = "https://euw1.api.riotgames.com/lol/match/v4/matchlists/by-account/CVJYBZF4gP1K8Yf9qz4yXaRj8VB8HAO8Iw-Di5akt17wMTQ?endIndex=10";
-
-                var response = await SendRequestAsync(url);
-                var content = await response.Content.ReadAsStringAsync();
-                var matches = JsonConvert.DeserializeObject<Matches>(content);
-
-                return matches;
             }
             catch (System.Exception ex)
             {
                 throw ex;
             }
+        }
+        public async Task<Matches> GetMatchHistoryAsync(string accountId)
+        {
+            string url = $"https://euw1.api.riotgames.com/lol/match/v4/matchlists/by-account/{accountId}?endIndex=10";
+
+            var response = await SendRequestAsync(url);
+            var content = await response.Content.ReadAsStringAsync();
+            var matches = JsonConvert.DeserializeObject<Matches>(content);
+
+            return matches;
         }
         public async Task<MatchDetailed> GetMatchAsync(string matchId)
         {
@@ -114,7 +107,7 @@ namespace Services
             }
             catch (System.Exception)
             {
-                
+
                 throw;
             }
         }
