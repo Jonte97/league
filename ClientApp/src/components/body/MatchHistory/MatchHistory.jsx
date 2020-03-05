@@ -12,12 +12,9 @@ const Matches = (matches) => {
 					{matches.matches.matches.map((item, i) => (
 						<li key={i}>
 							<div key={i} className="match-history-item">
-								<div>
-									<img src="http://ddragon.leagueoflegends.com/cdn/10.4.1/img/champion/Aatrox.png" />
-									<p>Role: {item.role}</p>
-									<p>Lane: {item.lane}</p>
-									<MoreInfo id={item.gameId} />
-								</div>
+								<p>Role: {item.role}</p>
+								<p>Lane: {item.lane}</p>
+								<MoreInfo id={item.gameId} />
 							</div>
 						</li>
 					))}

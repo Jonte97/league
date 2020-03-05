@@ -22,16 +22,26 @@ namespace Name.Controllers
         {
             _leagueApiService = leagueApiService;
         }
-        [HttpGet("[action]")]
-        public async Task<string> GetSummonerData()
+        [HttpPost("[action]")]
+        public async Task<string> GetSummonerData([FromBody] string name)
         {
-            var summoner = await _leagueApiService.GetSummonerAsync("lönnen");
+            var summoner = await _leagueApiService.GetSummonerAsync(name);
             var leagues = await _leagueApiService.GetRankedDataAsync(summoner.Id);
 
             var profile = new ProfileVM(summoner, leagues);
 
             string json = JsonConvert.SerializeObject(profile);
 
+            return json;
+        }
+
+        [HttpGet("[action]")]
+        public async Task<string> GetSummonerInitialData()
+        {
+            var summoner = await _leagueApiService.GetSummonerAsync("lönnen");
+            var leagues = await _leagueApiService.GetRankedDataAsync(summoner.Id);
+            var profile = new ProfileVM(summoner, leagues);
+            string json = JsonConvert.SerializeObject(profile);
             return json;
         }
 
