@@ -62,6 +62,14 @@ namespace Name.Controllers
 
             return json;
         }
+        [HttpGet("[action]")]
+        public async Task<string> GetSimpleChampionList()
+        {
+            var championSimple = await _leagueApiService.GetChampionsAsync();
+            string json = JsonConvert.SerializeObject(championSimple);
+
+            return json;
+        }
     }
 
 }

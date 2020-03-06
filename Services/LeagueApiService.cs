@@ -111,6 +111,24 @@ namespace Services
                 throw;
             }
         }
+        //TODO handle patch verisons
+        public async Task<ChampionSimple> GetChampionsAsync()
+        {
+            try
+            {
+                string url = $"http://ddragon.leagueoflegends.com/cdn/10.5.1/data/en_US/champion.json";
+
+                var response = await SendRequestAsync(url);
+                var content = await response.Content.ReadAsStringAsync();
+                var champions = JsonConvert.DeserializeObject<ChampionSimple>(content);
+
+                return champions;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
 
     }
 }

@@ -108,7 +108,14 @@ const MoreInfo = (props) => {
 	const [ matchInfo, setMatchInfo ] = useState({});
 	const [ currentMatchId, setCurrentMatchId ] = useState(0);
 	const [ currentPlayer, setCurrentPlayer ] = useState(null);
-	useEffect(() => {}, [ currentPlayer ]);
+	const [ championList, setChampionList ] = useState();
+
+	useEffect(() => {
+		fetch('api/LeagueApi/GetSimpleChampionList').then((response) => response.json()).then((data) => {
+			setChampionList(data);
+		});
+	}, []);
+	
 	useEffect(
 		() => {
 			if (currentMatchId !== 0) {
