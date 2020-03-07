@@ -63,12 +63,16 @@ namespace Name.Controllers
             return json;
         }
         [HttpGet("[action]")]
-        public async Task<string> GetSimpleChampionList()
+        public async Task<IEnumerable<object>> GetSimpleChampionList()
         {
             var championSimple = await _leagueApiService.GetChampionsAsync();
-            string json = JsonConvert.SerializeObject(championSimple);
 
-            return json;
+            var champions = from key in championSimple.Data.Keys
+                                    select new { k = championSimple.Data[key].key, v = championSimple.Data[key] };
+
+            //string json = JsonConvert.SerializeObject(championSimple);
+
+            return champions;
         }
     }
 

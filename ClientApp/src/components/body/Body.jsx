@@ -38,9 +38,7 @@ const Body = () => {
 			setSummoner(data.summoner);
 		});
 
-		fetch('api/LeagueApi/GetSimpleChampionList').then((response) => response.json()).then((data) => {
-			setChampionList(data);
-		});
+		
 	}, []);
 	return (
 		<div>

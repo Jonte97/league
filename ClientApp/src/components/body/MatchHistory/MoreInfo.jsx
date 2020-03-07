@@ -51,13 +51,16 @@ const GameStats = (props) => {
 		console.log(props.identity);
 		return (
 			<React.Fragment>
-				<div style={{marginTop: "1em"}}>
-					<h3 style={{float: "left", marginTop: "2em", marginLeft: "30%"}}>
+				<div style={{ marginTop: '1em' }}>
+					<h3 style={{ float: 'left', marginTop: '2em', marginLeft: '30%' }}>
 						{props.identity.player.summonerName} {props.player.timeline.lane}
 					</h3>
-					<img style={{float: "right", padding: "1em"}} src="http://ddragon.leagueoflegends.com/cdn/10.4.1/img/champion/Aatrox.png" />
+					<img
+						style={{ float: 'right', padding: '1em' }}
+						src="http://ddragon.leagueoflegends.com/cdn/10.4.1/img/champion/Aatrox.png"
+					/>
 				</div>
-				<table style={{width: "100%"}}>
+				<table style={{ width: '100%' }}>
 					<thead>
 						<tr>
 							<th>Stats per 10 min</th>
@@ -83,7 +86,7 @@ const GameStats = (props) => {
 							<TableData timeline={props.player.timeline.xpPerMinDeltas} toFixed={0} />
 							<TableData timeline={props.player.timeline.csDiffPerMinDeltas} toFixed={1} />
 							<TableData timeline={props.player.timeline.xpDiffPerMinDeltas} toFixed={0} />
-							<td style={{textAlign: "left"}}>
+							<td style={{ textAlign: 'left' }}>
 								physical:{props.player.stats.physicalDamageDealtToChampions}
 								<br /> magic:
 								{props.player.stats.magicDamageDealtToChampions}
@@ -115,7 +118,7 @@ const MoreInfo = (props) => {
 			setChampionList(data);
 		});
 	}, []);
-	
+
 	useEffect(
 		() => {
 			if (currentMatchId !== 0) {

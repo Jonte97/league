@@ -10,6 +10,7 @@ namespace Models
         public string type { get; set; }
         public string format { get; set; }
         public string version { get; set; }
+        
         public Dictionary<string, Champ> Data { get; set; }
     }
     public class Champ
