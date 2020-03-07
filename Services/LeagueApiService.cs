@@ -84,7 +84,7 @@ namespace Services
         }
         public async Task<Matches> GetMatchHistoryAsync(string accountId)
         {
-            string url = $"https://euw1.api.riotgames.com/lol/match/v4/matchlists/by-account/{accountId}?endIndex=10";
+            string url = $"https://euw1.api.riotgames.com/lol/match/v4/matchlists/by-account/{accountId}?endIndex=3";
 
             var response = await SendRequestAsync(url);
             var content = await response.Content.ReadAsStringAsync();

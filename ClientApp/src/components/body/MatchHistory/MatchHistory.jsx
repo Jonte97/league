@@ -5,18 +5,20 @@ import MoreInfo from './MoreInfo';
 import GameInfoHeader from './GameInfoHeader';
 
 const Matches = (props) => {
-	console.log(props.matches.matches.length);
-	if (props.matches.matches.length != 0) {
+	console.log(props);
+
+	if (props.matches.matches.length !== 0) {
 		return (
 			<div>
 				<ul>
 					{props.matches.matches.map((item, i) => (
 						<li key={i}>
 							<div key={i} className="match-history-item">
-								<GameInfoHeader game={item} champion={props.champions.find(v => v.k == item.champion)} />
-								
-								{/* TODO PRINT Champion, stats and itembuild here  */}
-								{/* <MoreInfo id={item.gameId} /> */}
+								<GameInfoHeader
+									game={item}
+									champion={props.champions.find((v) => v.k == item.champion)}
+									summoner={props.summoner}
+								/>
 							</div>
 						</li>
 					))}
@@ -39,16 +41,15 @@ const MatchHistory = (props) => {
 	const [ matchHistory, setMatchHistory ] = useState({ matches });
 	const [ gameInfo, setGameInfo ] = useState({});
 	const [ currentMatchId, setCurrentMatchId ] = useState(0);
-	const [ currentPlayer, setCurrentPlayer ] = useState(null);
-	const [ championList, setChampionList ] = useState([{Data: []}]);
+	const [ championList, setChampionList ] = useState([ { Data: [] } ]);
 
 	useEffect(() => {
 		fetch('api/LeagueApi/GetSimpleChampionList').then((response) => response.json()).then((data) => {
-			
 			setChampionList(data);
 		});
 	}, []);
 
+	
 	useEffect(
 		() => {
 			if (currentMatchId !== 0) {
@@ -82,7 +83,7 @@ const MatchHistory = (props) => {
 	return (
 		<div className="container">
 			<button onClick={() => getMatchHistory()}>Get matchhistory</button>
-			<Matches matches={matchHistory} gameInfo={gameInfo} champions={championList} />
+			<Matches matches={matchHistory} game={gameInfo} champions={championList} summoner={props.summoner} />
 		</div>
 	);
 };

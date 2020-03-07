@@ -8,7 +8,6 @@ import { getChampionList } from '../../functions/promiseHelper';
 const Body = () => {
 	const [ leagueEntries, setLeague ] = useState(startLeague);
 	const [ summoner, setSummoner ] = useState(startSummoner);
-	const [ championList, setChampionList ] = useState();
 	let test;
 
 	const onSubmit = (data) => {
@@ -29,16 +28,21 @@ const Body = () => {
 				console.log('ERROR fetching summoner: ' + reason);
 			});
 	};
-    
-    useEffect(async () => {
+	
+	
+	const getData = () => {
 		fetch('api/LeagueApi/GetSummonerInitialData').then((response) => response.json()).then((data) => {
 			var json = JSON.stringify(data.leagueEntries);
 			console.log(json);
 			setLeague(data.leagueEntries);
 			setSummoner(data.summoner);
 		});
+	}
 
-		
+    useEffect(() => {
+		async () => {
+			await getData()
+		}
 	}, []);
 	return (
 		<div>
