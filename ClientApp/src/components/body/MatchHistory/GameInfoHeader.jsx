@@ -42,11 +42,11 @@ const GameInfoHeader = (props) => {
 	let thumbnail = 'http://ddragon.leagueoflegends.com/cdn/10.4.1/img/champion/' + props.champion.v.image.full;
 	return (
 		<React.Fragment>
-			<div style={{ display: 'flex' }}>
+			<div style={{  }}>
 				<img src={thumbnail} />
 				<button onClick={() => getGame(props.game.gameId)}>Get match</button>
 				{currentSummoner.stats ? (
-					<h4>
+					<h4 style={{display: "inline-block"}}>
 						{currentSummoner.stats.kills} / {currentSummoner.stats.deaths} / {currentSummoner.stats.assists}
 					</h4>
 				) : (
