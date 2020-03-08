@@ -2,9 +2,13 @@ import React from 'react';
 import { useState, useEffect } from 'react';
 import MoreInfo from './MoreInfo';
 import PlayerList from './PlayerList';
+import GameStats from './GameStats';
 
 const GameInfoHeader = (props) => {
 	const [ currentSummoner, setCurrentSummoner ] = useState({});
+	const [ currentPlayer, setCurrentPlayer ] = useState(null);
+	//!Should be here
+	const [ matchInfo, setMatchInfo ] = useState();
 
 	let data = {
 		gameId: props.game.gameId,
@@ -26,8 +30,8 @@ const GameInfoHeader = (props) => {
 	let thumbnail = 'http://ddragon.leagueoflegends.com/cdn/10.4.1/img/champion/' + props.champion.v.image.full;
 	return (
 		<React.Fragment>
-			<div style={{display: "inline-flex"}}>
-				<div style={{display: "inline-flex"}}>
+			<div style={{ display: 'inline-flex' }}>
+				<div style={{ display: 'inline-flex' }}>
 					<img src={thumbnail} />
 					{currentSummoner.stats ? (
 						<div>
@@ -81,7 +85,20 @@ const GameInfoHeader = (props) => {
 
 				{currentSummoner.stats ? (
 					<React.Fragment>
-						<PlayerList id={props.game.gameId} champions={props.champions} />
+						<PlayerList
+							id={props.game.gameId}
+							champions={props.champions}
+							currentPlayer={(player) => {
+								setCurrentPlayer(player);
+							}}
+							matchInfo={matchInfo}
+							player={currentPlayer}
+							matchInfo={matchInfo}
+							setMatchInfo={(data) => {
+								setMatchInfo(data);
+							}}
+						/>
+
 						{/* <h4>
 							{currentSummoner.stats.kills} / {currentSummoner.stats.deaths} /{' '}
 							{currentSummoner.stats.assists}
@@ -91,6 +108,10 @@ const GameInfoHeader = (props) => {
 					<h4 />
 				)}
 			</div>
+			<GameStats
+				player={currentPlayer}
+				identity={currentPlayer ? matchInfo.participantIdentities[currentPlayer.participantId - 1] : null}
+			/>
 		</React.Fragment>
 	);
 };

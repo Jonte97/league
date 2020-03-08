@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import React from 'react';
+import GameStats from './GameStats';
 
 const PlayerList = (props) => {
-	const [ matchInfo, setMatchInfo ] = useState();
 
 	useEffect(() => {
 		fetch('api/LeagueApi/GetMatchById', {
@@ -12,28 +12,33 @@ const PlayerList = (props) => {
 		})
 			.then((response) => response.json())
 			.then((data) => {
-				setMatchInfo(data);
+				props.setMatchInfo(data);
 			})
 			.catch((reason) => {
 				console.log(reason);
 			});
 	}, []);
 
-	return matchInfo ? (
+	return props.matchInfo ? (
 		<React.Fragment>
 			<div style={{ width: '400px' }}>
 				<div style={{}}>
-					{matchInfo.participantIdentities.map(
+					{props.matchInfo.participantIdentities.map(
 						(player, key) =>
-							matchInfo.participants[key].teamId === 100 ? (
+							props.matchInfo.participants[key].teamId === 100 ? (
 								<div className="blue" style={{ float: 'left', width: '50%' }}>
 									<img
 										style={{ width: '25px' }}
 										src={`http://ddragon.leagueoflegends.com/cdn/10.4.1/img/champion/${props.champions.find(
-											(v) => v.k == matchInfo.participants[key].championId
+											(v) => v.k == props.matchInfo.participants[key].championId
 										).v.image.full}`}
 									/>
-									<a className="caption" id={key} key={key}>
+									<a
+										className="caption"
+										id={key}
+										key={key}
+										onClick={() => props.currentPlayer(props.matchInfo.participants[key])}
+									>
 										{player.player.summonerName}
 									</a>
 								</div>
@@ -43,17 +48,22 @@ const PlayerList = (props) => {
 					)}
 				</div>
 				<div style={{}}>
-					{matchInfo.participantIdentities.map(
+					{props.matchInfo.participantIdentities.map(
 						(player, key) =>
-							matchInfo.participants[key].teamId === 200 ? (
+							props.matchInfo.participants[key].teamId === 200 ? (
 								<div className="blue" style={{ float: 'right', width: '50%' }}>
 									<img
 										style={{ width: '25px' }}
 										src={`http://ddragon.leagueoflegends.com/cdn/10.4.1/img/champion/${props.champions.find(
-											(v) => v.k == matchInfo.participants[key].championId
+											(v) => v.k == props.matchInfo.participants[key].championId
 										).v.image.full}`}
 									/>
-									<a className="caption" id={key} key={key}>
+									<a
+										className="caption"
+										id={key}
+										key={key}
+										onClick={() => props.currentPlayer(props.matchInfo.participants[key])}
+									>
 										{player.player.summonerName}
 									</a>
 									<br />
@@ -64,6 +74,7 @@ const PlayerList = (props) => {
 					)}
 				</div>
 			</div>
+     
 		</React.Fragment>
 	) : (
 		<React.Fragment />
