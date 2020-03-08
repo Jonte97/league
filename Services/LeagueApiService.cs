@@ -84,7 +84,7 @@ namespace Services
         }
         public async Task<Matches> GetMatchHistoryAsync(string accountId)
         {
-            string url = $"https://euw1.api.riotgames.com/lol/match/v4/matchlists/by-account/{accountId}?endIndex=10";
+            string url = $"https://euw1.api.riotgames.com/lol/match/v4/matchlists/by-account/{accountId}?endIndex=3";
 
             var response = await SendRequestAsync(url);
             var content = await response.Content.ReadAsStringAsync();
@@ -109,6 +109,24 @@ namespace Services
             {
 
                 throw;
+            }
+        }
+        //TODO handle patch verisons
+        public async Task<ChampionSimple> GetChampionsAsync()
+        {
+            try
+            {
+                string url = $"http://ddragon.leagueoflegends.com/cdn/10.5.1/data/en_US/champion.json";
+
+                var response = await SendRequestAsync(url);
+                var content = await response.Content.ReadAsStringAsync();
+                var champions = JsonConvert.DeserializeObject<ChampionSimple>(content);
+
+                return champions;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
             }
         }
 

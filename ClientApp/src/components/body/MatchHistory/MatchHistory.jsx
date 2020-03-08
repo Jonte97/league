@@ -1,20 +1,25 @@
 import React from 'react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import './matchHistory.css';
 import MoreInfo from './MoreInfo';
+import GameInfoHeader from './GameInfoHeader';
 
-const Matches = (matches) => {
-	console.log(matches.matches.matches.length);
-	if (matches.matches.matches.length != 0) {
+const Matches = (props) => {
+	console.log(props);
+
+	if (props.matches.matches.length !== 0) {
 		return (
 			<div>
 				<ul>
-					{matches.matches.matches.map((item, i) => (
+					{props.matches.matches.map((item, i) => (
 						<li key={i}>
 							<div key={i} className="match-history-item">
-								<p>Role: {item.role}</p>
-								<p>Lane: {item.lane}</p>
-								<MoreInfo id={item.gameId} />
+								<GameInfoHeader
+									champions={props.champions}
+									game={item}
+									champion={props.champions.find((v) => v.k == item.champion)}
+									summoner={props.summoner}
+								/>
 							</div>
 						</li>
 					))}
@@ -35,6 +40,33 @@ const Matches = (matches) => {
 const MatchHistory = (props) => {
 	let matches = [];
 	const [ matchHistory, setMatchHistory ] = useState({ matches });
+	const [ gameInfo, setGameInfo ] = useState({});
+	const [ currentMatchId, setCurrentMatchId ] = useState(0);
+	const [ championList, setChampionList ] = useState([ { Data: [] } ]);
+
+	useEffect(() => {
+		fetch('api/LeagueApi/GetSimpleChampionList').then((response) => response.json()).then((data) => {
+			setChampionList(data);
+		});
+	}, []);
+
+	
+	useEffect(
+		() => {
+			if (currentMatchId !== 0) {
+				fetch('api/LeagueApi/GetMatchById', {
+					method: 'post',
+					headers: { 'Content-Type': 'application/json' },
+					body: JSON.stringify(currentMatchId)
+				})
+					.then((response) => response.json())
+					.then((data) => {
+						setGameInfo(data);
+					});
+			}
+		},
+		[ currentMatchId ]
+	);
 
 	const getMatchHistory = () => {
 		fetch('api/LeagueApi/GetMatchHistory', {
@@ -52,7 +84,7 @@ const MatchHistory = (props) => {
 	return (
 		<div className="container">
 			<button onClick={() => getMatchHistory()}>Get matchhistory</button>
-			<Matches matches={matchHistory} />
+			<Matches matches={matchHistory} game={gameInfo} champions={championList} summoner={props.summoner} />
 		</div>
 	);
 };

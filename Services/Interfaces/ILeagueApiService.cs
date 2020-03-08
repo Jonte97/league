@@ -1,4 +1,3 @@
-
 using System.Threading.Tasks;
 using Models;
 using QuickType;
@@ -11,6 +10,6 @@ namespace Services
         Task<LeagueEntry[]> GetRankedDataAsync(string id);
         Task<Matches> GetMatchHistoryAsync(string accountId);
         Task<MatchDetailed> GetMatchAsync(string matchId);
-
+        Task<ChampionSimple> GetChampionsAsync();
     }
 }

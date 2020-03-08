@@ -10,6 +10,7 @@ using Models;
 using System.Threading.Tasks;
 using MiddleWare;
 using ViewModels;
+using QuickType;
 
 namespace Name.Controllers
 {
@@ -18,9 +19,10 @@ namespace Name.Controllers
     {
         private readonly ILeagueApiService _leagueApiService;
         private readonly ILeagueMiddleWare _leagueMiddleWare;
-        public LeagueApiController(ILeagueApiService leagueApiService)
+        public LeagueApiController(ILeagueApiService leagueApiService, ILeagueMiddleWare leagueMiddleWare)
         {
             _leagueApiService = leagueApiService;
+            _leagueMiddleWare = leagueMiddleWare;
         }
         [HttpPost("[action]")]
         public async Task<string> GetSummonerData([FromBody] string name)
@@ -61,6 +63,41 @@ namespace Name.Controllers
             string json = JsonConvert.SerializeObject(match);
 
             return json;
+        }
+        [HttpGet("[action]")]
+        public async Task<IEnumerable<object>> GetSimpleChampionList()
+        {
+            var championSimple = await _leagueApiService.GetChampionsAsync();
+
+            var champions = from key in championSimple.Data.Keys
+                            select new { k = championSimple.Data[key].key, v = championSimple.Data[key] };
+
+            //string json = JsonConvert.SerializeObject(championSimple);
+
+            return champions;
+        }
+        [HttpPost("[action]")]
+        public async Task<Participant> GetSummonerMatchData([FromBody]x data)
+        {
+            try
+            {
+                var match = await _leagueApiService.GetMatchAsync(data.GameId);
+                var summonerData = _leagueMiddleWare.GetOnlyCurrentParticipantData(data.Name, match);
+
+                return summonerData;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+        public class x
+        {
+            [JsonProperty("gameId")]
+            public string GameId { get; set; }
+            [JsonProperty("name")]
+            public string Name { get; set; }
         }
     }
 
