@@ -1,8 +1,7 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
 import './matchHistory.css';
-import MoreInfo from './MoreInfo';
-import GameInfoHeader from './GameInfoHeader';
+import Game from './GameInfoHeader';
 
 const Matches = (props) => {
 	console.log(props);
@@ -14,7 +13,7 @@ const Matches = (props) => {
 					{props.matches.matches.map((item, i) => (
 						<li key={i}>
 							<div key={i} className="match-history-item">
-								<GameInfoHeader
+								<Game
 									champions={props.champions}
 									game={item}
 									champion={props.champions.find((v) => v.k == item.champion)}
