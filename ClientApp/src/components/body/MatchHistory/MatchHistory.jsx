@@ -15,6 +15,7 @@ const Matches = (props) => {
 						<li key={i}>
 							<div key={i} className="match-history-item">
 								<GameInfoHeader
+									champions={props.champions}
 									game={item}
 									champion={props.champions.find((v) => v.k == item.champion)}
 									summoner={props.summoner}
