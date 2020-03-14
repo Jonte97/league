@@ -60,7 +60,7 @@ const GameStats = (props) => {
 								total:
 								{props.player.stats.totalDamageDealtToChampions}
 								<br /> physical:
-                                {props.player.stats.physicalDamageDealtToChampions}
+								{props.player.stats.physicalDamageDealtToChampions}
 								<br /> magic:
 								{props.player.stats.magicDamageDealtToChampions}
 								<br /> true:

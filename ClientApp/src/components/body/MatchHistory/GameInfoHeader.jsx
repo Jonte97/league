@@ -1,13 +1,11 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
-import MoreInfo from './MoreInfo';
 import PlayerList from './PlayerList';
 import GameStats from './GameStats';
 
-const GameInfoHeader = (props) => {
+const Game = (props) => {
 	const [ currentSummoner, setCurrentSummoner ] = useState({});
 	const [ currentPlayer, setCurrentPlayer ] = useState(null);
-	//!Should be here
 	const [ matchInfo, setMatchInfo ] = useState();
 
 	let data = {
@@ -89,6 +87,7 @@ const GameInfoHeader = (props) => {
 							id={props.game.gameId}
 							champions={props.champions}
 							currentPlayer={(player) => {
+								
 								setCurrentPlayer(player);
 							}}
 							matchInfo={matchInfo}
@@ -116,4 +115,4 @@ const GameInfoHeader = (props) => {
 	);
 };
 
-export default GameInfoHeader;
+export default Game;

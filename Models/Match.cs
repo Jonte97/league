@@ -12,37 +12,37 @@ namespace QuickType
     public partial class MatchDetailed
     {
         [JsonProperty("seasonId")]
-        public long SeasonId { get; set; }
+        public int SeasonId { get; set; }
 
         [JsonProperty("queueId")]
-        public long QueueId { get; set; }
+        public int QueueId { get; set; }
 
         [JsonProperty("gameId")]
         public long GameId { get; set; }
 
         [JsonProperty("participantIdentities")]
-        public ParticipantIdentity[] ParticipantIdentities { get; set; }
+        public List<ParticipantIdentity> ParticipantIdentities { get; set; }
 
         [JsonProperty("gameVersion")]
         public string GameVersion { get; set; }
 
         [JsonProperty("platformId")]
-        public PlatformId PlatformId { get; set; }
+        public string PlatformId { get; set; }
 
         [JsonProperty("gameMode")]
         public string GameMode { get; set; }
 
         [JsonProperty("mapId")]
-        public long MapId { get; set; }
+        public int MapId { get; set; }
 
         [JsonProperty("gameType")]
         public string GameType { get; set; }
 
         [JsonProperty("teams")]
-        public Team[] Teams { get; set; }
+        public List<Team> Teams { get; set; }
 
         [JsonProperty("participants")]
-        public Participant[] Participants { get; set; }
+        public List<Participant> Participants { get; set; }
 
         [JsonProperty("gameDuration")]
         public long GameDuration { get; set; }
@@ -57,13 +57,13 @@ namespace QuickType
         public Player Player { get; set; }
 
         [JsonProperty("participantId")]
-        public long ParticipantId { get; set; }
+        public int ParticipantId { get; set; }
     }
 
     public partial class Player
     {
         [JsonProperty("currentPlatformId")]
-        public PlatformId CurrentPlatformId { get; set; }
+        public string CurrentPlatformId { get; set; }
 
         [JsonProperty("summonerName")]
         public string SummonerName { get; set; }
@@ -72,13 +72,13 @@ namespace QuickType
         public string MatchHistoryUri { get; set; }
 
         [JsonProperty("platformId")]
-        public PlatformId PlatformId { get; set; }
+        public string PlatformId { get; set; }
 
         [JsonProperty("currentAccountId")]
         public string CurrentAccountId { get; set; }
 
         [JsonProperty("profileIcon")]
-        public long ProfileIcon { get; set; }
+        public int ProfileIcon { get; set; }
 
         [JsonProperty("summonerId")]
         public string SummonerId { get; set; }
@@ -90,31 +90,33 @@ namespace QuickType
     public partial class Participant
     {
         [JsonProperty("spell1Id")]
-        public long Spell1Id { get; set; }
+        public int Spell1Id { get; set; }
 
         [JsonProperty("participantId")]
-        public long ParticipantId { get; set; }
+        public int ParticipantId { get; set; }
 
         [JsonProperty("timeline")]
         public Timeline Timeline { get; set; }
 
         [JsonProperty("spell2Id")]
-        public long Spell2Id { get; set; }
+        public int Spell2Id { get; set; }
 
         [JsonProperty("teamId")]
-        public long TeamId { get; set; }
+        public int TeamId { get; set; }
 
         [JsonProperty("stats")]
         public Stats Stats { get; set; }
 
         [JsonProperty("championId")]
-        public long ChampionId { get; set; }
+        public int ChampionId { get; set; }
+        [JsonProperty("highestAchievedSeasonTier")]
+        public string HighestAchievedSeasonTier { get; set; }
     }
 
     public partial class Stats
     {
         [JsonProperty("neutralMinionsKilledTeamJungle")]
-        public long NeutralMinionsKilledTeamJungle { get; set; }
+        public int NeutralMinionsKilledTeamJungle { get; set; }
 
         [JsonProperty("visionScore")]
         public long VisionScore { get; set; }
@@ -123,79 +125,79 @@ namespace QuickType
         public long MagicDamageDealtToChampions { get; set; }
 
         [JsonProperty("largestMultiKill")]
-        public long LargestMultiKill { get; set; }
+        public int LargestMultiKill { get; set; }
 
         [JsonProperty("totalTimeCrowdControlDealt")]
-        public long TotalTimeCrowdControlDealt { get; set; }
+        public int TotalTimeCrowdControlDealt { get; set; }
 
         [JsonProperty("longestTimeSpentLiving")]
-        public long LongestTimeSpentLiving { get; set; }
+        public int LongestTimeSpentLiving { get; set; }
 
         [JsonProperty("perk1Var1")]
-        public long Perk1Var1 { get; set; }
+        public int Perk1Var1 { get; set; }
 
         [JsonProperty("perk1Var3")]
-        public long Perk1Var3 { get; set; }
+        public int Perk1Var3 { get; set; }
 
         [JsonProperty("perk1Var2")]
-        public long Perk1Var2 { get; set; }
+        public int Perk1Var2 { get; set; }
 
         [JsonProperty("tripleKills")]
-        public long TripleKills { get; set; }
+        public int TripleKills { get; set; }
 
         [JsonProperty("perk5")]
-        public long Perk5 { get; set; }
+        public int Perk5 { get; set; }
 
         [JsonProperty("perk4")]
-        public long Perk4 { get; set; }
+        public int Perk4 { get; set; }
 
         [JsonProperty("playerScore9")]
-        public long PlayerScore9 { get; set; }
+        public int PlayerScore9 { get; set; }
 
         [JsonProperty("playerScore8")]
-        public long PlayerScore8 { get; set; }
+        public int PlayerScore8 { get; set; }
 
         [JsonProperty("kills")]
-        public long Kills { get; set; }
+        public int Kills { get; set; }
 
         [JsonProperty("playerScore1")]
-        public long PlayerScore1 { get; set; }
+        public int PlayerScore1 { get; set; }
 
         [JsonProperty("playerScore0")]
-        public long PlayerScore0 { get; set; }
+        public int PlayerScore0 { get; set; }
 
         [JsonProperty("playerScore3")]
-        public long PlayerScore3 { get; set; }
+        public int PlayerScore3 { get; set; }
 
         [JsonProperty("playerScore2")]
-        public long PlayerScore2 { get; set; }
+        public int PlayerScore2 { get; set; }
 
         [JsonProperty("playerScore5")]
-        public long PlayerScore5 { get; set; }
+        public int PlayerScore5 { get; set; }
 
         [JsonProperty("playerScore4")]
-        public long PlayerScore4 { get; set; }
+        public int PlayerScore4 { get; set; }
 
         [JsonProperty("playerScore7")]
-        public long PlayerScore7 { get; set; }
+        public int PlayerScore7 { get; set; }
 
         [JsonProperty("playerScore6")]
-        public long PlayerScore6 { get; set; }
+        public int PlayerScore6 { get; set; }
 
         [JsonProperty("perk5Var1")]
-        public long Perk5Var1 { get; set; }
+        public int Perk5Var1 { get; set; }
 
         [JsonProperty("perk5Var3")]
-        public long Perk5Var3 { get; set; }
+        public int Perk5Var3 { get; set; }
 
         [JsonProperty("perk5Var2")]
-        public long Perk5Var2 { get; set; }
+        public int Perk5Var2 { get; set; }
 
         [JsonProperty("totalScoreRank")]
-        public long TotalScoreRank { get; set; }
+        public int TotalScoreRank { get; set; }
 
         [JsonProperty("neutralMinionsKilled")]
-        public long NeutralMinionsKilled { get; set; }
+        public int NeutralMinionsKilled { get; set; }
 
         [JsonProperty("statPerk1")]
         public long StatPerk1 { get; set; }
@@ -205,6 +207,8 @@ namespace QuickType
 
         [JsonProperty("damageDealtToTurrets")]
         public long DamageDealtToTurrets { get; set; }
+        [JsonProperty("nodeCapture")]
+        public int NodeCapture { get; set; }
 
         [JsonProperty("physicalDamageDealtToChampions")]
         public long PhysicalDamageDealtToChampions { get; set; }
@@ -213,85 +217,90 @@ namespace QuickType
         public long DamageDealtToObjectives { get; set; }
 
         [JsonProperty("perk2Var2")]
-        public long Perk2Var2 { get; set; }
+        public int Perk2Var2 { get; set; }
 
         [JsonProperty("perk2Var3")]
-        public long Perk2Var3 { get; set; }
+        public int Perk2Var3 { get; set; }
 
         [JsonProperty("totalUnitsHealed")]
-        public long TotalUnitsHealed { get; set; }
+        public int TotalUnitsHealed { get; set; }
 
         [JsonProperty("perk2Var1")]
-        public long Perk2Var1 { get; set; }
+        public int Perk2Var1 { get; set; }
 
         [JsonProperty("perk4Var1")]
-        public long Perk4Var1 { get; set; }
+        public int Perk4Var1 { get; set; }
 
         [JsonProperty("totalDamageTaken")]
         public long TotalDamageTaken { get; set; }
 
         [JsonProperty("perk4Var3")]
-        public long Perk4Var3 { get; set; }
+        public int Perk4Var3 { get; set; }
 
         [JsonProperty("wardsKilled")]
-        public long WardsKilled { get; set; }
+        public int WardsKilled { get; set; }
 
         [JsonProperty("largestCriticalStrike")]
-        public long LargestCriticalStrike { get; set; }
+        public int LargestCriticalStrike { get; set; }
 
         [JsonProperty("largestKillingSpree")]
-        public long LargestKillingSpree { get; set; }
+        public int LargestKillingSpree { get; set; }
 
         [JsonProperty("quadraKills")]
-        public long QuadraKills { get; set; }
+        public int QuadraKills { get; set; }
 
         [JsonProperty("magicDamageDealt")]
         public long MagicDamageDealt { get; set; }
+
+        [JsonProperty("teamObjective")]
+        public int TeamObjective { get; set; }
 
         [JsonProperty("firstBloodAssist")]
         public bool FirstBloodAssist { get; set; }
 
         [JsonProperty("item2")]
-        public long Item2 { get; set; }
+        public int Item2 { get; set; }
 
         [JsonProperty("item3")]
-        public long Item3 { get; set; }
+        public int Item3 { get; set; }
 
         [JsonProperty("item0")]
-        public long Item0 { get; set; }
+        public int Item0 { get; set; }
 
         [JsonProperty("item1")]
-        public long Item1 { get; set; }
+        public int Item1 { get; set; }
 
         [JsonProperty("item6")]
-        public long Item6 { get; set; }
+        public int Item6 { get; set; }
 
         [JsonProperty("item4")]
-        public long Item4 { get; set; }
+        public int Item4 { get; set; }
 
         [JsonProperty("item5")]
-        public long Item5 { get; set; }
+        public int Item5 { get; set; }
 
         [JsonProperty("perk1")]
-        public long Perk1 { get; set; }
+        public int Perk1 { get; set; }
 
         [JsonProperty("perk0")]
-        public long Perk0 { get; set; }
+        public int Perk0 { get; set; }
 
         [JsonProperty("perk3")]
-        public long Perk3 { get; set; }
+        public int Perk3 { get; set; }
 
         [JsonProperty("perk2")]
-        public long Perk2 { get; set; }
+        public int Perk2 { get; set; }
+        [JsonProperty("nodeNeutralizeAssist	")]
+        public int NodeNeutralizeAssist	 { get; set; }
 
         [JsonProperty("perk3Var3")]
-        public long Perk3Var3 { get; set; }
+        public int Perk3Var3 { get; set; }
 
         [JsonProperty("perk3Var2")]
-        public long Perk3Var2 { get; set; }
+        public int Perk3Var2 { get; set; }
 
         [JsonProperty("perk3Var1")]
-        public long Perk3Var1 { get; set; }
+        public int Perk3Var1 { get; set; }
 
         [JsonProperty("damageSelfMitigated")]
         public long DamageSelfMitigated { get; set; }
@@ -300,7 +309,7 @@ namespace QuickType
         public long MagicalDamageTaken { get; set; }
 
         [JsonProperty("perk0Var2")]
-        public long Perk0Var2 { get; set; }
+        public int Perk0Var2 { get; set; }
 
         [JsonProperty("firstInhibitorKill")]
         public bool FirstInhibitorKill { get; set; }
@@ -309,25 +318,25 @@ namespace QuickType
         public long TrueDamageTaken { get; set; }
 
         [JsonProperty("assists")]
-        public long Assists { get; set; }
+        public int Assists { get; set; }
 
         [JsonProperty("perk4Var2")]
-        public long Perk4Var2 { get; set; }
+        public int Perk4Var2 { get; set; }
 
         [JsonProperty("goldSpent")]
-        public long GoldSpent { get; set; }
+        public int GoldSpent { get; set; }
 
         [JsonProperty("trueDamageDealt")]
         public long TrueDamageDealt { get; set; }
 
         [JsonProperty("participantId")]
-        public long ParticipantId { get; set; }
+        public int ParticipantId { get; set; }
 
         [JsonProperty("physicalDamageDealt")]
         public long PhysicalDamageDealt { get; set; }
 
         [JsonProperty("sightWardsBoughtInGame")]
-        public long SightWardsBoughtInGame { get; set; }
+        public int SightWardsBoughtInGame { get; set; }
 
         [JsonProperty("totalDamageDealtToChampions")]
         public long TotalDamageDealtToChampions { get; set; }
@@ -336,34 +345,34 @@ namespace QuickType
         public long PhysicalDamageTaken { get; set; }
 
         [JsonProperty("totalPlayerScore")]
-        public long TotalPlayerScore { get; set; }
+        public int TotalPlayerScore { get; set; }
 
         [JsonProperty("win")]
         public bool Win { get; set; }
 
         [JsonProperty("objectivePlayerScore")]
-        public long ObjectivePlayerScore { get; set; }
+        public int ObjectivePlayerScore { get; set; }
 
         [JsonProperty("totalDamageDealt")]
         public long TotalDamageDealt { get; set; }
 
         [JsonProperty("neutralMinionsKilledEnemyJungle")]
-        public long NeutralMinionsKilledEnemyJungle { get; set; }
+        public int NeutralMinionsKilledEnemyJungle { get; set; }
 
         [JsonProperty("deaths")]
-        public long Deaths { get; set; }
+        public int Deaths { get; set; }
 
         [JsonProperty("wardsPlaced")]
-        public long WardsPlaced { get; set; }
+        public int WardsPlaced { get; set; }
 
         [JsonProperty("perkPrimaryStyle")]
-        public long PerkPrimaryStyle { get; set; }
+        public int PerkPrimaryStyle { get; set; }
 
         [JsonProperty("perkSubStyle")]
-        public long PerkSubStyle { get; set; }
+        public int PerkSubStyle { get; set; }
 
         [JsonProperty("turretKills")]
-        public long TurretKills { get; set; }
+        public int TurretKills { get; set; }
 
         [JsonProperty("firstBloodKill")]
         public bool FirstBloodKill { get; set; }
@@ -372,13 +381,15 @@ namespace QuickType
         public long TrueDamageDealtToChampions { get; set; }
 
         [JsonProperty("goldEarned")]
-        public long GoldEarned { get; set; }
+        public int GoldEarned { get; set; }
 
         [JsonProperty("killingSprees")]
-        public long KillingSprees { get; set; }
+        public int KillingSprees { get; set; }
+        [JsonProperty("altarsCaptured")]
+        public int AltarsCaptured { get; set; }
 
         [JsonProperty("unrealKills")]
-        public long UnrealKills { get; set; }
+        public int UnrealKills { get; set; }
 
         [JsonProperty("firstTowerAssist")]
         public bool FirstTowerAssist { get; set; }
@@ -387,37 +398,42 @@ namespace QuickType
         public bool FirstTowerKill { get; set; }
 
         [JsonProperty("champLevel")]
-        public long ChampLevel { get; set; }
+        public int ChampLevel { get; set; }
+        [JsonProperty("nodeCaptureAssist")]
+        public int NodeCaptureAssist { get; set; }
 
         [JsonProperty("doubleKills")]
-        public long DoubleKills { get; set; }
+        public int DoubleKills { get; set; }
 
         [JsonProperty("inhibitorKills")]
-        public long InhibitorKills { get; set; }
+        public int InhibitorKills { get; set; }
 
         [JsonProperty("firstInhibitorAssist")]
         public bool FirstInhibitorAssist { get; set; }
 
         [JsonProperty("perk0Var1")]
-        public long Perk0Var1 { get; set; }
+        public int Perk0Var1 { get; set; }
 
         [JsonProperty("combatPlayerScore")]
-        public long CombatPlayerScore { get; set; }
+        public int CombatPlayerScore { get; set; }
 
         [JsonProperty("perk0Var3")]
-        public long Perk0Var3 { get; set; }
+        public int Perk0Var3 { get; set; }
 
         [JsonProperty("visionWardsBoughtInGame")]
-        public long VisionWardsBoughtInGame { get; set; }
+        public int VisionWardsBoughtInGame { get; set; }
+        
+        [JsonProperty("altarsNeutralized")]
+        public int AltarsNeutralized { get; set; }
 
         [JsonProperty("pentaKills")]
-        public long PentaKills { get; set; }
+        public int PentaKills { get; set; }
 
         [JsonProperty("totalHeal")]
         public long TotalHeal { get; set; }
 
         [JsonProperty("totalMinionsKilled")]
-        public long TotalMinionsKilled { get; set; }
+        public int TotalMinionsKilled { get; set; }
 
         [JsonProperty("timeCCingOthers")]
         public long TimeCCingOthers { get; set; }
@@ -432,7 +448,7 @@ namespace QuickType
         public string Lane { get; set; }
 
         [JsonProperty("participantId")]
-        public long ParticipantId { get; set; }
+        public int ParticipantId { get; set; }
 
         [JsonProperty("csDiffPerMinDeltas")]
         public Dictionary<string, double> CsDiffPerMinDeltas { get; set; }
@@ -513,75 +529,9 @@ namespace QuickType
     public partial class Ban
     {
         [JsonProperty("pickTurn")]
-        public long PickTurn { get; set; }
+        public int PickTurn { get; set; }
 
         [JsonProperty("championId")]
-        public long ChampionId { get; set; }
-    }
-
-    public enum PlatformId { Eun1, Euw1 };
-
-    public partial class MatchDetailed
-    {
-        public static MatchDetailed FromJson(string json) => JsonConvert.DeserializeObject<MatchDetailed>(json, QuickType.Converter.Settings);
-    }
-
-    public static class Serialize
-    {
-        public static string ToJson(this MatchDetailed self) => JsonConvert.SerializeObject(self, QuickType.Converter.Settings);
-    }
-
-    internal static class Converter
-    {
-        public static readonly JsonSerializerSettings Settings = new JsonSerializerSettings
-        {
-            MetadataPropertyHandling = MetadataPropertyHandling.Ignore,
-            DateParseHandling = DateParseHandling.None,
-            Converters = {
-                PlatformIdConverter.Singleton,
-                new IsoDateTimeConverter { DateTimeStyles = DateTimeStyles.AssumeUniversal }
-            },
-        };
-    }
-
-    internal class PlatformIdConverter : JsonConverter
-    {
-        public override bool CanConvert(Type t) => t == typeof(PlatformId) || t == typeof(PlatformId?);
-
-        public override object ReadJson(JsonReader reader, Type t, object existingValue, JsonSerializer serializer)
-        {
-            if (reader.TokenType == JsonToken.Null) return null;
-            var value = serializer.Deserialize<string>(reader);
-            switch (value)
-            {
-                case "EUN1":
-                    return PlatformId.Eun1;
-                case "EUW1":
-                    return PlatformId.Euw1;
-            }
-            throw new Exception("Cannot unmarshal type PlatformId");
-        }
-
-        public override void WriteJson(JsonWriter writer, object untypedValue, JsonSerializer serializer)
-        {
-            if (untypedValue == null)
-            {
-                serializer.Serialize(writer, null);
-                return;
-            }
-            var value = (PlatformId)untypedValue;
-            switch (value)
-            {
-                case PlatformId.Eun1:
-                    serializer.Serialize(writer, "EUN1");
-                    return;
-                case PlatformId.Euw1:
-                    serializer.Serialize(writer, "EUW1");
-                    return;
-            }
-            throw new Exception("Cannot marshal type PlatformId");
-        }
-
-        public static readonly PlatformIdConverter Singleton = new PlatformIdConverter();
+        public int ChampionId { get; set; }
     }
 }

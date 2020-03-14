@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import React from 'react';
-import GameStats from './GameStats';
 
 const PlayerList = (props) => {
 
@@ -74,7 +73,6 @@ const PlayerList = (props) => {
 					)}
 				</div>
 			</div>
-     
 		</React.Fragment>
 	) : (
 		<React.Fragment />
