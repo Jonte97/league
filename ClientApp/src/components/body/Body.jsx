@@ -24,7 +24,7 @@ const Body = () => {
 				setSummoner(data.summoner);
 			})
 			.catch((reason) => {
-				alert('asdasdasda');
+				alert('Kunde ej hitta ' + data);
 				console.log('ERROR fetching summoner: ' + reason);
 			});
 	};
@@ -49,8 +49,14 @@ const Body = () => {
 			<input
 				type="text"
 				name="namn"
-				onChange={(e) => {
-					test = e.target.value;
+				onChange={(event) => {
+					test = event.target.value;
+				}}
+				onKeyDown={(event) => {
+					var key = event.keyCode;
+					if(key === 13){
+						onSubmit(test);
+					}
 				}}
 			/>
 			<input type="button" onClick={() => onSubmit(test)} value="Get summoner" />
