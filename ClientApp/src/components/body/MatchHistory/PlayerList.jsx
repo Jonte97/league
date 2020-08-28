@@ -21,19 +21,11 @@ const PlayerList = (props) => {
 	return props.matchInfo ? (
 		<React.Fragment>
 			<div style={{ width: '400px' }}>
-<<<<<<< HEAD
 				<div style={{ float: 'left', width: '50%' }}>
 					{props.matchInfo.participantIdentities.map(
 						(player, key) =>
 							props.matchInfo.participants[key].teamId === 100 ? (
 								<div className="blue" style={{}}>
-=======
-				<div style={{float: 'left'}}>
-					{props.matchInfo.participantIdentities.map(
-						(player, key) =>
-							props.matchInfo.participants[key].teamId === 100 ? (
-								<div className="blue" style={{ width: '100%' }}>
->>>>>>> master
 									<img
 										style={{ width: '25px' }}
 										src={`http://ddragon.leagueoflegends.com/cdn/10.4.1/img/champion/${props.champions.find(
@@ -55,19 +47,11 @@ const PlayerList = (props) => {
 							)
 					)}
 				</div>
-<<<<<<< HEAD
 				<div style={{ float: 'right', width: '50%' }}>
 					{props.matchInfo.participantIdentities.map(
 						(player, key) =>
 							props.matchInfo.participants[key].teamId === 200 ? (
 								<div className="blue" style={{}}>
-=======
-				<div style={{float: 'right'}}>
-					{props.matchInfo.participantIdentities.map(
-						(player, key) =>
-							props.matchInfo.participants[key].teamId === 200 ? (
-								<div className="blue" style={{ width: '100%' }}>
->>>>>>> master
 									<img
 										style={{ width: '25px' }}
 										src={`http://ddragon.leagueoflegends.com/cdn/10.4.1/img/champion/${props.champions.find(
