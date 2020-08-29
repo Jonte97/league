@@ -1,10 +1,9 @@
 import React from "react";
+import Content from "./champions/Content"
 
 const Champions = () => {
     return (
-        <div>
-            <h2>Grattis!</h2>
-        </div>
+        <Content />
     );
 };
 

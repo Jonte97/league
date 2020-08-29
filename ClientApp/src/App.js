@@ -1,8 +1,4 @@
 import React, { Component } from 'react';
-import { Layout } from './components/Layout';
-import { Home } from './components/Home';
-import { FetchData } from './components/FetchData';
-import { Counter } from './components/Counter';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 import Header from './components/header/Header';
@@ -48,7 +44,6 @@ export default class App extends Component {
           <Route exact path="/404" component={NotFoundPage} />
           <Route exact path="/champions" component={Champions}></Route>
           <Redirect to="/404"/>
-          {/* <Redirect to="/champions"/> */}
         </Switch>
       </div>
     </Router>
