@@ -1,8 +1,8 @@
 import React from 'react';
 
 const ProfileHead = (props) => {
-
-    let summonerIcon = "http://ddragon.leagueoflegends.com/cdn/10.4.1/img/profileicon/" + props.summoner.profileIconId + ".png";
+    //TODO fix patch version
+    let summonerIcon = "http://ddragon.leagueoflegends.com/cdn/10.16.1/img/profileicon/" + props.summoner.profileIconId + ".png";
 
     return (
         <div className="container">

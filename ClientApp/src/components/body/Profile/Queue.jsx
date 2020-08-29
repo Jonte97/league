@@ -42,7 +42,6 @@ const Queue = (props) => {
         case "CHALLENGER":
             emblem = Emblem_Challenger
             break;
-
         default:
             break;
     }
