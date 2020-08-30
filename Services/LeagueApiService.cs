@@ -28,6 +28,7 @@ namespace Services
             {
                 client.DefaultRequestHeaders.Clear();
 
+                //TODO bör hämtas från appsettings
                 string key = "RGAPI-2e3037e8-7ce0-4cc8-82c8-691562c91fe7";
                 client.DefaultRequestHeaders.Add("X-Riot-Token", key);
 
@@ -116,7 +117,7 @@ namespace Services
         {
             try
             {
-                string url = $"http://ddragon.leagueoflegends.com/cdn/10.5.1/data/en_US/champion.json";
+                string url = $"http://ddragon.leagueoflegends.com/cdn/10.16.1/data/en_US/champion.json";
 
                 var response = await SendRequestAsync(url);
                 var content = await response.Content.ReadAsStringAsync();
