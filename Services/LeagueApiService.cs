@@ -132,7 +132,7 @@ namespace Services
                 throw ex;
             }
         }
-        public async Task<ChampionAdvanced> GetChampByKeyAsync(string key) 
+        public async Task<RootChampionDto> GetChampByKeyAsync(string key) 
         {
             try
             {
@@ -140,7 +140,7 @@ namespace Services
                 var response = await SendRequestAsync(url);
                 var content = await response.Content.ReadAsStringAsync();
                 //TODO create c# model for champion
-                var champion = JsonConvert.DeserializeObject<ChampionAdvanced>(content); 
+                var champion = JsonConvert.DeserializeObject<RootChampionDto>(content); 
                 
                 return champion;
 

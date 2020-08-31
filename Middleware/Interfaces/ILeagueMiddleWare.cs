@@ -1,5 +1,5 @@
 using Models;
-using QuickType;
+using Model;
 
 namespace MiddleWare
 {

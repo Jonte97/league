@@ -10,7 +10,8 @@ using Models;
 using System.Threading.Tasks;
 using MiddleWare;
 using ViewModels;
-using QuickType;
+using Model;
+using Model;
 
 namespace Name.Controllers
 {
@@ -77,7 +78,7 @@ namespace Name.Controllers
             return champions;
         }
         [HttpPost("[action]")]
-        public async Task<Participant> GetSummonerMatchData([FromBody]x data)
+        public async Task<Participant> GetSummonerMatchData([FromBody] x data)
         {
             try
             {
@@ -94,18 +95,24 @@ namespace Name.Controllers
         }
 
         [HttpPost("[action]")]
-        public async Task GetChampByKey(int key)
+        public async Task<string> GetChampByKey([FromBody] string activeChamp)
         {
             try
             {
-             //TODO call service here to fetch data for champ
-                await _leagueApiService.GetChampByKeyAsync(key);
+                var deserializedChampion =  await _leagueApiService.GetChampByKeyAsync(activeChamp);
+                //TODO if works move to middleware
+                var champions = from key in deserializedChampion.Data.Keys
+                            select new { champion = deserializedChampion.Data[key] };
+
+                string json = JsonConvert.SerializeObject(champions);
+
+                return json;
             }
             catch (System.Exception ex)
             {
                 throw ex;
             }
-        }   
+        }
 
         //TODO Rename? vad är detta ens??
         public class x

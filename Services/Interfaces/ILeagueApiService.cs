@@ -12,8 +12,7 @@ namespace Services
         Task<Matches> GetMatchHistoryAsync(string accountId);
         Task<MatchDetailed> GetMatchAsync(string matchId);
         Task<ChampionSimple> GetChampionsAsync();
-        //Gets specific champion info with in detpth information
-        Task<ChampionAdvanced> GetChampByKeyAsync(string key);
+        Task<RootChampionDto> GetChampByKeyAsync(string key);
 
     }
 }
