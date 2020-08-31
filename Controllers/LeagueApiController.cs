@@ -92,6 +92,22 @@ namespace Name.Controllers
                 throw ex;
             }
         }
+
+        [HttpPost("[action]")]
+        public async Task GetChampByKey(int key)
+        {
+            try
+            {
+             //TODO call service here to fetch data for champ
+                await _leagueApiService.GetChampByKeyAsync(key);
+            }
+            catch (System.Exception ex)
+            {
+                throw ex;
+            }
+        }   
+
+        //TODO Rename? vad är detta ens??
         public class x
         {
             [JsonProperty("gameId")]

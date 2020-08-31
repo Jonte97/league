@@ -2,6 +2,7 @@ using System;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
+using Model;
 using Models;
 using Newtonsoft.Json;
 using QuickType;
@@ -113,6 +114,7 @@ namespace Services
             }
         }
         //TODO handle patch verisons
+        //* Get simple champion list
         public async Task<ChampionSimple> GetChampionsAsync()
         {
             try
@@ -130,6 +132,23 @@ namespace Services
                 throw ex;
             }
         }
+        public async Task<ChampionAdvanced> GetChampByKeyAsync(string key) 
+        {
+            try
+            {
+                string url = $"http://ddragon.leagueoflegends.com/cdn/10.16.1/data/en_US/champion/{key}.json";
+                var response = await SendRequestAsync(url);
+                var content = await response.Content.ReadAsStringAsync();
+                //TODO create c# model for champion
+                var champion = JsonConvert.DeserializeObject<ChampionAdvanced>(content); 
+                
+                return champion;
 
+            }
+            catch (System.Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }
