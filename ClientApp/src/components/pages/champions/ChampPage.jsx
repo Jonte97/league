@@ -2,6 +2,7 @@ import React from 'react';
 import './champPage.css';
 import ChampStats from "./ChampStats";
 import ChampAbilities from './ChampAbilities';
+import ChampPlaystyleInfo from './ChampPlaystyleInfo';
 
 const ChampPage = (props) => {
 
@@ -18,6 +19,8 @@ const ChampPage = (props) => {
                     <h4 id="underTitle">{champ.title}</h4>
                 </div>
             </div>
+            <ChampStats stat={champ.stats} name={champ.name}/>
+            <ChampAbilities passive={champ.passive} spells={champ.spells}/>
         </React.Fragment>
     );
 }

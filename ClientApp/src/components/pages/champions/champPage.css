@@ -4,3 +4,27 @@
 #title{
     margin-left: 1em;
 }
+.stat-label{
+    float: left;
+    margin-right: 1em;
+}
+.stat-inline{
+}
+section{
+    display: flex;
+    font-size: 1em;
+    width: 50%;
+}
+.stat-table{
+    background-color: #42a8ffd1;
+}
+.stat-cell{
+    padding: 1em 1em;
+    width: calc(1 / 2 * 100%);
+}
+#stat-head{
+    padding-left: 1em;
+}
+.stat-right{
+
+}
