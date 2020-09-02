@@ -5,7 +5,7 @@ import MatchHistory from './MatchHistory/MatchHistory';
 import { startLeague, startSummoner } from '../../functions/startupHelper';
 import { getChampionList } from '../../functions/promiseHelper';
 
-const Body = () => {
+const MainPage = () => {
 	const [ leagueEntries, setLeague ] = useState(startLeague);
 	const [ summoner, setSummoner ] = useState(startSummoner);
 	let test;
@@ -66,4 +66,4 @@ const Body = () => {
 	);
 };
 
-export default Body;
+export default MainPage;
