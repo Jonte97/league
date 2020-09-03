@@ -4,7 +4,7 @@ import ChampPage from "./champions/ChampPage";
 
 const Champions = () => {
     const [championList, setChampionList] = useState();
-    const [activeKey, setActiveKey] = useState("Zed");
+    const [activeKey, setActiveKey] = useState("Ahri");
     const [activeChampion, setActiveChampion] = useState();
 
     useEffect(() => {

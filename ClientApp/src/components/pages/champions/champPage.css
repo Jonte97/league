@@ -8,8 +8,6 @@
     float: left;
     margin-right: 1em;
 }
-.stat-inline{
-}
 section{
     display: flex;
     font-size: 1em;
@@ -25,6 +23,25 @@ section{
 #stat-head{
     padding-left: 1em;
 }
-.stat-right{
-
+.ability-head h3, p{
+    display: inline-block;
+}
+.ability-card {
+    padding: 1em;
+    color: aliceblue;
+    background-color: #1d123ed1;
+    margin-bottom: 1em;
+}
+.ability-title{
+    margin-left: 1em;
+    margin-right: 1em;
+}
+.ablility-cdr{
+    margin: 1em;
+}
+.inner-spell-card{
+    background-color: #1d123e;
+    padding: 0.5em;
+    display: inline-block;
+    margin-top: 1em;
 }
