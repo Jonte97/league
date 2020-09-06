@@ -40,20 +40,20 @@ const Champions = () => {
             <div className="container">
                 <React.Fragment>
                     <div>
-                        {/* <ul>{championList.map((champion) =>
-                    <li key={champion.v.id}><a onClick={() => setActiveKey(champion.v.id)}>{champion.v.name}</a></li>)}
-                </ul> */}
                         {
                             //! FOR TESTING ONLY_______________________________________________
                         }
-                        <ul>
+                        {/* <ul>
                             <li key={championList[0].v.id}><a onClick={() => setActiveKey(championList[0].v.id)}>{championList[0].v.name}</a></li>
-                        </ul>
+                        </ul> */}
                         {
                             //!________________________________________________________________
                         }
                     </div>
                     {activeChampion ? (<ChampPage active={activeChampion} />) : (<h2>No champion is chosen yet!</h2>)}
+                    <ul>{championList.map((champion) =>
+                        <li key={champion.v.id}><a onClick={() => setActiveKey(champion.v.id)}>{champion.v.name}</a></li>)}
+                    </ul>
                 </React.Fragment>
             </div>
         </div>

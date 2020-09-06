@@ -3,16 +3,16 @@ import React from 'react';
 //* Write out stats for active champ
 const ChampStats = (props) => {
     let stats = props.stat;
-
+    //TODO Round attackspeed 2 digits
     //TODO Make cleaner func for these
     //*Max lvl stats not provided from api
-    let hpMaxLvl = stats.hpperlevel * 17 + stats.hp;
-    let resourceMax = stats.mpperlevel * 17 + stats.mp
-    let armorMax = stats.armorperlevel * 17 + stats.armor
-    let spellblockMaxLvl = stats.spellblockperlevel * 17 + stats.spellblock
-    let attackdamageMaxLvl = stats.attackdamageperlevel * 17 + stats.attackdamage
-    let attackspeedMaxLvl = stats.attackspeedperlevel * 17 + stats.attackspeed
-    let hpregenMaxLvl = stats.hpregenperlevel * 17 + stats.hpregen
+    let hpMaxLvl = (stats.hpperlevel * 17 + stats.hp).toFixed(2);
+    let resourceMax = (stats.mpperlevel * 17 + stats.mp).toFixed(2);
+    let armorMax = (stats.armorperlevel * 17 + stats.armor).toFixed(2);
+    let spellblockMaxLvl = (stats.spellblockperlevel * 17 + stats.spellblock).toFixed(2);
+    let attackdamageMaxLvl = (stats.attackdamageperlevel * 17 + stats.attackdamage).toFixed(2);
+    let attackspeedMaxLvl = (stats.attackspeedperlevel * 17 + stats.attackspeed).toFixed(2);
+    let hpregenMaxLvl = (stats.hpregenperlevel * 17 + stats.hpregen).toFixed(2);
 
     return (
         <div className="stat-table">

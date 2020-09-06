@@ -13,8 +13,24 @@ section{
     font-size: 1em;
     width: 50%;
 }
+.head-table{
+    background-color: #1d123ed1;
+    color: aliceblue;
+    
+}
+#headContainer{
+    padding: 1em;
+
+}
+#championThumbnail{
+    border-radius: 50%;
+    border: 3px solid gold;
+}
 .stat-table{
-    background-color: #42a8ffd1;
+    background-color: #1d123ed1;
+    color: aliceblue;
+    margin-bottom: 1em;
+
 }
 .stat-cell{
     padding: 1em 1em;

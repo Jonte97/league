@@ -12,15 +12,17 @@ const ChampPage = (props) => {
     console.log(champ);
     return (
         <React.Fragment>
-            <div className="inline">
-                <img className="inline" src={thumbnail} />
-                <div id="title" className="inline">
-                    <h2>{champ.name}</h2>
-                    <h4 id="underTitle">{champ.title}</h4>
+            <div className="head-table">
+                <div id="headContainer" className="inline">
+                    <img id="championThumbnail" className="inline" src={thumbnail} />
+                    <div id="title" className="inline">
+                        <h2>{champ.name}</h2>
+                        <h4 id="underTitle">{champ.title}</h4>
+                    </div>
                 </div>
+                <ChampStats stat={champ.stats} name={champ.name} />
             </div>
-            <ChampStats stat={champ.stats} name={champ.name}/>
-            <ChampAbilities passive={champ.passive} spells={champ.spells}/>
+            <ChampAbilities passive={champ.passive} spells={champ.spells} />
         </React.Fragment>
     );
 }
