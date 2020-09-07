@@ -1,14 +1,12 @@
 import React, { Component } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-import SideMenu from './components/sideMenu/SideMenu';
 import MainPage from './components/body/MainPage';
-import Footer from './components/footer/Footer';
 import { BrowserRouter as Router, Route, Link, Switch, Redirect } from "react-router-dom";
 //Pages
 import NotFoundPage from './components/pages/404';
 import Champions from './components/pages/Champions';
-import Header from './components/Header/Header';
+import Header from './components/header/Header';
 
 export default class App extends Component {
   displayName = App.name

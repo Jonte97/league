@@ -1,19 +1,30 @@
 .header{
     margin: 0;
+    height: 50px;
 }
 #menu a{
-    color: aliceblue !important;
-
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
 }
-#nav-list{
-    display: flex;
+#nav-list li{
+    display: inline;
+    padding: 0;
+    height: 50px;
+}
+#menu{
+    text-align: center;    
 }
 #nav-list li {
-    margin: 1em;
     font-size: 2em;
-    border: 2px solid aliceblue;
-    padding: 0.5em;
 }
 #nav-list li :hover{
-    background-color: black;
+}
+.nav-border-right{
+    border-right: 1px solid #ffffff;
+}
+.nav-border-left{
+    border-left: 1px solid #ffffff;
 }

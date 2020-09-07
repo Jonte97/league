@@ -6,13 +6,13 @@ const SideMenu = () => {
     return (
         <nav id="menu">
             <ul id="nav-list">
-                <li>
+                <li className="nav-border-right">
                     <Link to="/">Player</Link>
                 </li>
                 <li>
                     <Link to="/champions">Champions</Link>
                 </li>
-                <li>
+                <li className="nav-border-left">
                     <Link to="/users">Users</Link>
                 </li>
             </ul>
