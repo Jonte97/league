@@ -7,7 +7,7 @@ const SideMenu = () => {
         <nav id="menu">
             <ul id="nav-list">
                 <li className="nav-border-right">
-                    <Link to="/">Player</Link>
+                    <Link to="/">Profile</Link>
                 </li>
                 <li>
                     <Link to="/champions">Champions</Link>
