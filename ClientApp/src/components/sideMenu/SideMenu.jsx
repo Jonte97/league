@@ -4,8 +4,8 @@ import { BrowserRouter as Router, Route, Link, Switch, Redirect } from "react-ro
 
 const SideMenu = () => {
     return (
-        <nav>
-            <ul>
+        <nav id="menu">
+            <ul id="nav-list">
                 <li>
                     <Link to="/">Player</Link>
                 </li>

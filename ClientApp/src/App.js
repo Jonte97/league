@@ -18,7 +18,6 @@ export default class App extends Component {
       <Router>
       <div>
         <Header />
-        <SideMenu />
         <Switch>
           <Route exact path="/" component={MainPage} />
           <Route exact path="/404" component={NotFoundPage} />
