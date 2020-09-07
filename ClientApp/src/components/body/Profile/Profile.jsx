@@ -9,7 +9,7 @@ const Profile = (props) => {
 
     return (
         <div>
-          <div className="profile-head">
+          <div className="profile-head theme-bg">
             <ProfileHead summoner={props.summoner}/>
           </div>
             

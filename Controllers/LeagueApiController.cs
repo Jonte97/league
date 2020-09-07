@@ -11,7 +11,6 @@ using System.Threading.Tasks;
 using MiddleWare;
 using ViewModels;
 using Model;
-using Model;
 
 namespace Name.Controllers
 {
