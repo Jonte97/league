@@ -45,3 +45,6 @@ ul{
 .queue-h4-container h4{
     display: inline-block;
 }
+.queue-content-holder{
+    display: flex;
+}

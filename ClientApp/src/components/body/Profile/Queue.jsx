@@ -65,14 +65,16 @@ const Queue = (props) => {
     return (
         <div className="queue-card">
             <h2 className="queue-tier">{props.data.tier} {props.data.rank}</h2>
-            <div className="queue-h4-container">
-                <h4 className="queue-title">{queueType}</h4>
-                <br />
-                <h4 className="queue-wins">{props.data.leaguePoints} lp {props.data.wins}w {props.data.losses}L</h4>
-                <br />
-                <h4 className="queue-winrate">Win ratio: {winrate}%</h4>
+            <div className="queue-content-holder">
+                <img className="emblem" src={emblem} />
+                <div className="queue-h4-container">
+                    <h4 className="queue-title">{queueType}</h4>
+                    <br />
+                    <h4 className="queue-wins">{props.data.leaguePoints} lp {props.data.wins}w {props.data.losses}L</h4>
+                    <br />
+                    <h4 className="queue-winrate">Win ratio: {winrate}%</h4>
+                </div>
             </div>
-            <img className="emblem" src={emblem} />
         </div>
     );
 };
