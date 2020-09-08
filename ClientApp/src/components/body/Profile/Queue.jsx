@@ -61,13 +61,20 @@ const Queue = (props) => {
             break;
     }
 
+    //* To set border on the left queue card
+    let id = "right";
+    if(props.id == 0){
+        id="left";
+    }
+    //TODO fix so solo queue is always left
     //* Writing queue cards
     return (
-        <div className="queue-card">
-            <h2 className="queue-tier">{props.data.tier} {props.data.rank}</h2>
+        <div className="queue-card" id={id}>
             <div className="queue-content-holder">
                 <img className="emblem" src={emblem} />
                 <div className="queue-h4-container">
+                    <h2 className="queue-tier">{props.data.tier} {props.data.rank}</h2>
+                    <br />
                     <h4 className="queue-title">{queueType}</h4>
                     <br />
                     <h4 className="queue-wins">{props.data.leaguePoints} lp {props.data.wins}w {props.data.losses}L</h4>

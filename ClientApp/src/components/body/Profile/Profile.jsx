@@ -15,7 +15,7 @@ const Profile = (props) => {
 
       <div className="darker-theme-bg">
         {props.leagueEntries.map((item, i) =>
-          <Queue data={item} key={i} />
+          <Queue data={item} key={i} id={i} />
         )}
       </div>
 
