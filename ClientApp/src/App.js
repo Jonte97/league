@@ -1,19 +1,29 @@
 import React, { Component } from 'react';
-import { Route } from 'react-router';
-import { Layout } from './components/Layout';
-import { Home } from './components/Home';
-import { FetchData } from './components/FetchData';
-import { Counter } from './components/Counter';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-import Content from './components/Content';
+import MainPage from './components/body/MainPage';
+import { BrowserRouter as Router, Route, Link, Switch, Redirect } from "react-router-dom";
+//Pages
+import NotFoundPage from './components/pages/404';
+import Champions from './components/pages/Champions';
+import Header from './components/header/Header';
 
 export default class App extends Component {
   displayName = App.name
 
   render() {
     return (
-        <Route exact path='/' component={Content} />
+      <Router>
+      <div>
+        <Header />
+        <Switch>
+          <Route exact path="/" component={MainPage} />
+          <Route exact path="/404" component={NotFoundPage} />
+          <Route exact path="/champions" component={Champions}></Route>
+          {/* <Redirect to="/404"/> */}
+        </Switch>
+      </div>
+    </Router>
     );
   }
 }

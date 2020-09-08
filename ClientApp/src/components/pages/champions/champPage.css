@@ -1,0 +1,63 @@
+.inline{
+    display: inline-block;
+}
+#title{
+    margin-left: 1em;
+}
+.stat-label{
+    float: left;
+    margin-right: 1em;
+}
+section{
+    display: flex;
+    font-size: 1em;
+    width: 50%;
+}
+.head-table{
+    background-color: #1d123ed1;
+    color: aliceblue;
+    
+}
+#headContainer{
+    padding: 1em;
+
+}
+#championThumbnail{
+    border-radius: 50%;
+    border: 3px solid gold;
+}
+.stat-table{
+    background-color: #1d123ed1;
+    color: aliceblue;
+    margin-bottom: 1em;
+
+}
+.stat-cell{
+    padding: 1em 1em;
+    width: calc(1 / 2 * 100%);
+}
+#stat-head{
+    padding-left: 1em;
+}
+.ability-head h3, p{
+    display: inline-block;
+}
+.ability-card {
+    padding: 1em;
+    color: aliceblue;
+    background-color: #1d123ed1;
+    margin-bottom: 1em;
+}
+.ability-title{
+    margin-left: 1em;
+    margin-right: 1em;
+}
+.ablility-cdr{
+    margin: 1em;
+}
+.inner-spell-card{
+    background-color: #1d123e;
+    padding: 0.5em;
+    display: inline-block;
+    margin-top: 1em;
+}

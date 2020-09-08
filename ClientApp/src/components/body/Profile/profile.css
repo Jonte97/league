@@ -1,31 +1,45 @@
 .emblem{
     height: 150px;
 }
-.profile-head{
+/* .profile-head{
     background-color: #42a8ffd1;
     
-}
+} */
 #summonerLvl{
     float: right;
 }
 #summonerName{
-    float: left;
 }
-
+#left{
+    border-right: 1px solid aliceblue;
+}
+.profile-titles h1{
+    display: inline-flex;
+}
 #summonerIcon{
     border-radius: 50%;
     border: 5px solid gold;
+    height: 138px;
 }
-.center {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
+.inner-img{
+    width: 138px;
+    /* margin-left: auto;
+    margin-right: auto; */
+}
+.profile-head-container h4{
+    display: inline-flex;
+}
+.profile-head-container{
+    padding: 1em 3em 1em 3em;
+}
+.inner-img{
+    width: 138px;
+    margin: 0 auto;
 }
 .queue-card{
-    width: 250px;
+    width: 50%;
     display: inline-block; 
-    border: 2px solid black;
-    padding: 1em;
+    padding: 1em 3em 1em 3em;
 }
 
 .row {
@@ -34,8 +48,18 @@
 }
 
 .queue-title, .queue-lp, .queue-tier, .queue-wins, .queue-losses{
-    text-align: left;
+    text-align: center;
 }
 ul{
     list-style: none;
+}
+.queue-h4-container{
+    width: 50%;
+    margin: 0 auto;
+}
+.queue-h4-container h4, h2{
+    display: inline-block;
+}
+.queue-content-holder{
+    display: flex;
 }

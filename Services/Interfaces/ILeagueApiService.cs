@@ -1,4 +1,5 @@
 using System.Threading.Tasks;
+using Model;
 using Models;
 using QuickType;
 
@@ -11,5 +12,7 @@ namespace Services
         Task<Matches> GetMatchHistoryAsync(string accountId);
         Task<MatchDetailed> GetMatchAsync(string matchId);
         Task<ChampionSimple> GetChampionsAsync();
+        Task<RootChampionDto> GetChampByKeyAsync(string key);
+
     }
 }

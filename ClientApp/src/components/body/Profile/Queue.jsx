@@ -10,8 +10,23 @@ import Emblem_Grandmaster from '../../../img/icons/Emblem_Grandmaster.png';
 import Emblem_Challenger from '../../../img/icons/Emblem_Challenger.png';
 
 const Queue = (props) => {
-    
+
     var emblem = props.data.tier;
+    var queueType = "";
+    var winrate = (props.data.wins / (props.data.wins + props.data.losses) * 100).toFixed(0);
+
+    //TODO kanske skriva ut namnet på ligan?
+    switch (props.data.queueType) {
+        case "RANKED_SOLO_5x5":
+            queueType = "Ranked solo";
+            break;
+        case "RANKED_FLEX_SR":
+            queueType = "Ranked flex"
+            break;
+        default:
+            queueType = "Unknown"
+            break;
+    }
 
     //* Handles displayed rank icon in ranked queue cards
     switch (emblem) {
@@ -46,15 +61,27 @@ const Queue = (props) => {
             break;
     }
 
+    //* To set border on the left queue card
+    let id = "right";
+    if(props.id == 0){
+        id="left";
+    }
+    //TODO fix so solo queue is always left
     //* Writing queue cards
     return (
-        <div className="queue-card">
-            <h4 className="queue-title">{props.data.queueType}</h4>
-            <h2 className="queue-tier">{props.data.tier} {props.data.rank}</h2>
-            <h4 className="queue-wins">wins: {props.data.wins}</h4>
-            <h4 className="queue-losses">Losses: {props.data.losses}</h4>
-            <h4 className="queue-lp">LP: {props.data.leaguePoints}</h4>
-            <img className="emblem" src={emblem} />
+        <div className="queue-card" id={id}>
+            <div className="queue-content-holder">
+                <img className="emblem" src={emblem} />
+                <div className="queue-h4-container">
+                    <h2 className="queue-tier">{props.data.tier} {props.data.rank}</h2>
+                    <br />
+                    <h4 className="queue-title">{queueType}</h4>
+                    <br />
+                    <h4 className="queue-wins">{props.data.leaguePoints} lp {props.data.wins}w {props.data.losses}L</h4>
+                    <br />
+                    <h4 className="queue-winrate">Win ratio: {winrate}%</h4>
+                </div>
+            </div>
         </div>
     );
 };
