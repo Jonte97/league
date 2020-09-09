@@ -1,13 +1,7 @@
 export const getChampionList = (setState) => {
 	return new Promise((resolve, reject) => {
 		fetch('api/LeagueApi/GetSimpleChampionList')
-			.then((response) => {
-				if (response.status == 200) {
-					console.log("success")					
-				} else {
-					reject(response);
-				}
-			})
+			.then((response) => response.json())
 			.then((data) => {
 				console.log(data)
 				setState(data)
@@ -23,7 +17,7 @@ export const getChampionList = (setState) => {
 //Get matchhistory by for player by id INPUT: accountId
 export const getMatchHistory = (accountId, setState) => {
 	console.log("accountid is: " + accountId);
-		return new Promise((resolve, reject) => {
+	return new Promise((resolve, reject) => {
 		fetch('api/LeagueApi/GetMatchHistory', {
 			method: 'post',
 			headers: { 'Content-Type': 'application/json' },
@@ -55,6 +49,31 @@ export const getMatchById = (currentMatchId, setState) => {
 				console.log("success");
 				resolve(data);
 				setState(data);
+			})
+			.catch((reason) => {
+				console.log(reason);
+				reject(reason);
+			});
+	})
+}
+//Get game stats for active summoner INPUT; gameId
+export const getMatchDataForSummoner = (currentMatchId, summonerName, setState) => {
+	let data = {
+		gameId: currentMatchId,
+		name: summonerName
+	};
+
+	return new Promise((resolve, reject) => {
+		fetch('api/LeagueApi/GetSummonerMatchData', {
+			method: 'post',
+			headers: { 'Content-Type': 'application/json' },
+			body: JSON.stringify(data)
+		})
+			.then((response) => response.json())
+			.then((data) => {
+				resolve(data);
+				setState(data);
+				// setCurrentSummoner(data);
 			})
 			.catch((reason) => {
 				console.log(reason);

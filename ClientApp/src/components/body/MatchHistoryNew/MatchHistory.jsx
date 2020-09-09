@@ -1,11 +1,11 @@
 import React from 'react';
-import { getMatchHistory } from '../../../functions/promiseHelper';
+import { getMatchHistory, getChampionList } from '../../../functions/promiseHelper';
 import { useState, useEffect } from 'react';
 import MatchItem, { matchItem } from './MatchItem';
 
 const MatchHistory = (props) => {
-    let matches = [];
     const [matchHistory, setMatchHistory] = useState();
+    const [championList, setChampionList] = useState();
     //! Hardcoded accid must be replaced    
     let accid = "";
     if (props.activeSummoner.name == "Lönnen") {
@@ -15,17 +15,27 @@ const MatchHistory = (props) => {
         accid = props.activeSummoner.accountId;
     }
 
+    useEffect(() => {
+        getChampionList(setChampionList);
+    }, []);
+
     //Hämtar matchHistory och uppdaterar state
     useEffect(() => {
         let matches = getMatchHistory(accid, setMatchHistory);
-        console.log(matches);
     }, [props.activeSummoner]);
 
     return (
         <div className="theme-bg">
             <div className="container">
                 {matchHistory ? matchHistory.matches.map((match, i) => (
-                    <MatchItem key={i} match={match} />
+                    <div className="history-item">
+                        <MatchItem
+                            key={i}
+                            championList={championList}
+                            match={match}
+                            owner={props.activeSummoner}
+                        />
+                    </div>
                 )) : null}
             </div>
         </div>
