@@ -41,3 +41,24 @@ export const getMatchHistory = (accountId, setState) => {
 			});
 	})
 }
+
+//Get matchById INPUT; gameId
+export const getMatchById = (currentMatchId, setState) => {
+	return new Promise((resolve, reject) => {
+		fetch('api/LeagueApi/GetMatchById', {
+			method: 'post',
+			headers: { 'Content-Type': 'application/json' },
+			body: JSON.stringify(currentMatchId)
+		})
+			.then((response) => response.json())
+			.then((data) => {
+				console.log("success");
+				resolve(data);
+				setState(data);
+			})
+			.catch((reason) => {
+				console.log(reason);
+				reject(reason);
+			});
+	})
+}
