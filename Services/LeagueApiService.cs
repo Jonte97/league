@@ -30,7 +30,7 @@ namespace Services
                 client.DefaultRequestHeaders.Clear();
 
                 //TODO bör hämtas från appsettings
-                string key = "RGAPI-2e3037e8-7ce0-4cc8-82c8-691562c91fe7";
+                string key = "RGAPI-27f314d6-8e0c-4765-b36a-4a56b782f363";
                 client.DefaultRequestHeaders.Add("X-Riot-Token", key);
 
                 response = await client.GetAsync(uri);
