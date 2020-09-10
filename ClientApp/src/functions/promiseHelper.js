@@ -81,3 +81,19 @@ export const getMatchDataForSummoner = (currentMatchId, summonerName, setState) 
 			});
 	})
 }
+
+//Get summonerspelldata and returns it
+export const getSummonerSpellData = (setState) => {
+	return new Promise((resolve, reject) => {
+		fetch('https://ddragon.leagueoflegends.com/cdn/10.18.1/data/en_US/summoner.json')
+			.then((response) => response.json())
+			.then((data) => {
+				resolve(data);
+				setState(data);
+			})
+			.catch((reason) => {
+				console.log(reason);
+				reject(reason);
+			});
+	})
+}

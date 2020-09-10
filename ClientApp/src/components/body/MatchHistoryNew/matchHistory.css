@@ -6,9 +6,8 @@
     padding: 1em;
     border-bottom: 1px solid black;
 }
-.inline-block{
-    display: inline-block;
+.inline-flex{
+    display: inline-flex;
 }
-.inline-block h4{
-    text-align: center;
+.history-summonerspell{
 }
