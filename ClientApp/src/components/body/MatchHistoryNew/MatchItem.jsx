@@ -57,7 +57,7 @@ const MatchItem = (props) => {
                     </div>
                 </div>
                     <Keystone runes={props.runes} stats={gameInfo.stats} />
-                    <Kda stats={gameInfo.stats}/>
+                    <Kda stats={gameInfo.stats} matchDuration={matchInfo.gameDuration}/>
                 </div>
                     <h4>{matchInfo.gameMode}</h4>
                     <Items stats={gameInfo} />
