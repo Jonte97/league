@@ -5,7 +5,7 @@
 }
 .history-item{
     padding: 1em;
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid #251a44;
 }
 .inline-flex{
     display: inline-flex;
@@ -18,4 +18,10 @@
 .history-item-img, .history-emptyitem{
     border: 1px solid goldenrod;
     margin-right: 0.5em;
+}
+.history-keystone{
+    height: 64px;
+}
+.history-secondary-rune{
+    height: 24px;
 }

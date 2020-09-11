@@ -1,5 +1,5 @@
 import React from 'react';
-import { getMatchHistory, getChampionList, getSummonerSpellData } from '../../../functions/promiseHelper';
+import { getMatchHistory, getChampionList, getSummonerSpellData, getRunesData } from '../../../functions/promiseHelper';
 import { useState, useEffect } from 'react';
 import MatchItem, { matchItem } from './MatchItem';
 
@@ -7,6 +7,7 @@ const MatchHistory = (props) => {
     const [matchHistory, setMatchHistory] = useState();
     const [championList, setChampionList] = useState();
     const [summonerSpells, setSummonerSpells] = useState();
+    const [runesData, setRunesData] = useState();
     //! Hardcoded accid must be replaced    
     let accid = "";
     if (props.activeSummoner.name == "Lönnen") {
@@ -19,6 +20,7 @@ const MatchHistory = (props) => {
     useEffect(() => {
         getChampionList(setChampionList);
         getSummonerSpellData(setSummonerSpells);
+        getRunesData(setRunesData);
     }, []);
 
     //Hämtar matchHistory och uppdaterar state
@@ -30,13 +32,14 @@ const MatchHistory = (props) => {
         <div className="theme-bg">
             <div className="container">
                 {matchHistory ? matchHistory.matches.map((match, i) => (
-                    <div className="history-item">
+                    <div key={i} className="history-item">
                         <MatchItem
                             key={i}
                             championList={championList}
                             match={match}
                             owner={props.activeSummoner}
                             summonerSpells={summonerSpells}
+                            runes={runesData}
                         />
                     </div>
                 )) : null}

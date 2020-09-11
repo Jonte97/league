@@ -2,7 +2,6 @@
 export const getSummonerSpell = (key, spells) => {
     switch (key) {
         case 4:
-            console.log(spells.SummonerFlash)
             return spells.SummonerFlash;
             break;
         case 21:

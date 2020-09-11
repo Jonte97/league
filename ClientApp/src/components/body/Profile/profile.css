@@ -84,4 +84,9 @@ input[type=text] {
 }
 .form{
         padding: 2em;
+        width: 50%;
+        margin: 0 auto;
+}
+.form #summonerSearch{
+    width: 50%;
 }

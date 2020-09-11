@@ -5,7 +5,7 @@ import { useState, useEffect } from 'react';
 import './matchHistory.css';
 import Items from './Items';
 import Keystone from './Keystone';
-
+import Kda from './Kda';
 const MatchItem = (props) => {
 
     const [matchInfo, setMatchInfo] = useState();
@@ -55,8 +55,9 @@ const MatchItem = (props) => {
                     <div>
                         <img className="history-summonerspell" src={thumbnails.summonerSpell2} />
                     </div>
-                    <Keystone />
                 </div>
+                    <Keystone runes={props.runes} stats={gameInfo.stats} />
+                    <Kda stats={gameInfo.stats}/>
                 </div>
                     <h4>{matchInfo.gameMode}</h4>
                     <Items stats={gameInfo} />
