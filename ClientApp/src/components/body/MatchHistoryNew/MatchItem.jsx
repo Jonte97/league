@@ -2,7 +2,8 @@ import React from 'react';
 import { getMatchById, getMatchDataForSummoner } from '../../../functions/promiseHelper';
 import { getSummonerSpell } from '../../../functions/summonerSpellHelper'
 import { useState, useEffect } from 'react';
-import './matchHistory.css'
+import './matchHistory.css';
+import Items from './Items';
 
 const MatchItem = (props) => {
 
@@ -56,6 +57,7 @@ const MatchItem = (props) => {
                 </div>
                 </div>
                     <h4>{matchInfo.gameMode}</h4>
+                    <Items stats={gameInfo} />
             </div> :
             <div>
                 <h3>Loading game...</h3>

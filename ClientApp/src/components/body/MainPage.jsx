@@ -46,21 +46,23 @@ const MainPage = () => {
 	}, []);
 	return (
 		<div>
-			<div className="form">
-				<input
-					type="text"
-					name="namn"
-					onChange={(event) => {
-						test = event.target.value;
-					}}
-					onKeyDown={(event) => {
-						var key = event.keyCode;
-						if (key === 13) {
-							onSubmit(test);
-						}
-					}}
-				/>
-				<input type="button" className="button darker-theme-bg" onClick={() => onSubmit(test)} value="Get summoner" />
+			<div className="theme-bg">
+				<div className="form">
+					<input
+						type="text"
+						name="namn"
+						onChange={(event) => {
+							test = event.target.value;
+						}}
+						onKeyDown={(event) => {
+							var key = event.keyCode;
+							if (key === 13) {
+								onSubmit(test);
+							}
+						}}
+					/>
+					<input type="button" className="button darker-theme-bg" onClick={() => onSubmit(test)} value="Get summoner" />
+				</div>
 			</div>
 			<Profile leagueEntries={leagueEntries} summoner={summoner} />
 			{/* <MatchHistory summoner={summoner} /> replacement below */}

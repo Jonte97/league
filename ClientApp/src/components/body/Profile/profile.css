@@ -72,15 +72,15 @@ input[type=text] {
     background-position: 10px 10px; 
     background-repeat: no-repeat;
     padding: 12px 20px 12px 40px;
-  }
-  .button {
+}
+.button {
     border: none;
     padding: 15px 32px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
     font-size: 16px;
-  }
+}
 .form{
-    
-  }
+        padding: 2em;
+}

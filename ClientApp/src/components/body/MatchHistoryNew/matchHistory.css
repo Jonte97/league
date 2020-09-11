@@ -1,6 +1,7 @@
 .history-thumbnail{
     border-radius: 50%;
     border: 2px solid gold;
+    margin-right: 1em;
 }
 .history-item{
     padding: 1em;
@@ -9,5 +10,12 @@
 .inline-flex{
     display: inline-flex;
 }
-.history-summonerspell{
+.history-emptyitem{
+    background-color: black;
+    height: 66px;
+    width: 66px;
+}
+.history-item-img, .history-emptyitem{
+    border: 1px solid goldenrod;
+    margin-right: 0.5em;
 }
