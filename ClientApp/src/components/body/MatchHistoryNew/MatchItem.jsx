@@ -4,6 +4,7 @@ import { getSummonerSpell } from '../../../functions/summonerSpellHelper'
 import { useState, useEffect } from 'react';
 import './matchHistory.css';
 import Items from './Items';
+import Keystone from './Keystone';
 
 const MatchItem = (props) => {
 
@@ -54,6 +55,7 @@ const MatchItem = (props) => {
                     <div>
                         <img className="history-summonerspell" src={thumbnails.summonerSpell2} />
                     </div>
+                    <Keystone />
                 </div>
                 </div>
                     <h4>{matchInfo.gameMode}</h4>
