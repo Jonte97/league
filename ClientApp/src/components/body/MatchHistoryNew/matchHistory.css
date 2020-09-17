@@ -2,6 +2,7 @@
     border-radius: 50%;
     border: 2px solid gold;
     margin-right: 1em;
+    max-height: 124px;
 }
 .history-item{
     padding: 1em;
@@ -27,4 +28,16 @@
 }
 .history-kda{
     padding: 1em;
+    margin-left: 7em;
+    margin-right: 3em;
+}
+.history-player-lists{
+    display: flex;
+    margin-left: 2em;
+}
+.history-list-thumbnail{
+    height: 32px;
+}
+.history-playerlist{
+    font-size: 16px;
 }

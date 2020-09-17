@@ -6,6 +6,7 @@ import './matchHistory.css';
 import Items from './Items';
 import Keystone from './Keystone';
 import Kda from './Kda';
+import PlayerList from './PlayerList'
 const MatchItem = (props) => {
 
     const [matchInfo, setMatchInfo] = useState();
@@ -43,24 +44,52 @@ const MatchItem = (props) => {
         thumbnails.summonerSpell2 = `http://ddragon.leagueoflegends.com/cdn/10.18.1/img/spell/${summonerSpell2.id}.png`
         : null;
     //TODO Lägg till loadanimation
+
+    const getPlayerList = (teamId) => {
+        let list = [];
+        list = matchInfo.participants.filter((obj) => obj.teamId === teamId);
+
+        return list;
+    };
+
+    const getPlayerIdentities = (list) => {
+
+        let identities = [];
+
+        for (let index = 0; index < list.length; index++) {
+            identities.push(matchInfo.participantIdentities.find(
+                (obj) => obj.participantId === list[index].participantId
+            ))
+        }
+        return identities
+    };
+
     return (
         matchInfo && gameInfo ?
             <div className="match-history-item">
                 <div className="inline-flex">
                     <img className="history-thumbnail" src={thumbnails.ownerChampion} />
-                <div className="history-summonerspells">
-                    <div>
-                        <img className="history-summonerspell" src={thumbnails.summonerSpell1} />
+                    <div className="history-summonerspells">
+                        <div>
+                            <img className="history-summonerspell" src={thumbnails.summonerSpell1} />
+                        </div>
+                        <div>
+                            <img className="history-summonerspell" src={thumbnails.summonerSpell2} />
+                        </div>
                     </div>
-                    <div>
-                        <img className="history-summonerspell" src={thumbnails.summonerSpell2} />
-                    </div>
-                </div>
                     <Keystone runes={props.runes} stats={gameInfo.stats} />
-                    <Kda stats={gameInfo.stats} matchDuration={matchInfo.gameDuration}/>
+                    <Kda stats={gameInfo.stats} matchDuration={matchInfo.gameDuration} />
+                    <div className="history-player-lists">
+                        <div className="history-list-blue">
+                            <PlayerList ids={getPlayerList(100)} list={getPlayerIdentities(getPlayerList(100))} championList={props.championList} />
+                        </div>
+                        <div className="history-list-red">
+                            <PlayerList ids={getPlayerList(200)} list={getPlayerIdentities(getPlayerList(200))} championList={props.championList} />
+                        </div>
+                    </div>
                 </div>
-                    <h4>{matchInfo.gameMode}</h4>
-                    <Items stats={gameInfo} />
+                <h4>{matchInfo.gameMode}</h4>
+                <Items stats={gameInfo} />
             </div> :
             <div>
                 <h3>Loading game...</h3>
