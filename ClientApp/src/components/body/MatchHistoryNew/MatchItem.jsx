@@ -67,28 +67,32 @@ const MatchItem = (props) => {
     return (
         matchInfo && gameInfo ?
             <div className="match-history-item">
-                <div className="inline-flex">
+                <div className="flex mb1">
                     <img className="history-thumbnail" src={thumbnails.ownerChampion} />
                     <div className="history-summonerspells">
                         <div>
-                            <img className="history-summonerspell" src={thumbnails.summonerSpell1} />
+                            <img className="history-summonerspell first" src={thumbnails.summonerSpell1} />
                         </div>
                         <div>
                             <img className="history-summonerspell" src={thumbnails.summonerSpell2} />
                         </div>
                     </div>
                     <Keystone runes={props.runes} stats={gameInfo.stats} />
-                    <Kda stats={gameInfo.stats} matchDuration={matchInfo.gameDuration} />
-                    <div className="history-player-lists">
-                        <div className="history-list-blue">
-                            <PlayerList ids={getPlayerList(100)} list={getPlayerIdentities(getPlayerList(100))} championList={props.championList} />
-                        </div>
-                        <div className="history-list-red">
-                            <PlayerList ids={getPlayerList(200)} list={getPlayerIdentities(getPlayerList(200))} championList={props.championList} />
+                    <div className="history-mid-text">
+                        <div className="history-mid-inner-text">
+                            <h4>{matchInfo.gameMode}</h4>
+                            <Kda stats={gameInfo.stats} matchDuration={matchInfo.gameDuration} />
                         </div>
                     </div>
                 </div>
-                <h4>{matchInfo.gameMode}</h4>
+                <div className="history-player-lists">
+                    <div className="history-list-blue">
+                        <PlayerList ids={getPlayerList(100)} list={getPlayerIdentities(getPlayerList(100))} championList={props.championList} />
+                    </div>
+                    <div className="history-list-red">
+                        <PlayerList ids={getPlayerList(200)} list={getPlayerIdentities(getPlayerList(200))} championList={props.championList} />
+                    </div>
+                </div>
                 <Items stats={gameInfo} />
             </div> :
             <div>

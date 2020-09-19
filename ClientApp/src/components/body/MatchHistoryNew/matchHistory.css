@@ -11,6 +11,9 @@
 .inline-flex{
     display: inline-flex;
 }
+.flex{
+    display: -webkit-inline-box;
+}
 .history-emptyitem{
     background-color: black;
     height: 66px;
@@ -26,10 +29,8 @@
 .history-secondary-rune{
     height: 24px;
 }
-.history-kda{
-    padding: 1em;
-    margin-left: 7em;
-    margin-right: 3em;
+.history-kda h4{
+    margin: 0;
 }
 .history-player-lists{
     display: flex;
@@ -40,4 +41,37 @@
 }
 .history-playerlist{
     font-size: 16px;
+}
+.history-playerlist li{
+    margin-bottom: 0.2em;
+}
+.history-mid-text{
+    width: 100%;
+}
+.history-mid-inner-text{
+    width: 50%;
+    margin: 0 auto;
+    text-align: left;
+}
+.history-player-lists{
+    position: relative;
+    float: right;
+    display: inline-flex;
+
+}
+.mb1{
+    margin-bottom: 1em;
+}
+.history-summonerspell{
+    height: 48px;
+}
+.first{
+    margin-bottom: 1em;
+    margin-top: 0.5em;
+}
+.kda-img{
+    padding-top: 0.5em
+}
+.cs-img{
+    padding-top: 0.5em
 }
