@@ -7,11 +7,14 @@ import Items from './Items';
 import Keystone from './Keystone';
 import Kda from './Kda';
 import PlayerList from './PlayerList'
+import Build from './Build';
 const MatchItem = (props) => {
 
     const [matchInfo, setMatchInfo] = useState();
     //TODO Rename this hook
     const [gameInfo, setGameInfo] = useState();
+    const [activePage, setActivePage] = useState("");
+
     let thumbnails = {
         ownerChampion: "",
         summonerSpell1: "",
@@ -94,6 +97,14 @@ const MatchItem = (props) => {
                     </div>
                 </div>
                 <Items stats={gameInfo} />
+                <div>
+                    <a className="text-left" onClick={() => {setActivePage("build")}}>Build</a>
+                    <a className="text-center" onClick={() => {setActivePage("graph")}}>Graphs</a>
+                    <a className="text-right" onClick={() => {setActivePage("other")}}>Other</a>
+                </div>
+                {activePage === "build" ? (<Build />) : null}
+                {activePage === "graphs" ? (<div />) : null}
+                {activePage === "other" ? (<div />) : null}
             </div> :
             <div>
                 <h3>Loading game...</h3>

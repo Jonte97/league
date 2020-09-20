@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using MiddleWare;
 using ViewModels;
 using Model;
+using TimeLineNS;
 
 namespace Name.Controllers
 {
@@ -111,6 +112,16 @@ namespace Name.Controllers
             {
                 throw ex;
             }
+        }
+
+        //* Gets list of items purchase order with timestamps
+        [HttpGet("[action]")]
+        public async Task<List<List<Event>>> GetItemsTimeLine()
+        {
+            var timeline = await _leagueApiService.GetTimeLineForMatch("put matchid here");
+            var result = _leagueMiddleWare.GetItemEventsForParticipant(1, timeline);
+
+            return result;
         }
 
         //TODO Rename? vad är detta ens??

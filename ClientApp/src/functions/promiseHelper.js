@@ -112,3 +112,20 @@ export const getRunesData = (setState) => {
 			});
 	})
 }
+
+export const getItemEventsForParticipant = (setState) => {
+	
+	return new Promise((resolve, reject) => {
+		fetch('api/LeagueApi/GetItemsTimeLine')
+		.then((response) => response.json())
+		.then((data) => {
+				JSON.stringify(data);
+				setState(data);
+				resolve(data);
+			})
+			.catch((reason) => {
+				console.log(reason);
+				reject(reason);
+			});
+	})
+}

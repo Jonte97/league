@@ -5,7 +5,9 @@ using Microsoft.Extensions.Configuration;
 using Model;
 using Models;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
 using QuickType;
+using TimeLineNS;
 
 namespace Services
 {
@@ -132,7 +134,7 @@ namespace Services
                 throw ex;
             }
         }
-        public async Task<RootChampionDto> GetChampByKeyAsync(string key) 
+        public async Task<RootChampionDto> GetChampByKeyAsync(string key)
         {
             try
             {
@@ -140,10 +142,27 @@ namespace Services
                 var response = await SendRequestAsync(url);
                 var content = await response.Content.ReadAsStringAsync();
                 //TODO create c# model for champion
-                var champion = JsonConvert.DeserializeObject<RootChampionDto>(content); 
-                
+                var champion = JsonConvert.DeserializeObject<RootChampionDto>(content);
+
                 return champion;
 
+            }
+            catch (System.Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public async Task<TimeLine> GetTimeLineForMatch(string matchId)
+        {
+            try
+            {
+                string url = $"https://euw1.api.riotgames.com/lol/match/v4/timelines/by-match/4821037989";
+                var response = await SendRequestAsync(url);
+                var content = await response.Content.ReadAsStringAsync();
+                //TODO can not deserialize this object
+                var timeline = JsonConvert.DeserializeObject<TimeLine>(content);
+
+                return timeline;
             }
             catch (System.Exception ex)
             {
