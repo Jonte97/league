@@ -98,11 +98,11 @@ const MatchItem = (props) => {
                 </div>
                 <Items stats={gameInfo} />
                 <div>
-                    <a className="text-left" onClick={() => {setActivePage("build")}}>Build</a>
-                    <a className="text-center" onClick={() => {setActivePage("graph")}}>Graphs</a>
-                    <a className="text-right" onClick={() => {setActivePage("other")}}>Other</a>
+                    <a className="text-left" onClick={() => {activePage != "build" ? setActivePage("build") : setActivePage("none")}}>Build</a>
+                    <a className="text-center" onClick={() => {activePage != "graph" ? setActivePage("graph") : setActivePage("none")}}>Graphs</a>
+                    <a className="text-right" onClick={() => {activePage != "other" ? setActivePage("other") : setActivePage("none")}}>Other</a>
                 </div>
-                {activePage === "build" ? (<Build />) : null}
+                {activePage === "build" ? (<Build gameId={props.match.gameId} participant={gameInfo.participantId} />) : null}
                 {activePage === "graphs" ? (<div />) : null}
                 {activePage === "other" ? (<div />) : null}
             </div> :

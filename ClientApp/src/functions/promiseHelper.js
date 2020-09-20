@@ -113,12 +113,21 @@ export const getRunesData = (setState) => {
 	})
 }
 
-export const getItemEventsForParticipant = (setState) => {
-	
+export const getItemEventsForParticipant = (setState, participantId, gameId) => {
+
+	let data = {
+		gameId: gameId,
+		participant: participantId
+	};
+
 	return new Promise((resolve, reject) => {
-		fetch('api/LeagueApi/GetItemsTimeLine')
-		.then((response) => response.json())
-		.then((data) => {
+		fetch('api/LeagueApi/GetItemsTimeLine', {
+			method: 'post',
+			headers: { 'Content-Type': 'application/json' },
+			body: JSON.stringify(data)
+		})
+			.then((response) => response.json())
+			.then((data) => {
 				JSON.stringify(data);
 				setState(data);
 				resolve(data);

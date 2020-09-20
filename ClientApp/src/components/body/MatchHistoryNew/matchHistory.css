@@ -83,4 +83,15 @@
 .text-left{
     margin-right: 25%;
 }
+.history-item-build-thumbnail{
+    height: 32px;
+}
+.history-item-build-item{
+}
 
+.history-items-build-path{
+}
+.history-item-build-holder{
+    display: inline-flex;
+    margin-right: 5em;
+}

@@ -156,10 +156,10 @@ namespace Services
         {
             try
             {
-                string url = $"https://euw1.api.riotgames.com/lol/match/v4/timelines/by-match/4821037989";
+                string url = $"https://euw1.api.riotgames.com/lol/match/v4/timelines/by-match/{matchId}";
                 var response = await SendRequestAsync(url);
                 var content = await response.Content.ReadAsStringAsync();
-                //TODO can not deserialize this object
+                
                 var timeline = JsonConvert.DeserializeObject<TimeLine>(content);
 
                 return timeline;

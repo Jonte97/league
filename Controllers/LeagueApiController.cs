@@ -12,6 +12,7 @@ using MiddleWare;
 using ViewModels;
 using Model;
 using TimeLineNS;
+using PayloadModels;
 
 namespace Name.Controllers
 {
@@ -78,7 +79,7 @@ namespace Name.Controllers
             return champions;
         }
         [HttpPost("[action]")]
-        public async Task<Participant> GetSummonerMatchData([FromBody] x data)
+        public async Task<Participant> GetSummonerMatchData([FromBody] SummonerMatchData data)
         {
             try
             {
@@ -115,22 +116,14 @@ namespace Name.Controllers
         }
 
         //* Gets list of items purchase order with timestamps
-        [HttpGet("[action]")]
-        public async Task<List<List<Event>>> GetItemsTimeLine()
+        //TODO Remove undo items
+        [HttpPost("[action]")]
+        public async Task<List<List<Event>>> GetItemsTimeLine([FromBody] ItemsTimeLine data)
         {
-            var timeline = await _leagueApiService.GetTimeLineForMatch("put matchid here");
-            var result = _leagueMiddleWare.GetItemEventsForParticipant(1, timeline);
+            var timeline = await _leagueApiService.GetTimeLineForMatch(data.GameId);
+            var result = _leagueMiddleWare.GetItemEventsForParticipant(data.ParticipantId, timeline);
 
             return result;
-        }
-
-        //TODO Rename? vad är detta ens??
-        public class x
-        {
-            [JsonProperty("gameId")]
-            public string GameId { get; set; }
-            [JsonProperty("name")]
-            public string Name { get; set; }
         }
     }
 
