@@ -95,3 +95,9 @@
     display: inline-flex;
     margin-right: 5em;
 }
+.history-item-build-wrapper{
+    padding: 1em;
+}
+.history-item-runesetup{
+    height: 64px;
+}
