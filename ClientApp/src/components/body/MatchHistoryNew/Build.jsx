@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { getItemEventsForParticipant } from '../../../functions/promiseHelper';
-import ItemBuild from './Build/ItemBuild';
-import RuneSetup from './Build/RuneSetup';
+import ItemBuild from './BuildComponents/ItemBuild';
+import RuneSetup from './BuildComponents/RuneSetup';
 
 
 const Build = (props) => {
