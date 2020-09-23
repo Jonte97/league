@@ -32,7 +32,7 @@ const MatchItem = (props) => {
         let key;
         if (props.championList != null) {
             key = props.championList.find((v) => v.k == gameInfo.championId)
-            thumbnails.ownerChampion = `http://ddragon.leagueoflegends.com/cdn/10.18.1/img/champion/${key.v.image.full}`
+            thumbnails.ownerChampion = `http://ddragon.leagueoflegends.com/cdn/10.19.1/img/champion/${key.v.image.full}`
 
         }
         summonerSpell1 = getSummonerSpell(gameInfo.spell1Id, props.summonerSpells.data);
@@ -40,11 +40,11 @@ const MatchItem = (props) => {
     }
 
     summonerSpell1 ?
-        thumbnails.summonerSpell1 = `http://ddragon.leagueoflegends.com/cdn/10.18.1/img/spell/${summonerSpell1.id}.png`
+        thumbnails.summonerSpell1 = `http://ddragon.leagueoflegends.com/cdn/10.19.1/img/spell/${summonerSpell1.id}.png`
         :
         null;
     summonerSpell2 ?
-        thumbnails.summonerSpell2 = `http://ddragon.leagueoflegends.com/cdn/10.18.1/img/spell/${summonerSpell2.id}.png`
+        thumbnails.summonerSpell2 = `http://ddragon.leagueoflegends.com/cdn/10.19.1/img/spell/${summonerSpell2.id}.png`
         : null;
     //TODO Lägg till loadanimation
 

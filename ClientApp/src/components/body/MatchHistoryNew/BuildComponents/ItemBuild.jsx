@@ -13,7 +13,7 @@ const ItemBuild = (props) => {
                         <h5>Min {GetReadableTimestamp(event[0].timestamp)}</h5>
                         <div className="history-items-build-path">
                             {event.map((item, key) =>
-                                <img className="history-item-build-thumbnail" src={`http://ddragon.leagueoflegends.com/cdn/10.18.1/img/item/${item.itemId}.png`} />
+                                <img key={key} className="history-item-build-thumbnail" src={`http://ddragon.leagueoflegends.com/cdn/10.19.1/img/item/${item.itemId}.png`} />
                             )}
                         </div>
                     </div>

@@ -17,7 +17,8 @@ namespace Services
         private IConfiguration _config;
         private static readonly object threadlock = new object();
 
-
+        //TODO change this
+        public string Patch { get; set; } = "10.19.1";
         public LeagueApiService(IConfiguration configuration)
         {
             _config = (IConfigurationRoot)configuration;
@@ -121,7 +122,7 @@ namespace Services
         {
             try
             {
-                string url = $"http://ddragon.leagueoflegends.com/cdn/10.16.1/data/en_US/champion.json";
+                string url = $"http://ddragon.leagueoflegends.com/cdn/{Patch}/data/en_US/champion.json";
 
                 var response = await SendRequestAsync(url);
                 var content = await response.Content.ReadAsStringAsync();
@@ -138,7 +139,7 @@ namespace Services
         {
             try
             {
-                string url = $"http://ddragon.leagueoflegends.com/cdn/10.16.1/data/en_US/champion/{key}.json";
+                string url = $"http://ddragon.leagueoflegends.com/cdn/{Patch}/data/en_US/champion/{key}.json";
                 var response = await SendRequestAsync(url);
                 var content = await response.Content.ReadAsStringAsync();
                 //TODO create c# model for champion

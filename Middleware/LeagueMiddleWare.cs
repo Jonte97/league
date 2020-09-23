@@ -38,16 +38,20 @@ namespace MiddleWare
                 
                 result = result.Where(x => x.Count > 0).ToList();
 
-                //TODO remove undo items
-                foreach (var frame in result)
+                //TODO Check sold items to point them out for front end
+                //* Removes undo items from list
+                foreach (var frame in result.ToList())
                 {
-                    foreach (var item in frame)
+                    foreach (var item in frame.ToList())
                     {
                         if (item.Type == TypeEnum.ItemUndo)
                         {
                             var undo = frame.Where(x => x.ItemId == item.AfterId || x.ItemId == item.BeforeId).First();
+                            
                             frame.Remove(undo);
+                            frame.Remove(item);
                         }
+                        
                     }
                 }
 
@@ -56,7 +60,7 @@ namespace MiddleWare
             }
             catch (System.Exception ex)
             {
-
+                string msg = ex.Message;
                 throw ex;
             }
         }

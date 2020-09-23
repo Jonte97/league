@@ -199,7 +199,9 @@ namespace TimeLineNS
         [EnumMember(Value = "UNDEFINED")]
         Undefined,
         [EnumMember(Value = "YELLOW_TRINKET")]
-        YellowTrinket
+        YellowTrinket,
+        [EnumMember(Value = "TEEMO_MUSHROOM")]
+        TeemoMushroom        
     };
 
     public partial class TimeLine
