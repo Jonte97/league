@@ -30,13 +30,13 @@ const RuneSetup = (props) => {
     return (
         <div>
             <h4>Runes</h4>
-            <img className="history-item-runesetup" src={`http://ddragon.leagueoflegends.com/cdn/img/${keystone.icon}`} />
-            <img className="history-item-runesetup" src={`http://ddragon.leagueoflegends.com/cdn/img/${perk1.icon}`} />
-            <img className="history-item-runesetup" src={`http://ddragon.leagueoflegends.com/cdn/img/${perk2.icon}`} />
-            <img className="history-item-runesetup" src={`http://ddragon.leagueoflegends.com/cdn/img/${perk3.icon}`} />
+            <img className="history-item-runesetup" title={keystone.name} src={`http://ddragon.leagueoflegends.com/cdn/img/${keystone.icon}`} />
+            <img className="history-item-runesetup" title={perk1.name} src={`http://ddragon.leagueoflegends.com/cdn/img/${perk1.icon}`} />
+            <img className="history-item-runesetup" title={perk2.name} src={`http://ddragon.leagueoflegends.com/cdn/img/${perk2.icon}`} />
+            <img className="history-item-runesetup" title={perk3.name} src={`http://ddragon.leagueoflegends.com/cdn/img/${perk3.icon}`} />
 
-            <img className="history-item-runesetup" src={`http://ddragon.leagueoflegends.com/cdn/img/${perk4.icon}`} />
-            <img className="history-item-runesetup" src={`http://ddragon.leagueoflegends.com/cdn/img/${perk5.icon}`} />
+            <img className="history-item-runesetup" title={perk4.name} src={`http://ddragon.leagueoflegends.com/cdn/img/${perk4.icon}`} />
+            <img className="history-item-runesetup" title={perk5.name} src={`http://ddragon.leagueoflegends.com/cdn/img/${perk5.icon}`} />
         </div>
     );
 }
