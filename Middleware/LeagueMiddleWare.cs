@@ -23,11 +23,34 @@ namespace MiddleWare
         {
             try
             {
+                //Gets list with all item purchases and sells
                 var result = timeline.Frames
                 .Select(x => x.Events
-                .Where(y => y.ParticipantId == participantId && y.Type == TypeEnum.ItemPurchased).ToList()).ToList();
-                result = result.Where(x => x.Count > 0).ToList();
+                    .Where(
+                        y => y.ParticipantId == participantId &&
+                        y.Type == TypeEnum.ItemPurchased ||
+                        y.Type == TypeEnum.ItemUndo &&
+                        y.ParticipantId  == participantId ||
+                        y.Type == TypeEnum.ItemSold &&
+                        y.ParticipantId == participantId
+                    ).ToList()
+                ).ToList();
                 
+                result = result.Where(x => x.Count > 0).ToList();
+
+                //TODO remove undo items
+                foreach (var frame in result)
+                {
+                    foreach (var item in frame)
+                    {
+                        if (item.Type == TypeEnum.ItemUndo)
+                        {
+                            var undo = frame.Where(x => x.ItemId == item.AfterId || x.ItemId == item.BeforeId).First();
+                            frame.Remove(undo);
+                        }
+                    }
+                }
+
                 return result;
 
             }
