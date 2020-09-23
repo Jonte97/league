@@ -116,14 +116,17 @@ namespace Name.Controllers
         }
 
         //* Gets list of items purchase order with timestamps
-        //TODO Remove undo items
+        //TODO Rename to Get timeLineForGame or something
         [HttpPost("[action]")]
         public async Task<List<List<Event>>> GetItemsTimeLine([FromBody] ItemsTimeLine data)
         {
             var timeline = await _leagueApiService.GetTimeLineForMatch(data.GameId);
-            var result = _leagueMiddleWare.GetItemEventsForParticipant(data.ParticipantId, timeline);
+            var items = _leagueMiddleWare.GetItemEventsForParticipant(data.ParticipantId, timeline);
 
-            return result;
+            //TODO add skilltree
+            _leagueMiddleWare.GetSkillOrder(timeline, data.ParticipantId);
+
+            return items;
         }
     }
 

@@ -18,6 +18,9 @@ namespace MiddleWare
             return participant;
         }
 
+
+        //TODO Move to datahandlersevice
+
         //* Returns list with Events of itempurchases that participantId did
         public List<List<Event>> GetItemEventsForParticipant(int participantId, TimeLine timeline)
         {
@@ -54,9 +57,23 @@ namespace MiddleWare
                         
                     }
                 }
-
                 return result;
+            }
+            catch (System.Exception ex)
+            {
+                string msg = ex.Message;
+                throw ex;
+            }
+        }
+        public void GetSkillOrder(TimeLine timeline, int participantId)
+        {
+            try
+            {
+                var skills = timeline.Frames.SelectMany(x => x.Events.Where(
+                    y => y.Type == TypeEnum.SkillLevelUp && y.ParticipantId == participantId
+                )).ToList();
 
+                skills = skills.Where(x => x != null).ToList();
             }
             catch (System.Exception ex)
             {
