@@ -14,7 +14,7 @@ const PlayerList = (props) => {
         let x = getPlayerChamp(id);
 
         let champ = props.championList.find((obj) => obj.k == x.championId);
-        return `http://ddragon.leagueoflegends.com/cdn/10.19.1/img/champion/${champ.v.image.full}`
+        return `https://ddragon.leagueoflegends.com/cdn/10.19.1/img/champion/${champ.v.image.full}`
     }
 
 

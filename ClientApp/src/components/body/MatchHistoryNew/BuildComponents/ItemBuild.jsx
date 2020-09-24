@@ -8,12 +8,12 @@ const ItemBuild = (props) => {
         <div className="history-item-build-wrapper">
             <h3>Build order</h3>
             {props.items.map((event, key) =>
-                <div className="history-item-build-holder">
+                <div key={key} className="history-item-build-holder">
                     <div className="history-item-build-item" key={key}>
                         <h5>Min {GetReadableTimestamp(event[0].timestamp)}</h5>
                         <div className="history-items-build-path">
                             {event.map((item, key) =>
-                                <img key={key} className="history-item-build-thumbnail" src={`http://ddragon.leagueoflegends.com/cdn/10.19.1/img/item/${item.itemId}.png`} />
+                                <img key={key} className="history-item-build-thumbnail" src={`https://ddragon.leagueoflegends.com/cdn/10.19.1/img/item/${item.itemId}.png`} />
                             )}
                         </div>
                     </div>

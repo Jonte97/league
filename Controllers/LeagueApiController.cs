@@ -117,17 +117,27 @@ namespace Name.Controllers
 
         //* Gets list of items purchase order with timestamps
         //TODO Rename to Get timeLineForGame or something
+        //TODO Make viewmodel for this
         [HttpPost("[action]")]
-        public async Task<List<List<Event>>> GetItemsTimeLine([FromBody] ItemsTimeLine data)
+        public async Task<IActionResult> GetItemsTimeLine([FromBody] ItemsTimeLine data)
         {
-            var timeline = await _leagueApiService.GetTimeLineForMatch(data.GameId);
-            var items = _leagueMiddleWare.GetItemEventsForParticipant(data.ParticipantId, timeline);
+            try
+            {
+                var timeline = await _leagueApiService.GetTimeLineForMatch(data.GameId);
+                var items = _leagueMiddleWare.GetItemEventsForParticipant(data.ParticipantId, timeline);
 
-            //TODO add skilltree
-            _leagueMiddleWare.GetSkillOrder(timeline, data.ParticipantId);
+                //TODO add skilltree
+                var skillorder =  _leagueMiddleWare.GetSkillOrder(timeline, data.ParticipantId);
 
-            return items;
+                return Ok(items);
+            }
+            catch (System.Exception)
+            {
+                return NotFound();
+            }
         }
     }
 
 }
+
+//        public async Task<List<List<Event>>> GetItemsTimeLine([FromBody] ItemsTimeLine data)

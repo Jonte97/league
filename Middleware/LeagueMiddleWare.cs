@@ -65,7 +65,7 @@ namespace MiddleWare
                 throw ex;
             }
         }
-        public void GetSkillOrder(TimeLine timeline, int participantId)
+        public List<Event> GetSkillOrder(TimeLine timeline, int participantId)
         {
             try
             {
@@ -74,6 +74,8 @@ namespace MiddleWare
                 )).ToList();
 
                 skills = skills.Where(x => x != null).ToList();
+
+                return skills;
             }
             catch (System.Exception ex)
             {

@@ -11,6 +11,6 @@ namespace MiddleWare
         Participant GetOnlyCurrentParticipantData(string name, MatchDetailed match);
         List<List<Event>> GetItemEventsForParticipant(int participantId, TimeLine timeline);
 
-        void GetSkillOrder(TimeLine timeLine, int ParticipantId);
+        List<Event> GetSkillOrder(TimeLine timeLine, int ParticipantId);
     }
 }

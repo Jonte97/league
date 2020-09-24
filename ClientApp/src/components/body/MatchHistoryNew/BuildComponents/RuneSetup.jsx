@@ -24,19 +24,16 @@ const RuneSetup = (props) => {
 
     console.log("perk 1" + JSON.stringify(secondaryRunePath.slots.length, 4, null))
 
-    let keyStoneThumbnail = `http://ddragon.leagueoflegends.com/cdn/img/${keystone.icon}`
-    
-
     return (
         <div>
             <h4>Runes</h4>
-            <img className="history-item-runesetup" title={keystone.name} src={`http://ddragon.leagueoflegends.com/cdn/img/${keystone.icon}`} />
-            <img className="history-item-runesetup" title={perk1.name} src={`http://ddragon.leagueoflegends.com/cdn/img/${perk1.icon}`} />
-            <img className="history-item-runesetup" title={perk2.name} src={`http://ddragon.leagueoflegends.com/cdn/img/${perk2.icon}`} />
-            <img className="history-item-runesetup" title={perk3.name} src={`http://ddragon.leagueoflegends.com/cdn/img/${perk3.icon}`} />
+            <img className="history-item-runesetup" title={keystone.name} src={`https://ddragon.leagueoflegends.com/cdn/img/${keystone.icon}`} />
+            <img className="history-item-runesetup" title={perk1.name} src={`https://ddragon.leagueoflegends.com/cdn/img/${perk1.icon}`} />
+            <img className="history-item-runesetup" title={perk2.name} src={`https://ddragon.leagueoflegends.com/cdn/img/${perk2.icon}`} />
+            <img className="history-item-runesetup" title={perk3.name} src={`https://ddragon.leagueoflegends.com/cdn/img/${perk3.icon}`} />
 
-            <img className="history-item-runesetup" title={perk4.name} src={`http://ddragon.leagueoflegends.com/cdn/img/${perk4.icon}`} />
-            <img className="history-item-runesetup" title={perk5.name} src={`http://ddragon.leagueoflegends.com/cdn/img/${perk5.icon}`} />
+            <img className="history-item-runesetup" title={perk4.name} src={`https://ddragon.leagueoflegends.com/cdn/img/${perk4.icon}`} />
+            <img className="history-item-runesetup" title={perk5.name} src={`https://ddragon.leagueoflegends.com/cdn/img/${perk5.icon}`} />
         </div>
     );
 }

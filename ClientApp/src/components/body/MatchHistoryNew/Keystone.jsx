@@ -7,8 +7,8 @@ const Keystone = (props) => {
     let keystone = primaryRunePath.slots[0].runes.find((obj) => { return obj.id === props.stats.perk0});
     let secondareRunePath = props.runes.find((obj) => { return obj.id === props.stats.perkSubStyle }); 
 
-    let keyStoneThumbnail = `http://ddragon.leagueoflegends.com/cdn/img/${keystone.icon}`
-    let secondaryThumbnail = `http://ddragon.leagueoflegends.com/cdn/img/${secondareRunePath.icon}`
+    let keyStoneThumbnail = `https://ddragon.leagueoflegends.com/cdn/img/${keystone.icon}`
+    let secondaryThumbnail = `https://ddragon.leagueoflegends.com/cdn/img/${secondareRunePath.icon}`
 
     return (
         <div className="history-rune-wrapper">

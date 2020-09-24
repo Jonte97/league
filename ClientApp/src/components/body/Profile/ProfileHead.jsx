@@ -2,7 +2,7 @@ import React from 'react';
 
 const ProfileHead = (props) => {
     //TODO fix patch version
-    let summonerIcon = "http://ddragon.leagueoflegends.com/cdn/10.16.1/img/profileicon/" + props.summoner.profileIconId + ".png";
+    let summonerIcon = "https://ddragon.leagueoflegends.com/cdn/10.16.1/img/profileicon/" + props.summoner.profileIconId + ".png";
 
     return (
         <div className="profile-head-container">
