@@ -113,7 +113,8 @@ export const getRunesData = (setState) => {
 	})
 }
 
-export const getItemEventsForParticipant = (setState, participantId, gameId) => {
+//* Gets timeline data for builds and skillorder
+export const getItemEventsForParticipant = (setItemState, setSkillState, participantId, gameId) => {
 
 	let data = {
 		gameId: gameId,
@@ -129,7 +130,8 @@ export const getItemEventsForParticipant = (setState, participantId, gameId) => 
 			.then((response) => response.json())
 			.then((data) => {
 				JSON.stringify(data);
-				setState(data);
+				setItemState(data.items);
+				setSkillState(data.skillOrder);
 				resolve(data);
 			})
 			.catch((reason) => {

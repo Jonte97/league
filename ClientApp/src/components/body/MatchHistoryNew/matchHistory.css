@@ -104,3 +104,17 @@
 .history-build{
     padding: 3em;
 }
+.history-skillorder td, th{
+    border: 1px solid black;
+    width: 21px !important;
+    text-align: center;
+}
+.history-skillorder{
+   
+}
+.green{
+    background-color: green;
+}
+.blank{
+    background-color: white;
+}

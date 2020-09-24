@@ -125,11 +125,11 @@ namespace Name.Controllers
             {
                 var timeline = await _leagueApiService.GetTimeLineForMatch(data.GameId);
                 var items = _leagueMiddleWare.GetItemEventsForParticipant(data.ParticipantId, timeline);
-
-                //TODO add skilltree
                 var skillorder =  _leagueMiddleWare.GetSkillOrder(timeline, data.ParticipantId);
 
-                return Ok(items);
+                var vm = new TimeLineVM() { Items = items, SkillOrder = skillorder };
+
+                return Ok(vm);
             }
             catch (System.Exception)
             {
