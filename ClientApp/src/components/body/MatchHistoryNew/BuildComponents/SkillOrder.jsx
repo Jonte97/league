@@ -25,9 +25,10 @@ const SkillOrder = (props) => {
             list.r.push({ skill: props.skillorder[i], index: i + 1 })
         }
     }
-
+    //TODO add styling on table
     return (
-        <div >
+        <div>
+            <h3>Skill order</h3>
             <table className="history-skillorder">
                 <thead>
                     <tr>
