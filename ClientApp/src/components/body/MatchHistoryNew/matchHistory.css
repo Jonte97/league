@@ -118,3 +118,24 @@
 .blank{
     background-color: white;
 }
+.greyed {
+    opacity: 0.4;
+    filter: alpha(opacity=40); /* msie */
+}
+
+/* or */
+
+.grey-wrapper {
+    height: 32px;
+    width: 32px;
+    opacity: 0.4;
+    filter: alpha(opacity=40); /* msie */
+    background-color: #000;
+    border: 1px solid red;
+}
+.history-items-build-path div{
+    margin: 1px;
+}
+.color-wrapper{
+    border: 1px solid green;
+}
