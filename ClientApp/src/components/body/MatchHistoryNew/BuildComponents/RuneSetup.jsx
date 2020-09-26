@@ -14,18 +14,44 @@ const RuneSetup = (props) => {
     let secondaryRunePath = props.runes.find((obj) => { return obj.id === props.stats.perkSubStyle })
     let selectedPrimaryRunes = [];
     console.log(primaryRunePath.slots)
-    selectedPrimaryRunes.push(
-        primaryRunePath.slots[0].runes.find((obj) => { return obj.id === props.stats.perk0 })
-    );
-    selectedPrimaryRunes.push(
-        primaryRunePath.slots[1].runes.find((obj) => { return obj.id === props.stats.perk1 })
-    );
-    selectedPrimaryRunes.push(
-        primaryRunePath.slots[2].runes.find((obj) => { return obj.id === props.stats.perk2 })
-    );
-    selectedPrimaryRunes.push(
-        primaryRunePath.slots[3].runes.find((obj) => { return obj.id === props.stats.perk3 })
-    );
+
+    for (let i = 0; i < primaryRunePath.slots.length; i++) {
+        let slot = primaryRunePath.slots[i]
+        for (let index = 0; index < slot.runes.length; index++) {
+            let perk0 = primaryRunePath.slots[i].runes.find((obj) => { return obj.id === props.stats.perk0 });
+            if (perk0 != null) {
+                perk0.id === slot.runes[index].id ?
+                    slot.runes[index].chosen = true
+                    :
+                    slot.runes[index].chosen = false;
+            }
+            let perk1 = primaryRunePath.slots[i].runes.find((obj) => { return obj.id === props.stats.perk1 });
+            if (perk1 != null) {
+                perk1.id === slot.runes[index].id ?
+                    slot.runes[index].chosen = true
+                    :
+                    slot.runes[index].chosen = false;
+            }
+            let perk2 = primaryRunePath.slots[i].runes.find((obj) => { return obj.id === props.stats.perk2 });
+            if (perk2 != null) {
+                perk2.id === slot.runes[index].id ?
+                    slot.runes[index].chosen = true
+                    :
+                    slot.runes[index].chosen = false;
+            }
+            let perk3 = primaryRunePath.slots[i].runes.find((obj) => { return obj.id === props.stats.perk3 });
+            if (perk3 != null) {
+                perk3.id === slot.runes[index].id ?
+                    slot.runes[index].chosen = true
+                    :
+                    slot.runes[index].chosen = false;
+
+            }
+        }
+        selectedPrimaryRunes.push(slot);
+    }
+
+
 
     let selectedSecondaryRunes = [];
     let first = false;
@@ -78,7 +104,7 @@ const RuneSetup = (props) => {
                 return StatModsMagicResIcon;
             case 5005:
                 return StatModsAttackSpeedIcon;
-            case 5007: 
+            case 5007:
                 return StatModsCDRScalingIcon;
             case 5008:
                 return StatModsAdaptiveForceIcon;
@@ -93,30 +119,37 @@ const RuneSetup = (props) => {
     return (
         <div>
             <h4>Runes</h4>
+
             <div className="history-item-runesetup-holder">
                 <div>
-                    <img className="history-item-rune-primary-img" title={primaryRunePath.name} src={`${prependUrl}${primaryRunePath.icon}`} />
-                    {primaryRunePath ?
-                        primaryRunePath.slots.map((slot, index) =>
-                            <div key={index}>
-                                {slot.runes.map((rune, key) =>
-                                    selectedPrimaryRunes[key].id === rune.id ? <img key={key} className="history-item-rune-img" title={rune.name}
+                    <div>
+                        <div className="img-center">
+                            <img className="history-item-rune-primary-img" title={primaryRunePath.name} src={`${prependUrl}${primaryRunePath.icon}`} />
+                        </div>
+                    </div>
+                    {selectedPrimaryRunes.map((slot, index) =>
+                        <div className="rune-row" key={index}>
+                            {slot.runes.map((rune, key) =>
+                                rune.chosen === true ?
+                                    <img key={key} className="history-item-rune-img" title={rune.name}
                                         src={`${prependUrl}${rune.icon}`} />
-                                        :
-                                        <img key={key} className="history-item-rune-img greyscale" title={rune.name}
-                                            src={`${prependUrl}${rune.icon}`} />
-                                )}
-                            </div>
-                        )
-                        :
-                        null
-                    }
+                                    :
+                                    <img key={key} className="history-item-rune-img greyscale" title={rune.name}
+                                        src={`${prependUrl}${rune.icon}`} />
+                            )
+                            }
+                        </div>
+                    )}
                 </div>
                 <div>
-                    <img className="history-item-rune-secondary-img" title={secondaryRunePath.name} src={`${prependUrl}${secondaryRunePath.icon}`} />
+                    <div>
+                        <div className="img-center">
+                            <img className="history-item-rune-secondary-img" title={secondaryRunePath.name} src={`${prependUrl}${secondaryRunePath.icon}`} />
+                        </div>
+                    </div>
                     {
                         selectedSecondaryRunes.map((slot, index) =>
-                            <div key={index}>
+                            <div className="rune-row" key={index}>
                                 {slot.runes.map((rune, key) =>
                                     rune.chosen === true ?
                                         <img key={key} className="history-item-rune-img" title={rune.name}
@@ -129,12 +162,13 @@ const RuneSetup = (props) => {
                             </div>
                         )
                     }
-
-                    {
-                        statRunes.map((stat, key) => 
-                            <img src={stat} key={key} />
-                        )
-                    }
+                    <div className="rune-row">
+                        {
+                            statRunes.map((stat, key) =>
+                                <img src={stat} key={key} />
+                            )
+                        }
+                    </div>
                 </div>
             </div>
         </div>
