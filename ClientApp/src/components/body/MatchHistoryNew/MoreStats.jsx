@@ -9,10 +9,14 @@ const MoreStats = (props) => {
     const [activePage, setActivePage] = useState("none");
     const [itemEvents, setItemEvents] = useState();
     const [skillOrder, setSkillOrder] = useState();
+    const [fetched, setFetched] = useState(false);
 
     const fetchData = () => {
-        getItemEventsForParticipant(setItemEvents, setSkillOrder, props.participant, props.gameId);
-        setActivePage("build")
+        if (!fetched) {
+            getItemEventsForParticipant(setItemEvents, setSkillOrder, props.participant, props.gameId);
+        }
+        setActivePage("build");
+        setFetched(true);
     }
 
     return (
