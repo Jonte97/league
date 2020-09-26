@@ -8,6 +8,7 @@ import Keystone from './Keystone';
 import Kda from './Kda';
 import PlayerList from './PlayerList'
 import Build from './Build';
+import MoreStats from './MoreStats';
 const MatchItem = (props) => {
 
     const [matchInfo, setMatchInfo] = useState();
@@ -97,14 +98,13 @@ const MatchItem = (props) => {
                     </div>
                 </div>
                 <Items stats={gameInfo} />
-                <div>
-                    <a className="text-left" onClick={() => {activePage != "build" ? setActivePage("build") : setActivePage("none")}}>Build</a>
-                    <a className="text-center" onClick={() => {activePage != "graph" ? setActivePage("graph") : setActivePage("none")}}>Graphs</a>
-                    <a className="text-right" onClick={() => {activePage != "other" ? setActivePage("other") : setActivePage("none")}}>Other</a>
-                </div>
-                {activePage === "build" ? (<Build gameId={props.match.gameId} participant={gameInfo.participantId} runes={props.runes} stats={gameInfo.stats} />) : null}
-                {activePage === "graphs" ? (<div />) : null}
-                {activePage === "other" ? (<div />) : null}
+                <MoreStats
+                    gameId={props.match.gameId}
+                    participant={gameInfo.participantId}
+                    runes={props.runes}
+                    stats={gameInfo.stats}
+                />
+                
             </div> :
             <div>
                 <h3>Loading game...</h3>
