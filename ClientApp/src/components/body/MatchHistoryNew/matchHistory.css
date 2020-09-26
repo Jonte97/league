@@ -11,6 +11,9 @@
 .inline-flex{
     display: inline-flex;
 }
+.display-flex{
+    display: flex;
+}
 .flex{
     display: -webkit-inline-box;
 }
@@ -138,4 +141,13 @@
 }
 .color-wrapper{
     border: 1px solid green;
+}
+.history-item-rune-img{
+    max-height: 48px;
+}
+.greyscale{
+    filter: grayscale(1);
+}
+.history-item-runesetup-holder{
+    display: flex;
 }
