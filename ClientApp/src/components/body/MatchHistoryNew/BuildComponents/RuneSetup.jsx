@@ -58,35 +58,30 @@ const RuneSetup = (props) => {
     let second = false;
 
     for (let i = 1; i < secondaryRunePath.slots.length; i++) {
-        let slot = secondaryRunePath.slots[i]
-        for (let index = 0; index < slot.runes.length; index++) {
-            if (!first) {
-                let result = secondaryRunePath.slots[i].runes.find((obj) => { return obj.id === props.stats.perk4 });
-                if (result != null) {
-                    slot.runes[index].chosen = true;
-                    first = true;
-                }
-                else {
-                    slot.runes[index].chosen = false;
-                }
+        let secondarySlot = secondaryRunePath.slots[i]
+        for (let index = 0; index < secondarySlot.runes.length; index++) {
+            let perk4 = secondaryRunePath.slots[i].runes.find((obj) => { return obj.id === props.stats.perk4 });
+            if (perk4 != null) {
+                perk4.id === secondarySlot.runes[index].id ?
+                    secondarySlot.runes[index].chosen = true
+                    :
+                    secondarySlot.runes[index].chosen = false
+                first = true;
             }
-            else if (!second) {
-                let result = (secondaryRunePath.slots[i].runes.find((obj) => { return obj.id === props.stats.perk5 }));
-                if (result != null) {
-                    slot.runes[index].chosen = true;
-                    second = true;
-                }
-                else {
-                    slot.runes[index].chosen = false;
-                }
+            let perk5 = (secondaryRunePath.slots[i].runes.find((obj) => { return obj.id === props.stats.perk5 }));
+            if (perk5 != null) {
+                perk5.id === secondarySlot.runes[index].id ?
+                    secondarySlot.runes[index].chosen = true
+                    :
+                    secondarySlot.runes[index].chosen = false;
+                second = true;
             }
-            else {
-                slot.runes[index].chosen = false;
+            if (perk4 == null && perk5 == null) {
+                secondarySlot.runes[index].chosen = false;
             }
         }
-        selectedSecondaryRunes.push(slot);
+        selectedSecondaryRunes.push(secondarySlot);
     }
-
     let prependUrl = "https://ddragon.leagueoflegends.com/cdn/img/";
 
     console.log("perk 1" + JSON.stringify(selectedPrimaryRunes, 4, null))
