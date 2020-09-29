@@ -129,11 +129,6 @@
 /* or */
 
 .grey-wrapper {
-    height: 32px;
-    width: 32px;
-    opacity: 0.4;
-    filter: alpha(opacity=40); /* msie */
-    background-color: #000;
     border: 1px solid red;
 }
 .history-items-build-path div{

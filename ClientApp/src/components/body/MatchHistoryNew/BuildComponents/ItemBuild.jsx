@@ -19,7 +19,7 @@ const ItemBuild = (props) => {
                                     </div>
                                     :
                                     <div className="grey-wrapper inline-flex">
-                                        <img key={key} className="history-item-build-thumbnail greyed" src={`https://ddragon.leagueoflegends.com/cdn/10.19.1/img/item/${item.itemId}.png`} />
+                                        <img key={key} className="history-item-build-thumbnail greyscale" src={`https://ddragon.leagueoflegends.com/cdn/10.19.1/img/item/${item.itemId}.png`} />
                                     </div>
                             )}
                         </div>
