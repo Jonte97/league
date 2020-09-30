@@ -13,7 +13,6 @@ const RuneSetup = (props) => {
     let primaryRunePath = props.runes.find((obj) => { return obj.id === props.stats.perkPrimaryStyle });
     let secondaryRunePath = props.runes.find((obj) => { return obj.id === props.stats.perkSubStyle })
     let selectedPrimaryRunes = [];
-    console.log(primaryRunePath.slots)
 
     for (let i = 0; i < primaryRunePath.slots.length; i++) {
         let slot = primaryRunePath.slots[i]
@@ -83,10 +82,6 @@ const RuneSetup = (props) => {
         selectedSecondaryRunes.push(secondarySlot);
     }
     let prependUrl = "https://ddragon.leagueoflegends.com/cdn/img/";
-
-    console.log("perk 1" + JSON.stringify(selectedPrimaryRunes, 4, null))
-
-
 
     let statRunes = [];
     const getStatRune = (id) => {

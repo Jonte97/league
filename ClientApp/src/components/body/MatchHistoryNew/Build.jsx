@@ -14,18 +14,22 @@ const Build = (props) => {
                     :
                     <h2>Loading itemBuild</h2>}
             <div className="display-flex">
-                {
-                    props.stats ?
-                        <RuneSetup stats={props.stats} runes={props.runes} />
-                        :
-                        <h2>Loading Runesetup</h2>
-                }
-                {
-                    props.skillOrder ?
-                        <SkillOrder skillorder={props.skillOrder} />
-                        :
-                        <h2>Loading skillorder...</h2>
-                }
+                <div>
+                    {
+                        props.stats ?
+                            <RuneSetup stats={props.stats} runes={props.runes} />
+                            :
+                            <h2>Loading Runesetup</h2>
+                    }
+                </div>
+                <div>
+                    {
+                        props.skillOrder ?
+                            <SkillOrder skillorder={props.skillOrder} />
+                            :
+                            <h2>Loading skillorder...</h2>
+                    }
+                </div>
             </div>
         </div>
     );

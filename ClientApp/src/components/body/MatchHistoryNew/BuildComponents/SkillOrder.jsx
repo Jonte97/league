@@ -27,7 +27,7 @@ const SkillOrder = (props) => {
     }
     //TODO add styling on table
     return (
-        <div>
+        <div className="history-skillorder-table">
             <h3>Skill order</h3>
             <table className="history-skillorder">
                 <thead>

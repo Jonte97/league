@@ -127,15 +127,23 @@ export const getItemEventsForParticipant = (setItemState, setSkillState, partici
 			headers: { 'Content-Type': 'application/json' },
 			body: JSON.stringify(data)
 		})
-			.then((response) => response.json())
+			.then((response) => {
+				if(!response.ok){
+					let resp = response.json();
+					throw Error(response);
+				}
+			})
 			.then((data) => {
 				JSON.stringify(data);
+				console.log(data);
 				setItemState(data.items);
 				setSkillState(data.skillOrder);
 				resolve(data);
 			})
 			.catch((reason) => {
-				console.log(reason);
+				JSON.stringify(reason);
+				console.log(reason.message);
+				alert(reason.message)
 				reject(reason);
 			});
 	})

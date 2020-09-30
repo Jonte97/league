@@ -121,6 +121,10 @@ namespace Name.Controllers
         [HttpPost("[action]")]
         public async Task<IActionResult> GetItemsTimeLine([FromBody] ItemsTimeLine data)
         {
+            //TODO fix bug games: 4843570041 and 4843092948
+            //Dont know whats wrong prob Viktor hexcore item
+            //msg Cannot read property 'items' of undefined -EKKO GAME
+            //
             try
             {
                 var timeline = await _leagueApiService.GetTimeLineForMatch(data.GameId);
@@ -131,9 +135,9 @@ namespace Name.Controllers
 
                 return Ok(vm);
             }
-            catch (System.Exception)
+            catch (System.Exception ex)
             {
-                return NotFound();
+                return StatusCode(500, Json(new { message= ex.Message}));
             }
         }
     }
