@@ -81,25 +81,16 @@
 .text-right{
     margin-left: 25%;
 }
-.text-center{
-}
 .text-left{
     margin-right: 25%;
 }
 .history-item-build-thumbnail{
     height: 32px;
 }
-.history-item-build-item{
-}
 
-.history-items-build-path{
-}
 .history-item-build-holder{
     display: inline-flex;
     margin-right: 5em;
-}
-.history-item-build-wrapper{
-    
 }
 .history-item-runesetup{
     height: 64px;
