@@ -129,9 +129,9 @@ export const getItemEventsForParticipant = (setItemState, setSkillState, partici
 		})
 			.then((response) => {
 				if(!response.ok){
-					let resp = response.json();
-					throw Error(response);
+					throw Error(response.statusText);
 				}
+				return response.json();
 			})
 			.then((data) => {
 				JSON.stringify(data);
@@ -141,10 +141,11 @@ export const getItemEventsForParticipant = (setItemState, setSkillState, partici
 				resolve(data);
 			})
 			.catch((reason) => {
-				JSON.stringify(reason);
-				console.log(reason.message);
-				alert(reason.message)
 				reject(reason);
 			});
 	})
 }
+
+
+
+

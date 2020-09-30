@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import Build from './Build';
 import Overview from './Overview';
 import { getItemEventsForParticipant } from '../../../functions/promiseHelper';
+import { func } from '../../../functions/promiseHelper';
 
 
 const MoreStats = (props) => {
@@ -32,9 +33,9 @@ const MoreStats = (props) => {
             {
                 activePage != "none" ?
                     < div >
-                        <a className="text-left" onClick={() => {  setActivePage("build")}}>Build</a>
-                        <a className="text-center" onClick={() => {  setActivePage("graph")}}>Graphs</a>
-                        <a className="text-right" onClick={() => {  setActivePage("other")}}>Other</a>
+                        <a className="text-left" onClick={() => { setActivePage("build") }}>Build</a>
+                        <a className="text-center" onClick={() => { setActivePage("graph") }}>Graphs</a>
+                        <a className="text-right" onClick={() => { setActivePage("other") }}>Other</a>
                     </div> :
                     null
             }
@@ -51,8 +52,8 @@ const MoreStats = (props) => {
                     : null
             }
             {activePage === "overview" ? (
-                <Overview 
-                    
+                <Overview
+
                 />
             ) : null}
             { activePage === "graphs" ? (<div />) : null}
