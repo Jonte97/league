@@ -2,8 +2,7 @@ import React from 'react';
 import { useState, useEffect } from 'react';
 import Build from './Build';
 import Overview from './Overview';
-import { getItemEventsForParticipant } from '../../../functions/promiseHelper';
-import { func } from '../../../functions/promiseHelper';
+import { getTimeLineEvents } from '../../../functions/promiseHelper';
 import GraphMain from './Graphs/GraphMain';
 
 
@@ -11,11 +10,12 @@ const MoreStats = (props) => {
     const [activePage, setActivePage] = useState("none");
     const [itemEvents, setItemEvents] = useState();
     const [skillOrder, setSkillOrder] = useState();
+    const [graphData, setGraphData] = useState();
     const [fetched, setFetched] = useState(false);
 
     const fetchData = () => {
         if (!fetched) {
-            getItemEventsForParticipant(setItemEvents, setSkillOrder, props.participant, props.gameId);
+            getTimeLineEvents(setItemEvents, setSkillOrder, setGraphData, props.participant, props.gameId);
         }
         setActivePage("build");
         setFetched(true);

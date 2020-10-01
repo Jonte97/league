@@ -87,21 +87,25 @@ namespace MiddleWare
         {
             try
             {
-                var list = new List<List<ParticipantFrame>>();
-                for (int i = 1; i < 10; i++)
+                var dataModel = new TimelineDataHolder();
+                for (int i = 1; i <= 10; i++)
                 {
-                    var dataList = timeLine.Frames.SelectMany(x => x.ParticipantFrames.Where(
-                        y => y.Key == "1"
-                    )).ToList();
-                    list.Add(dataList);
+                    var test = timeLine.Frames.SelectMany(x => x.ParticipantFrames.Where(y => y.Value.ParticipantId == i)).ToList();
                 }
             }
-            catch (System.Exception)
+            catch (System.Exception ex)
             {
 
-                throw;
+                throw ex;
             }
 
         }
     }
 }
+
+                    // var data = new TimeLineDataLists();
+                    // data.List = timeLine.Frames.SelectMany(x => x.ParticipantFrames.Where(
+                    //     y => y.Key == i.ToString()
+                    // )).ToList();
+                    // data.ParticipantId = data.List.Select(x => x.Value.ParticipantId).First();
+                    // dataModel.TimeLineDataLists.Add(data);

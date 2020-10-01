@@ -127,11 +127,16 @@ namespace Name.Controllers
             //
             try
             {
+                //* Fetch timeline object with data of events from gameId
                 var timeline = await _leagueApiService.GetTimeLineForMatch(data.GameId);
+                //* Assembling itemorder Data
                 var items = _leagueMiddleWare.GetItemEventsForParticipant(data.ParticipantId, timeline);
+                //* Assembling Skillorder data
                 var skillorder =  _leagueMiddleWare.GetSkillOrder(timeline, data.ParticipantId);
-
+                //* Assembling Graphdata
                 _leagueMiddleWare.GetGraphData(timeline);
+                
+                //* Assembling viewmodel as return object
                 var vm = new TimeLineVM() { Items = items, SkillOrder = skillorder };
 
                 return Ok(vm);
@@ -145,4 +150,3 @@ namespace Name.Controllers
 
 }
 
-//        public async Task<List<List<Event>>> GetItemsTimeLine([FromBody] ItemsTimeLine data)

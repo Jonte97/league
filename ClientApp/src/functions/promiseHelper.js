@@ -114,7 +114,8 @@ export const getRunesData = (setState) => {
 }
 
 //* Gets timeline data for builds and skillorder
-export const getItemEventsForParticipant = (setItemState, setSkillState, participantId, gameId) => {
+//TODO Should fetch build and skillorder for all participants
+export const getTimeLineEvents = (setItemState, setSkillState, setGraphState, participantId, gameId) => {
 
 	let data = {
 		gameId: gameId,
