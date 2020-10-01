@@ -14,11 +14,11 @@ const ItemBuild = (props) => {
                         <div className="history-items-build-path">
                             {event.map((item, key) =>
                                 item.type == "ITEM_PURCHASED" ?
-                                    <div className="inline-flex color-wrapper">
+                                    <div key={key} className="inline-flex color-wrapper">
                                         <img key={key} className="history-item-build-thumbnail" src={`https://ddragon.leagueoflegends.com/cdn/10.19.1/img/item/${item.itemId}.png`} />
                                     </div>
                                     :
-                                    <div className="grey-wrapper inline-flex">
+                                    <div key={key} className="grey-wrapper inline-flex">
                                         <img key={key} className="history-item-build-thumbnail greyscale" src={`https://ddragon.leagueoflegends.com/cdn/10.19.1/img/item/${item.itemId}.png`} />
                                     </div>
                             )}

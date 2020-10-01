@@ -1,26 +1,43 @@
 import React, { useRef, useEffect, useState } from 'react';
 import Chartjs from 'chart.js'
 import { Bar, Line, Pie } from 'react-chartjs-2';
+import { GetReadableTimestamp } from '../../../../functions/TimeStampHelper';
 
-const GraphMain = () => {
+const GraphMain = (props) => {
+    const [displayData, setDisplayData] = useState([]);
+    let part1 = props.data.participantFrames.find((obj) => { return obj.participantId === 1 });
+    let part2 = props.data.participantFrames.find((obj) => { return obj.participantId === 2 });
+    console.log(part1.frames);
+    let gold = [];
+    part2.frames.forEach(element => {
+        gold.push(element.participantFrame.totalGold);
+    });
+
+    let gold1 = [];
+    part1.frames.forEach(element => {
+        gold.push(element.participantFrame.totalGold);
+    });
+    console.log(gold)
+    console.log(gold1)
+
+    //*Array of timestamps to print if graph
+    let timestamps = [];
+    part1.frames.forEach(element => {
+        timestamps.push(GetReadableTimestamp(element.timestamp));
+    });
+
     // set data
     const [barData, setBarData] = useState({
-        labels: ['label 1', 'label 2', 'label 3', 'label 4'],
+        labels: timestamps,
         datasets: [
             {
-                label: 'test label',
-                data: [
-                    48,
-                    35,
-                    73,
-                    82
-                ],
-                backgroundColor: [
-                    'rgba(255, 99, 132, 0.6)',
-                    'rgba(54, 162, 235, 0.6)',
-                    'rgba(255, 206, 86, 0.6)',
-                    'rgba(75, 192, 192, 0.6)'
-                ],
+                label: 'First player',
+                data: gold,
+                borderWidth: 3
+            },
+            {
+                label: 'OtherPlayer',
+                data: gold1,
                 borderWidth: 3
             }
         ]

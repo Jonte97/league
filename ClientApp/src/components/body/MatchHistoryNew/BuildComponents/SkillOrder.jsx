@@ -34,7 +34,7 @@ const SkillOrder = (props) => {
                     <tr>
                         <th>Level</th>
                         {props.skillorder.map((lvlUp, key) =>
-                            <th>{key + 1}</th>
+                            <th key={key}>{key + 1}</th>
                         )}
                     </tr>
                 </thead>
