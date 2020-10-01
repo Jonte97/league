@@ -139,6 +139,7 @@ export const getTimeLineEvents = (setItemState, setSkillState, setGraphState, pa
 				console.log(data);
 				setItemState(data.items);
 				setSkillState(data.skillOrder);
+				setGraphState(data.graphData)
 				resolve(data);
 			})
 			.catch((reason) => {

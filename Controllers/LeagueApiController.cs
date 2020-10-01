@@ -134,10 +134,10 @@ namespace Name.Controllers
                 //* Assembling Skillorder data
                 var skillorder =  _leagueMiddleWare.GetSkillOrder(timeline, data.ParticipantId);
                 //* Assembling Graphdata
-                _leagueMiddleWare.GetGraphData(timeline);
+                var graphData = _leagueMiddleWare.GetGraphData(timeline);
                 
                 //* Assembling viewmodel as return object
-                var vm = new TimeLineVM() { Items = items, SkillOrder = skillorder };
+                var vm = new TimeLineVM() { Items = items, SkillOrder = skillorder, GraphData = graphData };
 
                 return Ok(vm);
             }

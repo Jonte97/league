@@ -83,15 +83,30 @@ namespace MiddleWare
                 throw ex;
             }
         }
-        public void GetGraphData(TimeLine timeLine)
+        public TimelineDataHolder GetGraphData(TimeLine timeLine)
         {
             try
             {
                 var dataModel = new TimelineDataHolder();
+                var dataList = new List<List<ParticipantFrames>>();
                 for (int i = 1; i <= 10; i++)
                 {
-                    var test = timeLine.Frames.SelectMany(x => x.ParticipantFrames.Where(y => y.Value.ParticipantId == i)).ToList();
+                    var participantFrame = new ParticipantFrames();
+                    participantFrame.ParticipantId = i;
+                    foreach (var frame in timeLine.Frames)
+                    {
+                        var frameData = new FrameData();
+                        frameData.participantFrame = frame.ParticipantFrames.Where(x => x.Value.ParticipantId == i).FirstOrDefault().Value;
+                        frameData.Timestamp = frame.Timestamp;
+                        frameData.ParticipantId = i;
+                        if (frameData.participantFrame != null)
+                        {
+                            participantFrame.Frames.Add(frameData);
+                        }
+                    }
+                    dataModel.ParticipantFrames.Add(participantFrame);
                 }
+                return dataModel;
             }
             catch (System.Exception ex)
             {
@@ -103,9 +118,9 @@ namespace MiddleWare
     }
 }
 
-                    // var data = new TimeLineDataLists();
-                    // data.List = timeLine.Frames.SelectMany(x => x.ParticipantFrames.Where(
-                    //     y => y.Key == i.ToString()
-                    // )).ToList();
-                    // data.ParticipantId = data.List.Select(x => x.Value.ParticipantId).First();
-                    // dataModel.TimeLineDataLists.Add(data);
+// var data = new TimeLineDataLists();
+// data.List = timeLine.Frames.SelectMany(x => x.ParticipantFrames.Where(
+//     y => y.Key == i.ToString()
+// )).ToList();
+// data.ParticipantId = data.List.Select(x => x.Value.ParticipantId).First();
+// dataModel.TimeLineDataLists.Add(data);

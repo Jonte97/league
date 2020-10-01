@@ -9,6 +9,8 @@ namespace ViewModels
         public List<List<Event>> Items { get; set; }
         
         public List<Event> SkillOrder { get; set; }
+
+        public TimelineDataHolder GraphData { get; set; }
         public TimeLineVM()
         {
             Items = new List<List<Event>>();
