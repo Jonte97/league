@@ -90,7 +90,13 @@ namespace MiddleWare
                 var dataModel = new TimelineDataHolder();
                 for (int i = 1; i <= 10; i++)
                 {
-                    var test = timeLine.Frames.SelectMany(x => x.ParticipantFrames.Where(y => y.Value.ParticipantId == i)).ToList();
+                    var data = timeLine.Frames
+                    .SelectMany(
+                        x => x.ParticipantFrames
+                        .Where(
+                            y => y.Value.ParticipantId == i)
+                    );
+
                 }
             }
             catch (System.Exception ex)
@@ -103,9 +109,9 @@ namespace MiddleWare
     }
 }
 
-                    // var data = new TimeLineDataLists();
-                    // data.List = timeLine.Frames.SelectMany(x => x.ParticipantFrames.Where(
-                    //     y => y.Key == i.ToString()
-                    // )).ToList();
-                    // data.ParticipantId = data.List.Select(x => x.Value.ParticipantId).First();
-                    // dataModel.TimeLineDataLists.Add(data);
+// var data = new TimeLineDataLists();
+// data.List = timeLine.Frames.SelectMany(x => x.ParticipantFrames.Where(
+//     y => y.Key == i.ToString()
+// )).ToList();
+// data.ParticipantId = data.List.Select(x => x.Value.ParticipantId).First();
+// dataModel.TimeLineDataLists.Add(data);

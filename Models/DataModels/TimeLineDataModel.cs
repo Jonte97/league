@@ -9,7 +9,6 @@ namespace Models
         public List<FrameData> Frames { get; set; }
         public TimelineDataHolder()
         {
-            
             Frames = new List<FrameData>();
         }
     }
