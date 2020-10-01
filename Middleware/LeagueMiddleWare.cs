@@ -33,12 +33,12 @@ namespace MiddleWare
                         y => y.ParticipantId == participantId &&
                         y.Type == TypeEnum.ItemPurchased ||
                         y.Type == TypeEnum.ItemUndo &&
-                        y.ParticipantId  == participantId ||
+                        y.ParticipantId == participantId ||
                         y.Type == TypeEnum.ItemSold &&
                         y.ParticipantId == participantId
                     ).ToList()
                 ).ToList();
-                
+
                 result = result.Where(x => x.Count > 0).ToList();
 
                 //TODO Check sold items to point them out for front end
@@ -50,11 +50,11 @@ namespace MiddleWare
                         if (item.Type == TypeEnum.ItemUndo)
                         {
                             var undo = frame.Where(x => x.ItemId == item.AfterId || x.ItemId == item.BeforeId).First();
-                            
+
                             frame.Remove(undo);
                             frame.Remove(item);
                         }
-                        
+
                     }
                 }
                 return result;
@@ -82,6 +82,26 @@ namespace MiddleWare
                 string msg = ex.Message;
                 throw ex;
             }
+        }
+        public void GetGraphData(TimeLine timeLine)
+        {
+            try
+            {
+                var list = new List<List<ParticipantFrame>>();
+                for (int i = 1; i < 10; i++)
+                {
+                    var dataList = timeLine.Frames.SelectMany(x => x.ParticipantFrames.Where(
+                        y => y.Key == "1"
+                    )).ToList();
+                    list.Add(dataList);
+                }
+            }
+            catch (System.Exception)
+            {
+
+                throw;
+            }
+
         }
     }
 }

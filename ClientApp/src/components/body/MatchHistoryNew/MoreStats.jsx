@@ -4,6 +4,7 @@ import Build from './Build';
 import Overview from './Overview';
 import { getItemEventsForParticipant } from '../../../functions/promiseHelper';
 import { func } from '../../../functions/promiseHelper';
+import GraphMain from './Graphs/GraphMain';
 
 
 const MoreStats = (props) => {
@@ -34,7 +35,7 @@ const MoreStats = (props) => {
                 activePage != "none" ?
                     < div >
                         <a className="text-left" onClick={() => { setActivePage("build") }}>Build</a>
-                        <a className="text-center" onClick={() => { setActivePage("graph") }}>Graphs</a>
+                        <a className="text-center" onClick={() => { setActivePage("graphs") }}>Graphs</a>
                         <a className="text-right" onClick={() => { setActivePage("other") }}>Other</a>
                     </div> :
                     null
@@ -51,8 +52,8 @@ const MoreStats = (props) => {
                     />)
                     : null
             }
-            {activePage === "overview" ? (
-                <Overview
+            {activePage === "graphs" ? (
+                <GraphMain
 
                 />
             ) : null}

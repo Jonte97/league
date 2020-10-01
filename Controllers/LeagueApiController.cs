@@ -131,6 +131,7 @@ namespace Name.Controllers
                 var items = _leagueMiddleWare.GetItemEventsForParticipant(data.ParticipantId, timeline);
                 var skillorder =  _leagueMiddleWare.GetSkillOrder(timeline, data.ParticipantId);
 
+                _leagueMiddleWare.GetGraphData(timeline);
                 var vm = new TimeLineVM() { Items = items, SkillOrder = skillorder };
 
                 return Ok(vm);

@@ -12,5 +12,6 @@ namespace MiddleWare
         List<List<Event>> GetItemEventsForParticipant(int participantId, TimeLine timeline);
 
         List<Event> GetSkillOrder(TimeLine timeLine, int ParticipantId);
+        void GetGraphData(TimeLine timeLine);
     }
 }
