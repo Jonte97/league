@@ -15,7 +15,7 @@ const GraphMain = (props) => {
 
     let gold1 = [];
     part1.frames.forEach(element => {
-        gold.push(element.participantFrame.totalGold);
+        gold1.push(element.participantFrame.totalGold);
     });
     console.log(gold)
     console.log(gold1)
@@ -23,7 +23,7 @@ const GraphMain = (props) => {
     //*Array of timestamps to print if graph
     let timestamps = [];
     part1.frames.forEach(element => {
-        timestamps.push(GetReadableTimestamp(element.timestamp));
+        timestamps.push("Min "+GetReadableTimestamp(element.timestamp));
     });
 
     // set data
@@ -31,14 +31,46 @@ const GraphMain = (props) => {
         labels: timestamps,
         datasets: [
             {
-                label: 'First player',
-                data: gold,
-                borderWidth: 3
+                label: 'Total Gold',
+                fill: false,
+                lineTension: 0.1,
+                backgroundColor: 'rgba(75,192,192,0.4)',
+                borderColor: 'rgba(75,192,192,1)',
+                borderCapStyle: 'butt',
+                borderDash: [],
+                borderDashOffset: 0.0,
+                borderJoinStyle: 'miter',
+                pointBorderColor: 'rgba(75,192,192,1)',
+                pointBackgroundColor: '#fff',
+                pointBorderWidth: 1,
+                pointHoverRadius: 5,
+                pointHoverBackgroundColor: 'rgba(75,192,192,1)',
+                pointHoverBorderColor: 'rgba(220,220,220,1)',
+                pointHoverBorderWidth: 2,
+                pointRadius: 1,
+                pointHitRadius: 10,
+                data: gold1
             },
             {
-                label: 'OtherPlayer',
-                data: gold1,
-                borderWidth: 3
+                label: 'Total Gold',
+                fill: false,
+                lineTension: 0.1,
+                backgroundColor: 'rgba(75,192,192,0.4)',
+                borderColor: 'rgba(75,192,192,1)',
+                borderCapStyle: 'butt',
+                borderDash: [],
+                borderDashOffset: 0.0,
+                borderJoinStyle: 'miter',
+                pointBorderColor: 'rgba(75,192,192,1)',
+                pointBackgroundColor: '#fff',
+                pointBorderWidth: 1,
+                pointHoverRadius: 5,
+                pointHoverBackgroundColor: 'rgba(75,192,192,1)',
+                pointHoverBorderColor: 'rgba(220,220,220,1)',
+                pointHoverBorderWidth: 2,
+                pointRadius: 1,
+                pointHitRadius: 10,
+                data: gold
             }
         ]
     });
