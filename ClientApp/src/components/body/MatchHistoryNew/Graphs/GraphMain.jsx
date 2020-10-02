@@ -9,11 +9,11 @@ const getDatasets = (displayData, option) => {
 
     for (let i = 0; i < 10; i++) {
         let graphData = [];
-        switch (option.active.id) {
+        switch (option.id) {
             case "gold":
                 graphData = displayData[i].gold;
                 break;
-            case "ex":
+            case "xp":
                 graphData = displayData[i].exp;
                 break;
             case "cs":
@@ -71,7 +71,9 @@ const setupGrafData = (participantFrames, participantList, championList) => {
     return data;
 }
 const GraphMain = (props) => {
-    const [displayData, setDisplayData] = useState(setupGrafData(props.data.participantFrames, props.participantList, props.championList));
+    const options = [{ id: "gold", title: "Total Gold" }, { id: "xp", title: "Total experience points" }, { id: "cs", title: "Total minions killed" }];
+    const initialData = setupGrafData(props.data.participantFrames, props.participantList, props.championList);
+   // const [displayData, setDisplayData] = useState(initialData);
 
     //*Array of timestamps to print if graph
     let timestamps = [];
@@ -79,23 +81,23 @@ const GraphMain = (props) => {
     x.frames.forEach(element => {
         timestamps.push("Min " + GetReadableTimestamp(element.timestamp));
     });
-    const options = [{ id: "gold", title: "Total Gold" }, { id: "xp", title: "Total experience points" }, { id: "cs", title: "Total minions killed" }];
-    const [chartSettings, setChartSettings] = useState({
-        options: options,
-        active: options[0]
-    });
-
-    const updateChartSettings = (id) => {
-        setChartSettings({ ...options, active: options[id]})
-        console.log("updated chartsettings: "+ JSON.stringify(chartSettings));
-    }
-
-    const dataset = getDatasets(displayData, chartSettings);
     // set data
     const [barData, setBarData] = useState({
-        labels: timestamps,
-        datasets: dataset
+        // labels: timestamps,
+        // datasets: dataset
     });
+    useEffect(() => {
+        let dataset = getDatasets(initialData, options[0]);
+        setBarData({ labels: timestamps, datasets: dataset })
+    }, [])
+
+    const updateChartSettings = (id) => {
+        let option = options[id];
+
+        let ndataset = getDatasets(initialData, option)
+        setBarData({ labels: timestamps, datasets: ndataset })
+    }
+
     // set options
     const [barOptions, setBarOptions] = useState({
         options: {
@@ -110,7 +112,7 @@ const GraphMain = (props) => {
             },
             title: {
                 display: true,
-                text: chartSettings.active.title,
+                text: "change this",
                 fontSize: 25
             },
             legend: {
