@@ -3,6 +3,20 @@ import Chartjs from 'chart.js'
 import { Bar, Line, Pie } from 'react-chartjs-2';
 import { GetReadableTimestamp } from '../../../../functions/TimeStampHelper';
 
+const colors = [
+    "#7fe5f0",
+    "#bada55",
+    "#ff0000",
+    "#407294",
+    "#ffffff",
+    "#065535",
+    "#000000",
+    "#40e0d0",
+    "#0000ff",
+    "#fff68f"
+]
+
+
 //TODO fix colors for each elememnt. Another array for that?
 const getDatasets = (displayData, option) => {
     let data = [];
@@ -27,7 +41,7 @@ const getDatasets = (displayData, option) => {
             fill: false,
             lineTension: 0.1,
             backgroundColor: 'rgba(75,192,192,0.4)',
-            borderColor: 'rgba(75,192,192,1)',
+            borderColor: colors[i],
             borderCapStyle: 'butt',
             borderDash: [],
             borderDashOffset: 0.0,
@@ -72,8 +86,9 @@ const setupGrafData = (participantFrames, participantList, championList) => {
 }
 const GraphMain = (props) => {
     const options = [{ id: "gold", title: "Total Gold" }, { id: "xp", title: "Total experience points" }, { id: "cs", title: "Total minions killed" }];
+    const [active, setActive] = useState(options[0].title);
     const initialData = setupGrafData(props.data.participantFrames, props.participantList, props.championList);
-   // const [displayData, setDisplayData] = useState(initialData);
+    // const [displayData, setDisplayData] = useState(initialData);
 
     //*Array of timestamps to print if graph
     let timestamps = [];
@@ -82,21 +97,11 @@ const GraphMain = (props) => {
         timestamps.push("Min " + GetReadableTimestamp(element.timestamp));
     });
     // set data
-    const [barData, setBarData] = useState({
-        // labels: timestamps,
-        // datasets: dataset
-    });
+    const [barData, setBarData] = useState({});
     useEffect(() => {
         let dataset = getDatasets(initialData, options[0]);
         setBarData({ labels: timestamps, datasets: dataset })
     }, [])
-
-    const updateChartSettings = (id) => {
-        let option = options[id];
-
-        let ndataset = getDatasets(initialData, option)
-        setBarData({ labels: timestamps, datasets: ndataset })
-    }
 
     // set options
     const [barOptions, setBarOptions] = useState({
@@ -112,8 +117,9 @@ const GraphMain = (props) => {
             },
             title: {
                 display: true,
-                text: "change this",
-                fontSize: 25
+                text: active,
+                fontSize: 25,
+                fontColor: "#FFF"
             },
             legend: {
                 display: true,
@@ -121,6 +127,16 @@ const GraphMain = (props) => {
             }
         }
     });
+
+    const updateChartSettings = (id) => {
+        let option = options[id];
+        setActive(options[id].title);
+        setBarOptions({ ...barOptions, options: { title: { text: options[id].title } } })
+        let ndataset = getDatasets(initialData, option)
+        setBarData({ labels: timestamps, datasets: ndataset })
+    }
+
+
 
     // return JSX
     return (
