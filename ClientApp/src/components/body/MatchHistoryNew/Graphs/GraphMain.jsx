@@ -8,6 +8,20 @@ const getDatasets = (displayData, option) => {
     let data = [];
 
     for (let i = 0; i < 10; i++) {
+        let graphData = [];
+        switch (option.active.id) {
+            case "gold":
+                graphData = displayData[i].gold;
+                break;
+            case "ex":
+                graphData = displayData[i].exp;
+                break;
+            case "cs":
+                graphData = displayData[i].cs;
+                break;
+            default:
+                break;
+        }
         const element = {
             label: displayData[i].champion,
             fill: false,
@@ -27,13 +41,13 @@ const getDatasets = (displayData, option) => {
             pointHoverBorderWidth: 2,
             pointRadius: 1,
             pointHitRadius: 10,
-            data: displayData[i].gold
+            data: graphData
         }
         data.push(element);
     }
     return data;
 }
-
+//CONFIGURE the data thats shown in the graph
 const setupGrafData = (participantFrames, participantList, championList) => {
     let data = [];
     for (let i = 0; i < participantFrames.length; i++) {
@@ -65,13 +79,18 @@ const GraphMain = (props) => {
     x.frames.forEach(element => {
         timestamps.push("Min " + GetReadableTimestamp(element.timestamp));
     });
-    const options = ["Total Gold", "Total experience points", "Total minions killed"];
+    const options = [{ id: "gold", title: "Total Gold" }, { id: "xp", title: "Total experience points" }, { id: "cs", title: "Total minions killed" }];
     const [chartSettings, setChartSettings] = useState({
         options: options,
         active: options[0]
     });
-    const dataset = getDatasets(displayData, options);
-    console.log(dataset);
+
+    const updateChartSettings = (id) => {
+        setChartSettings({ ...options, active: options[id]})
+        console.log("updated chartsettings: "+ JSON.stringify(chartSettings));
+    }
+
+    const dataset = getDatasets(displayData, chartSettings);
     // set data
     const [barData, setBarData] = useState({
         labels: timestamps,
@@ -91,7 +110,7 @@ const GraphMain = (props) => {
             },
             title: {
                 display: true,
-                text: chartSettings.active,
+                text: chartSettings.active.title,
                 fontSize: 25
             },
             legend: {
@@ -103,10 +122,17 @@ const GraphMain = (props) => {
 
     // return JSX
     return (
-        <div className="BarExample">
-            <Line
-                data={barData}
-                options={barOptions.options} />
+        <div>
+            <div>
+                <a onClick={() => updateChartSettings(0)}>Show gold</a>
+                <a onClick={() => updateChartSettings(1)}>Show experiencepoints</a>
+                <a onClick={() => updateChartSettings(2)}>Show creep score</a>
+            </div>
+            <div className="line-chart">
+                <Line
+                    data={barData}
+                    options={barOptions.options} />
+            </div>
         </div>
     );
 };
