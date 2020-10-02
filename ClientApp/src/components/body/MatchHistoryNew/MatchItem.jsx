@@ -99,6 +99,8 @@ const MatchItem = (props) => {
                 </div>
                 <Items stats={gameInfo} />
                 <MoreStats
+                    championList={props.championList}
+                    participantList={matchInfo.participants}
                     gameId={props.match.gameId}
                     participant={gameInfo.participantId}
                     runes={props.runes}
