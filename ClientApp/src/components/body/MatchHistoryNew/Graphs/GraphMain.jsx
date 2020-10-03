@@ -11,7 +11,7 @@ const GraphMain = (props) => {
     const [active, setActive] = useState(options[0].title);
     const initialData = configureGraphData(props.data.participantFrames, props.participantList, props.championList);
     const activeColor = { borderBottom: '3px solid #9acd32' };
-    const [navbarActive, setNavbarActive] = useState([ activeColor, {}, {}]);
+    const [navbarActive, setNavbarActive] = useState([activeColor, {}, {}, {}]);
 
     //*Array of timestamps to print if graph
     let timestamps = [];
@@ -52,28 +52,37 @@ const GraphMain = (props) => {
     });
 
     const updateChartSettings = (id) => {
+        //TODO FIX For tomorow team gold
         let option = options[id];
+        //* UPDATE states
         setActive(options[id].title);
         setBarOptions({ ...barOptions, options: { title: { text: options[id].title } } })
+        
+        //*FETCH DATA
         let ndataset = getDatasets(initialData, option)
         setBarData({ labels: timestamps, datasets: ndataset })
-        let replace = [{},{},{}];
+        
+        //* SET Border on navbar
+        let replace = [{}, {}, {}];
         replace[id] = activeColor;
         setNavbarActive(replace);
     }
 
     return (
-        <div>
-            <div>
+        <div className="graph-container">
+            <div className="graph-settings">
                 <ul className="graph-nav">
                     <li className="graph-nav-listitem">
-                        <a style={navbarActive[0]} onClick={() => updateChartSettings(0)}>Show gold</a>
+                        <a style={navbarActive[0]} onClick={() => updateChartSettings(0)}>Total gold</a>
                     </li>
                     <li className="graph-nav-listitem">
-                        <a style={navbarActive[1]} onClick={() => updateChartSettings(1)}>Show experiencepoints</a>
+                        <a style={navbarActive[1]} onClick={() => updateChartSettings(1)}>Xp gained</a>
                     </li>
                     <li className="graph-nav-listitem">
-                        <a style={navbarActive[2]} onClick={() => updateChartSettings(2)}>Show creep score</a>
+                        <a style={navbarActive[2]} onClick={() => updateChartSettings(2)}>Minions killed</a>
+                    </li>
+                    <li className="graph-nav-listitem">
+                        <a style={navbarActive[3]} onClick={() => updateChartSettings(3)}>Team gold</a>
                     </li>
                 </ul>
             </div>

@@ -169,3 +169,6 @@
 a:hover{
     cursor: pointer;
 }
+.graph-container{
+    margin-top: 2em;
+}
