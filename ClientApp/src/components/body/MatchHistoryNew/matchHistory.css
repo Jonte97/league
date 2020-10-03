@@ -149,3 +149,23 @@
     margin-left: auto;
     margin-right: auto;
 }
+
+/* *GRAPH* */
+.graph-nav{
+    display: flex;
+    width: 50%;
+    margin: 0 auto;
+}
+.graph-nav li{
+    margin: 1em;
+}
+.graph-nav-listitem{
+
+}
+.graph-nav-listitem a{
+    color: #ffffff;
+    text-decoration: none;
+}
+a:hover{
+    cursor: pointer;
+}

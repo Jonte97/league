@@ -4,11 +4,14 @@ import { GetReadableTimestamp } from '../../../../functions/TimeStampHelper';
 import { getDatasets } from '../../../../functions/GraphHelper'
 import { configureGraphData } from '../../../../functions/GraphHelper'
 
+
+//!!!! Potential solution remove labels and pass data for player as datasets when clicked
 const GraphMain = (props) => {
     const options = [{ id: "gold", title: "Total Gold" }, { id: "xp", title: "Total experience points" }, { id: "cs", title: "Total minions killed" }];
     const [active, setActive] = useState(options[0].title);
     const initialData = configureGraphData(props.data.participantFrames, props.participantList, props.championList);
-    // const [displayData, setDisplayData] = useState(initialData);
+    const activeColor = { borderBottom: '3px solid #9acd32' };
+    const [navbarActive, setNavbarActive] = useState([ activeColor, {}, {}]);
 
     //*Array of timestamps to print if graph
     let timestamps = [];
@@ -54,17 +57,25 @@ const GraphMain = (props) => {
         setBarOptions({ ...barOptions, options: { title: { text: options[id].title } } })
         let ndataset = getDatasets(initialData, option)
         setBarData({ labels: timestamps, datasets: ndataset })
+        let replace = [{},{},{}];
+        replace[id] = activeColor;
+        setNavbarActive(replace);
     }
 
-
-
-    // return JSX
     return (
         <div>
             <div>
-                <a onClick={() => updateChartSettings(0)}>Show gold</a>
-                <a onClick={() => updateChartSettings(1)}>Show experiencepoints</a>
-                <a onClick={() => updateChartSettings(2)}>Show creep score</a>
+                <ul className="graph-nav">
+                    <li className="graph-nav-listitem">
+                        <a style={navbarActive[0]} onClick={() => updateChartSettings(0)}>Show gold</a>
+                    </li>
+                    <li className="graph-nav-listitem">
+                        <a style={navbarActive[1]} onClick={() => updateChartSettings(1)}>Show experiencepoints</a>
+                    </li>
+                    <li className="graph-nav-listitem">
+                        <a style={navbarActive[2]} onClick={() => updateChartSettings(2)}>Show creep score</a>
+                    </li>
+                </ul>
             </div>
             <div className="line-chart">
                 <Line
@@ -74,5 +85,6 @@ const GraphMain = (props) => {
         </div>
     );
 };
+
 
 export default GraphMain;
