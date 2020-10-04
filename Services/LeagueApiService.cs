@@ -5,7 +5,9 @@ using Microsoft.Extensions.Configuration;
 using Model;
 using Models;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
 using QuickType;
+using TimeLineNS;
 
 namespace Services
 {
@@ -15,7 +17,8 @@ namespace Services
         private IConfiguration _config;
         private static readonly object threadlock = new object();
 
-
+        //TODO change this
+        public string Patch { get; set; } = "10.19.1";
         public LeagueApiService(IConfiguration configuration)
         {
             _config = (IConfigurationRoot)configuration;
@@ -30,7 +33,7 @@ namespace Services
                 client.DefaultRequestHeaders.Clear();
 
                 //TODO bör hämtas från appsettings
-                string key = "RGAPI-2e3037e8-7ce0-4cc8-82c8-691562c91fe7";
+                string key = "RGAPI-27f314d6-8e0c-4765-b36a-4a56b782f363";
                 client.DefaultRequestHeaders.Add("X-Riot-Token", key);
 
                 response = await client.GetAsync(uri);
@@ -119,7 +122,7 @@ namespace Services
         {
             try
             {
-                string url = $"http://ddragon.leagueoflegends.com/cdn/10.16.1/data/en_US/champion.json";
+                string url = $"http://ddragon.leagueoflegends.com/cdn/{Patch}/data/en_US/champion.json";
 
                 var response = await SendRequestAsync(url);
                 var content = await response.Content.ReadAsStringAsync();
@@ -132,18 +135,35 @@ namespace Services
                 throw ex;
             }
         }
-        public async Task<RootChampionDto> GetChampByKeyAsync(string key) 
+        public async Task<RootChampionDto> GetChampByKeyAsync(string key)
         {
             try
             {
-                string url = $"http://ddragon.leagueoflegends.com/cdn/10.16.1/data/en_US/champion/{key}.json";
+                string url = $"http://ddragon.leagueoflegends.com/cdn/{Patch}/data/en_US/champion/{key}.json";
                 var response = await SendRequestAsync(url);
                 var content = await response.Content.ReadAsStringAsync();
                 //TODO create c# model for champion
-                var champion = JsonConvert.DeserializeObject<RootChampionDto>(content); 
-                
+                var champion = JsonConvert.DeserializeObject<RootChampionDto>(content);
+
                 return champion;
 
+            }
+            catch (System.Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public async Task<TimeLine> GetTimeLineForMatch(string matchId)
+        {
+            try
+            {
+                string url = $"https://euw1.api.riotgames.com/lol/match/v4/timelines/by-match/{matchId}";
+                var response = await SendRequestAsync(url);
+                var content = await response.Content.ReadAsStringAsync();
+                
+                var timeline = JsonConvert.DeserializeObject<TimeLine>(content);
+
+                return timeline;
             }
             catch (System.Exception ex)
             {

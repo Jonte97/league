@@ -10,13 +10,17 @@ const Profile = (props) => {
   return (
     <div>
       <div className="profile-head theme-bg">
-        <ProfileHead summoner={props.summoner} />
+        <div className="container">
+          <ProfileHead summoner={props.summoner} />
+        </div>
       </div>
 
       <div className="darker-theme-bg">
-        {props.leagueEntries.map((item, i) =>
-          <Queue data={item} key={i} id={i} />
-        )}
+        <div className="container">
+          {props.leagueEntries.map((item, i) =>
+            <Queue data={item} key={i} id={i} />
+          )}
+        </div>
       </div>
 
     </div>

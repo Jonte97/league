@@ -11,6 +11,8 @@ using System.Threading.Tasks;
 using MiddleWare;
 using ViewModels;
 using Model;
+using TimeLineNS;
+using PayloadModels;
 
 namespace Name.Controllers
 {
@@ -77,7 +79,7 @@ namespace Name.Controllers
             return champions;
         }
         [HttpPost("[action]")]
-        public async Task<Participant> GetSummonerMatchData([FromBody] x data)
+        public async Task<Participant> GetSummonerMatchData([FromBody] SummonerMatchData data)
         {
             try
             {
@@ -113,14 +115,38 @@ namespace Name.Controllers
             }
         }
 
-        //TODO Rename? vad är detta ens??
-        public class x
+        //* Gets list of items purchase order with timestamps
+        //TODO Rename to Get timeLineForGame or something
+        //TODO Make viewmodel for this
+        [HttpPost("[action]")]
+        public async Task<IActionResult> GetItemsTimeLine([FromBody] ItemsTimeLine data)
         {
-            [JsonProperty("gameId")]
-            public string GameId { get; set; }
-            [JsonProperty("name")]
-            public string Name { get; set; }
+            //TODO fix bug games: 4843570041 and 4843092948
+            //Dont know whats wrong prob Viktor hexcore item
+            //msg Cannot read property 'items' of undefined -EKKO GAME
+            //
+            try
+            {
+                //* Fetch timeline object with data of events from gameId
+                var timeline = await _leagueApiService.GetTimeLineForMatch(data.GameId);
+                //* Assembling itemorder Data
+                var items = _leagueMiddleWare.GetItemEventsForParticipant(data.ParticipantId, timeline);
+                //* Assembling Skillorder data
+                var skillorder =  _leagueMiddleWare.GetSkillOrder(timeline, data.ParticipantId);
+                //* Assembling Graphdata
+                var graphData = _leagueMiddleWare.GetGraphData(timeline);
+                
+                //* Assembling viewmodel as return object
+                var vm = new TimeLineVM() { Items = items, SkillOrder = skillorder, GraphData = graphData };
+
+                return Ok(vm);
+            }
+            catch (System.Exception ex)
+            {
+                return StatusCode(500, Json(new { message= ex.Message}));
+            }
         }
     }
 
 }
+
