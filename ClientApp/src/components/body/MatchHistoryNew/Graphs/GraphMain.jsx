@@ -4,17 +4,44 @@ import { GetReadableTimestamp } from '../../../../functions/TimeStampHelper';
 import { getDatasets } from '../../../../functions/GraphHelper'
 import { configureGraphData } from '../../../../functions/GraphHelper'
 import { getParticipantTeam } from '../../../../functions/GraphHelper'
-
+const blueColors = [
+    "#b0dfe5",
+    "#7703fc",
+    "#1d00c4",
+    "#588bae",
+    "#03fca5"
+]
+const redColors = [
+    "#b1560f",
+    "#7c0a02",
+    "#b80f0a",
+    "#fa8072",
+    "#d2b55b"
+]
 const getCandidatesArray = (list, owner) => {
     let array = [];
+    let b = 0;
+    let r = 0;
     list.forEach(element => {
 
         let obj = {};
-        if (element.participantId === owner) {
-            obj = { participantId: element.participantId, active: true };
+        if (element.teamId === 100) {
+            if (element.participantId === owner) {
+                obj = { participantId: element.participantId, active: true, color: blueColors[b] };
+            }
+            else {
+                obj = { participantId: element.participantId, active: false, color: blueColors[b] };
+            }
+            b++;
         }
         else {
-            obj = { participantId: element.participantId, active: false };
+            if (element.participantId === owner) {
+                obj = { participantId: element.participantId, active: true, color: redColors[r] };
+            }
+            else {
+                obj = { participantId: element.participantId, active: false, color: redColors[r] };
+            }
+            r++;
         }
         array.push(obj);
     });
@@ -23,12 +50,12 @@ const getCandidatesArray = (list, owner) => {
 //!!!! Potential solution remove labels and pass data for player as datasets when clicked
 const GraphMain = (props) => {
     const options = [{ id: "gold", title: "Total Gold" }, { id: "xp", title: "Total experience points" }, { id: "cs", title: "Total minions killed" }];
-    const [active, setActive] = useState(options[0].title);
+    const [active, setActive] = useState(options[0]);
     const initialData = configureGraphData(props.data.participantFrames, props.participantList, props.championList);
     const activeColor = { borderBottom: '3px solid #9acd32' };
     const [navbarActive, setNavbarActive] = useState([activeColor, {}, {}, {}]);
     const [teamParticipants, setTeamParticipants] = useState();
-    const [candidates, setCandidates] = useState();
+    const [candidates, setCandidates] = useState(getCandidatesArray(props.participantList, props.owner));
 
     //*Array of timestamps to print if graph
     let timestamps = [];
@@ -39,10 +66,9 @@ const GraphMain = (props) => {
     // set data
     const [barData, setBarData] = useState({});
     useEffect(() => {
-        setCandidates(getCandidatesArray(props.participantList, props.owner))
         setTeamParticipants(getParticipantTeam(props.participantList, props.championList, candidates));
         let dataset = getDatasets(initialData, options[0], candidates);
-        setBarData({ labels: timestamps, datasets: dataset })
+        setBarData({ labels: timestamps, datasets: dataset });
     }, [])
 
     // set options
@@ -59,26 +85,43 @@ const GraphMain = (props) => {
             },
             title: {
                 display: true,
-                text: active,
+                text: active.title,
                 fontSize: 25,
                 fontColor: "#FFF"
             },
             legend: {
-                display: true,
+                display: false,
                 position: 'top'
             }
         }
     });
 
-    const addRemoveCandidates = (id) => {
-
+    const addRemoveCandidates = (participant) => {
+        let index = null;
+        let cand = null;
+        let array = candidates;
+        for (let i = 0; i < candidates.length; i++) {
+            if (candidates[i].participantId === participant.participantId) {
+                index = i;
+                cand = candidates[i];
+            }
+        }
+        if (cand.active === true) {
+            array[index].active = false;
+        }
+        else {
+            array[index].active = true;
+        }
+        setCandidates(array);
+        let newDataset = getDatasets(initialData, active, array);
+        setBarData({ labels: timestamps, datasets: newDataset });
     }
 
     const updateChartSettings = (id) => {
         //TODO FIX For tomorow team gold
         let option = options[id];
         //* UPDATE states
-        setActive(options[id].title);
+        setActive(options[id]);
         setBarOptions({ ...barOptions, options: { title: { text: options[id].title } } })
 
         //*FETCH DATA
@@ -90,23 +133,67 @@ const GraphMain = (props) => {
         replace[id] = activeColor;
         setNavbarActive(replace);
     }
-
+    const activeParticipant = (part) => {
+        const partColor = candidates.find((obj) => { return obj.participantId === part.participantId })
+        console.log(partColor);
+        const activeParticipant = {
+            borderBottom: `5px solid ${partColor.color}`
+        }
+        return activeParticipant;
+    }
+    const inactiveParticipant = {
+        filter: 'grayscale(1)'
+    }
     return (
         <div className="graph-container">
             <div className="graph-navbar-items">
                 <ul className="graph-participantlist-blue">
-                    {teamParticipants ?
+                    {teamParticipants && candidates ?
                         teamParticipants.blue.map((participant, key) =>
-                            <li key={key}><img className="graph-list-thumbnail" alt="image" src={participant.champUrl} /></li>
+                            <li
+                                key={key}
+                                style={
+                                    candidates.find((obj) => obj.participantId === participant.participantId).active === false ?
+                                        inactiveParticipant
+                                        :
+                                        activeParticipant(participant)}
+                            >
+                                <a onClick={() => addRemoveCandidates(participant)}>
+                                    {candidates ?
+                                        <img
+                                            className="graph-list-thumbnail"
+                                            alt="image"
+                                            src={participant.champUrl}
+                                        /> :
+                                        null}
+                                </a>
+                            </li>
                         )
                         : null
                     }
                 </ul>
 
                 <ul className="graph-participantlist-red">
-                    {teamParticipants ?
+                    {teamParticipants && candidates ?
                         teamParticipants.red.map((participant, key) =>
-                            <li key={key}><a ><img className="graph-list-thumbnail" alt="image" src={participant.champUrl} /></a></li>
+                            <li
+                                key={key}
+                                style={
+                                    candidates.find((obj) => obj.participantId === participant.participantId).active === false ?
+                                        inactiveParticipant
+                                        :
+                                        activeParticipant(participant)}
+                            >
+                                <a onClick={() => addRemoveCandidates(participant)}>
+                                    {candidates ?
+                                        <img
+                                            className="graph-list-thumbnail"
+                                            alt="image"
+                                            src={participant.champUrl}
+                                        /> :
+                                        null}
+                                </a>
+                            </li>
                         )
                         : null
                     }

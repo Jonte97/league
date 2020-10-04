@@ -174,12 +174,11 @@ a:hover{
 }
 .graph-list-thumbnail{
     height: 48px;
+    margin: 0.5em;
+
 }
 .graph-navbar-items{
     margin: 0 auto;
-}
-.graph-list-thumbnail{
-    margin: 0.5em;
 }
 .graph-participantlist-red li{
     display: inline;

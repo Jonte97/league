@@ -33,7 +33,7 @@ export const getDatasets = (displayData, option, candidates) => {
 
     for (let i = 0; i < 10; i++) {
         let cand = candidates.find((participant) => { return participant.participantId === displayData[i].participantId })
-        if (cand != null) {
+        if (cand.active === true) {
             let graphData = [];
             switch (option.id) {
                 case "gold":
@@ -53,7 +53,7 @@ export const getDatasets = (displayData, option, candidates) => {
                 fill: false,
                 lineTension: 0.1,
                 backgroundColor: 'rgba(75,192,192,0.4)',
-                borderColor: colors[i],
+                borderColor: cand.color,
                 borderCapStyle: 'butt',
                 borderDash: [],
                 borderDashOffset: 0.0,
