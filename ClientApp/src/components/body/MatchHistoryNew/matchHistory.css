@@ -172,3 +172,10 @@ a:hover{
 .graph-container{
     margin-top: 2em;
 }
+.graph-list-thumbnail{
+    height: 48px;
+    border-radius: 50%;
+}
+.graph-participantlist-blue{
+    display: flex;
+}

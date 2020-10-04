@@ -11,6 +11,22 @@ const colors = [
     "#0000ff",
     "#fff68f"
 ]
+const getThumbnail = (participant, champList) => {
+    let champ = champList.find((obj) => obj.k == participant.championId);
+    return `https://ddragon.leagueoflegends.com/cdn/10.19.1/img/champion/${champ.v.image.full}`
+}
+export const getParticipantTeam = (list, champList) => {
+    let teamLists = { blue: [], red: [] };
+    list.forEach(element => {
+        element.champUrl = getThumbnail(element, champList);
+    });
+    let blue = list.filter((obj) => { return obj.teamId === 100; });
+    let red = list.filter((obj) => { return obj.teamId === 200; });
+    teamLists.blue = blue;
+    teamLists.red = red;
+    return teamLists;
+}
+
 
 export const getDatasets = (displayData, option) => {
     let data = [];
