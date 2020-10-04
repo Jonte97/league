@@ -151,13 +151,13 @@
 }
 
 /* *GRAPH* */
-.graph-nav{
-    display: flex;
-    width: 40%;
-    margin: 0 auto;
-}
 .graph-nav li{
     margin: 1em;
+    display: inline;    
+}
+.graph-nav {
+    margin: 0 auto;
+    width: 50%;
 }
 .graph-nav-listitem{
 
@@ -174,8 +174,21 @@ a:hover{
 }
 .graph-list-thumbnail{
     height: 48px;
-    border-radius: 50%;
 }
-.graph-participantlist-blue{
-    display: flex;
+.graph-navbar-items{
+    margin: 0 auto;
+}
+.graph-list-thumbnail{
+    margin: 0.5em;
+}
+.graph-participantlist-red li{
+    display: inline;
+    float: right;
+}
+.graph-participantlist-red{
+    padding-right: 3em;
+}
+.graph-participantlist-blue li{
+    display: inline;
+    float: left;
 }

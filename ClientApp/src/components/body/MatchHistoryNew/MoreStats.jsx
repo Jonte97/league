@@ -57,6 +57,7 @@ const MoreStats = (props) => {
                     participantList={props.participantList}
                     data={graphData}
                     championList={props.championList}
+                    owner={props.owner}
                 />
             ) : null}
             { activePage === "graphs" ? (<div />) : null}

@@ -105,6 +105,7 @@ const MatchItem = (props) => {
                     participant={gameInfo.participantId}
                     runes={props.runes}
                     stats={gameInfo.stats}
+                    owner={gameInfo.participantId}
                 />
                 
             </div> :
