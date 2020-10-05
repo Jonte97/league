@@ -33,10 +33,12 @@ const MoreStats = (props) => {
             >See more stats</a>
             {
                 activePage != "none" ?
-                    < div >
-                        <a className="text-left" onClick={() => { setActivePage("build") }}>Build</a>
-                        <a className="text-center" onClick={() => { setActivePage("graphs") }}>Graphs</a>
-                        <a className="text-right" onClick={() => { setActivePage("other") }}>Other</a>
+                    <div>
+                        <ul className="matchitem-navbar">
+                            <li><a className="text-left" onClick={() => { setActivePage("build") }}>Build</a></li>
+                            <li><a className="text-center" onClick={() => { setActivePage("graphs") }}>Graphs</a></li>
+                            <li><a className="text-right" onClick={() => { setActivePage("other") }}>Other</a></li>
+                        </ul>
                     </div> :
                     null
             }

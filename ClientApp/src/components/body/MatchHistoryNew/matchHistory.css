@@ -78,11 +78,20 @@
 .cs-img{
     padding-top: 0.5em
 }
-.text-right{
-    margin-left: 25%;
+.matchitem-navbar li{
+    display: inline;
+    margin: 4em;
 }
-.text-left{
-    margin-right: 25%;
+.matchitem-navbar {
+    width: 50%;
+    margin: 0 auto;
+}
+.matchitem-navbar a{
+    color: #ffffff;
+    text-decoration: none;
+}
+.matchitem-navbar a:hover{
+    cursor: pointer;
 }
 .history-item-build-thumbnail{
     height: 32px;
