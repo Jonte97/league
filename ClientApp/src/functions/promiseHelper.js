@@ -15,7 +15,6 @@ export const getChampionList = (setState) => {
 
 //Get matchhistory by for player by id INPUT: accountId
 export const getMatchHistory = (accountId, setState) => {
-	console.log("accountid is: " + accountId);
 	return new Promise((resolve, reject) => {
 		fetch('api/LeagueApi/GetMatchHistory', {
 			method: 'post',
@@ -25,7 +24,6 @@ export const getMatchHistory = (accountId, setState) => {
 			.then((response) => response.json())
 			.then((data) => {
 				resolve(data);
-				console.log('success' + data.matches);
 				setState(data);
 			})
 			.catch((reason) => {
@@ -45,7 +43,6 @@ export const getMatchById = (currentMatchId, setState) => {
 		})
 			.then((response) => response.json())
 			.then((data) => {
-				console.log("success");
 				resolve(data);
 				setState(data);
 			})

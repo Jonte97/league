@@ -7,7 +7,7 @@ import SkillOrder from './BuildComponents/SkillOrder';
 const Build = (props) => {
 
     return (
-        <div className="history-build darker-theme-bg">
+        <div className="history-build">
             {
                 props.itemEvents ?
                     <ItemBuild items={props.itemEvents} />

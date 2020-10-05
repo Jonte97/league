@@ -10,12 +10,12 @@ const MatchHistory = (props) => {
     const [runesData, setRunesData] = useState();
     //! Hardcoded accid must be replaced    
     let accid = "";
-    if (props.activeSummoner.name == "Lönnen") {
-        accid = "ozMoiB-Krv93WBb4oX1nXjgKAif4kvcA1BolzEzjf_Bc4xQ"
-    }
-    else {
-        accid = props.activeSummoner.accountId;
-    }
+    // if (props.activeSummoner.name == "Lönnen") {
+    //     accid = "ozMoiB-Krv93WBb4oX1nXjgKAif4kvcA1BolzEzjf_Bc4xQ"
+    // }
+    // else {
+    //     accid = props.activeSummoner.accountId;
+    // }
 
     useEffect(() => {
         getChampionList(setChampionList);
@@ -25,7 +25,7 @@ const MatchHistory = (props) => {
 
     //Hämtar matchHistory och uppdaterar state
     useEffect(() => {
-        let matches = getMatchHistory(accid, setMatchHistory);
+        let matches = getMatchHistory(props.activeSummoner.accountId, setMatchHistory);
     }, [props.activeSummoner]);
 
     return (

@@ -22,7 +22,7 @@ const MoreStats = (props) => {
     }
 
     return (
-        <React.Fragment>
+        <div>
             <a onClick={
                 () => {
                     activePage == "none" ?
@@ -64,7 +64,7 @@ const MoreStats = (props) => {
             ) : null}
             { activePage === "graphs" ? (<div />) : null}
             { activePage === "other" ? (<div />) : null}
-        </React.Fragment >
+        </div >
     );
 }
 

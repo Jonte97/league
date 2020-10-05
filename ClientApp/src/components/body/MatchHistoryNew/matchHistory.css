@@ -6,7 +6,6 @@
 }
 .history-item{
     padding: 1em;
-    border-bottom: 1px solid #251a44;
 }
 .inline-flex{
     display: inline-flex;
@@ -17,14 +16,39 @@
 .flex{
     display: -webkit-inline-box;
 }
+/**HISTORY ITEM LIST*/
 .history-emptyitem{
-    background-color: black;
-    height: 66px;
-    width: 66px;
+    height: 32px;
+    width: 32px;
 }
-.history-item-img, .history-emptyitem{
-    border: 1px solid goldenrod;
-    margin-right: 0.5em;
+.history-item-item, .history-emptyitem{
+    margin: 0.25em;
+    border-radius: 5px;
+}
+.history-item-items-row1{
+    display: flex;
+}
+.history-item-items-row2{
+    display: flex;
+}
+.history-item-items-trinket img{
+    border-radius: 50% !important;
+}
+.history-item-items-trinket{
+    margin-top: 0.5em;
+}
+.history-item-item img{
+    height: 32px;
+    border: 1px solid#ada3c3;
+    border-radius: 5px;
+
+}
+.history-emptyitem{
+    border: 1px solid  #ada3c3;
+    height: 32px;
+}
+.kda{
+    padding-left: 32px;
 }
 .history-keystone{
     height: 64px;
@@ -35,26 +59,33 @@
 .history-kda h4{
     margin: 0;
 }
+.history-kda {
+    padding: 0 2em 0 2em;
+}
+.text-center{
+    text-align: center;
+}
 .history-player-lists{
     display: flex;
     margin-left: 2em;
 }
 .history-list-thumbnail{
-    height: 32px;
+    height: 24px;
 }
 .history-playerlist{
-    font-size: 16px;
+    font-size: 12px;
 }
 .history-playerlist li{
     margin-bottom: 0.2em;
+    width: 140px;
 }
-.history-mid-text{
-    width: 100%;
+.history-item-list{
+    padding: 0 2em 0 2em;
 }
 .history-mid-inner-text{
-    width: 50%;
+    /* width: 50%;
     margin: 0 auto;
-    text-align: left;
+    text-align: left; */
 }
 .history-player-lists{
     position: relative;
@@ -62,8 +93,21 @@
     display: inline-flex;
 
 }
+.team-title-wrapper{
+    padding-bottom: 0.5em;
+}
+.team-title-label{
+    padding: 3px;
+    border-radius: 20px;
+    width: 50%;
+    margin: auto
+
+}    
 .mb1{
     margin-bottom: 1em;
+}
+.history-content-wrapper{
+    padding-top: 1em;
 }
 .history-summonerspell{
     height: 48px;
@@ -199,4 +243,19 @@ a:hover{
 .graph-participantlist-blue li{
     display: inline;
     float: left;
+}
+
+/** MATCHHISTORY ITEM */
+.match-history-item{
+    border-radius: 20px;
+}
+.match-history-top{
+    padding: 0.25em;
+    border-bottom: 1px solid #504f4f;
+}
+.match-history-item-wrapper{
+    padding: 0.5em 2em 2em 2em;
+}
+.match-hisrotry-top-gamemode{
+    padding-left: 1em;
 }

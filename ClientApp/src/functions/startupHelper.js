@@ -3,7 +3,7 @@ export const startSummoner = {
         name: 'Lönnen',
         puuid: '',
         summonerLevel: 0,
-        accountId: '',
+        accountId: 'ozMoiB-Krv93WBb4oX1nXjgKAif4kvcA1BolzEzjf_Bc4xQ',
         id: '',
         revisionDate: 1582835855000
 };
