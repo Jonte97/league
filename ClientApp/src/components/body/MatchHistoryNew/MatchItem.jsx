@@ -9,84 +9,107 @@ import Kda from './Kda';
 import PlayerList from './PlayerList'
 import MoreStats from './MoreStats';
 
-const ownerWonGame = (teams, owner, participants) => {
+const ownerWonGame = (teams, participantId, participants) => {
 
-    if (owner != null) {
-        let part = participants.find((obj) => { return obj.participantId === owner.participantId })
+    let part = participants.find((obj) => { return obj.participantId === participantId })
 
-        if (part.teamId === 100) {
-            if (teams[0].teamId === 100) {
-                if (teams[0].win === "Win") {
-                    return true;
-                }
-                else {
-                    return false;
-                }
+    if (part.teamId === 100) {
+        if (teams[0].teamId === 100) {
+            if (teams[0].win === "Win") {
+                return true;
             }
             else {
-                if (teams[0].win === "Win") {
-                    return false;
-                }
-                else {
-                    return true;
-                }
+                return false;
             }
         }
         else {
-            if (teams[1].teamId === 200) {
-                if (teams[1].win === "Win") {
-                    return true;
-                }
-                else {
-                    return false;
-                }
+            if (teams[0].win === "Win") {
+                return false;
             }
             else {
-                if (teams[0].win === "Win") {
-                    return false;
-                }
-                else {
-                    return true;
-                }
+                return true;
+            }
+        }
+    }
+    else {
+        if (teams[1].teamId === 200) {
+            if (teams[1].win === "Win") {
+                return true;
+            }
+            else {
+                return false;
+            }
+        }
+        else {
+            if (teams[0].win === "Win") {
+                return false;
+            }
+            else {
+                return true;
             }
         }
     }
 }
 
 const MatchItem = (props) => {
-
     const [matchInfo, setMatchInfo] = useState();
-    //TODO Rename this hook
-    const [gameInfo, setGameInfo] = useState();
-
-    let thumbnails = {
-        ownerChampion: "",
-        summonerSpell1: "",
-        summonerSpell2: ""
-    }
-    console.log("rendering")
-    let summonerSpell1;
-    let summonerSpell2;
     useEffect(() => {
-        getMatchById(props.match.gameId, setMatchInfo);
-        getMatchDataForSummoner(props.match.gameId, props.owner.name, setGameInfo);
-        
-    }, [props.match.gameId])
-    
-    
+        const fetcMatch = async () => {
+            try {
+                const match = await getMatchById(props.match.gameId);
+                setMatchInfo(match);
+            } catch (error) {
+                console.log(error)
+            }
+        }
+        fetcMatch();
+    }, [props.match.gameId]);
+
+    const [summonerGameInfo, setGameInfo] = useState();
+    useEffect(() => {
+        const makeAsyncCall = async () => {
+            const info = await getMatchDataForSummoner(props.match.gameId, props.owner.name);
+            setGameInfo(info);
+        }
+        makeAsyncCall();
+    }, [props.match.gameId]);
+
+    const [thumbnails, setThumbNails] = useState({ ownerChampion: "", summonerSpell1: "", summonerSpell2: "" });
+    useEffect(() => {
+        const getSummonerSpell1 = () => {
+            const summonerSpell1 = getSummonerSpell(summonerGameInfo.spell1Id, props.summonerSpells.data);
+            const result = `https://ddragon.leagueoflegends.com/cdn/10.19.1/img/spell/${summonerSpell1.id}.png`
+            return result;
+        }
+        const getSummonerSpell2 = () => {
+            const summonerSpell2 = getSummonerSpell(summonerGameInfo.spell2Id, props.summonerSpells.data);
+            const result = `https://ddragon.leagueoflegends.com/cdn/10.19.1/img/spell/${summonerSpell2.id}.png`
+            return result;
+        }
+        const getChampionThumbnail = () => {
+            const key = props.championList.find((v) => v.k == summonerGameInfo.championId)
+            const championThumbnail = `https://ddragon.leagueoflegends.com/cdn/10.19.1/img/champion/${key.v.image.full}`
+            return championThumbnail;
+        }
+        if (summonerGameInfo != null) {
+            const spell1 = getSummonerSpell1();
+            const spell2 = getSummonerSpell2();
+            const championThumbnail = getChampionThumbnail();
+            setThumbNails({ ownerChampion: championThumbnail, summonerSpell1: spell1, summonerSpell2: spell2 })
+        }
+    }, [summonerGameInfo]);
+
+
     //TODO Lägg till loadanimation
 
     const getPlayerList = (teamId) => {
         let list = [];
         list = matchInfo.participants.filter((obj) => obj.teamId === teamId);
-
         return list;
     };
 
     const getPlayerIdentities = (list) => {
-
         let identities = [];
-
         for (let index = 0; index < list.length; index++) {
             identities.push(matchInfo.participantIdentities.find(
                 (obj) => obj.participantId === list[index].participantId
@@ -95,32 +118,28 @@ const MatchItem = (props) => {
         return identities
     };
     const styleWinner = () => {
+        // const winner = {
+        //     backgroundColor: "#222451"
+        // }
+        // return winner
+        if (ownerWonGame(matchInfo.teams, summonerGameInfo.participantId, matchInfo.participants)) {
             const winner = {
                 backgroundColor: "#222451"
             }
             return winner
-    }
-
-    if (gameInfo != null) {
-        let key;
-        if (props.championList != null) {
-            key = props.championList.find((v) => v.k == gameInfo.championId)
-            thumbnails.ownerChampion = `https://ddragon.leagueoflegends.com/cdn/10.19.1/img/champion/${key.v.image.full}`
-
         }
-        summonerSpell1 = getSummonerSpell(gameInfo.spell1Id, props.summonerSpells.data);
-        summonerSpell2 = getSummonerSpell(gameInfo.spell2Id, props.summonerSpells.data);
+        else {
+            const loser = {
+                backgroundColor: "#743f67"
+            }
+            return loser
+        }
     }
+    console.log("rendering item" + props.match.gameId)
 
-    summonerSpell1 ?
-        thumbnails.summonerSpell1 = `https://ddragon.leagueoflegends.com/cdn/10.19.1/img/spell/${summonerSpell1.id}.png`
-        :
-        null;
-    summonerSpell2 ?
-        thumbnails.summonerSpell2 = `https://ddragon.leagueoflegends.com/cdn/10.19.1/img/spell/${summonerSpell2.id}.png`
-        : null;
+
     return (
-        matchInfo && gameInfo ?
+        matchInfo && summonerGameInfo ?
             <div className="match-history-item" style={styleWinner()}>
                 <div className="match-history-top">
                     <div className="match-hisrotry-top-gamemode">{matchInfo.gameMode}</div>
@@ -137,13 +156,13 @@ const MatchItem = (props) => {
                                 <img className="history-summonerspell" src={thumbnails.summonerSpell2} />
                             </div>
                         </div>
-                        <Keystone runes={props.runes} stats={gameInfo.stats} />
+                        <Keystone runes={props.runes} stats={summonerGameInfo.stats} />
                         <div className="history-mid-text">
                             <div className="history-mid-inner-text">
-                                <Kda stats={gameInfo.stats} matchDuration={matchInfo.gameDuration} />
+                                <Kda stats={summonerGameInfo.stats} matchDuration={matchInfo.gameDuration} />
                             </div>
                         </div>
-                        <Items stats={gameInfo} />
+                        <Items stats={summonerGameInfo} />
                     </div>
                     <div className="history-player-lists">
                         <div className="history-list-blue">
@@ -157,10 +176,10 @@ const MatchItem = (props) => {
                         championList={props.championList}
                         participantList={matchInfo.participants}
                         gameId={props.match.gameId}
-                        participant={gameInfo.participantId}
+                        participant={summonerGameInfo.participantId}
                         runes={props.runes}
-                        stats={gameInfo.stats}
-                        owner={gameInfo.participantId}
+                        stats={summonerGameInfo.stats}
+                        owner={summonerGameInfo.participantId}
                     />
                 </div>
             </div> :

@@ -23,48 +23,54 @@ const MoreStats = (props) => {
 
     return (
         <div>
-            <a onClick={
-                () => {
-                    activePage == "none" ?
-                        fetchData()
-                        :
-                        setActivePage("none")
-                }}
-            >See more stats</a>
-            {
-                activePage != "none" ?
-                    <div>
-                        <ul className="matchitem-navbar">
-                            <li><a className="text-left" onClick={() => { setActivePage("build") }}>Build</a></li>
-                            <li><a className="text-center" onClick={() => { setActivePage("graphs") }}>Graphs</a></li>
-                            <li><a className="text-right" onClick={() => { setActivePage("other") }}>Other</a></li>
-                        </ul>
-                    </div> :
-                    null
-            }
-            {
-                activePage === "build" ? (
-                    <Build
-                        gameId={props.gameId}
-                        participant={props.participant}
-                        runes={props.runes}
-                        stats={props.stats}
-                        itemEvents={itemEvents}
-                        skillOrder={skillOrder}
-                    />)
-                    : null
-            }
-            {activePage === "graphs" ? (
-                <GraphMain
-                    participantList={props.participantList}
-                    data={graphData}
-                    championList={props.championList}
-                    owner={props.owner}
-                />
-            ) : null}
-            { activePage === "graphs" ? (<div />) : null}
-            { activePage === "other" ? (<div />) : null}
-        </div >
+
+            <div>
+                <a onClick={
+                    () => {
+                        activePage == "none" ?
+                            fetchData()
+                            :
+                            setActivePage("none")
+                    }}
+                >See more stats</a>
+            </div>
+            <div className="slide-down">
+
+                {
+                    activePage != "none" ?
+                        <div>
+                            <ul className="matchitem-navbar">
+                                <li><a className="text-left" onClick={() => { setActivePage("build") }}>Build</a></li>
+                                <li><a className="text-center" onClick={() => { setActivePage("graphs") }}>Graphs</a></li>
+                                <li><a className="text-right" onClick={() => { setActivePage("other") }}>Other</a></li>
+                            </ul>
+                        </div> :
+                        null
+                }
+                {
+                    activePage === "build" ? (
+                        <Build
+                            gameId={props.gameId}
+                            participant={props.participant}
+                            runes={props.runes}
+                            stats={props.stats}
+                            itemEvents={itemEvents}
+                            skillOrder={skillOrder}
+                        />)
+                        : null
+                }
+                {activePage === "graphs" ? (
+                    <GraphMain
+                        participantList={props.participantList}
+                        data={graphData}
+                        championList={props.championList}
+                        owner={props.owner}
+                    />
+                ) : null}
+                {activePage === "graphs" ? (<div />) : null}
+                {activePage === "other" ? (<div />) : null}
+            </div >
+        </div>
     );
 }
 
