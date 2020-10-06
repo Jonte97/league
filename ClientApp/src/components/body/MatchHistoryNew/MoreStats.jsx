@@ -6,36 +6,22 @@ import { getTimeLineEvents } from '../../../functions/promiseHelper';
 import GraphMain from './Graphs/GraphMain';
 
 
+//TODO se om det går att fixa att inte fetcha om varje gång användare öppnar och stänger component
 const MoreStats = (props) => {
-    const [activePage, setActivePage] = useState("none");
-    const [itemEvents, setItemEvents] = useState();
-    const [skillOrder, setSkillOrder] = useState();
-    const [graphData, setGraphData] = useState();
-    const [fetched, setFetched] = useState(false);
-
-    const fetchData = () => {
-        if (!fetched) {
-            getTimeLineEvents(setItemEvents, setSkillOrder, setGraphData, props.participant, props.gameId);
+    const [timeline, setTimelineState] = useState({ itemEvents: [], skillOrder: [], graphData: {} });
+    useEffect(() => {
+        const fetchTimeline = async () => {
+            const result = await getTimeLineEvents(props.participant, props.gameId);
+            setTimelineState({ itemEvents: result.items, skillOrder: result.skillOrder, graphData: result.graphData })
         }
-        setActivePage("build");
-        setFetched(true);
-    }
+        fetchTimeline();
+    }, [props.gameId]);
+
+    const [activePage, setActivePage] = useState("build");
 
     return (
         <div>
-
-            <div>
-                <a onClick={
-                    () => {
-                        activePage == "none" ?
-                            fetchData()
-                            :
-                            setActivePage("none")
-                    }}
-                >See more stats</a>
-            </div>
-            <div className="slide-down">
-
+            <div className="slide-down more-stats-wrapper">
                 {
                     activePage != "none" ?
                         <div>
@@ -54,15 +40,15 @@ const MoreStats = (props) => {
                             participant={props.participant}
                             runes={props.runes}
                             stats={props.stats}
-                            itemEvents={itemEvents}
-                            skillOrder={skillOrder}
+                            itemEvents={timeline.itemEvents}
+                            skillOrder={timeline.skillOrder}
                         />)
                         : null
                 }
                 {activePage === "graphs" ? (
                     <GraphMain
                         participantList={props.participantList}
-                        data={graphData}
+                        data={timeline.graphData}
                         championList={props.championList}
                         owner={props.owner}
                     />

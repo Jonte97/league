@@ -99,8 +99,7 @@ const MatchItem = (props) => {
         }
     }, [summonerGameInfo]);
 
-
-    //TODO Lägg till loadanimation
+    const [showMore, setShowMore] = useState(false);
 
     const getPlayerList = (teamId) => {
         let list = [];
@@ -118,10 +117,6 @@ const MatchItem = (props) => {
         return identities
     };
     const styleWinner = () => {
-        // const winner = {
-        //     backgroundColor: "#222451"
-        // }
-        // return winner
         if (ownerWonGame(matchInfo.teams, summonerGameInfo.participantId, matchInfo.participants)) {
             const winner = {
                 backgroundColor: "#222451"
@@ -135,52 +130,64 @@ const MatchItem = (props) => {
             return loser
         }
     }
-    console.log("rendering item" + props.match.gameId)
-
 
     return (
         matchInfo && summonerGameInfo ?
-            <div className="match-history-item" style={styleWinner()}>
-                <div className="match-history-top">
-                    <div className="match-hisrotry-top-gamemode">{matchInfo.gameMode}</div>
-                </div>
-                <div className="match-history-item-wrapper">
+            <div>
+                <div className="match-history-item" style={styleWinner()}>
+                    <div className="match-history-top">
+                        <div className="match-hisrotry-top-gamemode">{matchInfo.gameMode}</div>
+                    </div>
+                    <div className="match-history-item-wrapper">
 
-                    <div className="flex mb1 history-content-wrapper">
-                        <img className="history-thumbnail" src={thumbnails.ownerChampion} />
-                        <div className="history-summonerspells">
-                            <div>
-                                <img className="history-summonerspell first" src={thumbnails.summonerSpell1} />
+                        <div className="flex mb1 history-content-wrapper">
+                            <img className="history-thumbnail" src={thumbnails.ownerChampion} />
+                            <div className="history-summonerspells">
+                                <div>
+                                    <img className="history-summonerspell first" src={thumbnails.summonerSpell1} />
+                                </div>
+                                <div>
+                                    <img className="history-summonerspell" src={thumbnails.summonerSpell2} />
+                                </div>
                             </div>
-                            <div>
-                                <img className="history-summonerspell" src={thumbnails.summonerSpell2} />
+                            <Keystone runes={props.runes} stats={summonerGameInfo.stats} />
+                            <div className="history-mid-text">
+                                <div className="history-mid-inner-text">
+                                    <Kda stats={summonerGameInfo.stats} matchDuration={matchInfo.gameDuration} />
+                                </div>
+                            </div>
+                            <Items stats={summonerGameInfo} />
+                        </div>
+                        <div className="history-player-lists">
+                            <div className="history-list-blue">
+                                <PlayerList team="Blue team" ids={getPlayerList(100)} list={getPlayerIdentities(getPlayerList(100))} championList={props.championList} />
+                            </div>
+                            <div className="history-list-red">
+                                <PlayerList team="Red team" ids={getPlayerList(200)} list={getPlayerIdentities(getPlayerList(200))} championList={props.championList} />
                             </div>
                         </div>
-                        <Keystone runes={props.runes} stats={summonerGameInfo.stats} />
-                        <div className="history-mid-text">
-                            <div className="history-mid-inner-text">
-                                <Kda stats={summonerGameInfo.stats} matchDuration={matchInfo.gameDuration} />
+
+                        <div class="box-1">
+                            <div
+                                onClick={() => {
+                                    !showMore ? setShowMore(true) : setShowMore(false)
+                                }}
+                                class="btn btn-one">
+                                <span>{!showMore ? "More stats" : "Hide more stats"}</span>
                             </div>
                         </div>
-                        <Items stats={summonerGameInfo} />
                     </div>
-                    <div className="history-player-lists">
-                        <div className="history-list-blue">
-                            <PlayerList team="Blue team" ids={getPlayerList(100)} list={getPlayerIdentities(getPlayerList(100))} championList={props.championList} />
-                        </div>
-                        <div className="history-list-red">
-                            <PlayerList team="Red team" ids={getPlayerList(200)} list={getPlayerIdentities(getPlayerList(200))} championList={props.championList} />
-                        </div>
-                    </div>
-                    <MoreStats
-                        championList={props.championList}
-                        participantList={matchInfo.participants}
-                        gameId={props.match.gameId}
-                        participant={summonerGameInfo.participantId}
-                        runes={props.runes}
-                        stats={summonerGameInfo.stats}
-                        owner={summonerGameInfo.participantId}
-                    />
+                    {showMore ?
+                        <MoreStats
+                            championList={props.championList}
+                            participantList={matchInfo.participants}
+                            gameId={props.match.gameId}
+                            participant={summonerGameInfo.participantId}
+                            runes={props.runes}
+                            stats={summonerGameInfo.stats}
+                            owner={summonerGameInfo.participantId}
+                        /> : null
+                    }
                 </div>
             </div> :
             <div>

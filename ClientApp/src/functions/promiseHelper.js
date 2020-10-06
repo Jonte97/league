@@ -67,37 +67,20 @@ export const getMatchDataForSummoner = async (currentMatchId, summonerName) => {
 
 //* Gets timeline data for builds and skillorder
 //TODO Should fetch build and skillorder for all participants
-export const getTimeLineEvents = (setItemState, setSkillState, setGraphState, participantId, gameId) => {
+export const getTimeLineEvents = async (participantId, gameId) => {
 
-	let data = {
+	let input = {
 		gameId: gameId,
 		participant: participantId
 	};
-
-	return new Promise((resolve, reject) => {
-		fetch('api/LeagueApi/GetItemsTimeLine', {
-			method: 'post',
-			headers: { 'Content-Type': 'application/json' },
-			body: JSON.stringify(data)
-		})
-			.then((response) => {
-				if (!response.ok) {
-					throw Error(response.statusText);
-				}
-				return response.json();
-			})
-			.then((data) => {
-				JSON.stringify(data);
-				console.log(data);
-				setItemState(data.items);
-				setSkillState(data.skillOrder);
-				setGraphState(data.graphData)
-				resolve(data);
-			})
-			.catch((reason) => {
-				reject(reason);
-			});
+	const response = await fetch('api/LeagueApi/GetItemsTimeLine', {
+		method: 'post',
+		headers: { 'Content-Type': 'application/json' },
+		body: JSON.stringify(input)
 	})
+	const data = await response.json();
+
+	return data;
 }
 
 
