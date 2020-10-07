@@ -1,6 +1,6 @@
 export const startSummoner = {
     profileIconId: 4353,
-        name: 'test summoner',
+        name: 'Lönnen',
         puuid: '',
         summonerLevel: 0,
         accountId: '',

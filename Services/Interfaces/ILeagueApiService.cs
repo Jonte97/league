@@ -2,6 +2,7 @@ using System.Threading.Tasks;
 using Model;
 using Models;
 using QuickType;
+using TimeLineNS;
 
 namespace Services
 {
@@ -13,6 +14,6 @@ namespace Services
         Task<MatchDetailed> GetMatchAsync(string matchId);
         Task<ChampionSimple> GetChampionsAsync();
         Task<RootChampionDto> GetChampByKeyAsync(string key);
-
+        Task<TimeLine> GetTimeLineForMatch(string matchId);
     }
 }

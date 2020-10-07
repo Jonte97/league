@@ -1,13 +1,13 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
 import Profile from './Profile/Profile';
-import MatchHistory from './MatchHistory/MatchHistory';
+import MatchHistory from './MatchHistoryNew/MatchHistory';
 import { startLeague, startSummoner } from '../../functions/startupHelper';
 import { getChampionList } from '../../functions/promiseHelper';
 
 const MainPage = () => {
-	const [ leagueEntries, setLeague ] = useState(startLeague);
-	const [ summoner, setSummoner ] = useState(startSummoner);
+	const [leagueEntries, setLeague] = useState(startLeague);
+	const [summoner, setSummoner] = useState(startSummoner);
 	let test;
 
 	const onSubmit = (data) => {
@@ -28,8 +28,8 @@ const MainPage = () => {
 				console.log('ERROR fetching summoner: ' + reason);
 			});
 	};
-	
-	
+
+
 	const getData = () => {
 		fetch('api/LeagueApi/GetSummonerInitialData').then((response) => response.json()).then((data) => {
 			var json = JSON.stringify(data.leagueEntries);
@@ -39,29 +39,37 @@ const MainPage = () => {
 		});
 	}
 
-    useEffect(() => {
+	useEffect(() => {
 		async () => {
 			await getData()
 		}
 	}, []);
 	return (
 		<div>
-			<input
-				type="text"
-				name="namn"
-				onChange={(event) => {
-					test = event.target.value;
-				}}
-				onKeyDown={(event) => {
-					var key = event.keyCode;
-					if(key === 13){
-						onSubmit(test);
-					}
-				}}
-			/>
-			<input type="button" onClick={() => onSubmit(test)} value="Get summoner" />
+			<div className="theme-bg">
+				<div className="container">
+					<div className="form">
+						<input
+							id="summonerSearch"
+							type="text"
+							name="namn"
+							onChange={(event) => {
+								test = event.target.value;
+							}}
+							onKeyDown={(event) => {
+								var key = event.keyCode;
+								if (key === 13) {
+									onSubmit(test);
+								}
+							}}
+						/>
+						<input type="button" className="button darker-theme-bg" onClick={() => onSubmit(test)} value="Get summoner" />
+					</div>
+				</div>
+			</div>
 			<Profile leagueEntries={leagueEntries} summoner={summoner} />
-			<MatchHistory summoner={summoner} />
+			{/* <MatchHistory summoner={summoner} /> replacement below */}
+			<MatchHistory activeSummoner={summoner} />
 		</div>
 	);
 };

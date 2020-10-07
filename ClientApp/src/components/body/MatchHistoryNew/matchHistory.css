@@ -1,0 +1,174 @@
+.history-thumbnail{
+    border-radius: 50%;
+    border: 2px solid gold;
+    margin-right: 1em;
+    max-height: 124px;
+}
+.history-item{
+    padding: 1em;
+    border-bottom: 1px solid #251a44;
+}
+.inline-flex{
+    display: inline-flex;
+}
+.display-flex{
+    display: flex;
+}
+.flex{
+    display: -webkit-inline-box;
+}
+.history-emptyitem{
+    background-color: black;
+    height: 66px;
+    width: 66px;
+}
+.history-item-img, .history-emptyitem{
+    border: 1px solid goldenrod;
+    margin-right: 0.5em;
+}
+.history-keystone{
+    height: 64px;
+}
+.history-secondary-rune{
+    height: 24px;
+}
+.history-kda h4{
+    margin: 0;
+}
+.history-player-lists{
+    display: flex;
+    margin-left: 2em;
+}
+.history-list-thumbnail{
+    height: 32px;
+}
+.history-playerlist{
+    font-size: 16px;
+}
+.history-playerlist li{
+    margin-bottom: 0.2em;
+}
+.history-mid-text{
+    width: 100%;
+}
+.history-mid-inner-text{
+    width: 50%;
+    margin: 0 auto;
+    text-align: left;
+}
+.history-player-lists{
+    position: relative;
+    float: right;
+    display: inline-flex;
+
+}
+.mb1{
+    margin-bottom: 1em;
+}
+.history-summonerspell{
+    height: 48px;
+}
+.first{
+    margin-bottom: 1em;
+    margin-top: 0.5em;
+}
+.kda-img{
+    padding-top: 0.5em
+}
+.cs-img{
+    padding-top: 0.5em
+}
+.text-right{
+    margin-left: 25%;
+}
+.text-left{
+    margin-right: 25%;
+}
+.history-item-build-thumbnail{
+    height: 32px;
+}
+
+.history-item-build-holder{
+    display: inline-flex;
+    margin-right: 5em;
+}
+.history-item-runesetup{
+    height: 64px;
+}
+.history-build{
+    padding: 3em;
+}
+.history-skillorder td, th{
+    border: 1px solid black;
+    width: 21px !important;
+    text-align: center;
+}
+.history-skillorder{
+    margin: auto;
+}
+.green{
+    background-color: green;
+}
+.blank{
+    background-color: white;
+}
+.greyed {
+    opacity: 0.4;
+    filter: alpha(opacity=40); /* msie */
+}
+
+/* or */
+
+.grey-wrapper {
+    border: 1px solid red;
+}
+.history-items-build-path div{
+    margin: 1px;
+}
+.color-wrapper{
+    border: 1px solid green;
+}
+.history-item-rune-img{
+    max-height: 32px;
+}
+.greyscale{
+    filter: grayscale(1);
+}
+.history-item-runesetup-holder{
+    display: flex;
+}
+.history-item-runesetup-holder img{
+    margin: 0.5em;
+}
+.rune-row{
+    width: fit-content;
+    margin: 0 auto;
+}
+.img-center img{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* *GRAPH* */
+.graph-nav{
+    display: flex;
+    width: 40%;
+    margin: 0 auto;
+}
+.graph-nav li{
+    margin: 1em;
+}
+.graph-nav-listitem{
+
+}
+.graph-nav-listitem a{
+    color: #ffffff;
+    text-decoration: none;
+}
+a:hover{
+    cursor: pointer;
+}
+.graph-container{
+    margin-top: 2em;
+}
