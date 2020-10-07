@@ -1,9 +1,34 @@
 import React from 'react';
-import { getMatchHistory, getChampionList, getSummonerSpellData, getRunesData } from '../../../functions/promiseHelper';
+import { getMatchHistory, getChampionList, getSummonerSpellData, getRunesData, getItemListAsync } from '../../../functions/promiseHelper';
 import { useState, useEffect, useRef } from 'react';
 import MatchItem from './MatchItem';
+import Loader from '../loader';
 
 const MatchHistory = (props) => {
+    const [gameReferences, setGameReferences] = useState();
+    useEffect(() => {
+        const getReferencesAsync = async () => {
+            const parseItemsToArray = input => {
+                const itemArray = [];
+                for (const [key, value] of Object.entries(input)) {
+                    const obj = { id: key, data: value }
+                    itemArray.push(obj);
+                }
+
+                return itemArray;
+            }
+
+            const champList = await getChampionList();
+            const spellData = await getSummonerSpellData();
+            const runesData = await getRunesData();
+            const itemsPrimitive = await getItemListAsync();
+
+            const items = parseItemsToArray(itemsPrimitive.data)
+            setGameReferences({ championList: champList, summonerSpells: spellData, runesData: runesData, items: items });
+        }
+        getReferencesAsync();
+    }, []);
+
     const [matchHistory, setMatchHistory] = useState({ matches: [] });
     useEffect(() => {
         const getMatches = async () => {
@@ -13,49 +38,30 @@ const MatchHistory = (props) => {
         getMatches();
     }, [props.activeSummoner]);
 
-    const [championList, setChampionList] = useState();
-    useEffect(() => {
-        const getChampionListAsync = async () => {
-            const champList = await getChampionList()
-            setChampionList(champList);
-        }
-        getChampionListAsync();
-    }, []);
-
-    const [summonerSpells, setSummonerSpells] = useState();
-    useEffect(() => {
-        const getSummonerSpellAsync = async () => {
-            const spellData = await getSummonerSpellData()
-            setSummonerSpells(spellData);
-        }
-        getSummonerSpellAsync();
-    }, []);
-    const [runesData, setRunesData] = useState();
-    useEffect(() => {
-        const getRunesAsync = async () => {
-            const runesData = await getRunesData()
-            setRunesData(runesData);
-        }
-        getRunesAsync();
-    }, []);
-
-    console.log('rendering history')
+    console.log('render history')
 
     return (
         <div className="theme-bg">
             <div className="container">
-                {matchHistory.matches.map((match, i) => (
+
+                {gameReferences ? matchHistory.matches.map((match, i) => (
                     <div key={i} className="history-item">
                         <MatchItem
                             key={i}
-                            championList={championList}
+                            championList={gameReferences.championList}
                             match={match}
                             owner={props.activeSummoner}
-                            summonerSpells={summonerSpells}
-                            runes={runesData}
+                            summonerSpells={gameReferences.summonerSpells}
+                            runes={gameReferences.runesData}
+                            itemRefs={gameReferences.items}
                         />
                     </div>
-                ))}
+                ))
+                    :
+                    <Loader
+                        className={"loader-matchHistory"}
+                    />
+                }
             </div>
         </div>
     )

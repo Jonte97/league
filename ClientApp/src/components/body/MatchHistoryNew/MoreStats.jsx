@@ -19,6 +19,8 @@ const MoreStats = (props) => {
 
     const [activePage, setActivePage] = useState("build");
 
+    
+
     return (
         <div>
             <div className="slide-down more-stats-wrapper">

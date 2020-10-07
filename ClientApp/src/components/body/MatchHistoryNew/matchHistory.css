@@ -82,11 +82,6 @@
 .history-item-list{
     padding: 0 2em 0 2em;
 }
-.history-mid-inner-text{
-    /* width: 50%;
-    margin: 0 auto;
-    text-align: left; */
-}
 .history-player-lists{
     position: relative;
     float: right;
@@ -212,9 +207,6 @@
     margin: 0 auto;
     width: 50%;
 }
-.graph-nav-listitem{
-
-}
 .graph-nav-listitem a{
     color: #ffffff;
     text-decoration: none;
@@ -330,4 +322,12 @@ div[class*=box] {
 }
 .more-stats-wrapper{
     border-top: 2px solid grey;
+}
+.line-chart{
+    padding: 0 2em 2em 2em;
+}
+.loader-matchHistory{
+    width: 3%;
+    margin: 0 auto;
+    margin-top: 7em;
 }

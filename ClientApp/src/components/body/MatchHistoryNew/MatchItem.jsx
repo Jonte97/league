@@ -156,7 +156,7 @@ const MatchItem = (props) => {
                                     <Kda stats={summonerGameInfo.stats} matchDuration={matchInfo.gameDuration} />
                                 </div>
                             </div>
-                            <Items stats={summonerGameInfo} />
+                            <Items itemRefs={props.itemRefs} stats={summonerGameInfo} />
                         </div>
                         <div className="history-player-lists">
                             <div className="history-list-blue">
@@ -167,12 +167,12 @@ const MatchItem = (props) => {
                             </div>
                         </div>
 
-                        <div class="box-1">
+                        <div className="box-1">
                             <div
                                 onClick={() => {
                                     !showMore ? setShowMore(true) : setShowMore(false)
                                 }}
-                                class="btn btn-one">
+                                className="btn btn-one">
                                 <span>{!showMore ? "More stats" : "Hide more stats"}</span>
                             </div>
                         </div>

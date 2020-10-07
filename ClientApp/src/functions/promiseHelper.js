@@ -83,6 +83,12 @@ export const getTimeLineEvents = async (participantId, gameId) => {
 	return data;
 }
 
+export const getItemListAsync = async(patch) => {
+	const response = await fetch('https://ddragon.leagueoflegends.com/cdn/10.20.1/data/en_US/item.json')
+	const data = await response.json();
+
+	return data;
+}
 
 
 

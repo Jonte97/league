@@ -95,7 +95,7 @@ const GraphMain = (props) => {
             }
         }
     });
-
+    //TODO fix sometimes bugs out prob when its same champion in both teams
     const addRemoveCandidates = (participant) => {
         let index = null;
         let cand = null;
