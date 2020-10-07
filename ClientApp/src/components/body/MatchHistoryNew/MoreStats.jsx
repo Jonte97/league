@@ -19,7 +19,9 @@ const MoreStats = (props) => {
 
     const [activePage, setActivePage] = useState("build");
 
-    
+    const active = {
+        borderBottom: "4px solid #7d2267"
+    };
 
     return (
         <div>
@@ -28,9 +30,9 @@ const MoreStats = (props) => {
                     activePage != "none" ?
                         <div>
                             <ul className="matchitem-navbar">
-                                <li><a className="text-left" onClick={() => { setActivePage("build") }}>Build</a></li>
-                                <li><a className="text-center" onClick={() => { setActivePage("graphs") }}>Graphs</a></li>
-                                <li><a className="text-right" onClick={() => { setActivePage("other") }}>Other</a></li>
+                                <li style={activePage === "build" ? active : null} className="matchitem-navbar-left" onClick={() => { setActivePage("build") }}>Build</li>
+                                <li style={activePage === "graphs" ? active : null} className="matchitem-navbar-middle" onClick={() => { setActivePage("graphs") }}>Graphs</li>
+                                <li style={activePage === "other" ? active : null} className="matchitem-navbar-right" onClick={() => { setActivePage("other") }}>Other</li>
                             </ul>
                         </div> :
                         null

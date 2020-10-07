@@ -6,6 +6,9 @@
     background-color: #251a44 !important;
     color: aliceblue;
 }
+*{
+    color: aliceblue;   
+}
 @media (max-width: 767px) {
     /* On small screens, the nav menu spans the full width of the screen. Leave a space for it. */
     body {
