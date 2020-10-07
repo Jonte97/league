@@ -73,11 +73,8 @@ namespace Services
             try
             {
                 string url = $"https://euw1.api.riotgames.com/lol/league/v4/entries/by-summoner/{id}";
-
                 var response = await SendRequestAsync(url);
-
                 var content = await response.Content.ReadAsStringAsync();
-
                 var summoner = JsonConvert.DeserializeObject<LeagueEntry[]>(content);
 
                 return summoner;
@@ -89,7 +86,7 @@ namespace Services
         }
         public async Task<Matches> GetMatchHistoryAsync(string accountId)
         {
-            string url = $"https://euw1.api.riotgames.com/lol/match/v4/matchlists/by-account/{accountId}?endIndex=3";
+            string url = $"https://euw1.api.riotgames.com/lol/match/v4/matchlists/by-account/{accountId}?endIndex=10";
 
             var response = await SendRequestAsync(url);
             var content = await response.Content.ReadAsStringAsync();
@@ -105,7 +102,6 @@ namespace Services
 
                 var response = await SendRequestAsync(url);
                 var content = await response.Content.ReadAsStringAsync();
-
                 var match = JsonConvert.DeserializeObject<MatchDetailed>(content);
 
                 return match;
@@ -160,7 +156,7 @@ namespace Services
                 string url = $"https://euw1.api.riotgames.com/lol/match/v4/timelines/by-match/{matchId}";
                 var response = await SendRequestAsync(url);
                 var content = await response.Content.ReadAsStringAsync();
-                
+
                 var timeline = JsonConvert.DeserializeObject<TimeLine>(content);
 
                 return timeline;

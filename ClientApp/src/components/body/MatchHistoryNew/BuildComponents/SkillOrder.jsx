@@ -1,9 +1,6 @@
 import React from 'react';
 
 const SkillOrder = (props) => {
-
-    let count = props.skillorder.length;
-
     let list = {
         q: [],
         w: [],

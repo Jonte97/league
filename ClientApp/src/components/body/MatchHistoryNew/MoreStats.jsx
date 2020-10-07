@@ -6,62 +6,61 @@ import { getTimeLineEvents } from '../../../functions/promiseHelper';
 import GraphMain from './Graphs/GraphMain';
 
 
+//TODO se om det går att fixa att inte fetcha om varje gång användare öppnar och stänger component
 const MoreStats = (props) => {
-    const [activePage, setActivePage] = useState("none");
-    const [itemEvents, setItemEvents] = useState();
-    const [skillOrder, setSkillOrder] = useState();
-    const [graphData, setGraphData] = useState();
-    const [fetched, setFetched] = useState(false);
-
-    const fetchData = () => {
-        if (!fetched) {
-            getTimeLineEvents(setItemEvents, setSkillOrder, setGraphData, props.participant, props.gameId);
+    const [timeline, setTimelineState] = useState({ itemEvents: [], skillOrder: [], graphData: {} });
+    useEffect(() => {
+        const fetchTimeline = async () => {
+            const result = await getTimeLineEvents(props.participant, props.gameId);
+            setTimelineState({ itemEvents: result.items, skillOrder: result.skillOrder, graphData: result.graphData })
         }
-        setActivePage("build");
-        setFetched(true);
-    }
+        fetchTimeline();
+    }, [props.gameId]);
+
+    const [activePage, setActivePage] = useState("build");
+
+    const active = {
+        borderBottom: "4px solid #7d2267"
+    };
 
     return (
-        <React.Fragment>
-            <a onClick={
-                () => {
-                    activePage == "none" ?
-                        fetchData()
-                        :
-                        setActivePage("none")
-                }}
-            >See more stats</a>
-            {
-                activePage != "none" ?
-                    < div >
-                        <a className="text-left" onClick={() => { setActivePage("build") }}>Build</a>
-                        <a className="text-center" onClick={() => { setActivePage("graphs") }}>Graphs</a>
-                        <a className="text-right" onClick={() => { setActivePage("other") }}>Other</a>
-                    </div> :
-                    null
-            }
-            {
-                activePage === "build" ? (
-                    <Build
-                        gameId={props.gameId}
-                        participant={props.participant}
-                        runes={props.runes}
-                        stats={props.stats}
-                        itemEvents={itemEvents}
-                        skillOrder={skillOrder}
-                    />)
-                    : null
-            }
-            {activePage === "graphs" ? (
-                <GraphMain
-                    participantList={props.participantList}
-                    data={graphData}
-                    championList={props.championList}
-                />
-            ) : null}
-            { activePage === "graphs" ? (<div />) : null}
-            { activePage === "other" ? (<div />) : null}
-        </React.Fragment >
+        <div>
+            <div className="slide-down more-stats-wrapper">
+                {
+                    activePage != "none" ?
+                        <div>
+                            <ul className="matchitem-navbar">
+                                <li style={activePage === "build" ? active : null} className="matchitem-navbar-left" onClick={() => { setActivePage("build") }}>Build</li>
+                                <li style={activePage === "graphs" ? active : null} className="matchitem-navbar-middle" onClick={() => { setActivePage("graphs") }}>Graphs</li>
+                                <li style={activePage === "other" ? active : null} className="matchitem-navbar-right" onClick={() => { setActivePage("other") }}>Other</li>
+                            </ul>
+                        </div> :
+                        null
+                }
+                {
+                    activePage === "build" ? (
+                        <Build
+                            gameId={props.gameId}
+                            participant={props.participant}
+                            runes={props.runes}
+                            stats={props.stats}
+                            itemEvents={timeline.itemEvents}
+                            skillOrder={timeline.skillOrder}
+                        />)
+                        : null
+                }
+                {activePage === "graphs" ? (
+                    <GraphMain
+                        participantList={props.participantList}
+                        data={timeline.graphData}
+                        championList={props.championList}
+                        owner={props.owner}
+                    />
+                ) : null}
+                {activePage === "graphs" ? (<div />) : null}
+                {activePage === "other" ? (<div />) : null}
+            </div >
+        </div>
     );
 }
 

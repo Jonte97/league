@@ -3,7 +3,6 @@ import { GetReadableTimestamp } from '../../../../functions/TimeStampHelper';
 
 const ItemBuild = (props) => {
 
-    //TODO Change timestamp to readable timestamp
     return (
         <div className="history-item-build-wrapper">
             <h3>Build order</h3>
