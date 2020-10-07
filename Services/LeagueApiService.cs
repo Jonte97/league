@@ -1,11 +1,14 @@
 using System;
+using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
+using MingweiSamuel.Camille;
+using MingweiSamuel.Camille.Enums;
+using MingweiSamuel.Camille.MatchV4;
 using Model;
 using Models;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Serialization;
 using QuickType;
 using TimeLineNS;
 
@@ -15,6 +18,7 @@ namespace Services
     {
         private readonly static HttpClient client = new HttpClient();
         private IConfiguration _config;
+        private readonly RiotApi _riotApi;
         private static readonly object threadlock = new object();
 
         //TODO change this
@@ -22,6 +26,7 @@ namespace Services
         public LeagueApiService(IConfiguration configuration)
         {
             _config = (IConfigurationRoot)configuration;
+            _riotApi = RiotApi.NewInstance("RGAPI-27f314d6-8e0c-4765-b36a-4a56b782f363");
         }
 
         private async Task<HttpResponseMessage> SendRequestAsync(string uri)
@@ -165,6 +170,65 @@ namespace Services
             {
                 throw ex;
             }
+        }
+        public async Task<List<MatchReference>> GetMatchesRankedProfile()
+        {
+            try
+            {
+                string accountId = "ozMoiB-Krv93WBb4oX1nXjgKAif4kvcA1BolzEzjf_Bc4xQ";
+                int[] queue = new int[] { 420 };
+                int[] season = new int[] { 13 };
+                bool IsDone = false;
+                int startIndex = 0;
+                int endIndex = 100;
+                List<MatchReference> list = new List<MatchReference>();
+                //TODO should move this as constant somewhere
+                DateTime dt = new DateTime(2020, 1, 10);
+
+                while (!IsDone)
+                {
+                    var result = await _riotApi.MatchV4.GetMatchlistAsync(
+                        Region.EUW,
+                        accountId,
+                        null,
+                        queue,
+                        season,
+                        null,
+                        null,
+                        endIndex,
+                        startIndex,
+                        null
+                    );
+                    foreach (var match in result.Matches)
+                    {
+                        list.Add(match);
+                    }
+                    int lastIndex = result.Matches.Length - 1;
+                    double sec = TimeSpan.FromMilliseconds(result.Matches[lastIndex].Timestamp).TotalSeconds;
+                    var time = UnixTimeStampToDateTime(sec);
+
+                    startIndex += 100;
+                    endIndex += 100;
+                    if (time.Date <= dt)
+                    {
+                        IsDone = true;
+                    }
+                }
+                return list;
+            }
+            catch (System.Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+        //TODO should move this so it can be used by other funtions
+        private static DateTime UnixTimeStampToDateTime(double unixTimeStamp)
+        {
+            // Unix timestamp is seconds past epoch
+            System.DateTime dtDateTime = new DateTime(1970, 1, 1, 0, 0, 0, 0, System.DateTimeKind.Utc);
+            dtDateTime = dtDateTime.AddSeconds(unixTimeStamp).ToLocalTime();
+            return dtDateTime;
         }
     }
 }

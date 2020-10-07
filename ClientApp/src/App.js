@@ -7,6 +7,7 @@ import { BrowserRouter as Router, Route, Link, Switch, Redirect } from "react-ro
 import NotFoundPage from './components/pages/404';
 import Champions from './components/pages/Champions';
 import Header from './components/header/Header';
+import TestPanel from './components/TestPanel';
 
 export default class App extends Component {
   displayName = App.name
@@ -15,6 +16,7 @@ export default class App extends Component {
     return (
       <Router>
       <div>
+        <TestPanel />
         <Header />
         <Switch>
           <Route exact path="/" component={MainPage} />

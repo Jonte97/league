@@ -1,4 +1,6 @@
+using System.Collections.Generic;
 using System.Threading.Tasks;
+using MingweiSamuel.Camille.MatchV4;
 using Model;
 using Models;
 using QuickType;
@@ -15,5 +17,6 @@ namespace Services
         Task<ChampionSimple> GetChampionsAsync();
         Task<RootChampionDto> GetChampByKeyAsync(string key);
         Task<TimeLine> GetTimeLineForMatch(string matchId);
+        Task<List<MatchReference>> GetMatchesRankedProfile();
     }
 }

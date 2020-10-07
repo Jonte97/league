@@ -21,10 +21,12 @@ namespace Name.Controllers
     {
         private readonly ILeagueApiService _leagueApiService;
         private readonly ILeagueMiddleWare _leagueMiddleWare;
-        public LeagueApiController(ILeagueApiService leagueApiService, ILeagueMiddleWare leagueMiddleWare)
+        private readonly IDataHandlerService _datahandler;
+        public LeagueApiController(ILeagueApiService leagueApiService, ILeagueMiddleWare leagueMiddleWare, IDataHandlerService dataHandler)
         {
             _leagueApiService = leagueApiService;
             _leagueMiddleWare = leagueMiddleWare;
+            _datahandler = dataHandler;
         }
         [HttpPost("[action]")]
         public async Task<string> GetSummonerData([FromBody] string name)
@@ -117,7 +119,6 @@ namespace Name.Controllers
 
         //* Gets list of items purchase order with timestamps
         //TODO Rename to Get timeLineForGame or something
-        //TODO Make viewmodel for this
         [HttpPost("[action]")]
         public async Task<IActionResult> GetItemsTimeLine([FromBody] ItemsTimeLine data)
         {
@@ -143,7 +144,24 @@ namespace Name.Controllers
             }
             catch (System.Exception ex)
             {
+                //!Should not return exception message 
                 return StatusCode(500, Json(new { message= ex.Message}));
+            }
+        }
+        [HttpGet("[action]")]
+        public async Task<IActionResult> GetRankedDataProfile() 
+        {
+            try
+            {
+                //* Do magic here
+                var matches = await _leagueApiService.GetMatchesRankedProfile();
+                var result = _datahandler.GetMatchesWithinSeason(matches);
+                
+                return Ok("meddelande");
+            }
+            catch (System.Exception ex)
+            {
+                return StatusCode(404);
             }
         }
     }
