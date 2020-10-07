@@ -52,7 +52,7 @@ const GraphMain = (props) => {
     const options = [{ id: "gold", title: "Total Gold" }, { id: "xp", title: "Total experience points" }, { id: "cs", title: "Total minions killed" }];
     const [active, setActive] = useState(options[0]);
     const initialData = configureGraphData(props.data.participantFrames, props.participantList, props.championList);
-    const activeColor = { borderBottom: '3px solid #9acd32' };
+    const activeColor = { borderBottom: '3px solid #7d2267' };
     const [navbarActive, setNavbarActive] = useState([activeColor, {}, {}, {}]);
     const [teamParticipants, setTeamParticipants] = useState();
     const [candidates, setCandidates] = useState(getCandidatesArray(props.participantList, props.owner));
