@@ -27,7 +27,7 @@ export const getMatchHistory = async (accountId) => {
 	const data = await response.json();
 	return data;
 }
-export const getSummoner = async (input) => {
+export const getSummonerAsync = async (input) => {
 
 	const response = await fetch('api/LeagueApi/GetSummonerData', {
 		method: 'post',
