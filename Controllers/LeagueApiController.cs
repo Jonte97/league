@@ -102,10 +102,10 @@ namespace Name.Controllers
         {
             try
             {
-                var deserializedChampion =  await _leagueApiService.GetChampByKeyAsync(activeChamp);
+                var deserializedChampion = await _leagueApiService.GetChampByKeyAsync(activeChamp);
                 //TODO if works move to middleware
                 var champions = from key in deserializedChampion.Data.Keys
-                            select new { champion = deserializedChampion.Data[key] };
+                                select new { champion = deserializedChampion.Data[key] };
 
                 string json = JsonConvert.SerializeObject(champions);
 
@@ -133,10 +133,10 @@ namespace Name.Controllers
                 //* Assembling itemorder Data
                 var items = _leagueMiddleWare.GetItemEventsForParticipant(data.ParticipantId, timeline);
                 //* Assembling Skillorder data
-                var skillorder =  _leagueMiddleWare.GetSkillOrder(timeline, data.ParticipantId);
+                var skillorder = _leagueMiddleWare.GetSkillOrder(timeline, data.ParticipantId);
                 //* Assembling Graphdata
                 var graphData = _leagueMiddleWare.GetGraphData(timeline);
-                
+
                 //* Assembling viewmodel as return object
                 var vm = new TimeLineVM() { Items = items, SkillOrder = skillorder, GraphData = graphData };
 
@@ -145,23 +145,37 @@ namespace Name.Controllers
             catch (System.Exception ex)
             {
                 //!Should not return exception message 
-                return StatusCode(500, Json(new { message= ex.Message}));
+                return StatusCode(500, Json(new { message = ex.Message }));
             }
         }
         [HttpPost("[action]")]
-        public async Task<IActionResult> GetRankedDataProfile([FromBody]LeagueEntry[] input) 
+        public async Task<IActionResult> GetRankedDataProfile([FromBody] LeagueEntry[] input)
         {
             try
             {
-                //* Do magic here
-                var matches = await _leagueApiService.GetMatchesRankedProfile();
-                var result = _datahandler.GetMatchesWithinSeason(matches);
-                
-                return Ok("meddelande");
+                var queueList = new List<GamesByQueue>();
+                var vm = new RankedProfileVM();
+                foreach (var entry in input)
+                {
+                    queueList.Add(new GamesByQueue(entry));
+                }
+                int i = 0;
+                foreach (var queue in queueList)
+                {
+                    var refList = new ReferenceListWithTag(queue);
+                    refList.MatchList = await _leagueApiService.GetMatchesRankedProfileAsync(queue);
+                    vm.RankedQueues.Add(refList);
+                    i++;
+                }
+                if (input.Length > 0)
+                {
+                    //TODO do some magic here for total
+                }
+                return Ok(vm);
             }
             catch (System.Exception ex)
             {
-                return StatusCode(404);
+                return StatusCode(500);
             }
         }
     }

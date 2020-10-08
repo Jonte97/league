@@ -222,6 +222,31 @@ namespace Services
                 throw ex;
             }
         }
+        public async Task<List<MatchReference>> GetMatchesRankedProfileAsync(GamesByQueue queue)
+        {
+            string accountId = "ozMoiB-Krv93WBb4oX1nXjgKAif4kvcA1BolzEzjf_Bc4xQ";
+            int startIndex = 0, endIndex = 100;
+            int[] q = new int[] { queue.QueueId };
+
+            if (queue.GameCount <= 100)
+            {
+                endIndex = queue.GameCount;
+            }
+            var result = await _riotApi.MatchV4.GetMatchlistAsync(
+                        Region.EUW,
+                        accountId,
+                        null,
+                        q,
+                        null,
+                        null,
+                        null,
+                        endIndex,
+                        startIndex,
+                        null
+                    );
+            return null;
+        }
+
         //TODO should move this so it can be used by other funtions
         private static DateTime UnixTimeStampToDateTime(double unixTimeStamp)
         {

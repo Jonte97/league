@@ -18,5 +18,8 @@ namespace Services
         Task<RootChampionDto> GetChampByKeyAsync(string key);
         Task<TimeLine> GetTimeLineForMatch(string matchId);
         Task<List<MatchReference>> GetMatchesRankedProfile();
+        Task<List<MatchReference>> GetMatchesRankedProfileAsync(GamesByQueue queue);
+
+
     }
 }
