@@ -148,8 +148,8 @@ namespace Name.Controllers
                 return StatusCode(500, Json(new { message= ex.Message}));
             }
         }
-        [HttpGet("[action]")]
-        public async Task<IActionResult> GetRankedDataProfile() 
+        [HttpPost("[action]")]
+        public async Task<IActionResult> GetRankedDataProfile([FromBody]LeagueEntry[] input) 
         {
             try
             {

@@ -1,7 +1,7 @@
 import React from 'react';
 import './header.css';
 import SideMenu from '../sideMenu/SideMenu';
-import SummonerSearch from '../body/Forms/SummonerSearch';
+import SummonerSearch from '../MainPage/Forms/SummonerSearch';
 
 //TODO move menu here
 const Header = (props) => {

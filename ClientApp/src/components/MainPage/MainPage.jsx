@@ -5,6 +5,7 @@ import MatchHistory from './MatchHistoryNew/MatchHistory';
 import { startLeague, startSummoner } from '../../functions/startupHelper';
 import { getChampionList, getSummonerSpellData, getRunesData, getSummonerAsync } from '../../functions/promiseHelper';
 import Header from '../header/Header'
+import RankedProfile from './RankedProfileComponents/RankedProfile';
 
 const MainPage = () => {
 	const startSummonerName = "Lönnen";
@@ -38,6 +39,7 @@ const MainPage = () => {
 		<div>
 			<Header updateSummoner={getSummoner} />
 			<Profile leagueEntries={summoner.leagueEntries} summoner={summoner.summoner} />
+			<RankedProfile summoner={summoner} /> 
 			<MatchHistory
 				activeSummoner={summoner.summoner}
 			/>
