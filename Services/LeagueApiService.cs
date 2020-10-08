@@ -227,23 +227,32 @@ namespace Services
             string accountId = "ozMoiB-Krv93WBb4oX1nXjgKAif4kvcA1BolzEzjf_Bc4xQ";
             int startIndex = 0, endIndex = 100;
             int[] q = new int[] { queue.QueueId };
-
+            bool isDone = false;
+            var matchList = new List<MatchReference>();
             if (queue.GameCount <= 100)
             {
                 endIndex = queue.GameCount;
             }
-            var result = await _riotApi.MatchV4.GetMatchlistAsync(
-                        Region.EUW,
-                        accountId,
-                        null,
-                        q,
-                        null,
-                        null,
-                        null,
-                        endIndex,
-                        startIndex,
-                        null
-                    );
+            while (!isDone)
+            {
+                var result = await _riotApi.MatchV4
+                .GetMatchlistAsync(
+                            Region.EUW,
+                            accountId,
+                            null,
+                            q,
+                            null,
+                            null,
+                            null,
+                            endIndex,
+                            startIndex,
+                            null
+                        );
+                foreach (var match in result.Matches)
+                {
+                    matchList.Add(match);
+                }
+            }
             return null;
         }
 
