@@ -9,29 +9,28 @@ namespace ViewModels
         public List<ReferenceListWithTag> RankedQueues { get; set; } = new List<ReferenceListWithTag>();
         
     }
+    public class ChampionRankedMostPlayedVM
+    {
+        public List<ListMatchListForChampion> ListChampions { get; set; } = new List<ListMatchListForChampion>()
+    }
+    public class ListMatchListForChampion
+    {
+        public List<MatchListForChampion> MatchListChampion { get; set; } = new List<MatchListForChampion>();
+        public int[] QueueId { get; set; }
+    }
+    public class MatchListForChampion
+    {
+        public List<MatchReference> MatchList { get; set; }
+        public int ChampionId { get; set; }
+    }
     //TODO Rename
     public class ReferenceListWithTag
     {
         public List<MatchReference> MatchList { get; set; }
         public int QueueId { get; set; }
-        public string QueueName { get; set; }
-        public string DisplayQueueName { get; set; }
         public ReferenceListWithTag(GamesByQueue queue)
         {
             QueueId = queue.QueueId;
-            QueueName = QueueName;
-            switch (queue.QueueId)
-            {
-                case 420:
-                    DisplayQueueName = "Ranked solo";
-                    break;
-                case 440:
-                    DisplayQueueName = "Ranked Flex";
-                    break;
-                default:
-                    DisplayQueueName = "Unknown Queue";
-                    break;
-            }
             MatchList = new List<MatchReference>();
         }
     }

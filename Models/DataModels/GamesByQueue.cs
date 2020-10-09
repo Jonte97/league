@@ -7,7 +7,7 @@ namespace Models
         public int GameCount { get; set; }
         public int QueueId { get; set; }
         public string QueueName { get; set; }
-        public GamesByQueue(LeagueEntry league)
+        public GamesByQueue(MingweiSamuel.Camille.LeagueExpV4.LeagueEntry league)
         {
             QueueName = league.QueueType;
             Wins = league.Wins;

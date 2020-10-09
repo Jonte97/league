@@ -148,29 +148,31 @@ namespace Name.Controllers
                 return StatusCode(500, Json(new { message = ex.Message }));
             }
         }
+
+        //! Work delayed cause win/loss dont exist in matchreference its hard to calculate winrates
         [HttpPost("[action]")]
-        public async Task<IActionResult> GetRankedDataProfile([FromBody] LeagueEntry[] input)
+        public async Task<IActionResult> GetMostChampPlayedRanked([FromBody] MostPlayedChampsRequestModel body)
         {
             try
             {
                 var queueList = new List<GamesByQueue>();
                 var vm = new RankedProfileVM();
-                foreach (var entry in input)
+                //* looping and declaring informationObject per queue with configuration information 
+                foreach (var entry in body.LeagueEntries)
                 {
                     queueList.Add(new GamesByQueue(entry));
                 }
-                int i = 0;
+                //* Fetch all ranked games played this season and add them to list
                 foreach (var queue in queueList)
                 {
                     var refList = new ReferenceListWithTag(queue);
                     refList.MatchList = await _leagueApiService.GetMatchesRankedProfileAsync(queue);
                     vm.RankedQueues.Add(refList);
-                    i++;
                 }
-                if (input.Length > 0)
-                {
-                    //TODO do some magic here for total
-                }
+                //* DataService picks most played champs
+                _datahandler.GetMostPlayedChamp(vm.RankedQueues[0]);
+
+                //* vm has obj for most played in solo and flex and total
                 return Ok(vm);
             }
             catch (System.Exception ex)

@@ -90,5 +90,18 @@ export const getItemListAsync = async(patch) => {
 	return data;
 }
 
+export const getMostPlayedChampionsRanked = async(entries, accountId) => {
+	const input = {
+		entries: entries,
+		accountId: accountId
+	}
+	const response = await fetch('api/LeagueApi/GetMostChampPlayedRanked', {
+		method: 'post',
+		headers: { 'Content-Type': 'application/json' },
+		body: JSON.stringify(input)
+	})
 
+	const data = await response.json();
+	return data;
+}
 

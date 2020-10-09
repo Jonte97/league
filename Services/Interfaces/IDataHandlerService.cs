@@ -5,6 +5,6 @@ namespace Services
 {
     public interface IDataHandlerService
     {
-        List<MatchReference> GetMatchesWithinSeason(List<MatchReference> list);
+        void GetMostPlayedChamp(ReferenceListWithTag list);
     }
 }

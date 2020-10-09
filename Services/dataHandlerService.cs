@@ -1,42 +1,33 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using MingweiSamuel.Camille.MatchV4;
+using ViewModels;
 
 namespace Services
 {
     public class DataHandlerService : IDataHandlerService
     {
-        private static DateTime UnixTimeStampToDateTime(double unixTimeStamp)
+        public void GetMostPlayedChamp(ReferenceListWithTag reference)
         {
-            // Unix timestamp is seconds past epoch
-            System.DateTime dtDateTime = new DateTime(1970, 1, 1, 0, 0, 0, 0, System.DateTimeKind.Utc);
-            dtDateTime = dtDateTime.AddSeconds(unixTimeStamp).ToLocalTime();
-            return dtDateTime;
-        }
-        public List<MatchReference> GetMatchesWithinSeason(List<MatchReference> list)
-        {
-            DateTime dt = new DateTime(2020, 1, 10);
-            int end = 0, i = 0, range = 0;
-            bool IsDone = false;
-            //TODO fixa. kan skapa problem om användaren inte har games utanför denna tidsram samma i apiService
-            while (!IsDone)
+            try
             {
-                double sec = TimeSpan.FromMilliseconds(list[i].Timestamp).TotalSeconds;
-                var time = UnixTimeStampToDateTime(sec);
+                var most = reference.MatchList.GroupBy(x => x.Champion).OrderByDescending(grp => grp.Count()).Select(grp => grp.Key).Take(10).ToList();
 
-                if (time.Date <= dt)
+                for (int i = 0; i < 9; i++)
                 {
-                    end = i;
-                    range = list.Count - end;
-                    IsDone = true;
+                    foreach (var item in most)
+                    {
+                        var champList = reference.MatchList.Where(x => x.Champion == item).ToList();
+                    }
+
                 }
-                else
-                {
-                    i++;
-                }
+
             }
-            list.RemoveRange(end, range);
-            return list;
+            catch (System.Exception ex)
+            {
+                throw ex;
+            }
         }
     }
 }

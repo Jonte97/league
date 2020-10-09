@@ -1,8 +1,7 @@
 import React from 'react';
-
 const TestPanel = (props) => {
     const ranked = async () => {
-        const response = await fetch('api/LeagueApi/GetRankedDataProfile', {
+        const response = await fetch('api/LeagueApi/GetMostChampPlayedRanked', {
             method: 'post',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(props.summoner.leagueEntries)

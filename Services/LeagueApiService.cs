@@ -224,36 +224,55 @@ namespace Services
         }
         public async Task<List<MatchReference>> GetMatchesRankedProfileAsync(GamesByQueue queue)
         {
-            string accountId = "ozMoiB-Krv93WBb4oX1nXjgKAif4kvcA1BolzEzjf_Bc4xQ";
-            int startIndex = 0, endIndex = 100;
-            int[] q = new int[] { queue.QueueId };
-            bool isDone = false;
-            var matchList = new List<MatchReference>();
-            if (queue.GameCount <= 100)
+            try
             {
-                endIndex = queue.GameCount;
-            }
-            while (!isDone)
-            {
-                var result = await _riotApi.MatchV4
-                .GetMatchlistAsync(
-                            Region.EUW,
-                            accountId,
-                            null,
-                            q,
-                            null,
-                            null,
-                            null,
-                            endIndex,
-                            startIndex,
-                            null
-                        );
-                foreach (var match in result.Matches)
+                string accountId = "ozMoiB-Krv93WBb4oX1nXjgKAif4kvcA1BolzEzjf_Bc4xQ";
+                int startIndex = 0, endIndex = 100, burndown = queue.GameCount;
+                int[] q = new int[] { queue.QueueId };
+                bool isDone = false;
+                var matchList = new List<MatchReference>();
+                if (queue.GameCount <= 100)
                 {
-                    matchList.Add(match);
+                    endIndex = queue.GameCount;
                 }
+                while (!isDone)
+                {
+                    if (burndown < 100) { endIndex = burndown + startIndex; }
+                    var result = await _riotApi.MatchV4
+                    .GetMatchlistAsync(
+                                Region.EUW,
+                                accountId,
+                                null,
+                                q,
+                                null,
+                                null,
+                                null,
+                                endIndex,
+                                startIndex,
+                                null
+                            );
+                    foreach (var match in result.Matches)
+                    {
+                        matchList.Add(match);
+                        burndown--;
+                    }
+                    if (burndown == 0)
+                    {
+                        isDone = true;
+                    }
+                    else
+                    {
+                        startIndex += 100;
+                        endIndex += 100;
+                    }
+                }
+                return matchList;
             }
-            return null;
+            catch (System.Exception ex) 
+            {
+
+                throw ex;
+            }
         }
 
         //TODO should move this so it can be used by other funtions
