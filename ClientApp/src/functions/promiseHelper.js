@@ -83,14 +83,14 @@ export const getTimeLineEvents = async (participantId, gameId) => {
 	return data;
 }
 
-export const getItemListAsync = async(patch) => {
+export const getItemListAsync = async (patch) => {
 	const response = await fetch('https://ddragon.leagueoflegends.com/cdn/10.20.1/data/en_US/item.json')
 	const data = await response.json();
 
 	return data;
 }
 
-export const getMostPlayedChampionsRanked = async(entries, accountId) => {
+export const getMostPlayedChampionsRanked = async (entries, accountId) => {
 	const input = {
 		entries: entries,
 		accountId: accountId
@@ -100,7 +100,9 @@ export const getMostPlayedChampionsRanked = async(entries, accountId) => {
 		headers: { 'Content-Type': 'application/json' },
 		body: JSON.stringify(input)
 	})
-
+	if (response.status !== 200) {
+		return null;	
+	}
 	const data = await response.json();
 	return data;
 }

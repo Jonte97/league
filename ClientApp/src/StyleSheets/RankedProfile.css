@@ -1,0 +1,13 @@
+.ranked-profile-wrapper{
+    background-color: #222451;
+    border-radius: 15px;
+    min-height: 300px;
+}
+.loadIcon{
+    margin: 0 auto;
+    width: 4%;
+    padding-top: 5em;
+}
+.ranked-profile-thumbnail{
+    height: 48px;
+}

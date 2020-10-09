@@ -8,21 +8,23 @@ namespace Services
 {
     public class DataHandlerService : IDataHandlerService
     {
-        public void GetMostPlayedChamp(ReferenceListWithTag reference)
+        public ListMatchListForChampion GetMostPlayedChamp(ReferenceListWithTag reference)
         {
+            var listForChampion = new ListMatchListForChampion();
+            listForChampion.QueueId = new int[] { reference.QueueId };
             try
             {
-                var most = reference.MatchList.GroupBy(x => x.Champion).OrderByDescending(grp => grp.Count()).Select(grp => grp.Key).Take(10).ToList();
+                var most = reference.MatchList.GroupBy(x => x.Champion).OrderByDescending(grp => grp.Count()).Select(grp => grp.Key).Take(5).ToList();
 
-                for (int i = 0; i < 9; i++)
+                foreach (var champId in most)
                 {
-                    foreach (var item in most)
-                    {
-                        var champList = reference.MatchList.Where(x => x.Champion == item).ToList();
-                    }
-
+                    var newChamp = new MatchListForChampion();
+                    newChamp.ChampionId = champId;
+                    var result = reference.MatchList.Where(x => x.Champion == champId).ToList();
+                    newChamp.GameCount = result.Count;
+                    listForChampion.MatchListChampion.Add(newChamp);
                 }
-
+                return listForChampion;
             }
             catch (System.Exception ex)
             {

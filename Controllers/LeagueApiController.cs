@@ -173,9 +173,18 @@ namespace Name.Controllers
                 _datahandler.GetMostPlayedChamp(vm.RankedQueues[0]);
 
                 //* vm has obj for most played in solo and flex and total
-                return Ok(vm);
+                var VM = new ChampionRankedMostPlayedVM();
+                foreach (var reference in vm.RankedQueues)
+                {
+                    var result = _datahandler.GetMostPlayedChamp(reference);
+                    VM.QueueList.Add(result);
+                }
+
+                //TODO Create method for calculating winrate when better API key is accuired
+
+                return Ok(VM);
             }
-            catch (System.Exception ex)
+            catch (System.Exception)
             {
                 return StatusCode(500);
             }

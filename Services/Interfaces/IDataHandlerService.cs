@@ -1,10 +1,11 @@
 using System.Collections.Generic;
 using MingweiSamuel.Camille.MatchV4;
+using ViewModels;
 
 namespace Services
 {
     public interface IDataHandlerService
     {
-        void GetMostPlayedChamp(ReferenceListWithTag list);
+        ListMatchListForChampion GetMostPlayedChamp(ReferenceListWithTag list);
     }
 }

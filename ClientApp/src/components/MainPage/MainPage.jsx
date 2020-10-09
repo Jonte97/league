@@ -3,13 +3,13 @@ import { useState, useEffect } from 'react';
 import Profile from './Profile/Profile';
 import MatchHistory from './MatchHistoryNew/MatchHistory';
 import { startLeague, startSummoner } from '../../functions/startupHelper';
-import { getChampionList, getSummonerSpellData, getRunesData, getSummonerAsync } from '../../functions/promiseHelper';
+import { getSummonerAsync } from '../../functions/promiseHelper';
 import Header from '../header/Header'
 import RankedProfile from './RankedProfileComponents/RankedProfile';
 
 const MainPage = () => {
 	const startSummonerName = "Lönnen";
-	const [summoner, setSummoner] = useState({ summoner: startSummoner, leagueEntries: startLeague });
+	const [summoner, setSummoner] = useState(null);
 	useEffect(() => {
 		const getSumm = async () => {
 			const fetched = await getSummonerAsync(startSummonerName)
@@ -23,26 +23,19 @@ const MainPage = () => {
 		setSummoner({ summoner: fetched.summoner, leagueEntries: fetched.leagueEntries });
 	}
 
-	// const onSubmit = async (data) => {
-	// 	console.log(data);
-	// 	try {
-	// 		const summ = await getSummoner(data);
-	// 		setLeague(summ.leagueEntries);
-	// 		setSummoner(summ.summoner);
-	// 	} catch (error) {
-	// 		alert('could not find ' + data);
-	// 		console.log(error);
-	// 	}
-	// };
-
 	return (
 		<div>
-			<Header updateSummoner={getSummoner} />
-			<Profile leagueEntries={summoner.leagueEntries} summoner={summoner.summoner} />
-			<RankedProfile summoner={summoner} /> 
-			<MatchHistory
-				activeSummoner={summoner.summoner}
-			/>
+			{summoner ?
+				<React.Fragment>
+					<Header updateSummoner={getSummoner} />
+					<Profile leagueEntries={summoner.leagueEntries} summoner={summoner.summoner} />
+					<RankedProfile summoner={summoner} />
+					<MatchHistory
+						activeSummoner={summoner.summoner}
+					/>
+				</React.Fragment>
+				: null
+			}
 		</div>
 	);
 };

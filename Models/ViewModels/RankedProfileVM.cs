@@ -11,7 +11,7 @@ namespace ViewModels
     }
     public class ChampionRankedMostPlayedVM
     {
-        public List<ListMatchListForChampion> ListChampions { get; set; } = new List<ListMatchListForChampion>()
+        public List<ListMatchListForChampion> QueueList { get; set; } = new List<ListMatchListForChampion>();
     }
     public class ListMatchListForChampion
     {
@@ -20,7 +20,9 @@ namespace ViewModels
     }
     public class MatchListForChampion
     {
+        //*Should this be included in payload?
         public List<MatchReference> MatchList { get; set; }
+        public int GameCount { get; set; }
         public int ChampionId { get; set; }
     }
     //TODO Rename
