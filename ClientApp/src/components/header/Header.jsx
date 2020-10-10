@@ -8,8 +8,8 @@ const Header = (props) => {
     return (
         <div className="header darker-theme-bg">
             <div className="container">
-                <SummonerSearch updateSummoner={props.updateSummoner} />
                 <HeaderMenu />
+                <SummonerSearch updateSummoner={props.updateSummoner} />
             </div>
         </div>
     );

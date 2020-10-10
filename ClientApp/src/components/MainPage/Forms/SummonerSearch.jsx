@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { BsSearch } from 'react-icons/bs'
 
 const SummonerSearch = (props) => {
     const [text, setText] = useState(null);
@@ -17,7 +18,8 @@ const SummonerSearch = (props) => {
                     }
                 }}
             />
-            <input type="button" className="button darker-theme-bg" onClick={() => props.updateSummoner(text)} value="Get summoner" />
+            <button type="button" className="button" onClick={() => props.updateSummoner(text)}
+            >< BsSearch /></button>
         </div>
     );
 }
