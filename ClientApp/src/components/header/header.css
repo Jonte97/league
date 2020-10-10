@@ -1,6 +1,5 @@
 .header{
     margin: 0;
-    height: 60px;
 }
 #menu a{
     color: #f2f2f2;
@@ -26,4 +25,33 @@
 }
 .nav-border-left{
     border-left: 1px solid #ffffff;
+}
+input[type=text] {
+    width: 25%;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    background-color: white;
+    color: black !important;
+    /* background-image: url('searchicon.png'); */
+    background-position: 10px 10px; 
+    background-repeat: no-repeat;
+    padding: 12px 20px 12px 40px;
+}
+.button {
+    border: none;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+.form{
+        padding: 2em;
+        width: 50%;
+        margin: 0 auto;
+}
+.form #summonerSearch{
+    width: 50%;
 }

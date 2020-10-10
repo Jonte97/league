@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Link, Switch, Redirect } from "react-router-dom";;
 
 
-const SideMenu = () => {
+const HeaderMenu = () => {
     return (
         <nav id="menu">
             <ul id="nav-list">
@@ -20,4 +20,4 @@ const SideMenu = () => {
     )
 }
 
-export default SideMenu
+export default HeaderMenu
