@@ -5,7 +5,6 @@ const PlayedChampionsList = (props) => {
     const [champions, setChampions] = useState(null);
     useEffect(() => {
         setChampions(props.champions.matchListChampion);
-        console.log("ändrades")
     }, [props.champions]);
 
     return (
@@ -13,7 +12,7 @@ const PlayedChampionsList = (props) => {
             {
                 champions ? champions.map((champ, key) =>
                     <div key={key}>
-                        <PlayedChampionItem champion={champ} />
+                        <PlayedChampionItem champion={champ} champions={props.championList} />
                     </div>
                 )
                     :

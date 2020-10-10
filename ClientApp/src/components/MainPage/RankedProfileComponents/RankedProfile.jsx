@@ -24,7 +24,10 @@ const RankedProfile = (props) => {
                 {mostPlayedChampion ?
                     mostPlayedChampion.queueList.find((obj) => obj.queueId[0] === 420) ?
                         <div>
-                            <PlayedChampionsList champions={mostPlayedChampion.queueList.find((obj) => obj.queueId[0] == 420)} />
+                            <PlayedChampionsList
+                                championList={props.championList}
+                                champions={mostPlayedChampion.queueList.find((obj) => obj.queueId[0] == 420)}
+                            />
                         </div>
                         :
                         null

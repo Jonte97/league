@@ -1,7 +1,8 @@
 .ranked-profile-wrapper{
     background-color: #222451;
     border-radius: 15px;
-    min-height: 300px;
+    min-height: 410px;
+    padding: 1em;
 }
 .loadIcon{
     margin: 0 auto;
@@ -10,4 +11,18 @@
 }
 .ranked-profile-thumbnail{
     height: 48px;
+    border-radius: 50%;
+}
+
+.champion-item-games div{
+    display: inline;
+}
+.champion-item-games{
+    padding: 1em;
+}
+.ranked-profile-champion-item{
+    display: flex;
+}
+.ranked-profile-section{
+    padding: 1em;
 }

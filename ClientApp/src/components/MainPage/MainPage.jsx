@@ -6,6 +6,7 @@ import { startLeague, startSummoner } from '../../functions/startupHelper';
 import { getSummonerAsync } from '../../functions/promiseHelper';
 import Header from '../header/Header'
 import RankedProfile from './RankedProfileComponents/RankedProfile';
+import { championDictionary } from '../../functions/ChampionHelper'
 
 const MainPage = () => {
 	const startSummonerName = "Lönnen";
@@ -17,6 +18,12 @@ const MainPage = () => {
 		}
 		getSumm();
 	}, [])
+	//TODO this should be standard championList
+	const [champions, setChampions] = useState(null);
+	useEffect(() => {
+		const list = championDictionary();
+		setChampions(list);
+	}, []);
 
 	const getSummoner = async (name) => {
 		const fetched = await getSummonerAsync(name);
@@ -29,7 +36,7 @@ const MainPage = () => {
 				<React.Fragment>
 					<Header updateSummoner={getSummoner} />
 					<Profile leagueEntries={summoner.leagueEntries} summoner={summoner.summoner} />
-					<RankedProfile summoner={summoner} />
+					<RankedProfile championList={champions} summoner={summoner} />
 					<MatchHistory
 						activeSummoner={summoner.summoner}
 					/>
