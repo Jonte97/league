@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react'
-import TestPanel from '../../TestPanel'
 import { getMostPlayedChampionsRanked } from '../../../functions/promiseHelper'
 import PlayedChampionsList from './PlayedChampions';
 import Loader from '../loader';
