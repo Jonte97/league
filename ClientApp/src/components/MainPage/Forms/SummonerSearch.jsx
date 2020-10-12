@@ -10,6 +10,7 @@ const SummonerSearch = (props) => {
                 id="summonerSearch"
                 type="text"
                 name="namn"
+                placeholder="Search summoner"
                 onChange={(event) => setText(event.target.value)}
                 onKeyDown={(event) => {
                     var key = event.keyCode;

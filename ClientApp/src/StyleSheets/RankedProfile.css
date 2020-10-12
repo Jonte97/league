@@ -3,6 +3,8 @@
     border-radius: 15px;
     min-height: 410px;
     padding: 1em;
+    margin-top: 1em;
+    border: 1px solid #79787885;
 }
 .loadIcon{
     margin: 0 auto;
@@ -25,8 +27,11 @@
     display: flex;
 }
 .ranked-profile-section{
-    padding: 1em;
+    padding: 0.5em;
 }
 .game-count{
     
+}
+.ranked-profile-playerlists{
+    padding-left: 5em;
 }

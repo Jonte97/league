@@ -1,7 +1,7 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
 import Profile from './Profile/Profile';
-import MatchHistory from './MatchHistoryNew/MatchHistory';
+import MatchHistory from './MatchHistory/MatchHistory';
 import { startLeague, startSummoner } from '../../functions/startupHelper';
 import { getSummonerAsync } from '../../functions/promiseHelper';
 import Header from '../header/Header'

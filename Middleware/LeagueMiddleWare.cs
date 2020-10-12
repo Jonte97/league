@@ -38,7 +38,6 @@ namespace MiddleWare
 
                 result = result.Where(x => x.Count > 0).ToList();
 
-                //TODO Check sold items to point them out for front end
                 //* Removes undo items from list
                 foreach (var frame in result.ToList())
                 {
@@ -54,6 +53,7 @@ namespace MiddleWare
 
                     }
                 }
+                result = result.Where(x => x.Count != 0).ToList();
                 return result;
             }
             catch (System.Exception ex)

@@ -1,85 +1,52 @@
-import { useEffect, useState } from 'react';
 import React from 'react';
 
 const PlayerList = (props) => {
 
-	useEffect(() => {
-		fetch('api/LeagueApi/GetMatchById', {
-			method: 'post',
-			headers: { 'Content-Type': 'application/json' },
-			body: JSON.stringify(props.id)
-		})
-			.then((response) => response.json())
-			.then((data) => {
-				props.setMatchInfo(data);
-			})
-			.catch((reason) => {
-				console.log(reason);
-			});
-	}, []);
+    const labelColor = (team) => {
+        const ret = {
+            backgroundColor: team === "Red team" ? '#882525' : '#252888'
+        }
+        return ret
+    }
 
-	return props.matchInfo ? (
-		<React.Fragment>
-			<div style={{ width: '400px' }}>
-				<div style={{ float: 'left', width: '50%' }}>
-					{props.matchInfo.participantIdentities.map(
-						(player, key) =>
-							props.matchInfo.participants[key].teamId === 100 ? (
-								<div className="blue" style={{}}>
-									<img
-										style={{ width: '25px' }}
-										src={`http://ddragon.leagueoflegends.com/cdn/10.4.1/img/champion/${props.champions.find(
-											(v) => v.k == props.matchInfo.participants[key].championId
-										).v.image.full}`}
-									/>
-									<a
-										style={{color: 'red'}}
-										className="caption"
-										id={key}
-										key={key}
-										onClick={() => props.currentPlayer(props.matchInfo.participants[key])}
-									>
-										{player.player.summonerName}
-									</a>
-								</div>
-							) : (
-								<React.Fragment />
-							)
-					)}
-				</div>
-				<div style={{ float: 'right', width: '50%' }}>
-					{props.matchInfo.participantIdentities.map(
-						(player, key) =>
-							props.matchInfo.participants[key].teamId === 200 ? (
-								<div className="blue" style={{}}>
-									<img
-										style={{ width: '25px' }}
-										src={`http://ddragon.leagueoflegends.com/cdn/10.4.1/img/champion/${props.champions.find(
-											(v) => v.k == props.matchInfo.participants[key].championId
-										).v.image.full}`}
-									/>
-									<a
-										style={{color: 'blue'}}
-										className="caption"
-										id={key}
-										key={key}
-										style={{color: 'red'}}
-										onClick={() => props.currentPlayer(props.matchInfo.participants[key])}
-									>
-										{player.player.summonerName}
-									</a>
-									<br />
-								</div>
-							) : (
-								<React.Fragment />
-							)
-					)}
-				</div>
-			</div>
-		</React.Fragment>
-	) : (
-		<React.Fragment />
-	);
-};
+    const cutString = (element) => {
+        let str = element;
+        if (element.length > 10) {
+            str = str.substring(0, 10);
+            str = str.concat('...');
+        }
+        return str;
+    }
+    const getPlayerChamp = (id) => {
+        //TODO FIX
+        let x = props.ids.find((obj) => obj.participantId == id)
+        return x;
+    }
+
+    const getThumbnail = (id) => {
+        let x = getPlayerChamp(id);
+        let champ = props.championList.find((obj) => obj.k == x.championId);
+        return `https://ddragon.leagueoflegends.com/cdn/10.19.1/img/champion/${champ.v.image.full}`
+    }
+
+    return (
+        props.ids ?
+            <div>
+                <div className="team-title-wrapper">
+                    <div style={labelColor(props.team)} className="team-title-label">
+                        <div className="text-center team-title">{props.team}</div>
+                    </div>
+                </div>
+                <ul className="history-playerlist">
+                    {props.list.map((player, i) =>
+                        <li key={i}>
+                            <img className="history-list-thumbnail" src={getThumbnail(player.participantId)} /> {cutString(player.player.summonerName)}</li>
+                    )}
+                </ul>
+            </div>
+            :
+            <h4>Loading champions...</h4>
+    );
+}
 
 export default PlayerList;

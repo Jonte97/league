@@ -24,6 +24,7 @@ namespace ViewModels
         public List<MatchReference> MatchList { get; set; }
         public int GameCount { get; set; }
         public int ChampionId { get; set; }
+        public double Winrate { get; set; } = 52;
     }
     //TODO Rename
     public class ReferenceListWithTag

@@ -7,7 +7,7 @@ import SummonerSearch from '../MainPage/Forms/SummonerSearch';
 const Header = (props) => {
     return (
         <div className="header darker-theme-bg">
-            <div className="container">
+            <div className="container header-wrapper">
                 <HeaderMenu />
                 <SummonerSearch updateSummoner={props.updateSummoner} />
             </div>

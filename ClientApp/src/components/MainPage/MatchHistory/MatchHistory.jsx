@@ -1,91 +1,70 @@
 import React from 'react';
-import { useState, useEffect } from 'react';
-import './matchHistory.css';
-import Game from './GameInfoHeader';
-
-const Matches = (props) => {
-	console.log(props);
-
-	if (props.matches.matches.length !== 0) {
-		return (
-			<div>
-				<ul>
-					{props.matches.matches.map((item, i) => (
-						<li key={i}>
-							<div key={i} className="match-history-item">
-								<Game
-									champions={props.champions}
-									game={item}
-									champion={props.champions.find((v) => v.k == item.champion)}
-									summoner={props.summoner}
-								/>
-							</div>
-						</li>
-					))}
-				</ul>
-			</div>
-		);
-	} else {
-		return (
-			<div>
-				<ul>
-					<li>No matches in matchhistory</li>
-				</ul>
-			</div>
-		);
-	}
-};
+import { getMatchHistory, getChampionList, getSummonerSpellData, getRunesData, getItemListAsync } from '../../../functions/promiseHelper';
+import { useState, useEffect, useRef } from 'react';
+import MatchItem from './MatchItem';
+import Loader from '../loader';
 
 const MatchHistory = (props) => {
-	let matches = [];
-	const [ matchHistory, setMatchHistory ] = useState({ matches });
-	const [ gameInfo, setGameInfo ] = useState({});
-	const [ currentMatchId, setCurrentMatchId ] = useState(0);
-	const [ championList, setChampionList ] = useState([ { Data: [] } ]);
+    const [gameReferences, setGameReferences] = useState();
+    useEffect(() => {
+        const getReferencesAsync = async () => {
+            const parseItemsToArray = input => {
+                const itemArray = [];
+                for (const [key, value] of Object.entries(input)) {
+                    const obj = { id: key, data: value }
+                    itemArray.push(obj);
+                }
 
-	useEffect(() => {
-		fetch('api/LeagueApi/GetSimpleChampionList').then((response) => response.json()).then((data) => {
-			setChampionList(data);
-		});
-	}, []);
+                return itemArray;
+            }
 
-	
-	useEffect(
-		() => {
-			if (currentMatchId !== 0) {
-				fetch('api/LeagueApi/GetMatchById', {
-					method: 'post',
-					headers: { 'Content-Type': 'application/json' },
-					body: JSON.stringify(currentMatchId)
-				})
-					.then((response) => response.json())
-					.then((data) => {
-						setGameInfo(data);
-					});
-			}
-		},
-		[ currentMatchId ]
-	);
+            const champList = await getChampionList();
+            const spellData = await getSummonerSpellData();
+            const runesData = await getRunesData();
+            const itemsPrimitive = await getItemListAsync();
 
-	const getMatchHistory = () => {
-		fetch('api/LeagueApi/GetMatchHistory', {
-			method: 'post',
-			headers: { 'Content-Type': 'application/json' },
-			body: JSON.stringify(props.summoner.accountId)
-		})
-			.then((response) => response.json())
-			.then((data) => {
-				setMatchHistory({ matches: data.matches });
-				console.log('from controller: ' + matchHistory);
-			});
-	};
+            const items = parseItemsToArray(itemsPrimitive.data)
+            setGameReferences({ championList: champList, summonerSpells: spellData, runesData: runesData, items: items });
+        }
+        getReferencesAsync();
+    }, []);
 
-	return (
-		<div className="container">
-			<button onClick={() => getMatchHistory()}>Get matchhistory</button>
-			<Matches matches={matchHistory} game={gameInfo} champions={championList} summoner={props.summoner} />
-		</div>
-	);
+    const [matchHistory, setMatchHistory] = useState({ matches: [] });
+    useEffect(() => {
+        const getMatches = async () => {
+            const matches = await getMatchHistory(props.activeSummoner.accountId)
+            setMatchHistory(matches);
+        }
+        getMatches();
+    }, [props.activeSummoner]);
+
+    console.log('render history')
+
+    return (
+        <div className="theme-bg">
+            <div className="container">
+
+                {gameReferences ? matchHistory.matches.map((match, i) => (
+                    <div key={i} className="history-item">
+                        <MatchItem
+                            key={i}
+                            championList={gameReferences.championList}
+                            match={match}
+                            owner={props.activeSummoner}
+                            summonerSpells={gameReferences.summonerSpells}
+                            runes={gameReferences.runesData}
+                            itemRefs={gameReferences.items}
+                        />
+                    </div>
+                ))
+                    :
+                    <Loader
+                        className={"loader-matchHistory"}
+                    />
+                }
+            </div>
+        </div>
+    )
 };
 
 export default MatchHistory;
