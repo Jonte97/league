@@ -1,3 +1,5 @@
+//TODO Move all api requests to this file
+
 export const getChampionList = async () => {
 	const response = await fetch('api/LeagueApi/GetSimpleChampionList')
 	const data = await response.json();

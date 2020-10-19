@@ -21,11 +21,12 @@ namespace Services
         private readonly RiotApi _riotApi;
         private static readonly object threadlock = new object();
 
-        //TODO change this
+        //TODO change this to be set to current patch when website starts
         public string Patch { get; set; } = "10.19.1";
         public LeagueApiService(IConfiguration configuration)
         {
             _config = (IConfigurationRoot)configuration;
+            //TODO API Key should be moved to appsettings.json
             _riotApi = RiotApi.NewInstance("RGAPI-27f314d6-8e0c-4765-b36a-4a56b782f363");
         }
 

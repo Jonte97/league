@@ -9,7 +9,7 @@ const Champions = () => {
 
     useEffect(() => {
         console.log("Active key är nu: " + activeKey);
-
+        //TODO move fetchfunctions to PromiseHelper.js
         if (activeKey !== 0) {
             fetch('api/LeagueApi/GetChampByKey', {
                 method: 'post',
