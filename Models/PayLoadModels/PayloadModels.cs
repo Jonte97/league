@@ -1,3 +1,4 @@
+using MingweiSamuel.Camille.LeagueExpV4;
 using Newtonsoft.Json;
 
 namespace PayloadModels
@@ -8,6 +9,13 @@ namespace PayloadModels
         public string GameId { get; set; }
         [JsonProperty("participant")]
         public int ParticipantId { get; set; }
+    }
+    public class MostPlayedChampsRequestModel
+    {
+        [JsonProperty("entries")]
+        public LeagueEntry[] LeagueEntries { get; set; }
+        [JsonProperty("accountId")]
+        public string AccountId { get; set; }
     }
     public class SummonerMatchData
     {

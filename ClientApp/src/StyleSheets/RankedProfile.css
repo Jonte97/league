@@ -1,0 +1,37 @@
+.ranked-profile-wrapper{
+    background-color: #222451;
+    border-radius: 15px;
+    min-height: 410px;
+    padding: 1em;
+    margin-top: 1em;
+    border: 1px solid #79787885;
+}
+.loadIcon{
+    margin: 0 auto;
+    width: 4%;
+    padding-top: 5em;
+}
+.ranked-profile-thumbnail{
+    height: 48px;
+    border-radius: 50%;
+    border: 2px solid gold;
+}
+
+.champion-item-games div{
+    display: inline;
+}
+.champion-item-games{
+    padding: 1em;
+}
+.ranked-profile-champion-item{
+    display: flex;
+}
+.ranked-profile-section{
+    padding: 0.5em;
+}
+.game-count{
+    
+}
+.ranked-profile-playerlists{
+    padding-left: 5em;
+}

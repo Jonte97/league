@@ -16,16 +16,20 @@ using PayloadModels;
 
 namespace Name.Controllers
 {
+
     [Route("api/[controller]")]
     public class LeagueApiController : Controller
     {
         private readonly ILeagueApiService _leagueApiService;
         private readonly ILeagueMiddleWare _leagueMiddleWare;
-        public LeagueApiController(ILeagueApiService leagueApiService, ILeagueMiddleWare leagueMiddleWare)
+        private readonly IDataHandlerService _datahandler;
+        public LeagueApiController(ILeagueApiService leagueApiService, ILeagueMiddleWare leagueMiddleWare, IDataHandlerService dataHandler)
         {
             _leagueApiService = leagueApiService;
             _leagueMiddleWare = leagueMiddleWare;
+            _datahandler = dataHandler;
         }
+        //TODO Change all tasks in controller to IActionResult
         [HttpPost("[action]")]
         public async Task<string> GetSummonerData([FromBody] string name)
         {
@@ -100,10 +104,10 @@ namespace Name.Controllers
         {
             try
             {
-                var deserializedChampion =  await _leagueApiService.GetChampByKeyAsync(activeChamp);
+                var deserializedChampion = await _leagueApiService.GetChampByKeyAsync(activeChamp);
                 //TODO if works move to middleware
                 var champions = from key in deserializedChampion.Data.Keys
-                            select new { champion = deserializedChampion.Data[key] };
+                                select new { champion = deserializedChampion.Data[key] };
 
                 string json = JsonConvert.SerializeObject(champions);
 
@@ -117,14 +121,11 @@ namespace Name.Controllers
 
         //* Gets list of items purchase order with timestamps
         //TODO Rename to Get timeLineForGame or something
-        //TODO Make viewmodel for this
         [HttpPost("[action]")]
         public async Task<IActionResult> GetItemsTimeLine([FromBody] ItemsTimeLine data)
         {
             //TODO fix bug games: 4843570041 and 4843092948
-            //Dont know whats wrong prob Viktor hexcore item
             //msg Cannot read property 'items' of undefined -EKKO GAME
-            //
             try
             {
                 //* Fetch timeline object with data of events from gameId
@@ -132,10 +133,10 @@ namespace Name.Controllers
                 //* Assembling itemorder Data
                 var items = _leagueMiddleWare.GetItemEventsForParticipant(data.ParticipantId, timeline);
                 //* Assembling Skillorder data
-                var skillorder =  _leagueMiddleWare.GetSkillOrder(timeline, data.ParticipantId);
+                var skillorder = _leagueMiddleWare.GetSkillOrder(timeline, data.ParticipantId);
                 //* Assembling Graphdata
                 var graphData = _leagueMiddleWare.GetGraphData(timeline);
-                
+
                 //* Assembling viewmodel as return object
                 var vm = new TimeLineVM() { Items = items, SkillOrder = skillorder, GraphData = graphData };
 
@@ -143,7 +144,49 @@ namespace Name.Controllers
             }
             catch (System.Exception ex)
             {
-                return StatusCode(500, Json(new { message= ex.Message}));
+                //!Should not return exception message 
+                return StatusCode(500, Json(new { message = ex.Message }));
+            }
+        }
+
+        //! Work delayed cause win/loss dont exist in matchreference its hard to calculate winrates
+        [HttpPost("[action]")]
+        public async Task<IActionResult> GetMostChampPlayedRanked([FromBody] MostPlayedChampsRequestModel body)
+        {
+            try
+            {
+                var queueList = new List<GamesByQueue>();
+                var vm = new RankedProfileVM();
+                //* looping and declaring informationObject per queue with configuration information 
+                foreach (var entry in body.LeagueEntries)
+                {
+                    queueList.Add(new GamesByQueue(entry));
+                }
+                //* Fetch all ranked games played this season and add them to list
+                foreach (var queue in queueList)
+                {
+                    var refList = new ReferenceListWithTag(queue);
+                    refList.MatchList = await _leagueApiService.GetMatchesRankedProfileAsync(queue);
+                    vm.RankedQueues.Add(refList);
+                }
+                //* DataService picks most played champs
+                _datahandler.GetMostPlayedChamp(vm.RankedQueues[0]);
+
+                //* vm has obj for most played in solo and flex and total
+                var VM = new ChampionRankedMostPlayedVM();
+                foreach (var reference in vm.RankedQueues)
+                {
+                    var result = _datahandler.GetMostPlayedChamp(reference);
+                    VM.QueueList.Add(result);
+                }
+
+                //TODO Create method for calculating winrate when better API key is accuired
+
+                return Ok(VM);
+            }
+            catch (System.Exception)
+            {
+                return StatusCode(500);
             }
         }
     }

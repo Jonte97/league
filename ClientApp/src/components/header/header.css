@@ -1,6 +1,5 @@
 .header{
     margin: 0;
-    height: 60px;
 }
 #menu a{
     color: #f2f2f2;
@@ -15,6 +14,11 @@
 }
 #menu{
     text-align: center;    
+    display: inline;
+}
+#nav-list{
+    padding-left: 38%;
+    width: 50%;
 }
 #nav-list li {
     font-size: 2em;
@@ -26,4 +30,35 @@
 }
 .nav-border-left{
     border-left: 1px solid #ffffff;
+}
+input[type=text] {
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    font-size: 16px;
+    background-color: white;
+    color: black !important;
+    /* background-image: url('searchicon.png'); */
+    background-position: 10px 10px; 
+    background-repeat: no-repeat;
+    padding: 12px 20px 12px 40px;
+}
+.button {
+    border: none;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    height: inherit;
+    background-color: #337ab7;
+    width: 3em;
+}
+.form{
+        height: 50px;
+        float: right;
+}
+#menu ul {
+    display: inline;
+}
+.header-wrapper{
+    padding: 1em;
 }

@@ -1,5 +1,5 @@
 .theme-bg{
-    background-color: #1d123edb !important;
+    /* background-color: #1d123edb !important; */
     color: aliceblue;
 }
 .darker-theme-bg{
@@ -8,6 +8,10 @@
 }
 *{
     color: aliceblue;   
+}
+body{
+    background-color: #1d123edb !important;
+
 }
 @media (max-width: 767px) {
     /* On small screens, the nav menu spans the full width of the screen. Leave a space for it. */

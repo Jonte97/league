@@ -6,7 +6,7 @@ import ProfileHead from './ProfileHead';
 
 const Profile = (props) => {
 
-
+  console.log(props)
   return (
     <div>
       <div className="profile-head theme-bg">
@@ -17,9 +17,10 @@ const Profile = (props) => {
 
       <div className="darker-theme-bg">
         <div className="container">
-          {props.leagueEntries.map((item, i) =>
+          {props.leagueEntries ? props.leagueEntries.map((item, i) =>
             <Queue data={item} key={i} id={i} />
-          )}
+
+          ) : null}
         </div>
       </div>
 

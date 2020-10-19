@@ -1,3 +1,4 @@
+using System;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -6,6 +7,7 @@ using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using MiddleWare;
+using MingweiSamuel.Camille;
 using Services;
 
 namespace league_site
@@ -33,6 +35,7 @@ namespace league_site
 
             services.AddScoped<ILeagueApiService, LeagueApiService>();
             services.AddScoped<ILeagueMiddleWare, LeagueMiddleWare>();
+            services.AddScoped<IDataHandlerService, DataHandlerService>();
             services.AddSingleton<IConfiguration>(Configuration);
 
         }
@@ -67,6 +70,7 @@ namespace league_site
 
                 if (env.IsDevelopment())
                 {
+                    spa.Options.StartupTimeout = TimeSpan.FromSeconds(120);
                     spa.UseReactDevelopmentServer(npmScript: "start");
                 }
             });

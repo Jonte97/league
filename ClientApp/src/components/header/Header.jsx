@@ -1,13 +1,17 @@
 import React from 'react';
 import './header.css';
-import SideMenu from '../sideMenu/SideMenu';
+import HeaderMenu from '../sideMenu/SideMenu';
+import SummonerSearch from '../MainPage/Forms/SummonerSearch';
 
 //TODO move menu here
-const Header = () => {
-    return ( 
-    <div className="header darker-theme-bg">
-        <SideMenu />
-    </div> 
+const Header = (props) => {
+    return (
+        <div className="header darker-theme-bg">
+            <div className="container header-wrapper">
+                <HeaderMenu />
+                <SummonerSearch updateSummoner={props.updateSummoner} />
+            </div>
+        </div>
     );
 }
 

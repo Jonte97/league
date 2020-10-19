@@ -17,10 +17,7 @@ namespace MiddleWare
 
             return participant;
         }
-
-
         //TODO Move to datahandlersevice
-
         //* Returns list with Events of itempurchases that participantId did
         public List<List<Event>> GetItemEventsForParticipant(int participantId, TimeLine timeline)
         {
@@ -41,7 +38,6 @@ namespace MiddleWare
 
                 result = result.Where(x => x.Count > 0).ToList();
 
-                //TODO Check sold items to point them out for front end
                 //* Removes undo items from list
                 foreach (var frame in result.ToList())
                 {
@@ -57,6 +53,7 @@ namespace MiddleWare
 
                     }
                 }
+                result = result.Where(x => x.Count != 0).ToList();
                 return result;
             }
             catch (System.Exception ex)
@@ -117,10 +114,3 @@ namespace MiddleWare
         }
     }
 }
-
-// var data = new TimeLineDataLists();
-// data.List = timeLine.Frames.SelectMany(x => x.ParticipantFrames.Where(
-//     y => y.Key == i.ToString()
-// )).ToList();
-// data.ParticipantId = data.List.Select(x => x.Value.ParticipantId).First();
-// dataModel.TimeLineDataLists.Add(data);
