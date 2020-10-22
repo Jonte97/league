@@ -109,3 +109,9 @@ export const getMostPlayedChampionsRanked = async (entries, accountId) => {
 	return data;
 }
 
+export const getChampionByName = async (name) => {
+	const response = await fetch(`https://ddragon.leagueoflegends.com/cdn/10.21.1/data/en_US/champion/${name}.json`)
+	const data = await response.json();
+	
+	return data;	
+}

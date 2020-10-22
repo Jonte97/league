@@ -152,9 +152,11 @@
     cursor: pointer;
 }
 .history-item-build-thumbnail{
-    height: 32px;
+    height: 24px;
 }
-
+.history-skillorder-table{
+    margin: 0 auto;
+}
 .history-item-build-holder{
     display: inline-flex;
     margin-right: 2em;
@@ -165,19 +167,29 @@
 .history-build{
     padding: 3em;
 }
+.td-noborder{
+    border: none !important;
+}
 .history-skillorder td, th{
-    border: 1px solid black;
-    width: 21px !important;
+    border: 1px solid #2b2a2a;
+    width: 25px !important;
     text-align: center;
 }
 .history-skillorder{
     margin: auto;
+    margin-top: 4em;
+}
+.history-item-spell{
+    height: 24px;
+}
+.history-item-spell-wrapper{
+
 }
 .green{
-    background-color: green;
+    background-color: #00688066;
 }
 .blank{
-    background-color: white;
+    background-color: #3e3d3dbf;
 }
 .greyed {
     opacity: 0.4;

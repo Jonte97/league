@@ -46,6 +46,7 @@ const MoreStats = (props) => {
                             stats={props.stats}
                             itemEvents={timeline.itemEvents}
                             skillOrder={timeline.skillOrder}
+                            champion={props.champion}
                         />)
                         : null
                 }

@@ -186,6 +186,7 @@ const MatchItem = (props) => {
                             runes={props.runes}
                             stats={summonerGameInfo.stats}
                             owner={summonerGameInfo.participantId}
+                            champion={props.match.champion}
                         /> : null
                     }
                 </div>

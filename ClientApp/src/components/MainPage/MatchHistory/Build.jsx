@@ -12,14 +12,12 @@ const Build = (props) => {
                 {
                     props.itemEvents || props.stats || props.skillOrder ?
                         <React.Fragment>
-                            <ItemBuild items={props.itemEvents} />
+                                <ItemBuild items={props.itemEvents} />
                             <div className="display-flex">
-                                <div>
-                                    <RuneSetup stats={props.stats} runes={props.runes} />
-                                </div>
-                                <div>
-                                    <SkillOrder skillorder={props.skillOrder} />
-                                </div>
+                                <RuneSetup stats={props.stats} runes={props.runes} />
+                            <div className="history-skillorder-table">
+                                <SkillOrder skillorder={props.skillOrder} champion={props.champion} />
+                            </div>
                             </div>
                         </React.Fragment>
                         :

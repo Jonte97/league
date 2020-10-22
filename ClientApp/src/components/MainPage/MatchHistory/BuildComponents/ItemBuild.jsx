@@ -5,7 +5,7 @@ const ItemBuild = (props) => {
 
     return (
         <div className="history-item-build-wrapper">
-            <h3>Build order</h3>
+            <h4>Build order</h4>
             {props.items.map((event, key) =>
                 <div key={key} className="history-item-build-holder">
                     <div className="history-item-build-item" key={key}>
