@@ -21,6 +21,10 @@
     height: 32px;
     width: 32px;
 }
+.to-center{
+    display: flex;
+    margin: auto;
+}
 .history-item-item, .history-emptyitem{
     margin: 0.25em;
     border-radius: 5px;
@@ -155,7 +159,17 @@
     height: 24px;
 }
 .history-skillorder-table{
-    margin: 0 auto;
+    width: 50%;
+}
+.history-item-build-wrapper{
+    border-bottom: 2px solid #504f4f;
+    padding: 1em 4em 1em 4em;
+}
+.rune-skillorder{
+    padding: 1em 4em 1em 4em;
+}
+.history-runesetup{
+    width: 50%;
 }
 .history-item-build-holder{
     display: inline-flex;
@@ -165,7 +179,7 @@
     height: 64px;
 }
 .history-build{
-    padding: 3em;
+    /* padding: 3em; */
 }
 .td-noborder{
     border: none !important;

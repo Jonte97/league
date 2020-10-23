@@ -39,8 +39,10 @@ const PlayerList = (props) => {
                 </div>
                 <ul className="history-playerlist">
                     {props.list.map((player, i) =>
-                        <li key={i}>
-                            <img className="history-list-thumbnail" src={getThumbnail(player.participantId)} /> {cutString(player.player.summonerName)}</li>
+                        <li title={player.player.summonerName} key={i}>
+                            <img className="history-list-thumbnail" src={getThumbnail(player.participantId)} />
+                            {cutString(player.player.summonerName)}
+                        </li>
                     )}
                 </ul>
             </div>

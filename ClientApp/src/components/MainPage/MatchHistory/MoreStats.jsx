@@ -32,7 +32,7 @@ const MoreStats = (props) => {
                             <ul className="matchitem-navbar">
                                 <li style={activePage === "build" ? active : null} className="matchitem-navbar-left" onClick={() => { setActivePage("build") }}>Build</li>
                                 <li style={activePage === "graphs" ? active : null} className="matchitem-navbar-middle" onClick={() => { setActivePage("graphs") }}>Graphs</li>
-                                <li style={activePage === "other" ? active : null} className="matchitem-navbar-right" onClick={() => { setActivePage("other") }}>Other</li>
+                                <li style={activePage === "overview" ? active : null} className="matchitem-navbar-right" onClick={() => { setActivePage("overview") }}>Overview</li>
                             </ul>
                         </div> :
                         null
@@ -58,7 +58,14 @@ const MoreStats = (props) => {
                         owner={props.owner}
                     />
                 ) : null}
-                {activePage === "graphs" ? (<div />) : null}
+                {
+                    activePage === "overview" ? (
+                        <Overview 
+                            participantList={props.participantList}
+                        />
+                    )
+                        : null
+                }
                 {activePage === "other" ? (<div />) : null}
             </div >
         </div>
