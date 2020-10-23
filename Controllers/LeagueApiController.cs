@@ -48,7 +48,7 @@ namespace Name.Controllers
         {
             try
             {
-                var entries = _leagueApiService.GetRankedDataAsync(id);
+                var entries = await _leagueApiService.GetRankedDataAsync(id);
 
                 return Ok(entries);
             }
