@@ -171,13 +171,14 @@ const Overview = (props) => {
     <div className="overview-wrapper">
       {teams ? (
         <table className="overview-table">
-          <thead></thead>
-          <tbody>
+          <thead>
             <tr>
               <th colSpan="3">Blue team</th>
               <th colSpan="1">Ranked solo</th>
             </tr>
-            {teams.blueTeam.map((player, key) => (
+          </thead>
+          {teams.blueTeam.map((player, key) => (
+            <tbody>
               <tr key={key}>
                 <td className="overview-thumbnail-cell">
                   <div>
@@ -210,45 +211,50 @@ const Overview = (props) => {
                   </div>
                 </td>
               </tr>
-            ))}
+            </tbody>
+          ))}
+          <thead>
             <tr>
-              <th>Red team</th>
+              <th colSpan="3">Red team</th>
+              <th colSpan="1">Ranked solo</th>
             </tr>
-            {teams.redTeam.map((player, key) => (
+          </thead>
+          {teams.redTeam.map((player, key) => (
+            <tbody>
               <tr key={key}>
-							<td className="overview-thumbnail-cell">
-								<div>
-									<img
-										className="overview-thumbnail"
-										alt="champImage"
-										title={player.champion.url.full}
-										src={`https://ddragon.leagueoflegends.com/cdn/${patch}/img/champion/${player.champion.url.full}`}
-									/>
-								</div>
-							</td>
-							<td className="overview-summonerSpells-thumbnail">
-								<div>
-									<img
-										alt="Summonerspell 1"
-										title={player.summonerSpells.spell1.name}
-										src={`https://ddragon.leagueoflegends.com/cdn/${patch}/img/spell/${player.summonerSpells.spell1.id}.png`}
-									/>
-									<img
-										alt="summonerspell 2"
-										title={player.summonerSpells.spell2.name}
-										src={`https://ddragon.leagueoflegends.com/cdn/${patch}/img/spell/${player.summonerSpells.spell2.id}.png`}
-									/>
-								</div>
-							</td>
-							<td>{player.identity.summonerName}</td>
-							<td>
-								<div>
-									{player.ranked.solo.tier + " " + player.ranked.solo.rank}
-								</div>
-							</td>
-						</tr>
-            ))}
-          </tbody>
+                <td className="overview-thumbnail-cell">
+                  <div>
+                    <img
+                      className="overview-thumbnail"
+                      alt="champImage"
+                      title={player.champion.url.full}
+                      src={`https://ddragon.leagueoflegends.com/cdn/${patch}/img/champion/${player.champion.url.full}`}
+                    />
+                  </div>
+                </td>
+                <td className="overview-summonerSpells-thumbnail">
+                  <div>
+                    <img
+                      alt="Summonerspell 1"
+                      title={player.summonerSpells.spell1.name}
+                      src={`https://ddragon.leagueoflegends.com/cdn/${patch}/img/spell/${player.summonerSpells.spell1.id}.png`}
+                    />
+                    <img
+                      alt="summonerspell 2"
+                      title={player.summonerSpells.spell2.name}
+                      src={`https://ddragon.leagueoflegends.com/cdn/${patch}/img/spell/${player.summonerSpells.spell2.id}.png`}
+                    />
+                  </div>
+                </td>
+                <td>{player.identity.summonerName}</td>
+                <td>
+                  <div>
+                    {player.ranked.solo.tier + " " + player.ranked.solo.rank}
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          ))}
         </table>
       ) : (
         <Loader className={"loader-matchHistory"} />
