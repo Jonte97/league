@@ -1,377 +1,379 @@
-.history-thumbnail{
-    border-radius: 50%;
-    border: 2px solid gold;
-    margin-right: 1em;
-    max-height: 124px;
+.history-thumbnail {
+  border-radius: 50%;
+  border: 2px solid gold;
+  margin-right: 1em;
+  max-height: 124px;
 }
-.history-item{
-    padding: 1em;
+.history-item {
+  padding: 1em;
 }
-.inline-flex{
-    display: inline-flex;
+.inline-flex {
+  display: inline-flex;
 }
-.display-flex{
-    display: flex;
+.display-flex {
+  display: flex;
 }
-.flex{
-    display: -webkit-inline-box;
+.flex {
+  display: -webkit-inline-box;
 }
 /**HISTORY ITEM LIST*/
-.history-emptyitem{
-    height: 32px;
-    width: 32px;
+.history-emptyitem {
+  height: 32px;
+  width: 32px;
 }
-.to-center{
-    display: flex;
-    margin: auto;
+.to-center {
+  display: flex;
+  margin: auto;
 }
-.history-item-item, .history-emptyitem{
-    margin: 0.25em;
-    border-radius: 5px;
+.history-item-item,
+.history-emptyitem {
+  margin: 0.25em;
+  border-radius: 5px;
 }
-.history-item-items-row1{
-    display: flex;
+.history-item-items-row1 {
+  display: flex;
 }
-.history-item-items-row2{
-    display: flex;
+.history-item-items-row2 {
+  display: flex;
 }
-.history-item-items-trinket img{
-    border-radius: 50% !important;
+.history-item-items-trinket img {
+  border-radius: 50% !important;
 }
-.history-item-items-trinket{
-    margin-top: 0.5em;
+.history-item-items-trinket {
+  margin-top: 0.5em;
 }
-.history-item-item img{
-    height: 32px;
-    border: 1px solid#ada3c3;
-    border-radius: 5px;
-
+.history-item-item img {
+  height: 32px;
+  border: 1px solid#ada3c3;
+  border-radius: 5px;
 }
-.history-emptyitem{
-    border: 1px solid  #ada3c3;
-    height: 32px;
+.history-emptyitem {
+  border: 1px solid #ada3c3;
+  height: 32px;
 }
-.kda{
-    padding-left: 32px;
+.kda {
+  padding-left: 32px;
 }
-.history-keystone{
-    height: 64px;
+.history-keystone {
+  height: 64px;
 }
-.history-secondary-rune{
-    height: 24px;
+.history-secondary-rune {
+  height: 24px;
 }
-.history-kda h4{
-    margin: 0;
+.history-kda h4 {
+  margin: 0;
 }
 .history-kda {
-    padding: 0 2em 0 2em;
+  padding: 0 2em 0 2em;
 }
-.text-center{
-    text-align: center;
+.text-center {
+  text-align: center;
 }
-.history-player-lists{
-    display: flex;
-    margin-left: 2em;
+.history-player-lists {
+  display: flex;
+  margin-left: 2em;
 }
-.history-list-thumbnail{
-    height: 24px;
+.history-list-thumbnail {
+  height: 24px;
 }
-.history-playerlist{
-    font-size: 12px;
+.history-playerlist {
+  font-size: 12px;
 }
-.history-playerlist li{
-    margin-bottom: 0.2em;
-    width: 140px;
+.history-playerlist li {
+  margin-bottom: 0.2em;
+  width: 140px;
 }
-.history-item-list{
-    padding: 0 2em 0 2em;
+.history-item-list {
+  padding: 0 2em 0 2em;
 }
-.history-player-lists{
-    position: relative;
-    float: right;
-    display: inline-flex;
-
+.history-player-lists {
+  position: relative;
+  float: right;
+  display: inline-flex;
 }
-.team-title-wrapper{
-    padding-bottom: 0.5em;
+.team-title-wrapper {
+  padding-bottom: 0.5em;
 }
-.team-title-label{
-    padding: 3px;
-    border-radius: 20px;
-    width: 50%;
-    margin: auto
-
-}    
-.mb1{
-    margin-bottom: 1em;
+.team-title-label {
+  padding: 3px;
+  border-radius: 20px;
+  width: 50%;
+  margin: auto;
 }
-.history-content-wrapper{
-    padding-top: 1em;
+.mb1 {
+  margin-bottom: 1em;
 }
-.history-summonerspell{
-    height: 48px;
+.history-content-wrapper {
+  padding-top: 1em;
 }
-.first{
-    margin-bottom: 1em;
-    margin-top: 0.5em;
+.history-summonerspell {
+  height: 48px;
 }
-.kda-img{
-    padding-top: 0.5em
+.first {
+  margin-bottom: 1em;
+  margin-top: 0.5em;
 }
-.cs-img{
-    padding-top: 0.5em
+.kda-img {
+  padding-top: 0.5em;
 }
-.matchitem-navbar li{
-    display: inline;
-    padding: 1em 5em 1em 5em;
-    
-    
+.cs-img {
+  padding-top: 0.5em;
 }
-.matchitem-navbar-left{
-    border-radius: 25px 0px 0px 25px;
-    border-bottom: 4px solid;
+.matchitem-navbar li {
+  display: inline;
+  padding: 1em 5em 1em 5em;
 }
-.matchitem-navbar-right{
-    border-radius: 0px 25px 25px 0px;
-    border-bottom: 4px solid;
+.matchitem-navbar-left {
+  border-radius: 25px 0px 0px 25px;
+  border-bottom: 4px solid;
 }
-.matchitem-navbar-middle{
-    border-bottom: 4px solid;
+.matchitem-navbar-right {
+  border-radius: 0px 25px 25px 0px;
+  border-bottom: 4px solid;
 }
-.matchitem-navbar li:hover{
-    background-color: #1a1e2b;
-    cursor: pointer;
+.matchitem-navbar-middle {
+  border-bottom: 4px solid;
+}
+.matchitem-navbar li:hover {
+  background-color: #1a1e2b;
+  cursor: pointer;
 }
 .matchitem-navbar {
-    padding: 1em 0 1em 0;
-    width: 60%;
-    margin: 0 auto;
-    font-size: 1.2em;
+  padding: 1em 0 1em 0;
+  width: 60%;
+  margin: 0 auto;
+  font-size: 1.2em;
 }
-.matchitem-navbar a{
-    color: #ffffff;
-    text-decoration: none;
+.matchitem-navbar a {
+  color: #ffffff;
+  text-decoration: none;
 }
-.matchitem-navbar a:hover{
-    cursor: pointer;
+.matchitem-navbar a:hover {
+  cursor: pointer;
 }
-.history-item-build-thumbnail{
-    height: 24px;
+.history-item-build-thumbnail {
+  height: 24px;
 }
-.history-skillorder-table{
-    width: 50%;
+.history-skillorder-table {
+  width: 50%;
 }
-.history-item-build-wrapper{
-    border-bottom: 2px solid #504f4f;
-    padding: 1em 4em 1em 4em;
+.history-item-build-wrapper {
+  border-bottom: 2px solid #504f4f;
+  padding: 1em 4em 1em 4em;
 }
-.rune-skillorder{
-    padding: 1em 4em 1em 4em;
+.rune-skillorder {
+  padding: 1em 4em 1em 4em;
 }
-.history-runesetup{
-    width: 50%;
+.history-runesetup {
+  width: 50%;
 }
-.history-item-build-holder{
-    display: inline-flex;
-    margin-right: 2em;
+.history-item-build-holder {
+  display: inline-flex;
+  margin-right: 2em;
 }
-.history-item-runesetup{
-    height: 64px;
+.history-item-runesetup {
+  height: 64px;
 }
-.history-build{
-    /* padding: 3em; */
+.history-build {
+  /* padding: 3em; */
 }
-.td-noborder{
-    border: none !important;
+.td-noborder {
+  border: none !important;
 }
-.history-skillorder td, th{
-    border: 1px solid #2b2a2a;
-    width: 25px !important;
-    text-align: center;
+table.history-skillorder td,
+table.history-skillorder th {
+  border: 1px solid #2b2a2a;
+  width: 25px !important;
+  text-align: center;
 }
-.history-skillorder{
-    margin: auto;
-    margin-top: 4em;
+.history-skillorder {
+  margin: auto;
+  margin-top: 4em;
 }
-.history-item-spell{
-    height: 24px;
+.history-item-spell {
+  height: 24px;
 }
-.history-item-spell-wrapper{
-
+.history-item-spell-wrapper {
 }
-.green{
-    background-color: #00688066;
+.green {
+  background-color: #00688066;
 }
-.blank{
-    background-color: #3e3d3dbf;
+.blank {
+  background-color: #3e3d3dbf;
 }
 .greyed {
-    opacity: 0.4;
-    filter: alpha(opacity=40); /* msie */
+  opacity: 0.4;
+  filter: alpha(opacity=40); /* msie */
 }
 
 /* or */
 
 .grey-wrapper {
-    border: 1px solid red;
+  border: 1px solid red;
 }
-.history-items-build-path div{
-    margin: 1px;
+.history-items-build-path div {
+  margin: 1px;
 }
-.color-wrapper{
-    border: 1px solid green;
+.color-wrapper {
+  border: 1px solid green;
 }
-.history-item-rune-img{
-    max-height: 32px;
+.history-item-rune-img {
+  max-height: 32px;
 }
-.greyscale{
-    filter: grayscale(1);
+.greyscale {
+  filter: grayscale(1);
 }
-.history-item-runesetup-holder{
-    display: flex;
+.history-item-runesetup-holder {
+  display: flex;
 }
-.history-item-runesetup-holder img{
-    margin: 0.5em;
+.history-item-runesetup-holder img {
+  margin: 0.5em;
 }
-.rune-row{
-    width: fit-content;
-    margin: 0 auto;
+.rune-row {
+  width: fit-content;
+  margin: 0 auto;
 }
-.img-center img{
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
+.img-center img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 /* *GRAPH* */
-.graph-nav li{
-    margin: 1em;
-    display: inline;    
+.graph-nav li {
+  margin: 1em;
+  display: inline;
 }
 .graph-nav {
-    margin: 0 auto;
-    width: 50%;
+  margin: 0 auto;
+  width: 50%;
 }
-.graph-nav-listitem a{
-    color: #ffffff;
-    text-decoration: none;
+.graph-nav-listitem a {
+  color: #ffffff;
+  text-decoration: none;
 }
-a:hover{
-    cursor: pointer;
+a:hover {
+  cursor: pointer;
 }
-.graph-container{
-    margin-top: 2em;
+.graph-container {
+  margin-top: 2em;
 }
-.graph-list-thumbnail{
-    height: 48px;
-    margin: 0.5em;
-
+.graph-list-thumbnail {
+  height: 48px;
+  margin: 0.5em;
 }
-.graph-navbar-items{
-    margin: 0 auto;
+.graph-navbar-items {
+  margin: 0 auto;
 }
-.graph-participantlist-red li{
-    display: inline;
-    float: right;
+.graph-participantlist-red li {
+  display: inline;
+  float: right;
 }
-.graph-participantlist-red{
-    padding-right: 3em;
+.graph-participantlist-red {
+  padding-right: 3em;
 }
-.graph-participantlist-blue li{
-    display: inline;
-    float: left;
+.graph-participantlist-blue li {
+  display: inline;
+  float: left;
 }
 
 /** MATCHHISTORY ITEM */
-.match-history-item{
-    border-radius: 20px;
+.match-history-item {
+  border-radius: 20px;
 }
-.match-history-top{
-    padding: 0.25em;
-    border-bottom: 1px solid #504f4f;
+.match-history-top {
+  padding: 0.25em;
+  border-bottom: 1px solid #504f4f;
 }
-.match-history-item-wrapper{
-    padding: 0.5em 2em 2em 2em;
+.match-history-item-wrapper {
+  padding: 0.5em 2em 2em 2em;
 }
-.match-hisrotry-top-gamemode{
-    padding-left: 1em;
+.match-hisrotry-top-gamemode {
+  padding-left: 1em;
 }
-div[class*=box] {
-    height: 33.33%;
-    width: 100%; 
-    display: flex;
-    justify-content: center;
-    align-items: center;
+div[class*="box"] {
+  height: 33.33%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .box-1 {
-    
-    width: 250px;
-    }
+  width: 250px;
+}
 
 .btn {
-    line-height: 30px;
-    height: 40px;
-    text-align: center;
-    width: 100%;
-    cursor: pointer;
+  line-height: 30px;
+  height: 40px;
+  text-align: center;
+  width: 100%;
+  cursor: pointer;
 }
 .btn-one {
-    color: #FFF;
-    transition: all 0.3s;
-    position: relative;
+  color: #fff;
+  transition: all 0.3s;
+  position: relative;
 }
 .btn-one span {
-    transition: all 0.3s;
+  transition: all 0.3s;
 }
 .btn-one::before {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 1;
-    opacity: 0;
-    transition: all 0.3s;
-    border-top-width: 1px;
-    border-bottom-width: 1px;
-    border-top-style: solid;
-    border-bottom-style: solid;
-    border-top-color: rgba(255,255,255,0.5);
-    border-bottom-color: rgba(255,255,255,0.5);
-    transform: scale(0.1, 1);
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  opacity: 0;
+  transition: all 0.3s;
+  border-top-width: 1px;
+  border-bottom-width: 1px;
+  border-top-style: solid;
+  border-bottom-style: solid;
+  border-top-color: rgba(255, 255, 255, 0.5);
+  border-bottom-color: rgba(255, 255, 255, 0.5);
+  transform: scale(0.1, 1);
 }
 .btn-one:hover span {
-    letter-spacing: 2px;
+  letter-spacing: 2px;
 }
 .btn-one:hover::before {
-    opacity: 1; 
-    transform: scale(1, 1); 
+  opacity: 1;
+  transform: scale(1, 1);
 }
 .btn-one::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 1;
-    transition: all 0.3s;
-    background-color: rgba(255,255,255,0.1);
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  transition: all 0.3s;
+  background-color: rgba(255, 255, 255, 0.1);
 }
 .btn-one:hover::after {
-    opacity: 0; 
-    transform: scale(0.1, 1);
+  opacity: 0;
+  transform: scale(0.1, 1);
 }
-.more-stats-wrapper{
-    border-top: 2px solid grey;
+.more-stats-wrapper {
+  border-top: 2px solid grey;
 }
-.line-chart{
-    padding: 0 2em 2em 2em;
+.line-chart {
+  padding: 0 2em 2em 2em;
 }
-.loader-matchHistory{
-    width: 3%;
-    margin: 0 auto;
-    margin-top: 7em;
+.loader-matchHistory {
+  width: 3%;
+  margin: 0 auto;
+  margin-top: 7em;
+}
+/******OVERVIEW-PAGE*****/
+.overview-wrapper{
+	padding: 2em 2em 0 2em;
+}
+.overview-table{
+	width: 50%;
+	margin: auto;
 }

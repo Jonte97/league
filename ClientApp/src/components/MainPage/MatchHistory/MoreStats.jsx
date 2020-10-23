@@ -61,6 +61,7 @@ const MoreStats = (props) => {
                 {
                     activePage === "overview" ? (
                         <Overview 
+                            champList={props.championList}
                             participantList={props.participantList}
                         />
                     )
