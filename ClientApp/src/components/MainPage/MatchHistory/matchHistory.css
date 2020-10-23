@@ -377,3 +377,16 @@ div[class*="box"] {
 	width: 50%;
 	margin: auto;
 }
+td.overview-thumbnail-cell img{
+	height: 32px;
+}
+table.overview-table tr {
+	height: 48px;
+}
+.overview-thumbnail-cell{
+	width: 32px;
+}
+td.overview-summonerSpells-thumbnail img{
+	height: 16px;
+	display: grid;
+}

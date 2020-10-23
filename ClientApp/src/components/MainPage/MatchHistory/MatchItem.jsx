@@ -187,6 +187,8 @@ const MatchItem = (props) => {
                             stats={summonerGameInfo.stats}
                             owner={summonerGameInfo.participantId}
                             champion={props.match.champion}
+                            summonerSpells={props.summonerSpells.data}
+                            identities={matchInfo.participantIdentities}
                         /> : null
                     }
                 </div>

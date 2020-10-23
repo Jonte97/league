@@ -43,6 +43,21 @@ namespace Name.Controllers
             return json;
         }
 
+        [HttpPost("[action]")]
+        public async Task<IActionResult> GetSummonerLeagueEntries([FromBody] string id)
+        {
+            try
+            {
+                var entries = _leagueApiService.GetRankedDataAsync(id);
+
+                return Ok(entries);
+            }
+            catch (System.Exception)
+            {
+                return StatusCode(500);
+            }
+        }
+
         [HttpGet("[action]")]
         public async Task<string> GetSummonerInitialData()
         {

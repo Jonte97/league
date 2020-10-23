@@ -63,6 +63,8 @@ const MoreStats = (props) => {
                         <Overview 
                             champList={props.championList}
                             participantList={props.participantList}
+                            summonerSpells={props.summonerSpells}
+                            identities={props.identities}
                         />
                     )
                         : null
