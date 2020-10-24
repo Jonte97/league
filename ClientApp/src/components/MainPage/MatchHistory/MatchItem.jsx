@@ -189,6 +189,7 @@ const MatchItem = (props) => {
                             champion={props.match.champion}
                             summonerSpells={props.summonerSpells.data}
                             identities={matchInfo.participantIdentities}
+                            matchDuration={matchInfo.gameDuration}
                         /> : null
                     }
                 </div>

@@ -381,7 +381,7 @@ td.overview-thumbnail-cell img{
 	height: 32px;
 }
 table.overview-table tr {
-	height: 48px;
+	height: 40px;
 }
 .overview-thumbnail-cell{
 	width: 32px;
@@ -389,4 +389,11 @@ table.overview-table tr {
 td.overview-summonerSpells-thumbnail img{
 	height: 16px;
 	display: grid;
+}
+.overview-emblem{
+  height: 32px;
+}
+.overview-kda{
+  font-size: 12px;
+  
 }

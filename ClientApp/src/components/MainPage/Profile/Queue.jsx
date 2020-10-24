@@ -8,6 +8,7 @@ import Emblem_Diamond from '../../../img/icons/Emblem_Diamond.png';
 import Emblem_Master from '../../../img/icons/Emblem_Master.png';
 import Emblem_Grandmaster from '../../../img/icons/Emblem_Grandmaster.png';
 import Emblem_Challenger from '../../../img/icons/Emblem_Challenger.png';
+import Emblem_Unranked from "../../../img/icons/Emblem_Unranked.png";
 
 const Queue = (props) => {
 

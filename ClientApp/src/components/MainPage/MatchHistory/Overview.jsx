@@ -19,6 +19,8 @@ import Emblem_Master from "../../../img/icons/Emblem_Master.png";
 import Emblem_Grandmaster from "../../../img/icons/Emblem_Grandmaster.png";
 import Emblem_Challenger from "../../../img/icons/Emblem_Challenger.png";
 
+import { getEmblem } from "../../../functions/RankedEmblemHelper";
+
 const Overview = (props) => {
   const [players, setPlayers] = useState(null);
   const champList = championDictionary();
@@ -103,7 +105,6 @@ const Overview = (props) => {
         arr.push(missingPlayer);
       });
     };
-    //TODO should be in a state with useeffect
     const fillTeams = async (team) => {
       team.forEach((player) => {
         //* Gets champion data
@@ -130,21 +131,35 @@ const Overview = (props) => {
 
         //*Gets player ranks
         player.ranked = {
-          solo: { rank: "", tier: "" },
+          solo: { rank: "", tier: "", img: "" },
           flex: { rank: "", tier: "" },
         };
+
+        //*Kda and cs
+        player.csScore =
+          player.stats.totalMinionsKilled + player.stats.neutralMinionsKilled;
+        player.csPerMin = player.csScore / (props.matchDuration / 60);
+        player.kda =
+          (player.stats.kills + player.stats.assists) / player.stats.deaths;
       });
-      //TODO Get summonername
+
+      //* Gets ranks
       for (let i = 0; i < team.length; i++) {
-        //TODO Get ranks
         const playerIdentity = props.identities.find((obj) => {
           return obj.participantId === team[i].participantId;
         });
         team[i].identity = playerIdentity.player;
         const entry = await getLeagueEntries(team[i].identity.summonerId);
         const solo = entry.find((obj) => obj.queueType === "RANKED_SOLO_5x5");
-        team[i].ranked.solo.tier = solo.tier;
-        team[i].ranked.solo.rank = solo.rank;
+        if (solo != undefined) {
+          team[i].ranked.solo.img = getEmblem(solo.tier);
+          team[i].ranked.solo.rank = solo.rank;
+          team[i].ranked.solo.tier = solo.tier;
+        } else {
+          team[i].ranked.solo.img = getEmblem("unranked");
+          team[i].ranked.solo.rank = "";
+          team[i].ranked.solo.tier = "Unranked";
+        }
 
         // console.log(team[i]);
         console.log(entry);
@@ -174,7 +189,24 @@ const Overview = (props) => {
           <thead>
             <tr>
               <th colSpan="3">Blue team</th>
-              <th colSpan="1">Ranked solo</th>
+              <th colSpan="1">Solo tier</th>
+              <th colSpan="1">
+                <img
+                  alt="kda"
+                  className="kda-img"
+                  title="kda"
+                  src="https://ddragon.leagueoflegends.com/cdn/5.5.1/img/ui/score.png"
+                />
+              </th>
+              <th colSpan="1">
+                <img
+                  alt="cs"
+                  className="cs-img"
+                  title="cs"
+                  src="https://ddragon.leagueoflegends.com/cdn/5.5.1/img/ui/minion.png"
+                />
+              </th>
+              <th colSpan="1">Vision</th>
             </tr>
           </thead>
           {teams.blueTeam.map((player, key) => (
@@ -207,16 +239,38 @@ const Overview = (props) => {
                 <td>{player.identity.summonerName}</td>
                 <td>
                   <div>
-                    {player.ranked.solo.tier + " " + player.ranked.solo.rank}
+                    {/* //TODO see if can change these emblems to more readable when small size  */}
+                    <img
+                      className="overview-emblem"
+                      src={player.ranked.solo.img}
+                      alt="ranked-emblem"
+                      title={
+                        player.ranked.solo.tier + " " + player.ranked.solo.rank
+                      }
+                    />
                   </div>
                 </td>
+                <td>
+                  <div className="overview-kda">{`${player.kda.toFixed(
+                    2
+                  )} Kda`}</div>
+                  <div>
+                    {`${player.stats.kills} / ${player.stats.deaths} / ${player.stats.assists}`}
+                  </div>
+                </td>
+                <td>
+                  {player.stats.neutralMinionsKilled +
+                    player.stats.totalMinionsKilled}
+                  {" (" + player.csPerMin.toFixed(1) + ")"}
+                </td>
+                <td>{player.stats.visionScore}</td>
               </tr>
             </tbody>
           ))}
           <thead>
             <tr>
               <th colSpan="3">Red team</th>
-              <th colSpan="1">Ranked solo</th>
+              <th colSpan="1">Solo tier</th>
             </tr>
           </thead>
           {teams.redTeam.map((player, key) => (
@@ -249,9 +303,31 @@ const Overview = (props) => {
                 <td>{player.identity.summonerName}</td>
                 <td>
                   <div>
-                    {player.ranked.solo.tier + " " + player.ranked.solo.rank}
+                    {/* //TODO see if can change these emblems to more readable when small size  */}
+                    <img
+                      className="overview-emblem"
+                      src={player.ranked.solo.img}
+                      alt="ranked-emblem"
+                      title={
+                        player.ranked.solo.tier + " " + player.ranked.solo.rank
+                      }
+                    />
                   </div>
                 </td>
+                <td>
+                  <div className="overview-kda">{`${player.kda.toFixed(
+                    2
+                  )} Kda`}</div>
+                  <div>
+                    {`${player.stats.kills} / ${player.stats.deaths} / ${player.stats.assists}`}
+                  </div>
+                </td>
+                <td>
+                  {player.stats.neutralMinionsKilled +
+                    player.stats.totalMinionsKilled}
+                  {"(" + player.csPerMin.toFixed(1) + ")"}
+                </td>
+                <td>{player.stats.visionScore}</td>
               </tr>
             </tbody>
           ))}
