@@ -1,23 +1,22 @@
 import React from "react";
 
 const Damage = (props) => {
-  const { bgcolor, completed } = props;
+  const { bgcolor } = props;
 
-	const testData = { bgcolor: "#6a1b9a", completed: 60 };
-
+  let completed = (props.highest - props.dmg) / props.highest * 100;
+  completed = 100 - completed.toFixed(0);
+  console.log(completed)
   const containerStyles = {
     height: 20,
     width: "100%",
     backgroundColor: "#e0e0de",
-    borderRadius: 50,
-    margin: 50,
+    marginLeft: 50 
   };
 
   const fillerStyles = {
     height: "100%",
     width: `${completed}%`,
     backgroundColor: bgcolor,
-    borderRadius: "inherit",
     textAlign: "right",
   };
 
@@ -30,7 +29,7 @@ const Damage = (props) => {
   return (
     <div style={containerStyles}>
       <div style={fillerStyles}>
-        <span style={labelStyles}>{`${testData.completed}%`}</span>
+        <span style={labelStyles}>{`${props.dmg}`}</span>
       </div>
     </div>
   );

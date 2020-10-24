@@ -9,7 +9,7 @@ import { getSummonerSpell } from "../../../functions/summonerSpellHelper";
 import { patch } from "../../../TestFiles/Configuration";
 import Loader from "../loader";
 import OverviewItems from "./OverviewItems";
-import Damage from './Damage';
+import Damage from "./Damage";
 import Emblem_Iron from "../../../img/icons/Emblem_Iron.png";
 import Emblem_Bronze from "../../../img/icons/Emblem_Bronze.png";
 import Emblem_Silver from "../../../img/icons/Emblem_Silver.png";
@@ -25,6 +25,7 @@ import { getEmblem } from "../../../functions/RankedEmblemHelper";
 const Overview = (props) => {
   const [players, setPlayers] = useState(null);
   const champList = championDictionary();
+  const dmg = [];
   useEffect(() => {
     setPlayers(props.participantList);
   }, [props.participantList]);
@@ -35,7 +36,7 @@ const Overview = (props) => {
     const blueTeam = [];
     const missingIdsRed = [];
     const missingIdsBlue = [];
-
+    
     const getRoles = (arr, team, missing) => {
       if (players != null) {
         const top = players.find((obj) => {
@@ -142,6 +143,8 @@ const Overview = (props) => {
         player.csPerMin = player.csScore / (props.matchDuration / 60);
         player.kda =
           (player.stats.kills + player.stats.assists) / player.stats.deaths;
+
+        dmg.push(player.stats.totalDamageDealtToChampions);
       });
 
       //* Gets ranks
@@ -161,9 +164,6 @@ const Overview = (props) => {
           team[i].ranked.solo.rank = "";
           team[i].ranked.solo.tier = "Unranked";
         }
-
-        // console.log(team[i]);
-        console.log(entry);
       }
     };
     const setup = async () => {
@@ -175,14 +175,15 @@ const Overview = (props) => {
 
       await fillTeams(blueTeam);
       await fillTeams(redTeam);
-      setTeams({ blueTeam: blueTeam, redTeam: redTeam });
+      setTeams({ blueTeam: blueTeam, redTeam: redTeam, highest: Math.max(...dmg) });
     };
 
     if (players != null) {
       setup();
     }
   }, [players]);
-
+  const testData = { bgcolor: "#6a1b9a", completed: 60 };
+  
   return (
     <div className="overview-wrapper">
       {teams ? (
@@ -219,8 +220,8 @@ const Overview = (props) => {
               <th colSpan="1">Dmg</th>
             </tr>
           </thead>
+          <tbody>
           {teams.blueTeam.map((player, key) => (
-            <tbody>
               <tr key={key}>
                 <td className="overview-thumbnail-cell">
                   <div>
@@ -277,19 +278,27 @@ const Overview = (props) => {
                 <td>
                   <OverviewItems stats={player.stats} />
                 </td>
-                <td><Damage stats={player.stats} /></td>
+                <td>
+                  <Damage
+                    bgcolor={testData.bgcolor}
+                    highest={teams.highest}
+                    dmg={player.stats.totalDamageDealtToChampions}
+                    completed={testData.completed}
+                    stats={player.stats}
+                  />
+                </td>
               </tr>
-            </tbody>
           ))}
+          </tbody>
           <thead>
             <tr>
               <th colSpan="3">Red team</th>
               <th colSpan="1">Solo tier</th>
             </tr>
           </thead>
+          <tbody>
           {teams.redTeam.map((player, key) => (
-            <tbody>
-              <tr key={key}>
+                <tr key={key}>
                 <td className="overview-thumbnail-cell">
                   <div>
                     <img
@@ -339,12 +348,24 @@ const Overview = (props) => {
                 <td>
                   {player.stats.neutralMinionsKilled +
                     player.stats.totalMinionsKilled}
-                  {"(" + player.csPerMin.toFixed(1) + ")"}
+                  {" (" + player.csPerMin.toFixed(1) + ")"}
                 </td>
                 <td>{player.stats.visionScore}</td>
+                <td>
+                  <OverviewItems stats={player.stats} />
+                </td>
+                <td>
+                  <Damage
+                    bgcolor={testData.bgcolor}
+                    highest={teams.highest}
+                    dmg={player.stats.totalDamageDealtToChampions}
+                    completed={testData.completed}
+                    stats={player.stats}
+                  />
+                </td>
               </tr>
-            </tbody>
           ))}
+          </tbody>
         </table>
       ) : (
         <Loader className={"loader-matchHistory"} />

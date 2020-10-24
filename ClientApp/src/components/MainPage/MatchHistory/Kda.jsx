@@ -8,10 +8,10 @@ const Kda = (props) => {
     return (
         <div className="history-kda">
             <div>
-                <img className="kda-img" title="kda" src="https://ddragon.leagueoflegends.com/cdn/5.5.1/img/ui/score.png" />{props.stats.kills}/{props.stats.deaths}/{props.stats.assists}
+                <img alt="kda" className="kda-img" title="kda" src="https://ddragon.leagueoflegends.com/cdn/5.5.1/img/ui/score.png" />{props.stats.kills}/{props.stats.deaths}/{props.stats.assists}
             </div>
             <div>
-                <img className="cs-img" title="cs" src="https://ddragon.leagueoflegends.com/cdn/5.5.1/img/ui/minion.png" />{csScore} ({csScorePerMin.toFixed(1)})
+                <img alt="cs" className="cs-img" title="cs" src="https://ddragon.leagueoflegends.com/cdn/5.5.1/img/ui/minion.png" />{csScore} ({csScorePerMin.toFixed(1)})
             </div>
             <div className="kda cs-img">{kda.toFixed(2)} KDA</div>
         </div>
