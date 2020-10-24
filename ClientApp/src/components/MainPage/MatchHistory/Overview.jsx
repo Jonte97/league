@@ -8,6 +8,7 @@ import { getLeagueEntries } from "../../../functions/promiseHelper";
 import { getSummonerSpell } from "../../../functions/summonerSpellHelper";
 import { patch } from "../../../TestFiles/Configuration";
 import Loader from "../loader";
+import OverviewItems from "./OverviewItems";
 
 import Emblem_Iron from "../../../img/icons/Emblem_Iron.png";
 import Emblem_Bronze from "../../../img/icons/Emblem_Bronze.png";
@@ -207,6 +208,15 @@ const Overview = (props) => {
                 />
               </th>
               <th colSpan="1">Vision</th>
+
+              <th colSpan="1">
+                <img
+                  alt="items"
+                  className="items-img"
+                  title="items"
+                  src="http://ddragon.leagueoflegends.com/cdn/5.5.1/img/ui/items.png"
+                />
+              </th>
             </tr>
           </thead>
           {teams.blueTeam.map((player, key) => (
@@ -264,6 +274,9 @@ const Overview = (props) => {
                   {" (" + player.csPerMin.toFixed(1) + ")"}
                 </td>
                 <td>{player.stats.visionScore}</td>
+                <td>
+                  <OverviewItems stats={player.stats} />
+                </td>
               </tr>
             </tbody>
           ))}

@@ -374,7 +374,7 @@ div[class*="box"] {
 	padding: 2em 2em 0 2em;
 }
 .overview-table{
-	width: 50%;
+	/* width: 50%; */
 	margin: auto;
 }
 td.overview-thumbnail-cell img{
@@ -396,4 +396,20 @@ td.overview-summonerSpells-thumbnail img{
 .overview-kda{
   font-size: 12px;
   
+}
+div.overview-itembuild img {
+  height: 32px;
+  border: 1px solid#ada3c3;
+  border-radius: 5px;
+  margin: 0.25em;
+}
+.overview-itembuild{
+  display: flex;
+}
+.overview-empty-item{
+  border: 1px solid#ada3c3;
+  margin: 0.25em;
+  border-radius: 5px;
+  width: 32px;
+  height: 32px;
 }
