@@ -374,7 +374,7 @@ div[class*="box"] {
 	padding: 2em 2em 0 2em;
 }
 .overview-table{
-	/* width: 50%; */
+	width: 100%;
 	margin: auto;
 }
 td.overview-thumbnail-cell img{
@@ -382,6 +382,9 @@ td.overview-thumbnail-cell img{
 }
 table.overview-table tr {
 	height: 40px;
+}
+table.overview-table th {
+	/* text-align: center; */
 }
 .overview-thumbnail-cell{
 	width: 32px;

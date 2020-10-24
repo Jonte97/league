@@ -59,6 +59,15 @@ const OverviewItems = (props) => {
         ) : (
           <div className="overview-empty-item"></div>
         )}
+				{props.stats.item6 ? (
+          <img
+            alt="item-img"
+            className="history-item-img"
+            src={`https://ddragon.leagueoflegends.com/cdn/${patch}/img/item/${props.stats.item6}.png`}
+          />
+        ) : (
+          <div className="overview-empty-item"></div>
+        )}
       </div>
     </div>
   );

@@ -9,7 +9,7 @@ import { getSummonerSpell } from "../../../functions/summonerSpellHelper";
 import { patch } from "../../../TestFiles/Configuration";
 import Loader from "../loader";
 import OverviewItems from "./OverviewItems";
-
+import Damage from './Damage';
 import Emblem_Iron from "../../../img/icons/Emblem_Iron.png";
 import Emblem_Bronze from "../../../img/icons/Emblem_Bronze.png";
 import Emblem_Silver from "../../../img/icons/Emblem_Silver.png";
@@ -208,7 +208,6 @@ const Overview = (props) => {
                 />
               </th>
               <th colSpan="1">Vision</th>
-
               <th colSpan="1">
                 <img
                   alt="items"
@@ -217,6 +216,7 @@ const Overview = (props) => {
                   src="http://ddragon.leagueoflegends.com/cdn/5.5.1/img/ui/items.png"
                 />
               </th>
+              <th colSpan="1">Dmg</th>
             </tr>
           </thead>
           {teams.blueTeam.map((player, key) => (
@@ -277,6 +277,7 @@ const Overview = (props) => {
                 <td>
                   <OverviewItems stats={player.stats} />
                 </td>
+                <td><Damage stats={player.stats} /></td>
               </tr>
             </tbody>
           ))}
