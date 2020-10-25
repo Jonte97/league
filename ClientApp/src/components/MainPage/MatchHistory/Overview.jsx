@@ -10,6 +10,7 @@ import { patch } from "../../../TestFiles/Configuration";
 import Loader from "../loader";
 import OverviewItems from "./OverviewItems";
 import Damage from "./Damage";
+import OverviewTableRow from "./OverviewTableRow";
 import Emblem_Iron from "../../../img/icons/Emblem_Iron.png";
 import Emblem_Bronze from "../../../img/icons/Emblem_Bronze.png";
 import Emblem_Silver from "../../../img/icons/Emblem_Silver.png";
@@ -36,7 +37,7 @@ const Overview = (props) => {
     const blueTeam = [];
     const missingIdsRed = [];
     const missingIdsBlue = [];
-    
+
     const getRoles = (arr, team, missing) => {
       if (players != null) {
         const top = players.find((obj) => {
@@ -175,15 +176,18 @@ const Overview = (props) => {
 
       await fillTeams(blueTeam);
       await fillTeams(redTeam);
-      setTeams({ blueTeam: blueTeam, redTeam: redTeam, highest: Math.max(...dmg) });
+      setTeams({
+        blueTeam: blueTeam,
+        redTeam: redTeam,
+        highest: Math.max(...dmg),
+      });
     };
 
     if (players != null) {
       setup();
     }
   }, [players]);
-  const testData = { bgcolor: "#6a1b9a", completed: 60 };
-  
+
   return (
     <div className="overview-wrapper">
       {teams ? (
@@ -221,74 +225,11 @@ const Overview = (props) => {
             </tr>
           </thead>
           <tbody>
-          {teams.blueTeam.map((player, key) => (
+            {teams.blueTeam.map((player, key) => (
               <tr key={key}>
-                <td className="overview-thumbnail-cell">
-                  <div>
-                    <img
-                      className="overview-thumbnail"
-                      alt="champImage"
-                      title={player.champion.url.full}
-                      src={`https://ddragon.leagueoflegends.com/cdn/${patch}/img/champion/${player.champion.url.full}`}
-                    />
-                  </div>
-                </td>
-                <td className="overview-summonerSpells-thumbnail">
-                  <div>
-                    <img
-                      alt="Summonerspell 1"
-                      title={player.summonerSpells.spell1.name}
-                      src={`https://ddragon.leagueoflegends.com/cdn/${patch}/img/spell/${player.summonerSpells.spell1.id}.png`}
-                    />
-                    <img
-                      alt="summonerspell 2"
-                      title={player.summonerSpells.spell2.name}
-                      src={`https://ddragon.leagueoflegends.com/cdn/${patch}/img/spell/${player.summonerSpells.spell2.id}.png`}
-                    />
-                  </div>
-                </td>
-                <td>{player.identity.summonerName}</td>
-                <td>
-                  <div>
-                    {/* //TODO see if can change these emblems to more readable when small size  */}
-                    <img
-                      className="overview-emblem"
-                      src={player.ranked.solo.img}
-                      alt="ranked-emblem"
-                      title={
-                        player.ranked.solo.tier + " " + player.ranked.solo.rank
-                      }
-                    />
-                  </div>
-                </td>
-                <td>
-                  <div className="overview-kda">{`${player.kda.toFixed(
-                    2
-                  )} Kda`}</div>
-                  <div>
-                    {`${player.stats.kills} / ${player.stats.deaths} / ${player.stats.assists}`}
-                  </div>
-                </td>
-                <td>
-                  {player.stats.neutralMinionsKilled +
-                    player.stats.totalMinionsKilled}
-                  {" (" + player.csPerMin.toFixed(1) + ")"}
-                </td>
-                <td>{player.stats.visionScore}</td>
-                <td>
-                  <OverviewItems stats={player.stats} />
-                </td>
-                <td>
-                  <Damage
-                    bgcolor={testData.bgcolor}
-                    highest={teams.highest}
-                    dmg={player.stats.totalDamageDealtToChampions}
-                    completed={testData.completed}
-                    stats={player.stats}
-                  />
-                </td>
+                <OverviewTableRow teams={teams} player={player} />
               </tr>
-          ))}
+            ))}
           </tbody>
           <thead>
             <tr>
@@ -297,74 +238,11 @@ const Overview = (props) => {
             </tr>
           </thead>
           <tbody>
-          {teams.redTeam.map((player, key) => (
-                <tr key={key}>
-                <td className="overview-thumbnail-cell">
-                  <div>
-                    <img
-                      className="overview-thumbnail"
-                      alt="champImage"
-                      title={player.champion.url.full}
-                      src={`https://ddragon.leagueoflegends.com/cdn/${patch}/img/champion/${player.champion.url.full}`}
-                    />
-                  </div>
-                </td>
-                <td className="overview-summonerSpells-thumbnail">
-                  <div>
-                    <img
-                      alt="Summonerspell 1"
-                      title={player.summonerSpells.spell1.name}
-                      src={`https://ddragon.leagueoflegends.com/cdn/${patch}/img/spell/${player.summonerSpells.spell1.id}.png`}
-                    />
-                    <img
-                      alt="summonerspell 2"
-                      title={player.summonerSpells.spell2.name}
-                      src={`https://ddragon.leagueoflegends.com/cdn/${patch}/img/spell/${player.summonerSpells.spell2.id}.png`}
-                    />
-                  </div>
-                </td>
-                <td>{player.identity.summonerName}</td>
-                <td>
-                  <div>
-                    {/* //TODO see if can change these emblems to more readable when small size  */}
-                    <img
-                      className="overview-emblem"
-                      src={player.ranked.solo.img}
-                      alt="ranked-emblem"
-                      title={
-                        player.ranked.solo.tier + " " + player.ranked.solo.rank
-                      }
-                    />
-                  </div>
-                </td>
-                <td>
-                  <div className="overview-kda">{`${player.kda.toFixed(
-                    2
-                  )} Kda`}</div>
-                  <div>
-                    {`${player.stats.kills} / ${player.stats.deaths} / ${player.stats.assists}`}
-                  </div>
-                </td>
-                <td>
-                  {player.stats.neutralMinionsKilled +
-                    player.stats.totalMinionsKilled}
-                  {" (" + player.csPerMin.toFixed(1) + ")"}
-                </td>
-                <td>{player.stats.visionScore}</td>
-                <td>
-                  <OverviewItems stats={player.stats} />
-                </td>
-                <td>
-                  <Damage
-                    bgcolor={testData.bgcolor}
-                    highest={teams.highest}
-                    dmg={player.stats.totalDamageDealtToChampions}
-                    completed={testData.completed}
-                    stats={player.stats}
-                  />
-                </td>
+            {teams.redTeam.map((player, key) => (
+              <tr key={key}>
+                <OverviewTableRow teams={teams} player={player} />
               </tr>
-          ))}
+            ))}
           </tbody>
         </table>
       ) : (
