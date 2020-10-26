@@ -1,7 +1,8 @@
 import React from "react";
-import { patch } from "../../../TestFiles/Configuration";
+import { patch } from "../../../../TestFiles/Configuration";
 import Damage from "./Damage";
 import OverviewItems from "./OverviewItems";
+import OverviewRankedDisplay from "./OverviewRankedDisplay";
 
 const OverviewTableRow = (props) => {
   return (
@@ -32,32 +33,7 @@ const OverviewTableRow = (props) => {
       </td>
       <td>{props.player.identity.summonerName}</td>
       <td>
-        <div>
-          {/* //TODO see if can change these emblems to more readable when small size  */}
-          {props.rankDisplay == 420 ? (
-            <img
-              className="overview-emblem"
-              src={props.player.ranked.solo.img}
-              alt="ranked-emblem"
-              title={
-                props.player.ranked.solo.tier +
-                " " +
-                props.player.ranked.solo.rank
-              }
-            />
-          ) : (
-            <img
-              className="overview-emblem"
-              src={props.player.ranked.flex.img}
-              alt="ranked-emblem"
-              title={
-                props.player.ranked.flex.tier +
-                " " +
-                props.player.ranked.flex.rank
-              }
-            />
-          )}
-        </div>
+        <OverviewRankedDisplay rankDisplay={props.rankDisplay} player={props.player} />
       </td>
       <td>
         <div className="overview-kda">{`${props.player.kda.toFixed(

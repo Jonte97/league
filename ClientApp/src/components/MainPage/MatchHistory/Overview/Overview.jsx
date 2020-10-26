@@ -3,22 +3,14 @@ import {
   championDictionary,
   getChampionImageById,
   getChampionNameById,
-} from "../../../functions/ChampionHelper";
-import { getLeagueEntries } from "../../../functions/promiseHelper";
-import { getSummonerSpell } from "../../../functions/summonerSpellHelper";
-import Loader from "../loader";
+} from "../../../../functions/ChampionHelper";
+import { getLeagueEntries } from "../../../../functions/promiseHelper";
+import { getSummonerSpell } from "../../../../functions/summonerSpellHelper";
+import Loader from "../../loader";
 import OverviewTableRow from "./OverviewTableRow";
-import Emblem_Iron from "../../../img/icons/Emblem_Iron.png";
-import Emblem_Bronze from "../../../img/icons/Emblem_Bronze.png";
-import Emblem_Silver from "../../../img/icons/Emblem_Silver.png";
-import Emblem_Gold from "../../../img/icons/Emblem_Gold.png";
-import Emblem_Platinum from "../../../img/icons/Emblem_Platinum.png";
-import Emblem_Diamond from "../../../img/icons/Emblem_Diamond.png";
-import Emblem_Master from "../../../img/icons/Emblem_Master.png";
-import Emblem_Grandmaster from "../../../img/icons/Emblem_Grandmaster.png";
-import Emblem_Challenger from "../../../img/icons/Emblem_Challenger.png";
 
-import { getEmblem } from "../../../functions/RankedEmblemHelper";
+
+import { getEmblem } from "../../../../functions/RankedEmblemHelper";
 
 const Overview = (props) => {
   const [players, setPlayers] = useState(null);
@@ -160,6 +152,9 @@ const Overview = (props) => {
           team[i].ranked.solo.img = getEmblem(solo.tier);
           team[i].ranked.solo.rank = solo.rank;
           team[i].ranked.solo.tier = solo.tier;
+          team[i].ranked.solo.wins = solo.wins;
+          team[i].ranked.solo.losses = solo.losses;
+          team[i].ranked.solo.winrate = (solo.wins / (solo.wins + solo.losses) * 100).toFixed(0);
         } else {
           team[i].ranked.solo.img = getEmblem("unranked");
           team[i].ranked.solo.rank = "";
@@ -169,7 +164,10 @@ const Overview = (props) => {
         if (flex != undefined) {
           team[i].ranked.flex.img = getEmblem(flex.tier);
           team[i].ranked.flex.rank = flex.rank;
+          team[i].ranked.flex.wins = flex.wins;
+          team[i].ranked.flex.losses = flex.losses;
           team[i].ranked.flex.tier = flex.tier;
+          team[i].ranked.flex.winrate = (flex.wins / (flex.wins + flex.losses) * 100).toFixed(0);
         } else {
           team[i].ranked.flex.img = getEmblem("unranked");
           team[i].ranked.flex.rank = "";

@@ -1,7 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import Build from "./Build";
-import Overview from "./Overview";
+import Overview from './Overview/Overview'
 import { getTimeLineEvents } from "../../../functions/promiseHelper";
 import GraphMain from "./Graphs/GraphMain";
 
@@ -29,9 +29,9 @@ const MoreStats = (props) => {
   const active = {
     borderBottom: "4px solid #7d2267",
   };
-
+  const bgStyle = { backgroundColor: "#222451"}
   return (
-    <div>
+    <div style={bgStyle}>
       <div className="slide-down more-stats-wrapper">
         {activePage != "none" ? (
           <div>

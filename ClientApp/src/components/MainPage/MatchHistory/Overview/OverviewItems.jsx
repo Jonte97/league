@@ -1,5 +1,5 @@
 import React from "react";
-import { patch } from "../../../TestFiles/Configuration";
+import { patch } from "../../../../TestFiles/Configuration";
 
 const OverviewItems = (props) => {
   return (
