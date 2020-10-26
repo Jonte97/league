@@ -233,7 +233,7 @@ const MatchItem = (props) => {
             summonerSpells={props.summonerSpells.data}
             identities={matchInfo.participantIdentities}
 						matchDuration={matchInfo.gameDuration}
-						queue={props.match.queue}
+						queue={props.match.queue} 
           />
         ) : null}
       </div>

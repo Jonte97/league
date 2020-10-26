@@ -25,9 +25,9 @@ const OverviewRankedDisplay = (props) => {
               props.player.ranked.solo.rank
             }
           />
-          {props.player.ranked.solo.tier != "Unranked" ? (
+          {/* {props.player.ranked.solo.tier != "Unranked" ? (
             <span>{`${props.player.ranked.solo.wins}/${props.player.ranked.solo.losses} (${props.player.ranked.solo.winrate}%)`}</span>
-          ) : null}
+          ) : null} */}
         </React.Fragment>
       ) : (
         <React.Fragment>
@@ -41,9 +41,9 @@ const OverviewRankedDisplay = (props) => {
               props.player.ranked.flex.rank
             }
           />
-          {props.player.ranked.flex.tier != "Unranked" ? (
+          {/* {props.player.ranked.flex.tier != "Unranked" ? (
             <span>{`${props.player.ranked.flex.wins}/${props.player.ranked.flex.losses} (${props.player.ranked.flex.winrate}%)`}</span>
-          ) : null}
+          ) : null} */}
         </React.Fragment>
       )}
     </div>
