@@ -10,7 +10,7 @@ import Emblem_Grandmaster from "../../../../img/icons/Emblem_Grandmaster.png";
 import Emblem_Challenger from "../../../../img/icons/Emblem_Challenger.png";
 
 const OverviewRankedDisplay = (props) => {
-  return (
+	return (
     <div>
       {/* //TODO see if can change these emblems to more readable when small size  */}
       {props.rankDisplay == 420 ? (
