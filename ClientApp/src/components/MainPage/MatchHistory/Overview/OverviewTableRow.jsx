@@ -3,8 +3,20 @@ import { patch } from "../../../../TestFiles/Configuration";
 import Damage from "./Damage";
 import OverviewItems from "./OverviewItems";
 import OverviewRankedDisplay from "./OverviewRankedDisplay";
+import VisionOverview from "./VisionOverview";
 
 const OverviewTableRow = (props) => {
+  const kdaStyle = (kda) => {
+    const style = {
+      color: "",
+    };
+    if (kda > 3) style.color = "#3fe06a";
+    else if (kda < 1) style.color = "#e0653f";
+    else style.color = "#b3b1b1";
+
+    return style;
+  };
+
   return (
     <React.Fragment>
       <td className="overview-thumbnail-cell">
@@ -33,14 +45,21 @@ const OverviewTableRow = (props) => {
       </td>
       <td>{props.player.identity.summonerName}</td>
       <td>
-        <OverviewRankedDisplay rankDisplay={props.rankDisplay} player={props.player} />
+        <OverviewRankedDisplay
+          rankDisplay={props.rankDisplay}
+          player={props.player}
+        />
       </td>
       <td>
-        <div className="overview-kda">{`${props.player.kda.toFixed(
-          2
-        )} Kda`}</div>
+        <div className="overview-kda">
+          <span style={kdaStyle(props.player.kda)}>{`${props.player.kda.toFixed(
+            2
+          )} Kda`}</span>
+        </div>
         <div>
-          {`${props.player.stats.kills} / ${props.player.stats.deaths} / ${props.player.stats.assists}`}
+          <span>
+            {`${props.player.stats.kills} / ${props.player.stats.deaths} / ${props.player.stats.assists}`}
+          </span>
         </div>
       </td>
       <td>
@@ -48,10 +67,10 @@ const OverviewTableRow = (props) => {
           props.player.stats.totalMinionsKilled}
         {" (" + props.player.csPerMin.toFixed(1) + ")"}
       </td>
-      <td>{props.player.stats.visionScore}</td>
       <td>
         <OverviewItems stats={props.player.stats} />
       </td>
+      <VisionOverview stats={props.player.stats} visionScore={props.player.stats.visionScore} />
       <td>
         <Damage
           teamDmg={props.teamDmg}

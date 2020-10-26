@@ -9,8 +9,8 @@ import { getSummonerSpell } from "../../../../functions/summonerSpellHelper";
 import Loader from "../../loader";
 import OverviewTableRow from "./OverviewTableRow";
 
-
 import { getEmblem } from "../../../../functions/RankedEmblemHelper";
+import OverviewTableHeaders from "./OverviewTableHeaders";
 
 const Overview = (props) => {
   const [players, setPlayers] = useState(null);
@@ -154,7 +154,10 @@ const Overview = (props) => {
           team[i].ranked.solo.tier = solo.tier;
           team[i].ranked.solo.wins = solo.wins;
           team[i].ranked.solo.losses = solo.losses;
-          team[i].ranked.solo.winrate = (solo.wins / (solo.wins + solo.losses) * 100).toFixed(0);
+          team[i].ranked.solo.winrate = (
+            (solo.wins / (solo.wins + solo.losses)) *
+            100
+          ).toFixed(0);
         } else {
           team[i].ranked.solo.img = getEmblem("unranked");
           team[i].ranked.solo.rank = "";
@@ -167,7 +170,10 @@ const Overview = (props) => {
           team[i].ranked.flex.wins = flex.wins;
           team[i].ranked.flex.losses = flex.losses;
           team[i].ranked.flex.tier = flex.tier;
-          team[i].ranked.flex.winrate = (flex.wins / (flex.wins + flex.losses) * 100).toFixed(0);
+          team[i].ranked.flex.winrate = (
+            (flex.wins / (flex.wins + flex.losses)) *
+            100
+          ).toFixed(0);
         } else {
           team[i].ranked.flex.img = getEmblem("unranked");
           team[i].ranked.flex.rank = "";
@@ -197,6 +203,9 @@ const Overview = (props) => {
       setup();
     }
   }, [players]);
+  const setRank = (queue) => {
+    queue == 440 ? setDisplayRank(420) : setDisplayRank(440);
+  };
   let initial = props.queue === 440 ? props.queue : 420;
   const [displayRank, setDisplayRank] = useState(initial);
   return (
@@ -204,46 +213,7 @@ const Overview = (props) => {
       {teams ? (
         <table className="overview-table">
           <thead>
-            <tr>
-              <th colSpan="3">Blue team</th>
-              <th colSpan="1">
-                <a
-                  onClick={() => {
-                    displayRank == 440
-                      ? setDisplayRank(420)
-                      : setDisplayRank(440);
-                  }}
-                >
-                  {displayRank == 420 ? "Solo tier" : "Flex tier"}
-                </a>
-              </th>
-              <th colSpan="1">
-                <img
-                  alt="kda"
-                  className="kda-img"
-                  title="kda"
-                  src="https://ddragon.leagueoflegends.com/cdn/5.5.1/img/ui/score.png"
-                />
-              </th>
-              <th colSpan="1">
-                <img
-                  alt="cs"
-                  className="cs-img"
-                  title="cs"
-                  src="https://ddragon.leagueoflegends.com/cdn/5.5.1/img/ui/minion.png"
-                />
-              </th>
-              <th colSpan="1">Vision</th>
-              <th colSpan="1">
-                <img
-                  alt="items"
-                  className="items-img"
-                  title="items"
-                  src="http://ddragon.leagueoflegends.com/cdn/5.5.1/img/ui/items.png"
-                />
-              </th>
-              <th colSpan="1">Dmg</th>
-            </tr>
+            <OverviewTableHeaders queue={displayRank} setRank={setRank} />
           </thead>
           <tbody>
             {teams.blueTeam.map((player, key) => (
@@ -258,46 +228,7 @@ const Overview = (props) => {
             ))}
           </tbody>
           <thead>
-            <tr>
-              <th colSpan="3">Blue team</th>
-              <th colSpan="1">
-                <a
-                  onClick={() => {
-                    displayRank == 440
-                      ? setDisplayRank(420)
-                      : setDisplayRank(440);
-                  }}
-                >
-                  {displayRank == 420 ? "Solo tier" : "Flex tier"}
-                </a>
-              </th>
-              <th colSpan="1">
-                <img
-                  alt="kda"
-                  className="kda-img"
-                  title="kda"
-                  src="https://ddragon.leagueoflegends.com/cdn/5.5.1/img/ui/score.png"
-                />
-              </th>
-              <th colSpan="1">
-                <img
-                  alt="cs"
-                  className="cs-img"
-                  title="cs"
-                  src="https://ddragon.leagueoflegends.com/cdn/5.5.1/img/ui/minion.png"
-                />
-              </th>
-              <th colSpan="1">Vision</th>
-              <th colSpan="1">
-                <img
-                  alt="items"
-                  className="items-img"
-                  title="items"
-                  src="http://ddragon.leagueoflegends.com/cdn/5.5.1/img/ui/items.png"
-                />
-              </th>
-              <th colSpan="1">Dmg</th>
-            </tr>
+            <OverviewTableHeaders queue={displayRank} setRank={setRank} />
           </thead>
           <tbody>
             {teams.redTeam.map((player, key) => (
