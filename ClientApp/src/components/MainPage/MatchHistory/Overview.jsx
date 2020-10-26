@@ -6,10 +6,7 @@ import {
 } from "../../../functions/ChampionHelper";
 import { getLeagueEntries } from "../../../functions/promiseHelper";
 import { getSummonerSpell } from "../../../functions/summonerSpellHelper";
-import { patch } from "../../../TestFiles/Configuration";
 import Loader from "../loader";
-import OverviewItems from "./OverviewItems";
-import Damage from "./Damage";
 import OverviewTableRow from "./OverviewTableRow";
 import Emblem_Iron from "../../../img/icons/Emblem_Iron.png";
 import Emblem_Bronze from "../../../img/icons/Emblem_Bronze.png";
@@ -35,6 +32,8 @@ const Overview = (props) => {
   useEffect(() => {
     const redTeam = [];
     const blueTeam = [];
+    const blueTeamDamage = [];
+    const redTeamDamage = [];
     const missingIdsRed = [];
     const missingIdsBlue = [];
 
@@ -108,7 +107,7 @@ const Overview = (props) => {
         arr.push(missingPlayer);
       });
     };
-    const fillTeams = async (team) => {
+    const fillTeams = async (team, teamDmg) => {
       team.forEach((player) => {
         //* Gets champion data
         player.champion = { name: "", url: "" };
@@ -135,10 +134,10 @@ const Overview = (props) => {
         //*Gets player ranks
         player.ranked = {
           solo: { rank: "", tier: "", img: "" },
-          flex: { rank: "", tier: "" },
+          flex: { rank: "", tier: "", img: "" },
         };
 
-        //*Kda and cs
+        //*Kda, cs and dmg numbers
         player.csScore =
           player.stats.totalMinionsKilled + player.stats.neutralMinionsKilled;
         player.csPerMin = player.csScore / (props.matchDuration / 60);
@@ -146,6 +145,7 @@ const Overview = (props) => {
           (player.stats.kills + player.stats.assists) / player.stats.deaths;
 
         dmg.push(player.stats.totalDamageDealtToChampions);
+        teamDmg.push(player.stats.totalDamageDealtToChampions);
       });
 
       //* Gets ranks
@@ -165,6 +165,16 @@ const Overview = (props) => {
           team[i].ranked.solo.rank = "";
           team[i].ranked.solo.tier = "Unranked";
         }
+        const flex = entry.find((obj) => obj.queueType === "RANKED_FLEX_SR");
+        if (flex != undefined) {
+          team[i].ranked.flex.img = getEmblem(flex.tier);
+          team[i].ranked.flex.rank = flex.rank;
+          team[i].ranked.flex.tier = flex.tier;
+        } else {
+          team[i].ranked.flex.img = getEmblem("unranked");
+          team[i].ranked.flex.rank = "";
+          team[i].ranked.flex.tier = "Unranked";
+        }
       }
     };
     const setup = async () => {
@@ -174,12 +184,14 @@ const Overview = (props) => {
       addMissingPlayers(missingIdsBlue, blueTeam);
       addMissingPlayers(missingIdsRed, redTeam);
 
-      await fillTeams(blueTeam);
-      await fillTeams(redTeam);
+      await fillTeams(blueTeam, blueTeamDamage);
+      await fillTeams(redTeam, redTeamDamage);
       setTeams({
         blueTeam: blueTeam,
         redTeam: redTeam,
         highest: Math.max(...dmg),
+        blueTeamDamage: blueTeamDamage.reduce((a, b) => a + b, 0),
+        redTeamDamage: redTeamDamage.reduce((a, b) => a + b, 0),
       });
     };
 
@@ -187,7 +199,8 @@ const Overview = (props) => {
       setup();
     }
   }, [players]);
-
+  let initial = props.queue === 440 ? props.queue : 420;
+  const [displayRank, setDisplayRank] = useState(initial);
   return (
     <div className="overview-wrapper">
       {teams ? (
@@ -195,7 +208,17 @@ const Overview = (props) => {
           <thead>
             <tr>
               <th colSpan="3">Blue team</th>
-              <th colSpan="1">Solo tier</th>
+              <th colSpan="1">
+                <a
+                  onClick={() => {
+                    displayRank == 440
+                      ? setDisplayRank(420)
+                      : setDisplayRank(440);
+                  }}
+                >
+                  {displayRank == 420 ? "Solo tier" : "Flex tier"}
+                </a>
+              </th>
               <th colSpan="1">
                 <img
                   alt="kda"
@@ -227,7 +250,12 @@ const Overview = (props) => {
           <tbody>
             {teams.blueTeam.map((player, key) => (
               <tr key={key}>
-                <OverviewTableRow teams={teams} player={player} />
+                <OverviewTableRow
+                  rankDisplay={displayRank}
+                  teamDmg={teams.blueTeamDamage}
+                  teams={teams}
+                  player={player}
+                />
               </tr>
             ))}
           </tbody>
@@ -240,7 +268,12 @@ const Overview = (props) => {
           <tbody>
             {teams.redTeam.map((player, key) => (
               <tr key={key}>
-                <OverviewTableRow teams={teams} player={player} />
+                <OverviewTableRow
+                  rankDisplay={displayRank}
+                  teamDmg={teams.redTeamDamage}
+                  teams={teams}
+                  player={player}
+                />
               </tr>
             ))}
           </tbody>

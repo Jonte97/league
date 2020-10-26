@@ -91,7 +91,8 @@ const MoreStats = (props) => {
             participantList={props.participantList}
             summonerSpells={props.summonerSpells}
 						identities={props.identities}
-						matchDuration={props.matchDuration}
+            matchDuration={props.matchDuration}
+            queue={props.queue}
           />
         ) : null}
         {activePage === "other" ? <div /> : null}

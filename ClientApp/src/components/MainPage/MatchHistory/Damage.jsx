@@ -5,10 +5,12 @@ const Damage = (props) => {
 
   let completed = ((props.highest - props.dmg) / props.highest) * 100;
   completed = 100 - completed.toFixed(0);
-  console.log(completed);
+
+  let teamDmg = (props.dmg / props.teamDmg) * 100;
+
   const containerStyles = {
     height: 10,
-    width: "100px",
+    width: "100%",
     backgroundColor: "#e0e0de",
   };
 
@@ -20,16 +22,22 @@ const Damage = (props) => {
   };
 
   const labelStyles = {
-		color: "white",
+    color: "white",
   };
 
-	const numberWithCommas = (x) => {
+  const spanStyle = {
+    float: "right",
+  };
+  const numberWithCommas = (x) => {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-}
+  };
 
   return (
     <div title="Total damage to champions">
-      <div style={labelStyles}>{`${numberWithCommas(props.dmg)}`}</div>
+      <div style={labelStyles}>
+        <span>{`${numberWithCommas(props.dmg)}`}</span>
+        <span title="Percentage of team damage to champions" style={spanStyle}>{`(${teamDmg.toFixed(0)}%)`}</span>
+      </div>
       <div style={containerStyles}>
         <div style={fillerStyles}></div>
       </div>
