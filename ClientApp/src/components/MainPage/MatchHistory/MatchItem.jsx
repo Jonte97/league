@@ -11,6 +11,7 @@ import Keystone from "./Keystone";
 import Kda from "./Kda";
 import PlayerList from "./PlayerList";
 import MoreStats from "./MoreStats";
+import MatchItemHeader from "./MatchItemHeader";
 
 const ownerWonGame = (teams, participantId, participants) => {
   let part = participants.find((obj) => {
@@ -157,11 +158,7 @@ const MatchItem = (props) => {
   return matchInfo && summonerGameInfo ? (
     <div>
       <div className="match-history-item" style={styleWinner()}>
-        <div className="match-history-top">
-          <div className="match-hisrotry-top-gamemode">
-            {matchInfo.gameMode}
-          </div>
-        </div>
+        <MatchItemHeader matchInfo={matchInfo} />
         <div className="match-history-item-wrapper">
           <div className="flex mb1 history-content-wrapper">
             <img className="history-thumbnail" src={thumbnails.ownerChampion} />

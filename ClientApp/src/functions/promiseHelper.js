@@ -130,3 +130,11 @@ export const getLeagueEntries = async (id) => {
 
   return data;
 };
+
+//* Gets list of all queues
+export const getQueues = async () => {
+  const response = await fetch('https://static.developer.riotgames.com/docs/lol/queues.json')
+  const data = await response.json();
+  
+  return data;
+}

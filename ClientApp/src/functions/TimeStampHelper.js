@@ -6,3 +6,14 @@ export const GetReadableTimestamp = (timestamp) => {
 
     return minutes;
 }
+
+export const getReadableTimestampFromSeconds = (time) => {
+    if (time != null) {
+        let minutes = Math.floor(time / 60);
+        let seconds = time - minutes * 60;
+        const result = minutes + "m " + seconds + "s"; 
+        return result;
+    }
+    else return null;
+
+}

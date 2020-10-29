@@ -1,7 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import Build from "./Build";
-import Overview from './Overview/Overview'
+import Overview from "./Overview/Overview";
 import { getTimeLineEvents } from "../../../functions/promiseHelper";
 import GraphMain from "./Graphs/GraphMain";
 
@@ -29,11 +29,14 @@ const MoreStats = (props) => {
   const active = {
     borderBottom: "4px solid #7d2267",
   };
-  const bgStyle = { backgroundColor: "#222451", borderRadius: "0px 0px 20px 20px"}
+  const bgStyle = {
+    backgroundColor: "#222451",
+    borderRadius: "0px 0px 20px 20px",
+  };
   return (
     <div style={bgStyle}>
       <div className="slide-down more-stats-wrapper">
-        {activePage != "none" ? (
+        {activePage != "none" && (
           <div>
             <ul className="matchitem-navbar">
               <li
@@ -65,8 +68,8 @@ const MoreStats = (props) => {
               </li>
             </ul>
           </div>
-        ) : null}
-        {activePage === "build" ? (
+        )}
+        {activePage === "build" && (
           <Build
             gameId={props.gameId}
             participant={props.participant}
@@ -76,25 +79,26 @@ const MoreStats = (props) => {
             skillOrder={timeline.skillOrder}
             champion={props.champion}
           />
-        ) : null}
-        {activePage === "graphs" ? (
+        )}
+        {activePage === "graphs" && (
           <GraphMain
             participantList={props.participantList}
             data={timeline.graphData}
             championList={props.championList}
             owner={props.owner}
           />
-        ) : null}
-        {activePage === "overview" ? (
+        )}
+        {activePage === "overview" && (
           <Overview
             champList={props.championList}
             participantList={props.participantList}
             summonerSpells={props.summonerSpells}
-						identities={props.identities}
+            identities={props.identities}
             matchDuration={props.matchDuration}
             queue={props.queue}
+            gameId={props.gameId}
           />
-        ) : null}
+        )}
         {activePage === "other" ? <div /> : null}
       </div>
     </div>
