@@ -435,3 +435,15 @@ div.overview-itembuild img {
   position: absolute;
   z-index: 1;
 }
+
+.match-header-title{
+  padding: 1em 1em 1em 2em;
+}
+
+.match-header-duration{
+  padding: 1em 1em 1em 2em;
+}
+
+.greyed-text{
+  color: #b3b1b1;
+}

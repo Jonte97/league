@@ -1,5 +1,5 @@
 export const getQueueTitle = (q) => {
-  switch (q) {
+  switch (q.queueId) {
     case 420:
       return "Ranked Solo";
     case 440:
