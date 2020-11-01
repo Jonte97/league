@@ -12,6 +12,7 @@ const OverviewTableRow = (props) => {
     };
     if (kda > 3) style.color = "#3fe06a";
     else if (kda < 1) style.color = "#e0653f";
+    else if (kda === "Perfect") style.color = "#e0cf36";
     else style.color = "#b3b1b1";
 
     return style;
@@ -52,9 +53,7 @@ const OverviewTableRow = (props) => {
       </td>
       <td>
         <div className="overview-kda">
-          <span style={kdaStyle(props.player.kda)}>{`${props.player.kda.toFixed(
-            2
-          )} Kda`}</span>
+          <span style={kdaStyle(props.player.kda)}>{`${props.player.kda} Kda`}</span>
         </div>
         <div>
           <span>

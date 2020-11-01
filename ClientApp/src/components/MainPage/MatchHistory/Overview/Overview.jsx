@@ -133,8 +133,12 @@ const Overview = (props) => {
         player.csScore =
           player.stats.totalMinionsKilled + player.stats.neutralMinionsKilled;
         player.csPerMin = player.csScore / (props.matchDuration / 60);
-        player.kda =
-          (player.stats.kills + player.stats.assists) / player.stats.deaths;
+        if (player.stats.deaths != 0)
+          player.kda = (
+            (player.stats.kills + player.stats.assists) /
+            player.stats.deaths
+          ).toFixed(2);
+        else player.kda = "Perfect";
 
         dmg.push(player.stats.totalDamageDealtToChampions);
         teamDmg.push(player.stats.totalDamageDealtToChampions);

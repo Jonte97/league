@@ -149,7 +149,7 @@ const MatchItem = (props) => {
       return winner;
     } else {
       const loser = {
-        backgroundColor: "#743f67",
+        backgroundColor: "#902626d9",
       };
       return loser;
     }

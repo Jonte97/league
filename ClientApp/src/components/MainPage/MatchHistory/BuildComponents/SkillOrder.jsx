@@ -4,7 +4,8 @@ import {
   getChampionAbilities,
   getChampionFromDictionaryById,
 } from "../../../../functions/ChampionHelper";
-import { getChampionByName as getChampionByNameAsync } from "../../../../functions/promiseHelper";
+import { getChampionByNameAsync } from "../../../../functions/promiseHelper";
+import { patch } from "../../../../TestFiles/Configuration";
 
 const SkillOrder = (props) => {
   const [abilities, setAbilities] = useState([]);
@@ -58,7 +59,7 @@ const SkillOrder = (props) => {
                       className="history-item-spell"
                       title={abilities[0].name}
                       alt={abilities[0].name}
-                      src={`http://ddragon.leagueoflegends.com/cdn/10.16.1/img/spell/${abilities[0].image.full}`}
+                      src={`https://ddragon.leagueoflegends.com/cdn/${patch}/img/spell/${abilities[0].image.full}`}
                     />
                   </div>
                 </td>
@@ -84,7 +85,7 @@ const SkillOrder = (props) => {
                       className="history-item-spell"
                       title={abilities[1].name}
                       alt={abilities[1].name}
-                      src={`http://ddragon.leagueoflegends.com/cdn/10.16.1/img/spell/${abilities[1].image.full}`}
+                      src={`https://ddragon.leagueoflegends.com/cdn/${patch}/img/spell/${abilities[1].image.full}`}
                     />
                   </div>
                 </td>
@@ -111,7 +112,7 @@ const SkillOrder = (props) => {
                       className="history-item-spell"
                       title={abilities[2].name}
                       alt={abilities[2].name}
-                      src={`http://ddragon.leagueoflegends.com/cdn/10.16.1/img/spell/${abilities[2].image.full}`}
+                      src={`https://ddragon.leagueoflegends.com/cdn/${patch}/img/spell/${abilities[2].image.full}`}
                     />
                   </div>
                 </td>
@@ -138,7 +139,7 @@ const SkillOrder = (props) => {
                       className="history-item-spell"
                       title={abilities[3].name}
                       alt={abilities[3].name}
-                      src={`http://ddragon.leagueoflegends.com/cdn/10.16.1/img/spell/${abilities[3].image.full}`}
+                      src={`https://ddragon.leagueoflegends.com/cdn/${patch}/img/spell/${abilities[3].image.full}`}
                     />
                   </div>
                 </td>

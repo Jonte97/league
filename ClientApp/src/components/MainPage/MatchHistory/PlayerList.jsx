@@ -25,7 +25,6 @@ const PlayerList = (props) => {
   //! Kraschar ofta här
   const getThumbnail = (id) => {
 		let x = getPlayerChamp(id);
-		console.log(x.championId);
 		let champ = props.championList.find((obj) => obj.k == x.championId);
     try {
       return `https://ddragon.leagueoflegends.com/cdn/${patch}/img/champion/${champ.v.image.full}`;

@@ -32,3 +32,8 @@ export const getChampionAbilities = (champion, name) => {
   const abilities = champion.data[`${name}`].spells;
   return abilities;
 };
+//* Filters champion-obj and returns passive. INPUT: standalone-champion
+export const getChampionPassive = (champion, name) => {
+  const passive = champion.data[`${name}`].passive;
+  return passive;
+};

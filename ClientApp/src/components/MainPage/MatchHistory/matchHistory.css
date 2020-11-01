@@ -188,7 +188,6 @@ table.history-skillorder th {
 }
 .history-skillorder {
   margin: auto;
-  margin-top: 4em;
 }
 .history-item-spell {
   height: 24px;
@@ -196,7 +195,7 @@ table.history-skillorder th {
 .history-item-spell-wrapper {
 }
 .green {
-  background-color: #00688066;
+  background-color: #144064;
 }
 .blank {
   background-color: #3e3d3dbf;

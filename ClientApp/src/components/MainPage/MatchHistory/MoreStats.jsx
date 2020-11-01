@@ -30,7 +30,6 @@ const MoreStats = (props) => {
     borderBottom: "4px solid #7d2267",
   };
   const bgStyle = {
-    backgroundColor: "#222451",
     borderRadius: "0px 0px 20px 20px",
   };
   return (
