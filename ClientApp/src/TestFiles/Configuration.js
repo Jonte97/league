@@ -1,1 +1,1 @@
-export const patch = "10.21.1";
+export const patch = "10.22.1";
