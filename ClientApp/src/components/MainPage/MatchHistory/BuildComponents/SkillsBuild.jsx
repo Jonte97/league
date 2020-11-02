@@ -26,44 +26,58 @@ const SkillsBuild = (props) => {
     };
     fetchAbilities();
   }, [props.champion]);
-	const [active, setActive] = useState(null);
-	useEffect(() => {
-		if (abilities != null) {
-			setActive(abilities.passive)
-		}
-	}, [abilities]);
+  const [active, setActive] = useState(null);
+  useEffect(() => {
+    if (abilities != null) {
+      setActive(abilities.passive);
+    }
+  }, [abilities]);
 
   const imgStyle = (id) => {
-
-	};
+    if (id != active) return { filter: "grayscale(1)" };
+    else return null;
+  };
 
   return (
     <div>
-      {abilities && (
-        <React.Fragment>
-          <div style={{ display: "inline-flex" }}>
-            <div id="passive">
-              <img
-								onClick={() => setActive(abilities.passive)}
-                alt="passive"
-                src={`https://ddragon.leagueoflegends.com/cdn/${patch}/img/passive/${abilities.passive.image.full}`}
-              />
-            </div>
-            <div>
-              {abilities.spells.map((spell, key) => (
+      <div>
+        {abilities && (
+          <React.Fragment>
+            <div id="skills" style={{ display: "flex" }}>
+              <div id="passive">
                 <img
-									onClick={() => setActive(spell)}
-									key={key}
-									id={`spell${key}`}
-                  alt="spell-1"
-                  src={`https://ddragon.leagueoflegends.com/cdn/${patch}/img/spell/${spell.image.full}`}
+                  style={imgStyle(abilities.passive)}
+                  onClick={() => setActive(abilities.passive)}
+                  alt="passive"
+                  className="thumbnail-build"
+                  src={`https://ddragon.leagueoflegends.com/cdn/${patch}/img/passive/${abilities.passive.image.full}`}
                 />
-              ))}
+              </div>
+              <div>
+                {abilities.spells.map((spell, key) => (
+                  <img
+                    style={imgStyle(spell)}
+                    onClick={() => setActive(spell)}
+                    key={key}
+                    className="thumbnail-build"
+                    id={`spell${key}`}
+                    alt="spell-1"
+                    src={`https://ddragon.leagueoflegends.com/cdn/${patch}/img/spell/${spell.image.full}`}
+                  />
+                ))}
+              </div>
             </div>
-          </div>
-          {active && <div>{active.description}</div>}
-        </React.Fragment>
-      )}
+            {active && (
+              <div className="skills-info">
+                <div style={{marginBottom: "0.5em"}}>
+                  <span>{active.name}</span>
+                </div>
+                <div>{active.description}</div>
+              </div>
+            )}
+          </React.Fragment>
+        )}
+      </div>
     </div>
   );
 };

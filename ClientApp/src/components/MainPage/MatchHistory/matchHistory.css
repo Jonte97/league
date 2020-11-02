@@ -369,36 +369,34 @@ div[class*="box"] {
   margin-top: 7em;
 }
 /******OVERVIEW-PAGE*****/
-.overview-wrapper{
+.overview-wrapper {
   padding: 2em;
- 
 }
-.overview-table{
-	width: 100%;
-	margin: auto;
+.overview-table {
+  width: 100%;
+  margin: auto;
 }
-td.overview-thumbnail-cell img{
-	height: 32px;
-}
-table.overview-table tr {
-	height: 40px;
-}
-table.overview-table th {
-	/* text-align: center; */
-}
-.overview-thumbnail-cell{
-	width: 32px;
-}
-td.overview-summonerSpells-thumbnail img{
-	height: 16px;
-	display: grid;
-}
-.overview-emblem{
+td.overview-thumbnail-cell img {
   height: 32px;
 }
-.overview-kda{
+table.overview-table tr {
+  height: 40px;
+}
+table.overview-table th {
+  /* text-align: center; */
+}
+.overview-thumbnail-cell {
+  width: 32px;
+}
+td.overview-summonerSpells-thumbnail img {
+  height: 16px;
+  display: grid;
+}
+.overview-emblem {
+  height: 32px;
+}
+.overview-kda {
   font-size: 12px;
-  
 }
 div.overview-itembuild img {
   height: 32px;
@@ -406,10 +404,10 @@ div.overview-itembuild img {
   border-radius: 5px;
   margin: 0.25em;
 }
-.overview-itembuild{
+.overview-itembuild {
   display: flex;
 }
-.overview-empty-item{
+.overview-empty-item {
   border: 1px solid#ada3c3;
   margin: 0.25em;
   border-radius: 5px;
@@ -435,14 +433,26 @@ div.overview-itembuild img {
   z-index: 1;
 }
 
-.match-header-title{
+.match-header-title {
   padding: 1em 1em 1em 2em;
 }
 
-.match-header-duration{
+.match-header-duration {
   padding: 1em 1em 1em 2em;
 }
 
-.greyed-text{
+.greyed-text {
   color: #b3b1b1;
+}
+.thumbnail-build {
+  height: 36px;
+  margin: 1em 1em 1em 1em;
+}
+#skills {
+  width: max-content;
+  margin: auto;
+}
+.skills-info {
+  padding: 0.5em 1em 1em 5em;
+  margin: auto;
 }
