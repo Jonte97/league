@@ -4,7 +4,7 @@ import { patch } from "../../../TestFiles/Configuration";
 const PlayerList = (props) => {
   const labelColor = (team) => {
     const ret = {
-      backgroundColor: team === "Red team" ? "#882525" : "#252888",
+      backgroundColor: team === "Red team" ? "#882525" : "#494ee2",
     };
     return ret;
   };
@@ -38,7 +38,7 @@ const PlayerList = (props) => {
     <div>
       <div className="team-title-wrapper">
         <div style={labelColor(props.team)} className="team-title-label">
-          <div className="text-center team-title">{props.team}</div>
+          {/* <div className="text-center team-title">{props.team}</div> */}
         </div>
       </div>
       <ul className="history-playerlist">

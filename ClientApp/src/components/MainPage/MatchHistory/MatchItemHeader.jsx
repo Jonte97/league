@@ -27,6 +27,8 @@ const MatchItemHeader = (props) => {
     setup();
   }, []);
 
+  const victoryStyle = { color: "#50fb50", float: "right", paddingRight: "4em" };
+  const defeatStyle = { color: "#fb5057", float: "right", paddingRight: "4em" };
   return (
     <div className="match-history-top">
       <div className="match-hisrotry-top-gamemode"></div>
@@ -39,6 +41,11 @@ const MatchItemHeader = (props) => {
           <span className="match-header-duration greyed-text">
             {headerState.creation}
           </span>
+          {props.status == true ? (
+            <span style={victoryStyle}>Victory</span>
+          ) : (
+            <span style={defeatStyle}>Defeat</span>
+          )}
         </React.Fragment>
       )}
     </div>

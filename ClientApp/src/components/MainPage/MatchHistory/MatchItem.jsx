@@ -142,23 +142,15 @@ const MatchItem = (props) => {
         summonerGameInfo.participantId,
         matchInfo.participants
       )
-    ) {
-      const winner = {
-        backgroundColor: "#222451",
-      };
-      return winner;
-    } else {
-      const loser = {
-        backgroundColor: "#902626d9",
-      };
-      return loser;
-    }
+    )
+      return true;
+      else return false;
   };
-
+  const matchColor = { backgroundColor: "#222451" };
   return matchInfo && summonerGameInfo ? (
     <div>
-      <div className="match-history-item" style={styleWinner()}>
-        <MatchItemHeader matchInfo={matchInfo} />
+      <div className="match-history-item" style={matchColor}>
+        <MatchItemHeader matchInfo={matchInfo} status={styleWinner()} />
         <div className="match-history-item-wrapper">
           <div className="flex mb1 history-content-wrapper">
             <img className="history-thumbnail" src={thumbnails.ownerChampion} />
@@ -229,8 +221,8 @@ const MatchItem = (props) => {
             champion={props.match.champion}
             summonerSpells={props.summonerSpells.data}
             identities={matchInfo.participantIdentities}
-						matchDuration={matchInfo.gameDuration}
-						queue={props.match.queue} 
+            matchDuration={matchInfo.gameDuration}
+            queue={props.match.queue}
           />
         ) : null}
       </div>
