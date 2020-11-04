@@ -1,4 +1,5 @@
 import React from "react";
+import { getChampionImageById } from "../../../functions/ChampionHelper";
 import { patch } from "../../../TestFiles/Configuration";
 
 const PlayerList = (props) => {
@@ -24,12 +25,12 @@ const PlayerList = (props) => {
   };
   //! Kraschar ofta här
   const getThumbnail = (id) => {
-		let x = getPlayerChamp(id);
-		let champ = props.championList.find((obj) => obj.k == x.championId);
+		let champ = getPlayerChamp(id);
+		let img = getChampionImageById(champ.championId, props.championList)
     try {
-      return `https://ddragon.leagueoflegends.com/cdn/${patch}/img/champion/${champ.v.image.full}`;
+      return `https://ddragon.leagueoflegends.com/cdn/${patch}/img/champion/${img.full}`;
     } catch (error) {
-			console.error(`could not get ${x.championId}`);
+			console.error(`could not get ${champ.championId}`);
 			return -1;
 		}
   };

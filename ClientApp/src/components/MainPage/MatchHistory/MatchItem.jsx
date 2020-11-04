@@ -12,6 +12,7 @@ import Kda from "./Kda";
 import PlayerList from "./PlayerList";
 import MoreStats from "./MoreStats";
 import MatchItemHeader from "./MatchItemHeader";
+import { getChampionImageById } from "../../../functions/ChampionHelper";
 
 const ownerWonGame = (teams, participantId, participants) => {
   let part = participants.find((obj) => {
@@ -98,10 +99,11 @@ const MatchItem = (props) => {
       return result;
     };
     const getChampionThumbnail = () => {
-      const key = props.championList.find(
-        (v) => v.k == summonerGameInfo.championId
+      const img = getChampionImageById(
+        summonerGameInfo.championId,
+        props.champions
       );
-      const championThumbnail = `https://ddragon.leagueoflegends.com/cdn/10.19.1/img/champion/${key.v.image.full}`;
+      const championThumbnail = `https://ddragon.leagueoflegends.com/cdn/10.19.1/img/champion/${img.full}`;
       return championThumbnail;
     };
     if (summonerGameInfo != null) {
@@ -118,7 +120,7 @@ const MatchItem = (props) => {
 
   const [showMore, setShowMore] = useState(false);
   useEffect(() => {
-    setShowMore(false)
+    setShowMore(false);
   }, [props.owner]);
 
   const getPlayerList = (teamId) => {
@@ -147,7 +149,7 @@ const MatchItem = (props) => {
       )
     )
       return true;
-      else return false;
+    else return false;
   };
   const matchColor = { backgroundColor: "#222451" };
   return matchInfo && summonerGameInfo ? (
@@ -188,7 +190,7 @@ const MatchItem = (props) => {
                 team="Blue team"
                 ids={getPlayerList(100)}
                 list={getPlayerIdentities(getPlayerList(100))}
-                championList={props.championList}
+                championList={props.champions}
               />
             </div>
             <div className="history-list-red">
@@ -196,7 +198,7 @@ const MatchItem = (props) => {
                 team="Red team"
                 ids={getPlayerList(200)}
                 list={getPlayerIdentities(getPlayerList(200))}
-                championList={props.championList}
+                championList={props.champions}
               />
             </div>
           </div>
@@ -214,7 +216,7 @@ const MatchItem = (props) => {
         </div>
         {showMore ? (
           <MoreStats
-            championList={props.championList}
+            championList={props.champions}
             participantList={matchInfo.participants}
             gameId={props.match.gameId}
             participant={summonerGameInfo.participantId}

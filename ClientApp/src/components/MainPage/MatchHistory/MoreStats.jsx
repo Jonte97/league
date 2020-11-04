@@ -77,6 +77,7 @@ const MoreStats = (props) => {
             itemEvents={timeline.itemEvents}
             skillOrder={timeline.skillOrder}
             champion={props.champion}
+            championList={props.championList}
           />
         )}
         {activePage === "graphs" && (
@@ -89,7 +90,7 @@ const MoreStats = (props) => {
         )}
         {activePage === "overview" && (
           <Overview
-            champList={props.championList}
+            championList={props.championList}
             participantList={props.participantList}
             summonerSpells={props.summonerSpells}
             identities={props.identities}

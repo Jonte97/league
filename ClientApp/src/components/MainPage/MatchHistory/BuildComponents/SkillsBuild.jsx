@@ -13,10 +13,9 @@ const SkillsBuild = (props) => {
   useEffect(() => {
     const fetchAbilities = async () => {
       //TODO champList should be passed from parent component and come as prop
-      const champList = championDictionary();
       const championSimple = getChampionFromDictionaryById(
         props.champion,
-        champList
+        props.championList
       );
       const champion = await getChampionByNameAsync(championSimple.id);
       const spells = getChampionAbilities(champion, championSimple.id);

@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import {
-  championDictionary,
   getChampionImageById,
   getChampionNameById,
 } from "../../../functions/ChampionHelper";
@@ -22,7 +21,6 @@ import { getEmblem } from "../../../functions/RankedEmblemHelper";
 
 const Overview = (props) => {
   const [players, setPlayers] = useState(null);
-  const champList = championDictionary();
   const dmg = [];
   useEffect(() => {
     setPlayers(props.participantList);
@@ -111,13 +109,15 @@ const Overview = (props) => {
       team.forEach((player) => {
         //* Gets champion data
         player.champion = { name: "", url: "" };
+        //Ändras ej
+        
         player.champion.url = getChampionImageById(
           player.championId,
-          champList
+          props.championList
         );
         player.champion.name = getChampionNameById(
           player.championId,
-          champList
+          props.championList
         );
 
         //* Gets summonerSpells

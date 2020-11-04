@@ -1,7 +1,12 @@
-import * as championData from "../TestFiles/champions.json";
-
+import { getAllChampions } from "./promiseHelper";
 //* Creates key value pair of champion json
-export const championDictionary = () => {
+export const championDictionary = async() => {
+  const getJson = async () => {
+    const result = await getAllChampions();
+    return result;
+  };
+
+  const championData = await getJson();
   let dict = [];
   for (var champ in championData.data) {
     dict.push({

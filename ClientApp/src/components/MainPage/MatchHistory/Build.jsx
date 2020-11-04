@@ -18,10 +18,11 @@ const Build = (props) => {
               </div>
               <div className="history-skillorder-table">
                 <SkillOrder
+                  championList={props.championList}
                   skillorder={props.skillOrder}
                   champion={props.champion}
                 />
-                <SkillsBuild champion={props.champion} />
+                <SkillsBuild championList={props.championList} champion={props.champion} />
               </div>
             </div>
           </React.Fragment>

@@ -1,4 +1,11 @@
+import {patch} from "../TestFiles/Configuration"
 //TODO Move all api requests to this file
+export const getAllChampions = async () => {
+  const response = await fetch(`https://ddragon.leagueoflegends.com/cdn/${patch}/data/en_US/champion.json`)
+  const data = await response.json();
+
+  return data;
+}
 
 export const getChampionList = async () => {
   const response = await fetch("api/LeagueApi/GetSimpleChampionList");
