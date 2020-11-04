@@ -105,11 +105,11 @@ const Overview = (props) => {
         player.champion = { name: "", url: "" };
         player.champion.url = getChampionImageById(
           player.championId,
-          champList
+          props.championList
         );
         player.champion.name = getChampionNameById(
           player.championId,
-          champList
+          props.championList
         );
 
         //* Gets summonerSpells
