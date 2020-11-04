@@ -117,6 +117,9 @@ const MatchItem = (props) => {
   }, [summonerGameInfo]);
 
   const [showMore, setShowMore] = useState(false);
+  useEffect(() => {
+    setShowMore(false)
+  }, [props.owner]);
 
   const getPlayerList = (teamId) => {
     let list = [];

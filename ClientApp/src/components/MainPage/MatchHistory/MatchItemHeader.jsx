@@ -25,7 +25,7 @@ const MatchItemHeader = (props) => {
     };
 
     setup();
-  }, []);
+  }, [props.matchInfo]);
 
   const victoryStyle = { color: "#50fb50", float: "right", paddingRight: "4em" };
   const defeatStyle = { color: "#fb5057", float: "right", paddingRight: "4em" };
