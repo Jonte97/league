@@ -54,8 +54,14 @@
 .kda {
   padding-left: 32px;
 }
+.history-rune-wrapper{
+  padding: 1em;
+}
+font {
+  color: #FF9900;
+}
 .history-keystone {
-  height: 64px;
+  height: 48px;
 }
 .history-secondary-rune {
   height: 24px;
@@ -71,7 +77,6 @@
 }
 .history-player-lists {
   display: flex;
-  margin-left: 2em;
 }
 .history-list-thumbnail {
   height: 24px;
@@ -83,8 +88,11 @@
   margin-bottom: 0.2em;
   width: 140px;
 }
+.history-summonerspells{
+  padding-top: 1em;
+}
 .history-item-list {
-  padding: 0 2em 0 2em;
+  padding-top: 1em;
 }
 .history-player-lists {
   position: relative;
@@ -107,7 +115,7 @@
   padding-top: 1em;
 }
 .history-summonerspell {
-  height: 48px;
+  height: 36px;
 }
 .first {
   margin-bottom: 1em;
@@ -126,6 +134,9 @@
 .matchitem-navbar-left {
   border-radius: 25px 0px 0px 25px;
   border-bottom: 4px solid;
+}
+.history-mid-text{
+  padding-top: 1em;
 }
 .matchitem-navbar-right {
   border-radius: 0px 25px 25px 0px;
@@ -163,6 +174,7 @@
 }
 .rune-skillorder {
   padding: 1em 4em 1em 4em;
+  min-height: 420px;
 }
 .history-runesetup {
   width: 50%;
@@ -455,4 +467,7 @@ div.overview-itembuild img {
 .skills-info {
   padding: 0.5em 1em 1em 5em;
   margin: auto;
+}
+.thumbnail-build:hover{
+  cursor: pointer;
 }

@@ -38,6 +38,7 @@ const SkillsBuild = (props) => {
     else return null;
   };
 
+  const html = (str) => {};
   return (
     <div>
       <div>
@@ -69,10 +70,12 @@ const SkillsBuild = (props) => {
             </div>
             {active && (
               <div className="skills-info">
-                <div style={{marginBottom: "0.5em"}}>
-                  <span>{active.name}</span>
+                <div style={{ marginBottom: "0.5em" }}>
+                  <span style={{ color: "#FF9900" }}>{active.name}</span>
                 </div>
-                <div>{active.description}</div>
+                <div
+                  dangerouslySetInnerHTML={{ __html: active.description }}
+                ></div>
               </div>
             )}
           </React.Fragment>
