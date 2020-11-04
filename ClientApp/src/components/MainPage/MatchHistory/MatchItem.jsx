@@ -13,6 +13,7 @@ import PlayerList from "./PlayerList";
 import MoreStats from "./MoreStats";
 import MatchItemHeader from "./MatchItemHeader";
 import { getChampionImageById } from "../../../functions/ChampionHelper";
+import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 
 const ownerWonGame = (teams, participantId, participants) => {
   let part = participants.find((obj) => {
@@ -203,7 +204,7 @@ const MatchItem = (props) => {
             </div>
           </div>
 
-          <div className="box-1">
+          {/* <div className="box-1">
             <div
               onClick={() => {
                 !showMore ? setShowMore(true) : setShowMore(false);
@@ -211,6 +212,17 @@ const MatchItem = (props) => {
               className="btn btn-one"
             >
               <span>{!showMore ? "More stats" : "Hide more stats"}</span>
+            </div>
+          </div> */}
+          
+          <div>
+            <div
+              className="showmore"
+              onClick={() => {
+                !showMore ? setShowMore(true) : setShowMore(false);
+              }}
+            >
+              <span>{!showMore ? <IoIosArrowDown size="2em" /> : <IoIosArrowUp size="2em" />}</span>
             </div>
           </div>
         </div>

@@ -17,16 +17,18 @@ const Build = (props) => {
                 <div className="history-runesetup">
                   <RuneSetup stats={props.stats} runes={props.runes} />
                 </div>
-                <SkillsBuild
+                {/*
+                //? Might bring this one back somewhere else
+                <SkillsBuild 
                   championList={props.championList}
+                  champion={props.champion}
+                /> */}
+                <SkillOrder
+                  championList={props.championList}
+                  skillorder={props.skillOrder}
                   champion={props.champion}
                 />
               </div>
-              <SkillOrder
-                championList={props.championList}
-                skillorder={props.skillOrder}
-                champion={props.champion}
-              />
             </div>
           </React.Fragment>
         ) : (

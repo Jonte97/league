@@ -13,10 +13,10 @@
 .display-flex {
   display: flex;
 }
-.dflex{
+.dflex {
   display: flex;
 }
-.rune-skills{
+.rune-skills {
   max-height: 230px;
 }
 .flex {
@@ -60,11 +60,11 @@
 .kda {
   padding-left: 32px;
 }
-.history-rune-wrapper{
+.history-rune-wrapper {
   padding: 1em;
 }
 font {
-  color: #FF9900;
+  color: #ff9900;
 }
 .history-keystone {
   height: 48px;
@@ -94,7 +94,7 @@ font {
   margin-bottom: 0.2em;
   width: 140px;
 }
-.history-summonerspells{
+.history-summonerspells {
   padding-top: 1em;
 }
 .history-item-list {
@@ -141,7 +141,7 @@ font {
   border-radius: 25px 0px 0px 25px;
   border-bottom: 4px solid;
 }
-.history-mid-text{
+.history-mid-text {
   padding-top: 1em;
 }
 .matchitem-navbar-right {
@@ -181,8 +181,8 @@ font {
 .rune-skillorder {
   padding: 1em 2em 1em 2em;
 }
-.skillorder-table-div{
-  margin-top: 1em;
+.skillorder-table-div {
+  margin-top: 4em;
   margin-bottom: 1em;
 }
 .history-runesetup {
@@ -307,7 +307,7 @@ a:hover {
   border-bottom: 1px solid #504f4f;
 }
 .match-history-item-wrapper {
-  padding: 0.5em 2em 2em 2em;
+  padding: 0.5em 2em 0.5em 2em;
 }
 .match-hisrotry-top-gamemode {
   padding-left: 1em;
@@ -323,7 +323,13 @@ div[class*="box"] {
 .box-1 {
   width: 250px;
 }
-
+.showmore {
+  width: 1%;
+  margin: auto;
+}
+.showmore:hover{
+  cursor: pointer;
+}
 .btn {
   line-height: 30px;
   height: 40px;
@@ -479,9 +485,9 @@ div.overview-itembuild img {
   margin: auto;
   width: 600px;
 }
-.thumbnail-build:hover{
+.thumbnail-build:hover {
   cursor: pointer;
 }
-#skills-build{
+#skills-build {
   display: flex;
 }
