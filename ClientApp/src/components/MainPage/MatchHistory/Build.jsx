@@ -12,18 +12,21 @@ const Build = (props) => {
         {props.itemEvents || props.stats || props.skillOrder ? (
           <React.Fragment>
             <ItemBuild items={props.itemEvents} />
-            <div className="display-flex rune-skillorder">
-              <div className="history-runesetup">
-                <RuneSetup stats={props.stats} runes={props.runes} />
-              </div>
-              <div className="history-skillorder-table">
-                <SkillOrder
+            <div className="rune-skillorder">
+              <div className="dflex rune-skills">
+                <div className="history-runesetup">
+                  <RuneSetup stats={props.stats} runes={props.runes} />
+                </div>
+                <SkillsBuild
                   championList={props.championList}
-                  skillorder={props.skillOrder}
                   champion={props.champion}
                 />
-                <SkillsBuild championList={props.championList} champion={props.champion} />
               </div>
+              <SkillOrder
+                championList={props.championList}
+                skillorder={props.skillOrder}
+                champion={props.champion}
+              />
             </div>
           </React.Fragment>
         ) : (
@@ -35,3 +38,20 @@ const Build = (props) => {
 };
 
 export default Build;
+
+// <React.Fragment>
+//             <ItemBuild items={props.itemEvents} />
+//             <div className="display-flex rune-skillorder">
+//               <div className="history-runesetup">
+//                 <RuneSetup stats={props.stats} runes={props.runes} />
+//               </div>
+//               <div className="history-skillorder-table">
+//                 <SkillOrder
+//                   championList={props.championList}
+//                   skillorder={props.skillOrder}
+//                   champion={props.champion}
+//                 />
+//                 <SkillsBuild championList={props.championList} champion={props.champion} />
+//               </div>
+//             </div>
+//           </React.Fragment>

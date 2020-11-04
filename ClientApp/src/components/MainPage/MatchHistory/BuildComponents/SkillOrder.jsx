@@ -43,9 +43,7 @@ const SkillOrder = (props) => {
   }
   //TODO add styling on table
   return (
-    <div className="">
-      <h4 className="text-center">Skill order</h4>
-
+    <div className="skillorder-table-div">
       <table className="history-skillorder">
         <tbody>
           <tr>
