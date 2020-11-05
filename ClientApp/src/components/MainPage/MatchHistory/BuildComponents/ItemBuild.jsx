@@ -1,6 +1,7 @@
 import React from "react";
 import { IoIosArrowForward } from "react-icons/io";
 import { GetReadableTimestamp } from "../../../../functions/TimeStampHelper";
+import { patch } from "../../../../TestFiles/Configuration";
 
 const ItemBuild = (props) => {
   return (
@@ -22,7 +23,7 @@ const ItemBuild = (props) => {
                       <img
                         key={key}
                         className="history-item-build-thumbnail"
-                        src={`https://ddragon.leagueoflegends.com/cdn/10.19.1/img/item/${item.itemId}.png`}
+                        src={`https://ddragon.leagueoflegends.com/cdn/${patch}/img/item/${item.itemId}.png`}
                       />
                       {item.quantity && (
                         <div className="label-quantity">{item.quantity}</div>
@@ -34,7 +35,7 @@ const ItemBuild = (props) => {
                     <img
                       key={key}
                       className="history-item-build-thumbnail greyscale"
-                      src={`https://ddragon.leagueoflegends.com/cdn/10.19.1/img/item/${item.itemId}.png`}
+                      src={`https://ddragon.leagueoflegends.com/cdn/${patch}/img/item/${item.itemId}.png`}
                     />
                     {item.quantity && (
                       <div className="label-quantity">{item.quantity}</div>
