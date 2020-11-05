@@ -52,6 +52,7 @@ namespace MiddleWare
                             frame.Remove(item);
                         }
                     }
+                    //* To remove duplicates for frontend
                     var moreThanOne = frame
                         .GroupBy(x => x.ItemId)
                         .Where(g => g.Count() > 1)
@@ -64,6 +65,8 @@ namespace MiddleWare
                             rFrame.Quantity = frame
                                 .Where(x => x.ItemId == rFrame.ItemId && x.Type == rFrame.Type)
                                 .Count();
+                            frame.RemoveAll(x => x.ItemId == rFrame.ItemId && x.Type == rFrame.Type);
+                            frame.Add(rFrame);
                         }
                     }
                 }

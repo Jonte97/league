@@ -140,7 +140,6 @@ namespace Name.Controllers
         public async Task<IActionResult> GetItemsTimeLine([FromBody] ItemsTimeLine data)
         {
             //TODO fix bug games: 4843570041 and 4843092948
-            //msg Cannot read property 'items' of undefined -EKKO GAME
             try
             {
                 //* Fetch timeline object with data of events from gameId
