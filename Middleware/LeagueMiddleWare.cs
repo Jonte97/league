@@ -1,9 +1,12 @@
-using System.Linq;
-using Models;
-using Model;
-using System.Threading.Tasks;
-using TimeLineNS;
 using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+
+using Model;
+
+using Models;
+
+using TimeLineNS;
 
 namespace MiddleWare
 {
@@ -37,7 +40,6 @@ namespace MiddleWare
                 ).ToList();
 
                 result = result.Where(x => x.Count > 0).ToList();
-
                 //* Removes undo items from list
                 foreach (var frame in result.ToList())
                 {
@@ -46,11 +48,23 @@ namespace MiddleWare
                         if (item.Type == TypeEnum.ItemUndo)
                         {
                             var undo = frame.Where(x => x.ItemId == item.AfterId || x.ItemId == item.BeforeId).First();
-
                             frame.Remove(undo);
                             frame.Remove(item);
                         }
-
+                    }
+                    var moreThanOne = frame
+                        .GroupBy(x => x.ItemId)
+                        .Where(g => g.Count() > 1)
+                        .Select(z => z.First()).ToList();
+                    if (moreThanOne.Count > 0)
+                    {
+                        foreach (var item in moreThanOne)
+                        {
+                            var rFrame = item;
+                            rFrame.Quantity = frame
+                                .Where(x => x.ItemId == rFrame.ItemId && x.Type == rFrame.Type)
+                                .Count();
+                        }
                     }
                 }
                 result = result.Where(x => x.Count != 0).ToList();
@@ -62,6 +76,7 @@ namespace MiddleWare
                 throw ex;
             }
         }
+
         public List<Event> GetSkillOrder(TimeLine timeline, int participantId)
         {
             try
