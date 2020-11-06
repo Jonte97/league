@@ -33,7 +33,7 @@ const OverviewTableHeaders = (props) => {
             alt="items"
             className="items-img"
             title="items"
-            src="http://ddragon.leagueoflegends.com/cdn/5.5.1/img/ui/items.png"
+            src="https://ddragon.leagueoflegends.com/cdn/5.5.1/img/ui/items.png"
           />
         </th>
         <th colSpan="1">Vision</th>

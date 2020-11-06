@@ -169,7 +169,18 @@ font {
   cursor: pointer;
 }
 .history-item-build-thumbnail {
-  height: 24px;
+  height: 28px;
+  border: 1px solid#ada3c3;
+  border-radius: 5px;
+}
+.sold img {
+  height: 26px;
+  border-radius: 5px;
+}
+.sold {
+  border: 1px solid#b64b4b;
+  height: 28px;
+  border-radius: 5px;
 }
 .history-skillorder-table {
   width: 50%;
@@ -182,9 +193,13 @@ font {
   width: 12px;
   font-size: 10px;
 }
+.history-item-build-inner {
+  width: 70%;
+  margin: auto;
+  margin-top: 2em;
+}
 .history-item-build-wrapper {
   border-bottom: 2px solid #504f4f;
-  padding: 1em 4em 1em 4em;
 }
 .rune-skillorder {
   padding: 1em 2em 1em 2em;
@@ -198,7 +213,7 @@ font {
 }
 .history-item-build-holder {
   display: inline-flex;
-  margin-right: 2em;
+  /* margin-right: 2em; */
 }
 .history-item-runesetup {
   height: 64px;
@@ -237,14 +252,14 @@ table.history-skillorder th {
 
 /* or */
 
-.grey-wrapper {
-  border: 1px solid red;
-}
 .history-items-build-path div {
-  margin: 1px;
+  margin: 2px;
+}
+.history-items-build-path {
+  position: relative;
+  margin-right: 1em;
 }
 .color-wrapper {
-  border: 1px solid green;
   position: relative;
   text-align: center;
 }
@@ -376,9 +391,14 @@ div[class*="box"] {
 .btn-one:hover span {
   letter-spacing: 2px;
 }
-.arrow-forward{
+.arrow-forward {
   display: inline-flex;
   margin-bottom: 4px;
+  margin: 0;
+  position: absolute;
+  top: 45%;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
 }
 .btn-one:hover::before {
   opacity: 1;

@@ -153,7 +153,6 @@ const GraphMain = (props) => {
     const partColor = candidates.find((obj) => {
       return obj.participantId === part.participantId;
     });
-    console.log(partColor);
     const activeParticipant = {
       borderBottom: `5px solid ${partColor.color}`,
     };

@@ -48,8 +48,6 @@ const MatchHistory = (props) => {
     getMatches();
   }, [props.activeSummoner]);
 
-  console.log("render history");
-
   return (
     <div className="theme-bg">
       <div className="container">

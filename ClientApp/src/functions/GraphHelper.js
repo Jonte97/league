@@ -119,7 +119,6 @@ export const configureGraphData = (
       championList
     );
     //TODO should be img later
-    console.log(champion);
     data[i].champion = champion.name;
   }
   return data;
