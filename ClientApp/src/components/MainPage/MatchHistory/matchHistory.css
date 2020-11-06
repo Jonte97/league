@@ -376,6 +376,10 @@ div[class*="box"] {
 .btn-one:hover span {
   letter-spacing: 2px;
 }
+.arrow-forward{
+  display: inline-flex;
+  margin-bottom: 4px;
+}
 .btn-one:hover::before {
   opacity: 1;
   transform: scale(1, 1);

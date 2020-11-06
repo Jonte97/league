@@ -43,7 +43,9 @@ const ItemBuild = (props) => {
                   </div>
                 )
               )}
-              <IoIosArrowForward />
+              <div className="arrow-forward">
+                <IoIosArrowForward />
+              </div>
             </div>
           </div>
         </div>
