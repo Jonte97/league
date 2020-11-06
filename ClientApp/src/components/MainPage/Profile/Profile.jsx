@@ -6,7 +6,6 @@ import ProfileHead from './ProfileHead';
 
 const Profile = (props) => {
 
-  console.log(props)
   return (
     <div>
       <div className="profile-head theme-bg">

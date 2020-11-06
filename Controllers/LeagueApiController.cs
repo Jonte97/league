@@ -43,6 +43,21 @@ namespace Name.Controllers
             return json;
         }
 
+        [HttpPost("[action]")]
+        public async Task<IActionResult> GetSummonerLeagueEntries([FromBody] string id)
+        {
+            try
+            {
+                var entries = await _leagueApiService.GetRankedDataAsync(id);
+
+                return Ok(entries);
+            }
+            catch (System.Exception)
+            {
+                return StatusCode(500);
+            }
+        }
+
         [HttpGet("[action]")]
         public async Task<string> GetSummonerInitialData()
         {
@@ -125,7 +140,6 @@ namespace Name.Controllers
         public async Task<IActionResult> GetItemsTimeLine([FromBody] ItemsTimeLine data)
         {
             //TODO fix bug games: 4843570041 and 4843092948
-            //msg Cannot read property 'items' of undefined -EKKO GAME
             try
             {
                 //* Fetch timeline object with data of events from gameId

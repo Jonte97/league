@@ -45,6 +45,9 @@ namespace TimeLineNS
         [JsonProperty("itemId", NullValueHandling = NullValueHandling.Ignore)]
         public long? ItemId { get; set; }
 
+        [JsonProperty("quantity", NullValueHandling = NullValueHandling.Ignore)]
+        public int? Quantity { get; set; }
+        
         [JsonProperty("skillSlot", NullValueHandling = NullValueHandling.Ignore)]
         public long? SkillSlot { get; set; }
 

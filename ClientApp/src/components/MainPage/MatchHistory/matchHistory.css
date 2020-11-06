@@ -1,351 +1,527 @@
-.history-thumbnail{
-    border-radius: 50%;
-    border: 2px solid gold;
-    margin-right: 1em;
-    max-height: 124px;
+.history-thumbnail {
+  border-radius: 50%;
+  border: 2px solid gold;
+  margin-right: 1em;
+  max-height: 124px;
 }
-.history-item{
-    padding: 1em;
+.history-item {
+  padding: 1em;
 }
-.inline-flex{
-    display: inline-flex;
+.inline-flex {
+  display: inline-flex;
 }
-.display-flex{
-    display: flex;
+.display-flex {
+  display: flex;
 }
-.flex{
-    display: -webkit-inline-box;
+.dflex {
+  display: flex;
+}
+.rune-skills {
+  max-height: 230px;
+}
+.flex {
+  display: -webkit-inline-box;
 }
 /**HISTORY ITEM LIST*/
-.history-emptyitem{
-    height: 32px;
-    width: 32px;
+.history-emptyitem {
+  height: 32px;
+  width: 32px;
 }
-.history-item-item, .history-emptyitem{
-    margin: 0.25em;
-    border-radius: 5px;
+.to-center {
+  display: flex;
+  margin: auto;
 }
-.history-item-items-row1{
-    display: flex;
+.history-item-item,
+.history-emptyitem {
+  margin: 0.25em;
+  border-radius: 5px;
 }
-.history-item-items-row2{
-    display: flex;
+.history-item-items-row1 {
+  display: flex;
 }
-.history-item-items-trinket img{
-    border-radius: 50% !important;
+.history-item-items-row2 {
+  display: flex;
 }
-.history-item-items-trinket{
-    margin-top: 0.5em;
+.history-item-items-trinket img {
+  border-radius: 50% !important;
 }
-.history-item-item img{
-    height: 32px;
-    border: 1px solid#ada3c3;
-    border-radius: 5px;
-
+.history-item-items-trinket {
+  margin-top: 0.5em;
 }
-.history-emptyitem{
-    border: 1px solid  #ada3c3;
-    height: 32px;
+.history-item-item img {
+  height: 32px;
+  border: 1px solid#ada3c3;
+  border-radius: 5px;
 }
-.kda{
-    padding-left: 32px;
+.history-emptyitem {
+  border: 1px solid #ada3c3;
+  height: 32px;
 }
-.history-keystone{
-    height: 64px;
+.kda {
+  padding-left: 32px;
 }
-.history-secondary-rune{
-    height: 24px;
+.history-rune-wrapper {
+  padding: 1em;
 }
-.history-kda h4{
-    margin: 0;
+font {
+  color: #ff9900;
+}
+.history-keystone {
+  height: 48px;
+}
+.history-secondary-rune {
+  height: 24px;
+}
+.history-kda h4 {
+  margin: 0;
 }
 .history-kda {
-    padding: 0 2em 0 2em;
+  padding: 0 2em 0 2em;
 }
-.text-center{
-    text-align: center;
+.text-center {
+  text-align: center;
 }
-.history-player-lists{
-    display: flex;
-    margin-left: 2em;
+.history-player-lists {
+  display: flex;
 }
-.history-list-thumbnail{
-    height: 24px;
+.history-list-thumbnail {
+  height: 24px;
 }
-.history-playerlist{
-    font-size: 12px;
+.history-playerlist {
+  font-size: 12px;
 }
-.history-playerlist li{
-    margin-bottom: 0.2em;
-    width: 140px;
+.history-playerlist li {
+  margin-bottom: 0.2em;
+  width: 140px;
 }
-.history-item-list{
-    padding: 0 2em 0 2em;
+.history-summonerspells {
+  padding-top: 1em;
 }
-.history-player-lists{
-    position: relative;
-    float: right;
-    display: inline-flex;
-
+.history-item-list {
+  padding-top: 1em;
 }
-.team-title-wrapper{
-    padding-bottom: 0.5em;
+.history-player-lists {
+  position: relative;
+  float: right;
+  display: inline-flex;
 }
-.team-title-label{
-    padding: 3px;
-    border-radius: 20px;
-    width: 50%;
-    margin: auto
-
-}    
-.mb1{
-    margin-bottom: 1em;
+.team-title-wrapper {
+  padding-bottom: 0.5em;
 }
-.history-content-wrapper{
-    padding-top: 1em;
+.team-title-label {
+  padding: 3px;
+  border-radius: 20px;
+  width: 50%;
+  margin: auto;
 }
-.history-summonerspell{
-    height: 48px;
+.mb1 {
+  margin-bottom: 1em;
 }
-.first{
-    margin-bottom: 1em;
-    margin-top: 0.5em;
+.history-content-wrapper {
+  padding-top: 1em;
 }
-.kda-img{
-    padding-top: 0.5em
+.history-summonerspell {
+  height: 36px;
 }
-.cs-img{
-    padding-top: 0.5em
+.first {
+  margin-bottom: 1em;
+  margin-top: 0.5em;
 }
-.matchitem-navbar li{
-    display: inline;
-    padding: 1em 5em 1em 5em;
-    
-    
+.kda-img {
+  padding-top: 0.5em;
 }
-.matchitem-navbar-left{
-    border-radius: 25px 0px 0px 25px;
-    border-bottom: 4px solid;
+.cs-img {
+  padding-top: 0.5em;
 }
-.matchitem-navbar-right{
-    border-radius: 0px 25px 25px 0px;
-    border-bottom: 4px solid;
+.matchitem-navbar li {
+  display: inline;
+  padding: 1em 5em 1em 5em;
 }
-.matchitem-navbar-middle{
-    border-bottom: 4px solid;
+.matchitem-navbar-left {
+  border-radius: 25px 0px 0px 25px;
+  border-bottom: 4px solid;
 }
-.matchitem-navbar li:hover{
-    background-color: #1a1e2b;
-    cursor: pointer;
+.history-mid-text {
+  padding-top: 1em;
+}
+.matchitem-navbar-right {
+  border-radius: 0px 25px 25px 0px;
+  border-bottom: 4px solid;
+}
+.matchitem-navbar-middle {
+  border-bottom: 4px solid;
+}
+.matchitem-navbar li:hover {
+  background-color: #1a1e2b;
+  cursor: pointer;
 }
 .matchitem-navbar {
-    padding: 1em 0 1em 0;
-    width: 60%;
-    margin: 0 auto;
-    font-size: 1.2em;
+  padding: 1em 0 1em 0;
+  width: 60%;
+  margin: 0 auto;
+  font-size: 1.2em;
 }
-.matchitem-navbar a{
-    color: #ffffff;
-    text-decoration: none;
+.matchitem-navbar a {
+  color: #ffffff;
+  text-decoration: none;
 }
-.matchitem-navbar a:hover{
-    cursor: pointer;
+.matchitem-navbar a:hover {
+  cursor: pointer;
 }
-.history-item-build-thumbnail{
-    height: 32px;
+.history-item-build-thumbnail {
+  height: 28px;
+  border: 1px solid#ada3c3;
+  border-radius: 5px;
 }
-
-.history-item-build-holder{
-    display: inline-flex;
-    margin-right: 2em;
+.sold img {
+  height: 26px;
+  border-radius: 5px;
 }
-.history-item-runesetup{
-    height: 64px;
+.sold {
+  border: 1px solid#b64b4b;
+  height: 28px;
+  border-radius: 5px;
 }
-.history-build{
-    padding: 3em;
+.history-skillorder-table {
+  width: 50%;
 }
-.history-skillorder td, th{
-    border: 1px solid black;
-    width: 21px !important;
-    text-align: center;
+.label-quantity {
+  position: absolute;
+  bottom: -1px;
+  left: 11px;
+  background-color: #080808cf;
+  width: 12px;
+  font-size: 10px;
 }
-.history-skillorder{
-    margin: auto;
+.history-item-build-inner {
+  width: 70%;
+  margin: auto;
+  margin-top: 2em;
 }
-.green{
-    background-color: green;
+.history-item-build-wrapper {
+  border-bottom: 2px solid #504f4f;
 }
-.blank{
-    background-color: white;
+.rune-skillorder {
+  padding: 1em 2em 1em 2em;
+}
+.skillorder-table-div {
+  margin-top: 4em;
+  margin-bottom: 1em;
+}
+.history-runesetup {
+  width: 50%;
+}
+.history-item-build-holder {
+  display: inline-flex;
+  /* margin-right: 2em; */
+}
+.history-item-runesetup {
+  height: 64px;
+}
+.history-build {
+  /* padding: 3em; */
+}
+.td-noborder {
+  border: none !important;
+}
+table.history-skillorder td,
+table.history-skillorder th {
+  border: 1px solid #2b2a2a;
+  width: 25px !important;
+  text-align: center;
+}
+.history-skillorder {
+  /* margin: auto; */
+  margin-left: 3em;
+}
+.history-item-spell {
+  height: 24px;
+}
+.history-item-spell-wrapper {
+}
+.green {
+  background-color: #144064;
+}
+.blank {
+  background-color: #3e3d3dbf;
 }
 .greyed {
-    opacity: 0.4;
-    filter: alpha(opacity=40); /* msie */
+  opacity: 0.4;
+  filter: alpha(opacity=40); /* msie */
 }
 
 /* or */
 
-.grey-wrapper {
-    border: 1px solid red;
+.history-items-build-path div {
+  margin: 2px;
 }
-.history-items-build-path div{
-    margin: 1px;
+.history-items-build-path {
+  position: relative;
+  margin-right: 1em;
 }
-.color-wrapper{
-    border: 1px solid green;
+.color-wrapper {
+  position: relative;
+  text-align: center;
 }
-.history-item-rune-img{
-    max-height: 32px;
+.history-item-rune-img {
+  max-height: 32px;
 }
-.greyscale{
-    filter: grayscale(1);
+.greyscale {
+  filter: grayscale(1);
 }
-.history-item-runesetup-holder{
-    display: flex;
+.history-item-runesetup-holder {
+  display: flex;
 }
-.history-item-runesetup-holder img{
-    margin: 0.5em;
+.history-item-runesetup-holder img {
+  margin: 0.5em;
 }
-.rune-row{
-    width: fit-content;
-    margin: 0 auto;
+.rune-row {
+  width: fit-content;
+  margin: 0 auto;
 }
-.img-center img{
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
+.img-center img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 /* *GRAPH* */
-.graph-nav li{
-    margin: 1em;
-    display: inline;    
+.graph-nav li {
+  margin: 1em;
+  display: inline;
 }
 .graph-nav {
-    margin: 0 auto;
-    width: 50%;
+  margin: 0 auto;
+  width: 50%;
 }
-.graph-nav-listitem a{
-    color: #ffffff;
-    text-decoration: none;
+.graph-nav-listitem a {
+  color: #ffffff;
+  text-decoration: none;
 }
-a:hover{
-    cursor: pointer;
+a:hover {
+  cursor: pointer;
 }
-.graph-container{
-    margin-top: 2em;
+.graph-container {
+  margin-top: 2em;
 }
-.graph-list-thumbnail{
-    height: 48px;
-    margin: 0.5em;
-
+.graph-list-thumbnail {
+  height: 48px;
+  margin: 0.5em;
 }
-.graph-navbar-items{
-    margin: 0 auto;
+.graph-navbar-items {
+  margin: 0 auto;
 }
-.graph-participantlist-red li{
-    display: inline;
-    float: right;
+.graph-participantlist-red li {
+  display: inline;
+  float: right;
 }
-.graph-participantlist-red{
-    padding-right: 3em;
+.graph-participantlist-red {
+  padding-right: 3em;
 }
-.graph-participantlist-blue li{
-    display: inline;
-    float: left;
+.graph-participantlist-blue li {
+  display: inline;
+  float: left;
 }
 
 /** MATCHHISTORY ITEM */
-.match-history-item{
-    border-radius: 20px;
+.match-history-item {
+  border-radius: 20px;
 }
-.match-history-top{
-    padding: 0.25em;
-    border-bottom: 1px solid #504f4f;
+.match-history-top {
+  padding: 0.25em;
+  border-bottom: 1px solid #504f4f;
 }
-.match-history-item-wrapper{
-    padding: 0.5em 2em 2em 2em;
+.match-history-item-wrapper {
+  padding: 0.5em 2em 0.5em 2em;
 }
-.match-hisrotry-top-gamemode{
-    padding-left: 1em;
+.match-hisrotry-top-gamemode {
+  padding-left: 1em;
 }
-div[class*=box] {
-    height: 33.33%;
-    width: 100%; 
-    display: flex;
-    justify-content: center;
-    align-items: center;
+div[class*="box"] {
+  height: 33.33%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .box-1 {
-    
-    width: 250px;
-    }
-
+  width: 250px;
+}
+.showmore {
+  width: 1%;
+  margin: auto;
+}
+.showmore:hover {
+  cursor: pointer;
+}
 .btn {
-    line-height: 30px;
-    height: 40px;
-    text-align: center;
-    width: 100%;
-    cursor: pointer;
+  line-height: 30px;
+  height: 40px;
+  text-align: center;
+  width: 100%;
+  cursor: pointer;
 }
 .btn-one {
-    color: #FFF;
-    transition: all 0.3s;
-    position: relative;
+  color: #fff;
+  transition: all 0.3s;
+  position: relative;
 }
 .btn-one span {
-    transition: all 0.3s;
+  transition: all 0.3s;
 }
 .btn-one::before {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 1;
-    opacity: 0;
-    transition: all 0.3s;
-    border-top-width: 1px;
-    border-bottom-width: 1px;
-    border-top-style: solid;
-    border-bottom-style: solid;
-    border-top-color: rgba(255,255,255,0.5);
-    border-bottom-color: rgba(255,255,255,0.5);
-    transform: scale(0.1, 1);
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  opacity: 0;
+  transition: all 0.3s;
+  border-top-width: 1px;
+  border-bottom-width: 1px;
+  border-top-style: solid;
+  border-bottom-style: solid;
+  border-top-color: rgba(255, 255, 255, 0.5);
+  border-bottom-color: rgba(255, 255, 255, 0.5);
+  transform: scale(0.1, 1);
 }
 .btn-one:hover span {
-    letter-spacing: 2px;
+  letter-spacing: 2px;
+}
+.arrow-forward {
+  display: inline-flex;
+  margin-bottom: 4px;
+  margin: 0;
+  position: absolute;
+  top: 45%;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
 }
 .btn-one:hover::before {
-    opacity: 1; 
-    transform: scale(1, 1); 
+  opacity: 1;
+  transform: scale(1, 1);
 }
 .btn-one::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 1;
-    transition: all 0.3s;
-    background-color: rgba(255,255,255,0.1);
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  transition: all 0.3s;
+  background-color: rgba(255, 255, 255, 0.1);
 }
 .btn-one:hover::after {
-    opacity: 0; 
-    transform: scale(0.1, 1);
+  opacity: 0;
+  transform: scale(0.1, 1);
 }
-.more-stats-wrapper{
-    border-top: 2px solid grey;
+.more-stats-wrapper {
+  border-top: 2px solid grey;
 }
-.line-chart{
-    padding: 0 2em 2em 2em;
+.line-chart {
+  padding: 0 2em 2em 2em;
 }
-.loader-matchHistory{
-    width: 3%;
-    margin: 0 auto;
-    margin-top: 7em;
+.loader-matchHistory {
+  width: 3%;
+  margin: 0 auto;
+  margin-top: 7em;
+}
+/******OVERVIEW-PAGE*****/
+.overview-wrapper {
+  padding: 2em;
+}
+.overview-table {
+  width: 100%;
+  margin: auto;
+}
+td.overview-thumbnail-cell img {
+  height: 32px;
+}
+table.overview-table tr {
+  height: 40px;
+}
+table.overview-table th {
+  /* text-align: center; */
+}
+.overview-thumbnail-cell {
+  width: 32px;
+}
+td.overview-summonerSpells-thumbnail img {
+  height: 16px;
+  display: grid;
+}
+.overview-emblem {
+  height: 32px;
+}
+.overview-kda {
+  font-size: 12px;
+}
+div.overview-itembuild img {
+  height: 32px;
+  border: 1px solid#ada3c3;
+  border-radius: 5px;
+  margin: 0.25em;
+}
+.overview-itembuild {
+  display: flex;
+}
+.overview-empty-item {
+  border: 1px solid#ada3c3;
+  margin: 0.25em;
+  border-radius: 5px;
+  width: 32px;
+  height: 32px;
+}
+
+.info {
+  position: relative;
+  display: inline-block;
+}
+
+.info .info-text {
+  background-color: black;
+  color: #fff;
+  width: 140px;
+  text-align: left;
+  border-radius: 6px;
+  padding: 5px 0 5px 13px;
+  bottom: 0.5em;
+  /* Position the tooltip */
+  position: absolute;
+  z-index: 1;
+}
+
+.match-header-title {
+  padding: 1em 1em 1em 2em;
+}
+
+.match-header-duration {
+  padding: 1em 1em 1em 2em;
+}
+
+.greyed-text {
+  color: #b3b1b1;
+}
+.thumbnail-build {
+  height: 36px;
+  margin: 1em 1em 1em 1em;
+}
+#skills {
+  width: max-content;
+  margin: auto;
+}
+.skills-info {
+  padding: 0.5em 1em 1em 1em;
+  margin: auto;
+  width: 600px;
+}
+.thumbnail-build:hover {
+  cursor: pointer;
+}
+#skills-build {
+  display: flex;
 }
