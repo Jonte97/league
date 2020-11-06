@@ -4,6 +4,8 @@ import { GetReadableTimestamp } from "../../../../functions/TimeStampHelper";
 import { patch } from "../../../../TestFiles/Configuration";
 
 const ItemBuild = (props) => {
+  const amount = props.items.length-1;
+  
   return (
     <div className="history-item-build-wrapper">
       <div className="history-item-build-inner">
@@ -48,7 +50,11 @@ const ItemBuild = (props) => {
                     )
                   )}
                   <div className="arrow-forward inline-flex">
-                    <IoIosArrowForward />
+                    {
+                      key < amount ? 
+                      <IoIosArrowForward />
+                      : null
+                    }
                   </div>
                 </div>
               </div>
