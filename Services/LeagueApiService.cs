@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
@@ -22,7 +23,7 @@ namespace Services
         private static readonly object threadlock = new object();
 
         //TODO change this to be set to current patch when website starts
-        public string Patch { get; set; } = "10.19.1";
+        public string Patch { get; set; } = "10.22.1";
         public LeagueApiService(IConfiguration configuration)
         {
             _config = (IConfigurationRoot)configuration;
@@ -32,29 +33,63 @@ namespace Services
 
         private async Task<HttpResponseMessage> SendRequestAsync(string uri)
         {
-            HttpResponseMessage response = null;
-
             try
             {
+                HttpResponseMessage response = null;
+
                 client.DefaultRequestHeaders.Clear();
 
                 //TODO bör hämtas från appsettings
                 string key = "RGAPI-27f314d6-8e0c-4765-b36a-4a56b782f363";
                 client.DefaultRequestHeaders.Add("X-Riot-Token", key);
-
                 response = await client.GetAsync(uri);
 
                 response.EnsureSuccessStatusCode();
-
                 return response;
             }
-            catch (Exception ex)
+            catch (System.Exception ex)
             {
-
                 throw ex;
             }
         }
+        private async Task<int> GetStatusCode(string uri)
+        {
+            try
+            {
+                HttpResponseMessage response = null;
 
+                client.DefaultRequestHeaders.Clear();
+
+                //TODO bör hämtas från appsettings
+                string key = "RGAPI-27f314d6-8e0c-4765-b36a-4a56b782f363";
+                client.DefaultRequestHeaders.Add("X-Riot-Token", key);
+                response = await client.GetAsync(uri);
+
+                var statusCode = response.StatusCode;
+                if (statusCode == HttpStatusCode.OK)
+                {
+                    return 200;
+                }
+                else if(statusCode == HttpStatusCode.NotFound)
+                {
+                    return 404;
+                }
+                else
+                {
+                    return 500;
+                }
+            }
+            catch (System.Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public async Task<int> CheckIfSummonerExists(string name)
+        {
+            string url = $"https://euw1.api.riotgames.com/lol/summoner/v4/summoners/by-name/{name}";
+            var code = await GetStatusCode(url);
+            return code;
+        }
         public async Task<Summoner> GetSummonerAsync(string name)
         {
             try
@@ -63,17 +98,15 @@ namespace Services
                 var response = await SendRequestAsync(url);
 
                 var content = await response.Content.ReadAsStringAsync();
-
                 var summoner = JsonConvert.DeserializeObject<Summoner>(content);
 
                 return summoner;
             }
-            catch (System.Exception ex)
+            catch (HttpRequestException hre)
             {
-                throw ex;
+                throw hre;
             }
         }
-
         public async Task<LeagueEntry[]> GetRankedDataAsync(string id)
         {
             try
@@ -269,7 +302,7 @@ namespace Services
                 }
                 return matchList;
             }
-            catch (System.Exception ex) 
+            catch (System.Exception ex)
             {
 
                 throw ex;

@@ -8,8 +8,8 @@ import Header from "../header/Header";
 import RankedProfile from "./RankedProfileComponents/RankedProfile";
 import { championDictionary } from "../../functions/ChampionHelper";
 
-const MainPage = () => {
-  const startSummonerName = "Lönnen";
+const MainPage = ({ match }) => {
+  const startSummonerName = match.params.userId;
   const [summoner, setSummoner] = useState(null);
   useEffect(() => {
     const getSumm = async () => {
@@ -41,7 +41,7 @@ const MainPage = () => {
 
   return (
     <div>
-      {summoner ? (
+      {summoner && (
         <React.Fragment>
           <Header updateSummoner={getSummoner} />
           <Profile
@@ -49,9 +49,12 @@ const MainPage = () => {
             summoner={summoner.summoner}
           />
           {/* <RankedProfile championList={champions} summoner={summoner} /> */}
-          <MatchHistory champions={champions} activeSummoner={summoner.summoner} />
+          <MatchHistory
+            champions={champions}
+            activeSummoner={summoner.summoner}
+          />
         </React.Fragment>
-      ) : null}
+      )}
     </div>
   );
 };

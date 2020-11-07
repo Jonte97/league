@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Net.Http;
 using System.Threading.Tasks;
 using MingweiSamuel.Camille.MatchV4;
 using Model;
@@ -19,7 +20,6 @@ namespace Services
         Task<TimeLine> GetTimeLineForMatch(string matchId);
         Task<List<MatchReference>> GetMatchesRankedProfile();
         Task<List<MatchReference>> GetMatchesRankedProfileAsync(GamesByQueue queue);
-
-
+        Task<int> CheckIfSummonerExists(string name);
     }
 }
