@@ -4,8 +4,8 @@ import { GetReadableTimestamp } from "../../../../functions/TimeStampHelper";
 import { patch } from "../../../../TestFiles/Configuration";
 
 const ItemBuild = (props) => {
-  const amount = props.items.length-1;
-  
+  const amount = props.items.length - 1;
+
   return (
     <div className="history-item-build-wrapper">
       <div className="history-item-build-inner">
@@ -44,17 +44,13 @@ const ItemBuild = (props) => {
                           src={`https://ddragon.leagueoflegends.com/cdn/${patch}/img/item/${item.itemId}.png`}
                         />
                         {item.quantity && (
-                          <div className="label-quantity">{item.quantity}</div>
+                          <div className="label-quantity-sold">{item.quantity}</div>
                         )}
                       </div>
                     )
                   )}
                   <div className="arrow-forward inline-flex">
-                    {
-                      key < amount ? 
-                      <IoIosArrowForward />
-                      : null
-                    }
+                    {key < amount ? <IoIosArrowForward /> : null}
                   </div>
                 </div>
               </div>

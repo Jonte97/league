@@ -203,6 +203,33 @@ namespace Name.Controllers
                 return StatusCode(500);
             }
         }
+        [HttpPost("[action]")]
+        public async Task<IActionResult> LiveGame([FromBody]string summonerId) 
+        {
+            try
+            {
+
+                return Ok();
+            }
+            catch (System.Exception)
+            {
+                return StatusCode(500);
+            }
+        }
+        //* Checks if summoner is in game
+        [HttpPost("[action]")]
+        public async Task<IActionResult> SummonerInGame([FromBody]string summonerId) 
+        {
+            try
+            {
+                
+                return Ok();
+            }
+            catch (System.Exception)
+            {
+                return StatusCode(500);
+            }
+        }
     }
 
 }
