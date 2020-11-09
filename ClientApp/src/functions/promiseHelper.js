@@ -149,12 +149,36 @@ export const getQueues = async () => {
 
   return data;
 };
-//* Gets summoner by name
-export const getSummonerByNameAsync = async (input) => {
+//* Checks if summoner exists will get 200 (exists) 404 (not found) 500 (something went wrong)
+export const checkSummonerExistsAsync = async (input) => {
   const response = await fetch("api/LeagueApi/SummonerExists", {
     method: "post",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(input),
+  });
+  const data = await response.json();
+
+  return data;
+};
+
+//* Gets summoner by name
+export const getSummonerByNameAsync = async (name) => {
+  const response = await fetch("api/LeagueApi/GetSummonerByName", {
+    method: "post",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(name),
+  });
+  const data = await response.json();
+
+  return data;
+};
+
+//* Gets LiveGame
+export const getLiveGame = async (summonerId) => {
+  const response = await fetch("api/LeagueApi/LiveGame", {
+    method: "post",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(summonerId),
   });
   const data = await response.json();
 

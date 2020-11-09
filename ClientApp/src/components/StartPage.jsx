@@ -1,26 +1,24 @@
 import React, { useState } from "react";
 import { Link, Route, Router, useHistory } from "react-router-dom";
-import { getSummonerByNameAsync } from "../functions/promiseHelper";
+import { checkSummonerExistsAsync } from "../functions/promiseHelper";
 
 const StartPage = () => {
-	const [summonerName, setSummonerName] = useState(null);
+  const [summonerName, setSummonerName] = useState(null);
   let history = useHistory();
   const handleChange = (e) => {
     setSummonerName(e.target.value);
   };
 
   const handleClick = async (name) => {
-		const result = await getSummonerByNameAsync(name);
-		if (result === 200) {
-      history.push(`/Summoner/${name}`)
-    }
-    else if(result === 404){
+    const result = await checkSummonerExistsAsync(name);
+    if (result === 200) {
+      history.push(`/Summoner/${name}`);
+    } else if (result === 404) {
       //TODO Handle not found
-    }
-    else{
+    } else {
       //TODO handle servererror
     }
-	};
+  };
   return (
     <div>
       <div>
@@ -34,7 +32,7 @@ const StartPage = () => {
       />
       <button onClick={() => handleClick(summonerName)}>
         test
-				{/* <Link to={`/RouteTest/${summonerName}`}>asd</Link> */}
+        {/* <Link to={`/RouteTest/${summonerName}`}>asd</Link> */}
       </button>
     </div>
   );

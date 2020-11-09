@@ -7,6 +7,7 @@ using Microsoft.Extensions.Configuration;
 using MingweiSamuel.Camille;
 using MingweiSamuel.Camille.Enums;
 using MingweiSamuel.Camille.MatchV4;
+using MingweiSamuel.Camille.SpectatorV4;
 using Model;
 using Models;
 using Newtonsoft.Json;
@@ -70,7 +71,7 @@ namespace Services
                 {
                     return 200;
                 }
-                else if(statusCode == HttpStatusCode.NotFound)
+                else if (statusCode == HttpStatusCode.NotFound)
                 {
                     return 404;
                 }
@@ -205,57 +206,6 @@ namespace Services
                 throw ex;
             }
         }
-        public async Task<List<MatchReference>> GetMatchesRankedProfile()
-        {
-            try
-            {
-                string accountId = "ozMoiB-Krv93WBb4oX1nXjgKAif4kvcA1BolzEzjf_Bc4xQ";
-                int[] queue = new int[] { 420 };
-                int[] season = new int[] { 13 };
-                bool IsDone = false;
-                int startIndex = 0;
-                int endIndex = 100;
-                List<MatchReference> list = new List<MatchReference>();
-                //TODO should move this as constant somewhere
-                DateTime dt = new DateTime(2020, 1, 10);
-
-                while (!IsDone)
-                {
-                    var result = await _riotApi.MatchV4.GetMatchlistAsync(
-                        Region.EUW,
-                        accountId,
-                        null,
-                        queue,
-                        season,
-                        null,
-                        null,
-                        endIndex,
-                        startIndex,
-                        null
-                    );
-                    foreach (var match in result.Matches)
-                    {
-                        list.Add(match);
-                    }
-                    int lastIndex = result.Matches.Length - 1;
-                    double sec = TimeSpan.FromMilliseconds(result.Matches[lastIndex].Timestamp).TotalSeconds;
-                    var time = UnixTimeStampToDateTime(sec);
-
-                    startIndex += 100;
-                    endIndex += 100;
-                    if (time.Date <= dt)
-                    {
-                        IsDone = true;
-                    }
-                }
-                return list;
-            }
-            catch (System.Exception ex)
-            {
-
-                throw ex;
-            }
-        }
         public async Task<List<MatchReference>> GetMatchesRankedProfileAsync(GamesByQueue queue)
         {
             try
@@ -308,14 +258,10 @@ namespace Services
                 throw ex;
             }
         }
-
-        //TODO should move this so it can be used by other funtions
-        private static DateTime UnixTimeStampToDateTime(double unixTimeStamp)
+        public async Task<CurrentGameInfo> GetLiveGame(string summonerId)
         {
-            // Unix timestamp is seconds past epoch
-            System.DateTime dtDateTime = new DateTime(1970, 1, 1, 0, 0, 0, 0, System.DateTimeKind.Utc);
-            dtDateTime = dtDateTime.AddSeconds(unixTimeStamp).ToLocalTime();
-            return dtDateTime;
+            var result = await _riotApi.SpectatorV4.GetCurrentGameInfoBySummonerAsync(Region.EUW, summonerId);
+            return result;
         }
     }
 }

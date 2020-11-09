@@ -38,10 +38,12 @@ namespace Name.Controllers
             {
                 return Ok(response);
             }
-            else if(response == 404){
+            else if (response == 404)
+            {
                 return Ok(response);
             }
-            else{
+            else
+            {
                 return Ok(response);
             }
         }
@@ -219,19 +221,25 @@ namespace Name.Controllers
                 return StatusCode(500);
             }
         }
-        //  [HttpPost("[action]")]
-        // public async Task<IActionResult> LiveGame([FromBody]string summonerId) 
-        // {
-        //     try
-        //     {
-
-        //         return Ok();
-        //     }
-        //     catch (System.Exception)
-        //     {
-        //         return StatusCode(500);
-        //     }
-        // }
+        [HttpPost("[action]")]
+        public async Task<Summoner> GetSummonerByName([FromBody] string name)
+        {
+            var result = await _leagueApiService.GetSummonerAsync(name);
+            return result;
+        }
+        [HttpPost("[action]")]
+        public async Task<IActionResult> LiveGame([FromBody] string summonerId)
+        {
+            try
+            {
+                var result = await _leagueApiService.GetLiveGame(summonerId);
+                return Ok(result);
+            }
+            catch (System.Exception)
+            {
+                return StatusCode(500);
+            }
+        }
         // //* Checks if summoner is in game
         // [HttpPost("[action]")]
         // public async Task<IActionResult> SummonerInGame([FromBody]string summonerId) 

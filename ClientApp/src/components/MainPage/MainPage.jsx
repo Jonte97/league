@@ -7,8 +7,10 @@ import { getSummonerAsync } from "../../functions/promiseHelper";
 import Header from "../header/Header";
 import RankedProfile from "./RankedProfileComponents/RankedProfile";
 import { championDictionary } from "../../functions/ChampionHelper";
+import { useHistory } from "react-router";
 
 const MainPage = ({ match }) => {
+  const history = useHistory();
   const startSummonerName = match.params.userId;
   const [summoner, setSummoner] = useState(null);
   useEffect(() => {
@@ -38,7 +40,9 @@ const MainPage = ({ match }) => {
       leagueEntries: fetched.leagueEntries,
     });
   };
-
+  const handleClick = () => {
+    history.push(`/LiveGame/${summoner.summoner.name}`);
+  };
   return (
     <div>
       {summoner && (
@@ -48,6 +52,9 @@ const MainPage = ({ match }) => {
             leagueEntries={summoner.leagueEntries}
             summoner={summoner.summoner}
           />
+          <button id="live-game" className="btn-primary" onClick={handleClick}>
+            Livegame
+          </button>
           {/* <RankedProfile championList={champions} summoner={summoner} /> */}
           <MatchHistory
             champions={champions}
