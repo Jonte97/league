@@ -22,8 +22,6 @@ const MatchHistory = (props) => {
 
         return itemArray;
       };
-
-      // const champList = await getChampionList();
       const spellData = await getSummonerSpellData();
       const runesData = await getRunesData();
       const itemsPrimitive = await getItemListAsync();
@@ -39,19 +37,28 @@ const MatchHistory = (props) => {
     getReferencesAsync();
   }, []);
 
-  const [matchHistory, setMatchHistory] = useState({ matches: [] });
+  const [matchHistory, setMatchHistory] = useState(null);
   useEffect(() => {
     const getMatches = async () => {
       const matches = await getMatchHistory(props.activeSummoner.accountId);
       setMatchHistory(matches);
     };
     getMatches();
+  }, []);
+
+  useEffect(() => {
+    const getMatches = async () => {
+      const matches = await getMatchHistory(props.activeSummoner.accountId);
+      setMatchHistory(matches);
+    };
+    setMatchHistory(null);
+    getMatches();
   }, [props.activeSummoner]);
 
   return (
     <div className="theme-bg">
       <div className="container">
-        {gameReferences ? (
+        {matchHistory ? (
           matchHistory.matches.map((match, i) => (
             <div key={i} className="history-item">
               <MatchItem

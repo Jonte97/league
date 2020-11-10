@@ -63,7 +63,7 @@ const MatchItem = (props) => {
       }
     };
     fetcMatch();
-  }, [props.match.gameId]);
+  }, [props.owner]);
 
   const [summonerGameInfo, setGameInfo] = useState();
   useEffect(() => {
@@ -75,7 +75,7 @@ const MatchItem = (props) => {
       setGameInfo(info);
     };
     makeAsyncCall();
-  }, [props.match.gameId]);
+  }, [props.owner]);
 
   const [thumbnails, setThumbNails] = useState({
     ownerChampion: "",
@@ -214,7 +214,7 @@ const MatchItem = (props) => {
               <span>{!showMore ? "More stats" : "Hide more stats"}</span>
             </div>
           </div> */}
-          
+
           <div>
             <div
               className="showmore"
@@ -222,7 +222,13 @@ const MatchItem = (props) => {
                 !showMore ? setShowMore(true) : setShowMore(false);
               }}
             >
-              <span>{!showMore ? <IoIosArrowDown size="2em" /> : <IoIosArrowUp size="2em" />}</span>
+              <span>
+                {!showMore ? (
+                  <IoIosArrowDown size="2em" />
+                ) : (
+                  <IoIosArrowUp size="2em" />
+                )}
+              </span>
             </div>
           </div>
         </div>

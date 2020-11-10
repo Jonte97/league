@@ -22,7 +22,7 @@ const MainPage = ({ match }) => {
       });
     };
     getSumm();
-  }, []);
+  }, [match.params.userId]);
   //TODO this should be standard championList
   const [champions, setChampions] = useState(null);
   useEffect(() => {
@@ -34,11 +34,11 @@ const MainPage = ({ match }) => {
   }, []);
 
   const getSummoner = async (name) => {
-    const fetched = await getSummonerAsync(name);
-    setSummoner({
-      summoner: fetched.summoner,
-      leagueEntries: fetched.leagueEntries,
-    });
+    // const fetched = await getSummonerAsync(name);
+    // setSummoner({
+    //   summoner: fetched.summoner,
+    //   leagueEntries: fetched.leagueEntries,
+    // });
   };
   const handleClick = () => {
     history.push(`/LiveGame/${summoner.summoner.name}`);

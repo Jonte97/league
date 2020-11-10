@@ -30,7 +30,11 @@ const LiveGame = ({ match }) => {
     <div className="container">
       <div className="livegame-table">
         <table>
-          <thead></thead>
+          <thead>
+            <tr>
+              <td>test</td>
+            </tr>
+          </thead>
           <tbody></tbody>
         </table>
       </div>

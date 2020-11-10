@@ -17,7 +17,7 @@ export const getChampionList = async () => {
 //Get summonerspelldata and returns it
 export const getSummonerSpellData = async () => {
   const response = await fetch(
-    "https://ddragon.leagueoflegends.com/cdn/10.18.1/data/en_US/summoner.json"
+    `https://ddragon.leagueoflegends.com/cdn/${patch}/data/en_US/summoner.json`
   );
   const data = await response.json();
   return data;
@@ -26,7 +26,7 @@ export const getSummonerSpellData = async () => {
 //Get Runes reforge json file
 export const getRunesData = async () => {
   const response = await fetch(
-    "https://ddragon.leagueoflegends.com/cdn/10.18.1/data/en_US/runesReforged.json"
+    `https://ddragon.leagueoflegends.com/cdn/${patch}/data/en_US/runesReforged.json`
   );
   const data = await response.json();
   return data;
@@ -94,9 +94,9 @@ export const getTimeLineEvents = async (participantId, gameId) => {
   return data;
 };
 
-export const getItemListAsync = async (patch) => {
+export const getItemListAsync = async () => {
   const response = await fetch(
-    "https://ddragon.leagueoflegends.com/cdn/10.20.1/data/en_US/item.json"
+    `https://ddragon.leagueoflegends.com/cdn/${patch}/data/en_US/item.json`
   );
   const data = await response.json();
 
@@ -122,7 +122,7 @@ export const getMostPlayedChampionsRanked = async (entries, accountId) => {
 
 export const getChampionByNameAsync = async (name) => {
   const response = await fetch(
-    `https://ddragon.leagueoflegends.com/cdn/10.21.1/data/en_US/champion/${name}.json`
+    `https://ddragon.leagueoflegends.com/cdn/${patch}/data/en_US/champion/${name}.json`
   );
   const data = await response.json();
 
