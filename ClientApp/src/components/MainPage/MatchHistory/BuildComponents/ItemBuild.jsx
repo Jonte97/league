@@ -44,7 +44,9 @@ const ItemBuild = (props) => {
                           src={`https://ddragon.leagueoflegends.com/cdn/${patch}/img/item/${item.itemId}.png`}
                         />
                         {item.quantity && (
-                          <div className="label-quantity-sold">{item.quantity}</div>
+                          <div className="label-quantity-sold">
+                            {item.quantity}
+                          </div>
                         )}
                       </div>
                     )

@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import {
-  championDictionary,
   getChampionAbilities,
   getChampionFromDictionaryById,
 } from "../../../../functions/ChampionHelper";
@@ -41,7 +40,6 @@ const SkillOrder = (props) => {
       list.r.push({ skill: props.skillorder[i], index: i + 1 });
     }
   }
-  //TODO add styling on table
   return (
     <div className="skillorder-table-div">
       <table className="history-skillorder">

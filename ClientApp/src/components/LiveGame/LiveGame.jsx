@@ -28,13 +28,11 @@ const LiveGame = ({ match }) => {
   }, [summoner]);
   return (
     <div className="container">
-      <div className="asd" style={{ backgroundColor: "#000" }}>
-        <ul>
-          <li>1</li>
-          <li>2</li>
-          <li>3</li>
-          <li>4</li>
-        </ul>
+      <div className="livegame-table">
+        <table>
+          <thead></thead>
+          <tbody></tbody>
+        </table>
       </div>
     </div>
   );
