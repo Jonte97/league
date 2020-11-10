@@ -1,11 +1,13 @@
 using System;
 using System.Collections.Generic;
+using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
 using MingweiSamuel.Camille;
 using MingweiSamuel.Camille.Enums;
 using MingweiSamuel.Camille.MatchV4;
+using MingweiSamuel.Camille.SpectatorV4;
 using Model;
 using Models;
 using Newtonsoft.Json;
@@ -22,7 +24,7 @@ namespace Services
         private static readonly object threadlock = new object();
 
         //TODO change this to be set to current patch when website starts
-        public string Patch { get; set; } = "10.19.1";
+        public string Patch { get; set; } = "10.22.1";
         public LeagueApiService(IConfiguration configuration)
         {
             _config = (IConfigurationRoot)configuration;
@@ -32,29 +34,63 @@ namespace Services
 
         private async Task<HttpResponseMessage> SendRequestAsync(string uri)
         {
-            HttpResponseMessage response = null;
-
             try
             {
+                HttpResponseMessage response = null;
+
                 client.DefaultRequestHeaders.Clear();
 
                 //TODO bör hämtas från appsettings
                 string key = "RGAPI-27f314d6-8e0c-4765-b36a-4a56b782f363";
                 client.DefaultRequestHeaders.Add("X-Riot-Token", key);
-
                 response = await client.GetAsync(uri);
 
                 response.EnsureSuccessStatusCode();
-
                 return response;
             }
-            catch (Exception ex)
+            catch (System.Exception ex)
             {
-
                 throw ex;
             }
         }
+        private async Task<int> GetStatusCode(string uri)
+        {
+            try
+            {
+                HttpResponseMessage response = null;
 
+                client.DefaultRequestHeaders.Clear();
+
+                //TODO bör hämtas från appsettings
+                string key = "RGAPI-27f314d6-8e0c-4765-b36a-4a56b782f363";
+                client.DefaultRequestHeaders.Add("X-Riot-Token", key);
+                response = await client.GetAsync(uri);
+
+                var statusCode = response.StatusCode;
+                if (statusCode == HttpStatusCode.OK)
+                {
+                    return 200;
+                }
+                else if (statusCode == HttpStatusCode.NotFound)
+                {
+                    return 404;
+                }
+                else
+                {
+                    return 500;
+                }
+            }
+            catch (System.Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public async Task<int> CheckIfSummonerExists(string name)
+        {
+            string url = $"https://euw1.api.riotgames.com/lol/summoner/v4/summoners/by-name/{name}";
+            var code = await GetStatusCode(url);
+            return code;
+        }
         public async Task<Summoner> GetSummonerAsync(string name)
         {
             try
@@ -63,17 +99,15 @@ namespace Services
                 var response = await SendRequestAsync(url);
 
                 var content = await response.Content.ReadAsStringAsync();
-
                 var summoner = JsonConvert.DeserializeObject<Summoner>(content);
 
                 return summoner;
             }
-            catch (System.Exception ex)
+            catch (HttpRequestException hre)
             {
-                throw ex;
+                throw hre;
             }
         }
-
         public async Task<LeagueEntry[]> GetRankedDataAsync(string id)
         {
             try
@@ -172,57 +206,6 @@ namespace Services
                 throw ex;
             }
         }
-        public async Task<List<MatchReference>> GetMatchesRankedProfile()
-        {
-            try
-            {
-                string accountId = "ozMoiB-Krv93WBb4oX1nXjgKAif4kvcA1BolzEzjf_Bc4xQ";
-                int[] queue = new int[] { 420 };
-                int[] season = new int[] { 13 };
-                bool IsDone = false;
-                int startIndex = 0;
-                int endIndex = 100;
-                List<MatchReference> list = new List<MatchReference>();
-                //TODO should move this as constant somewhere
-                DateTime dt = new DateTime(2020, 1, 10);
-
-                while (!IsDone)
-                {
-                    var result = await _riotApi.MatchV4.GetMatchlistAsync(
-                        Region.EUW,
-                        accountId,
-                        null,
-                        queue,
-                        season,
-                        null,
-                        null,
-                        endIndex,
-                        startIndex,
-                        null
-                    );
-                    foreach (var match in result.Matches)
-                    {
-                        list.Add(match);
-                    }
-                    int lastIndex = result.Matches.Length - 1;
-                    double sec = TimeSpan.FromMilliseconds(result.Matches[lastIndex].Timestamp).TotalSeconds;
-                    var time = UnixTimeStampToDateTime(sec);
-
-                    startIndex += 100;
-                    endIndex += 100;
-                    if (time.Date <= dt)
-                    {
-                        IsDone = true;
-                    }
-                }
-                return list;
-            }
-            catch (System.Exception ex)
-            {
-
-                throw ex;
-            }
-        }
         public async Task<List<MatchReference>> GetMatchesRankedProfileAsync(GamesByQueue queue)
         {
             try
@@ -269,20 +252,16 @@ namespace Services
                 }
                 return matchList;
             }
-            catch (System.Exception ex) 
+            catch (System.Exception ex)
             {
 
                 throw ex;
             }
         }
-
-        //TODO should move this so it can be used by other funtions
-        private static DateTime UnixTimeStampToDateTime(double unixTimeStamp)
+        public async Task<CurrentGameInfo> GetLiveGame(string summonerId)
         {
-            // Unix timestamp is seconds past epoch
-            System.DateTime dtDateTime = new DateTime(1970, 1, 1, 0, 0, 0, 0, System.DateTimeKind.Utc);
-            dtDateTime = dtDateTime.AddSeconds(unixTimeStamp).ToLocalTime();
-            return dtDateTime;
+            var result = await _riotApi.SpectatorV4.GetCurrentGameInfoBySummonerAsync(Region.EUW, summonerId);
+            return result;
         }
     }
 }

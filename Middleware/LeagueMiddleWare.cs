@@ -40,6 +40,7 @@ namespace MiddleWare
                 ).ToList();
 
                 result = result.Where(x => x.Count > 0).ToList();
+                int index = 0;
                 //* Removes undo items from list
                 foreach (var frame in result.ToList())
                 {
@@ -47,9 +48,19 @@ namespace MiddleWare
                     {
                         if (item.Type == TypeEnum.ItemUndo)
                         {
-                            var undo = frame.Where(x => x.ItemId == item.AfterId || x.ItemId == item.BeforeId).First();
-                            frame.Remove(undo);
-                            frame.Remove(item);
+                            var undo = frame.Where(x => x.ItemId == item.AfterId || x.ItemId == item.BeforeId).FirstOrDefault();
+                            if (undo == null)
+                            {
+                                //TODO Fix dis undo item kan hamna i frame innan. 
+                                var itemExist = result.ElementAt(index - 1).Where(x => x.ItemId == item.AfterId || x.ItemId == item.BeforeId).FirstOrDefault();
+                                result.ElementAt(index - 1).Remove(itemExist);
+                                frame.Remove(item);
+                            }
+                            else
+                            {
+                                frame.Remove(undo);
+                                frame.Remove(item);
+                            }
                         }
                     }
                     //* To remove duplicates for frontend
@@ -69,6 +80,7 @@ namespace MiddleWare
                             frame.Add(rFrame);
                         }
                     }
+                    index++;
                 }
                 result = result.Where(x => x.Count != 0).ToList();
                 return result;

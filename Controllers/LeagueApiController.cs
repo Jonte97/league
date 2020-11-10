@@ -31,6 +31,24 @@ namespace Name.Controllers
         }
         //TODO Change all tasks in controller to IActionResult
         [HttpPost("[action]")]
+        public async Task<IActionResult> SummonerExists([FromBody] string input)
+        {
+            var response = await _leagueApiService.CheckIfSummonerExists(input);
+            if (response == 200)
+            {
+                return Ok(response);
+            }
+            else if (response == 404)
+            {
+                return Ok(response);
+            }
+            else
+            {
+                return Ok(response);
+            }
+        }
+        //TODO Change all tasks in controller to IActionResult
+        [HttpPost("[action]")]
         public async Task<string> GetSummonerData([FromBody] string name)
         {
             var summoner = await _leagueApiService.GetSummonerAsync(name);
@@ -203,6 +221,39 @@ namespace Name.Controllers
                 return StatusCode(500);
             }
         }
+        [HttpPost("[action]")]
+        public async Task<Summoner> GetSummonerByName([FromBody] string name)
+        {
+            var result = await _leagueApiService.GetSummonerAsync(name);
+            return result;
+        }
+        [HttpPost("[action]")]
+        public async Task<IActionResult> LiveGame([FromBody] string summonerId)
+        {
+            try
+            {
+                var result = await _leagueApiService.GetLiveGame(summonerId);
+                return Ok(result);
+            }
+            catch (System.Exception)
+            {
+                return StatusCode(500);
+            }
+        }
+        // //* Checks if summoner is in game
+        // [HttpPost("[action]")]
+        // public async Task<IActionResult> SummonerInGame([FromBody]string summonerId) 
+        // {
+        //     try
+        //     {
+
+        //         return Ok();
+        //     }
+        //     catch (System.Exception)
+        //     {
+        //         return StatusCode(500);
+        //     }
+        // }
     }
 
 }

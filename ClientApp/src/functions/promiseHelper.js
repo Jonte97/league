@@ -1,11 +1,13 @@
-import {patch} from "../TestFiles/Configuration"
+import { patch } from "../TestFiles/Configuration";
 //TODO Move all api requests to this file
 export const getAllChampions = async () => {
-  const response = await fetch(`https://ddragon.leagueoflegends.com/cdn/${patch}/data/en_US/champion.json`)
+  const response = await fetch(
+    `https://ddragon.leagueoflegends.com/cdn/${patch}/data/en_US/champion.json`
+  );
   const data = await response.json();
 
   return data;
-}
+};
 
 export const getChampionList = async () => {
   const response = await fetch("api/LeagueApi/GetSimpleChampionList");
@@ -15,7 +17,7 @@ export const getChampionList = async () => {
 //Get summonerspelldata and returns it
 export const getSummonerSpellData = async () => {
   const response = await fetch(
-    "https://ddragon.leagueoflegends.com/cdn/10.18.1/data/en_US/summoner.json"
+    `https://ddragon.leagueoflegends.com/cdn/${patch}/data/en_US/summoner.json`
   );
   const data = await response.json();
   return data;
@@ -24,7 +26,7 @@ export const getSummonerSpellData = async () => {
 //Get Runes reforge json file
 export const getRunesData = async () => {
   const response = await fetch(
-    "https://ddragon.leagueoflegends.com/cdn/10.18.1/data/en_US/runesReforged.json"
+    `https://ddragon.leagueoflegends.com/cdn/${patch}/data/en_US/runesReforged.json`
   );
   const data = await response.json();
   return data;
@@ -92,9 +94,9 @@ export const getTimeLineEvents = async (participantId, gameId) => {
   return data;
 };
 
-export const getItemListAsync = async (patch) => {
+export const getItemListAsync = async () => {
   const response = await fetch(
-    "https://ddragon.leagueoflegends.com/cdn/10.20.1/data/en_US/item.json"
+    `https://ddragon.leagueoflegends.com/cdn/${patch}/data/en_US/item.json`
   );
   const data = await response.json();
 
@@ -120,7 +122,7 @@ export const getMostPlayedChampionsRanked = async (entries, accountId) => {
 
 export const getChampionByNameAsync = async (name) => {
   const response = await fetch(
-    `https://ddragon.leagueoflegends.com/cdn/10.21.1/data/en_US/champion/${name}.json`
+    `https://ddragon.leagueoflegends.com/cdn/${patch}/data/en_US/champion/${name}.json`
   );
   const data = await response.json();
 
@@ -140,8 +142,45 @@ export const getLeagueEntries = async (id) => {
 
 //* Gets list of all queues
 export const getQueues = async () => {
-  const response = await fetch('https://static.developer.riotgames.com/docs/lol/queues.json')
+  const response = await fetch(
+    "https://static.developer.riotgames.com/docs/lol/queues.json"
+  );
   const data = await response.json();
-  
+
   return data;
-}
+};
+//* Checks if summoner exists will get 200 (exists) 404 (not found) 500 (something went wrong)
+export const checkSummonerExistsAsync = async (input) => {
+  const response = await fetch("api/LeagueApi/SummonerExists", {
+    method: "post",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(input),
+  });
+  const data = await response.json();
+
+  return data;
+};
+
+//* Gets summoner by name
+export const getSummonerByNameAsync = async (name) => {
+  const response = await fetch("api/LeagueApi/GetSummonerByName", {
+    method: "post",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(name),
+  });
+  const data = await response.json();
+
+  return data;
+};
+
+//* Gets LiveGame
+export const getLiveGame = async (summonerId) => {
+  const response = await fetch("api/LeagueApi/LiveGame", {
+    method: "post",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(summonerId),
+  });
+  const data = await response.json();
+
+  return data;
+};
