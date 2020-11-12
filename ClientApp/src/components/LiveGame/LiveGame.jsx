@@ -4,17 +4,16 @@ import {
   getSummonerByNameAsync,
 } from "../../functions/promiseHelper";
 import { livegame } from "../../TestFiles/livegame";
+import "../../StyleSheets/livegame.scss";
 
-const LiveGame = ({ match }) => {
-  const SummonerName = match.params.userId;
+const LiveGame = (props) => {
   const [summoner, setSummoner] = useState(null);
   useEffect(() => {
     const setup = async () => {
-      const player = await getSummonerByNameAsync(SummonerName);
-      setSummoner(player);
+      setSummoner(props.summoner);
     };
     setup();
-  }, [SummonerName]);
+  }, [props.summoner]);
 
   const [liveGame, setLiveGame] = useState(null);
   useEffect(() => {
@@ -28,15 +27,17 @@ const LiveGame = ({ match }) => {
   }, [summoner]);
   return (
     <div className="container">
-      <div className="livegame-table">
-        <table>
-          <thead>
-            <tr>
-              <td>test</td>
-            </tr>
-          </thead>
-          <tbody></tbody>
-        </table>
+      <div className="wrapper">
+        <div className="livegame-table">
+          <table>
+            <thead>
+              <tr>
+                <td>test</td>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
       </div>
     </div>
   );

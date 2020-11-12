@@ -62,6 +62,7 @@ const MatchHistory = (props) => {
           matchHistory.matches.map((match, i) => (
             <div key={i} className="history-item">
               <MatchItem
+                ddragon={props.ddragon}
                 key={i}
                 champions={props.champions}
                 match={match}

@@ -1,11 +1,16 @@
 import React, { useEffect } from "react";
+import { patch } from "../../../TestFiles/Configuration";
 
 const Items = (props) => {
   const getItemName = (id) => {
-    const name = props.itemRefs.find((obj) => {
-      return obj.id == id;
-    });
-    return name.data.name;
+    try {
+      const name = props.itemRefs.find((obj) => {
+        return obj.id == id;
+      });
+      return name.data.name;
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -19,7 +24,7 @@ const Items = (props) => {
                   alt="item-img"
                   title={getItemName(props.stats.stats.item0)}
                   className="history-item-img"
-                  src={`https://ddragon.leagueoflegends.com/cdn/10.18.1/img/item/${props.stats.stats.item0}.png`}
+                  src={`https://ddragon.leagueoflegends.com/cdn/${patch}/img/item/${props.stats.stats.item0}.png`}
                 />
               </div>
             ) : (
@@ -31,7 +36,7 @@ const Items = (props) => {
                   alt="item-img"
                   title={getItemName(props.stats.stats.item1)}
                   className="history-item-img"
-                  src={`https://ddragon.leagueoflegends.com/cdn/10.18.1/img/item/${props.stats.stats.item1}.png`}
+                  src={`https://ddragon.leagueoflegends.com/cdn/${patch}/img/item/${props.stats.stats.item1}.png`}
                 />
               </div>
             ) : (
@@ -43,7 +48,7 @@ const Items = (props) => {
                   alt="item-img"
                   title={getItemName(props.stats.stats.item2)}
                   className="history-item-img"
-                  src={`https://ddragon.leagueoflegends.com/cdn/10.18.1/img/item/${props.stats.stats.item2}.png`}
+                  src={`https://ddragon.leagueoflegends.com/cdn/${patch}/img/item/${props.stats.stats.item2}.png`}
                 />
               </div>
             ) : (
@@ -56,7 +61,7 @@ const Items = (props) => {
                     alt="item-img"
                     title={getItemName(props.stats.stats.item6)}
                     className="history-item-img"
-                    src={`https://ddragon.leagueoflegends.com/cdn/10.18.1/img/item/${props.stats.stats.item6}.png`}
+                    src={`https://ddragon.leagueoflegends.com/cdn/${patch}/img/item/${props.stats.stats.item6}.png`}
                   />
                 </div>
               ) : (
@@ -71,7 +76,7 @@ const Items = (props) => {
                   alt="item-img"
                   title={getItemName(props.stats.stats.item3)}
                   className="history-item-img"
-                  src={`https://ddragon.leagueoflegends.com/cdn/10.18.1/img/item/${props.stats.stats.item3}.png`}
+                  src={`https://ddragon.leagueoflegends.com/cdn/${patch}/img/item/${props.stats.stats.item3}.png`}
                 />
               </div>
             ) : (
@@ -83,7 +88,7 @@ const Items = (props) => {
                   alt="item-img"
                   title={getItemName(props.stats.stats.item4)}
                   className="history-item-img"
-                  src={`https://ddragon.leagueoflegends.com/cdn/10.18.1/img/item/${props.stats.stats.item4}.png`}
+                  src={`https://ddragon.leagueoflegends.com/cdn/${patch}/img/item/${props.stats.stats.item4}.png`}
                 />
               </div>
             ) : (
@@ -95,7 +100,7 @@ const Items = (props) => {
                   alt="item-img"
                   title={getItemName(props.stats.stats.item5)}
                   className="history-item-img"
-                  src={`https://ddragon.leagueoflegends.com/cdn/10.18.1/img/item/${props.stats.stats.item5}.png`}
+                  src={`https://ddragon.leagueoflegends.com/cdn/${patch}/img/item/${props.stats.stats.item5}.png`}
                 />
               </div>
             ) : (

@@ -8,9 +8,20 @@ import Header from "../header/Header";
 import RankedProfile from "./RankedProfileComponents/RankedProfile";
 import { championDictionary } from "../../functions/ChampionHelper";
 import { useHistory } from "react-router";
+import LiveGame from "../LiveGame/LiveGame";
+import { configure } from "../../TestFiles/Configuration";
 
 const MainPage = ({ match }) => {
   const history = useHistory();
+  const [dDragon, setDDragon] = useState(null);
+  useEffect(() => {
+    const setup = async () => {
+      const result = await configure();
+      setDDragon(result);
+    };
+    setup();
+  }, []);
+
   const startSummonerName = match.params.userId;
   const [summoner, setSummoner] = useState(null);
   useEffect(() => {
@@ -33,13 +44,6 @@ const MainPage = ({ match }) => {
     setup();
   }, []);
 
-  const getSummoner = async (name) => {
-    // const fetched = await getSummonerAsync(name);
-    // setSummoner({
-    //   summoner: fetched.summoner,
-    //   leagueEntries: fetched.leagueEntries,
-    // });
-  };
   const handleClick = () => {
     history.push(`/LiveGame/${summoner.summoner.name}`);
   };
@@ -47,7 +51,7 @@ const MainPage = ({ match }) => {
     <div>
       {summoner && (
         <React.Fragment>
-          <Header updateSummoner={getSummoner} />
+          <Header />
           <Profile
             leagueEntries={summoner.leagueEntries}
             summoner={summoner.summoner}
@@ -55,8 +59,11 @@ const MainPage = ({ match }) => {
           <button id="live-game" className="btn-primary" onClick={handleClick}>
             Livegame
           </button>
+          <LiveGame summoner={summoner.summoner} />
           {/* <RankedProfile championList={champions} summoner={summoner} /> */}
+
           <MatchHistory
+            ddragon={dDragon}
             champions={champions}
             activeSummoner={summoner.summoner}
           />

@@ -14,6 +14,7 @@ import MoreStats from "./MoreStats";
 import MatchItemHeader from "./MatchItemHeader";
 import { getChampionImageById } from "../../../functions/ChampionHelper";
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
+import { patch } from "../../../TestFiles/Configuration";
 
 const ownerWonGame = (teams, participantId, participants) => {
   let part = participants.find((obj) => {
@@ -54,6 +55,7 @@ const ownerWonGame = (teams, participantId, participants) => {
 const MatchItem = (props) => {
   const [matchInfo, setMatchInfo] = useState();
   useEffect(() => {
+    let mounted = true;
     const fetcMatch = async () => {
       try {
         const match = await getMatchById(props.match.gameId);
@@ -62,7 +64,11 @@ const MatchItem = (props) => {
         console.log(error);
       }
     };
-    fetcMatch();
+    if (mounted) {
+      fetcMatch();
+    }
+
+    return () => (mounted = false);
   }, [props.owner]);
 
   const [summonerGameInfo, setGameInfo] = useState();
@@ -88,7 +94,7 @@ const MatchItem = (props) => {
         summonerGameInfo.spell1Id,
         props.summonerSpells.data
       );
-      const result = `https://ddragon.leagueoflegends.com/cdn/10.19.1/img/spell/${summonerSpell1.id}.png`;
+      const result = `https://ddragon.leagueoflegends.com/cdn/${patch}/img/spell/${summonerSpell1.id}.png`;
       return result;
     };
     const getSummonerSpell2 = () => {
@@ -96,7 +102,7 @@ const MatchItem = (props) => {
         summonerGameInfo.spell2Id,
         props.summonerSpells.data
       );
-      const result = `https://ddragon.leagueoflegends.com/cdn/10.19.1/img/spell/${summonerSpell2.id}.png`;
+      const result = `https://ddragon.leagueoflegends.com/cdn/${patch}/img/spell/${summonerSpell2.id}.png`;
       return result;
     };
     const getChampionThumbnail = () => {
@@ -104,7 +110,7 @@ const MatchItem = (props) => {
         summonerGameInfo.championId,
         props.champions
       );
-      const championThumbnail = `https://ddragon.leagueoflegends.com/cdn/10.19.1/img/champion/${img.full}`;
+      const championThumbnail = `https://ddragon.leagueoflegends.com/cdn/${patch}/img/champion/${img.full}`;
       return championThumbnail;
     };
     if (summonerGameInfo != null) {
@@ -159,18 +165,24 @@ const MatchItem = (props) => {
         <MatchItemHeader matchInfo={matchInfo} status={styleWinner()} />
         <div className="match-history-item-wrapper">
           <div className="flex mb1 history-content-wrapper">
-            <img className="history-thumbnail" src={thumbnails.ownerChampion} />
+            <img
+              className="history-thumbnail"
+              src={thumbnails.ownerChampion}
+              alt=""
+            />
             <div className="history-summonerspells">
               <div>
                 <img
                   className="history-summonerspell first"
                   src={thumbnails.summonerSpell1}
+                  alt=""
                 />
               </div>
               <div>
                 <img
                   className="history-summonerspell"
                   src={thumbnails.summonerSpell2}
+                  alt=""
                 />
               </div>
             </div>
@@ -203,18 +215,6 @@ const MatchItem = (props) => {
               />
             </div>
           </div>
-
-          {/* <div className="box-1">
-            <div
-              onClick={() => {
-                !showMore ? setShowMore(true) : setShowMore(false);
-              }}
-              className="btn btn-one"
-            >
-              <span>{!showMore ? "More stats" : "Hide more stats"}</span>
-            </div>
-          </div> */}
-
           <div>
             <div
               className="showmore"
