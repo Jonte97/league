@@ -34,7 +34,7 @@ const MatchHistory = (props) => {
         summonerSpells: spellData,
         runesData: runesData,
         items: items,
-        oldItems: oldItemsArr
+        oldItems: oldItemsArr,
       });
     };
     getReferencesAsync();
