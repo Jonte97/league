@@ -195,7 +195,7 @@ const MatchItem = (props) => {
                 />
               </div>
             </div>
-            <Items itemRefs={props.itemRefs} stats={summonerGameInfo} />
+            <Items version={props.ddragon} oldItemRefs={props.oldItems} itemRefs={props.itemRefs} stats={summonerGameInfo} />
           </div>
           <div className="history-player-lists">
             <div className="history-list-blue">

@@ -7,7 +7,31 @@ const Items = (props) => {
       const name = props.itemRefs.find((obj) => {
         return obj.id == id;
       });
-      return name.data.name;
+      if (name == undefined) {
+        const oldName = props.oldItemRefs.find((obj) => {
+          return obj.id == id;
+        });
+        return oldName.data.name;
+      } else {
+        return name.data.name;
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  const getItemUrl = (id) => {
+    try {
+      const item = props.itemRefs.find((obj) => {
+        return obj.id == id;
+      });
+      if (item == undefined) {
+        const oldItem = props.oldItemRefs.find((obj) => {
+          return obj.id == id;
+        });
+        return `https://ddragon.leagueoflegends.com/cdn/10.22.1/img/item/${id}.png`;
+      } else {
+        return `https://ddragon.leagueoflegends.com/cdn/${props.version.version}/img/item/${id}.png`;
+      }
     } catch (error) {
       console.log(error);
     }
@@ -21,10 +45,10 @@ const Items = (props) => {
             {props.stats.stats.item0 ? (
               <div className="history-item-item">
                 <img
-                  alt="item-img"
+                  alt=""
                   title={getItemName(props.stats.stats.item0)}
                   className="history-item-img"
-                  src={`https://ddragon.leagueoflegends.com/cdn/${patch}/img/item/${props.stats.stats.item0}.png`}
+                  src={getItemUrl(props.stats.stats.item0)}
                 />
               </div>
             ) : (
@@ -33,10 +57,10 @@ const Items = (props) => {
             {props.stats.stats.item1 ? (
               <div className="history-item-item">
                 <img
-                  alt="item-img"
+                  alt=""
                   title={getItemName(props.stats.stats.item1)}
                   className="history-item-img"
-                  src={`https://ddragon.leagueoflegends.com/cdn/${patch}/img/item/${props.stats.stats.item1}.png`}
+                  src={getItemUrl(props.stats.stats.item1)}
                 />
               </div>
             ) : (
@@ -45,10 +69,10 @@ const Items = (props) => {
             {props.stats.stats.item2 ? (
               <div className="history-item-item">
                 <img
-                  alt="item-img"
+                  alt=""
                   title={getItemName(props.stats.stats.item2)}
+                  src={getItemUrl(props.stats.stats.item2)}
                   className="history-item-img"
-                  src={`https://ddragon.leagueoflegends.com/cdn/${patch}/img/item/${props.stats.stats.item2}.png`}
                 />
               </div>
             ) : (
@@ -58,10 +82,10 @@ const Items = (props) => {
               {props.stats.stats.item6 ? (
                 <div className="history-item-item history-item-items-trinket">
                   <img
-                    alt="item-img"
+                    alt=""
                     title={getItemName(props.stats.stats.item6)}
                     className="history-item-img"
-                    src={`https://ddragon.leagueoflegends.com/cdn/${patch}/img/item/${props.stats.stats.item6}.png`}
+                    src={getItemUrl(props.stats.stats.item6)}
                   />
                 </div>
               ) : (
@@ -73,10 +97,10 @@ const Items = (props) => {
             {props.stats.stats.item3 ? (
               <div className="history-item-item">
                 <img
-                  alt="item-img"
+                  alt=""
                   title={getItemName(props.stats.stats.item3)}
                   className="history-item-img"
-                  src={`https://ddragon.leagueoflegends.com/cdn/${patch}/img/item/${props.stats.stats.item3}.png`}
+                  src={getItemUrl(props.stats.stats.item3)}
                 />
               </div>
             ) : (
@@ -85,10 +109,10 @@ const Items = (props) => {
             {props.stats.stats.item4 ? (
               <div className="history-item-item">
                 <img
-                  alt="item-img"
+                  alt=""
                   title={getItemName(props.stats.stats.item4)}
                   className="history-item-img"
-                  src={`https://ddragon.leagueoflegends.com/cdn/${patch}/img/item/${props.stats.stats.item4}.png`}
+                  src={getItemUrl(props.stats.stats.item4)}
                 />
               </div>
             ) : (
@@ -97,10 +121,10 @@ const Items = (props) => {
             {props.stats.stats.item5 ? (
               <div className="history-item-item">
                 <img
-                  alt="item-img"
+                  alt=""
                   title={getItemName(props.stats.stats.item5)}
                   className="history-item-img"
-                  src={`https://ddragon.leagueoflegends.com/cdn/${patch}/img/item/${props.stats.stats.item5}.png`}
+                  src={getItemUrl(props.stats.stats.item5)}
                 />
               </div>
             ) : (

@@ -8,6 +8,7 @@ import {
 import { useState, useEffect, useRef } from "react";
 import MatchItem from "./MatchItem";
 import Loader from "../loader";
+import { oldItems } from "../../../DataFiles/oldItems";
 
 const MatchHistory = (props) => {
   const [gameReferences, setGameReferences] = useState();
@@ -19,19 +20,21 @@ const MatchHistory = (props) => {
           const obj = { id: key, data: value };
           itemArray.push(obj);
         }
-
         return itemArray;
       };
       const spellData = await getSummonerSpellData();
       const runesData = await getRunesData();
       const itemsPrimitive = await getItemListAsync();
+      const oldItemsPrimitive = oldItems;
 
+      const oldItemsArr = parseItemsToArray(oldItemsPrimitive.data);
       const items = parseItemsToArray(itemsPrimitive.data);
       setGameReferences({
         championList: props.champions,
         summonerSpells: spellData,
         runesData: runesData,
         items: items,
+        oldItems: oldItemsArr
       });
     };
     getReferencesAsync();
@@ -70,6 +73,7 @@ const MatchHistory = (props) => {
                 summonerSpells={gameReferences.summonerSpells}
                 runes={gameReferences.runesData}
                 itemRefs={gameReferences.items}
+                oldItems={gameReferences.oldItems}
               />
             </div>
           ))
