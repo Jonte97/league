@@ -1,4 +1,6 @@
 $bgColor: #222451;
+$thumbnailMaxHeight: 32px;
+$summonerSpellMaxHeight: 16px;
 
 .wrapper {
   background-color: $bgColor;
@@ -7,4 +9,15 @@ $bgColor: #222451;
   padding: 1em;
   margin-top: 1em;
   margin-bottom: 2em;
+}
+
+.livegame-thumb-img {
+  height: $thumbnailMaxHeight;
+}
+
+.summoner-spells-wrapper{
+  display: grid;
+  img{
+    height: $summonerSpellMaxHeight;
+  }
 }

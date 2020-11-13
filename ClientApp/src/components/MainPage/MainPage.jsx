@@ -3,13 +3,19 @@ import { useState, useEffect } from "react";
 import Profile from "./Profile/Profile";
 import MatchHistory from "./MatchHistory/MatchHistory";
 import { startLeague, startSummoner } from "../../functions/startupHelper";
-import { getSummonerAsync } from "../../functions/promiseHelper";
+import {
+  getItemListAsync,
+  getRunesData,
+  getSummonerAsync,
+  getSummonerSpellData,
+} from "../../functions/promiseHelper";
 import Header from "../header/Header";
 import RankedProfile from "./RankedProfileComponents/RankedProfile";
 import { championDictionary } from "../../functions/ChampionHelper";
 import { useHistory } from "react-router";
 import LiveGame from "../LiveGame/LiveGame";
 import { configure } from "../../TestFiles/Configuration";
+import { oldItems } from "../../DataFiles/oldItems";
 
 const MainPage = ({ match }) => {
   const history = useHistory();
@@ -35,14 +41,44 @@ const MainPage = ({ match }) => {
     getSumm();
   }, [match.params.userId]);
   //TODO this should be standard championList
-  const [champions, setChampions] = useState(null);
+  const [gameReferences, setGameReferences] = useState();
   useEffect(() => {
-    const setup = async () => {
-      const list = await championDictionary();
-      setChampions(list);
+    const getReferencesAsync = async () => {
+      const parseItemsToArray = (input) => {
+        const itemArray = [];
+        for (const [key, value] of Object.entries(input)) {
+          const obj = { id: key, data: value };
+          itemArray.push(obj);
+        }
+        return itemArray;
+      };
+      const spellData = await getSummonerSpellData();
+      const champions = await championDictionary();
+      const runesData = await getRunesData();
+      const itemsPrimitive = await getItemListAsync();
+      const oldItemsPrimitive = oldItems;
+
+      const oldItemsArr = parseItemsToArray(oldItemsPrimitive.data);
+      const items = parseItemsToArray(itemsPrimitive.data);
+      setGameReferences({
+        championList: champions,
+        summonerSpells: spellData,
+        runesData: runesData,
+        items: items,
+        oldItems: oldItemsArr,
+      });
     };
-    setup();
+    getReferencesAsync();
   }, []);
+
+  // const [champions, setChampions] = useState(null);
+  // useEffect(() => {
+  //   const setup = async () => {
+  //     const list = await championDictionary();
+  //     setChampions(list);
+  //   };
+  //   setup();
+  // }, []);
 
   const handleClick = () => {
     history.push(`/LiveGame/${summoner.summoner.name}`);
@@ -59,14 +95,18 @@ const MainPage = ({ match }) => {
           <button id="live-game" className="btn-primary" onClick={handleClick}>
             Livegame
           </button>
-          <LiveGame summoner={summoner.summoner} />
+          <LiveGame
+            ddragon={dDragon}
+            gameReferences={gameReferences}
+            summoner={summoner.summoner}
+          />
           {/* <RankedProfile championList={champions} summoner={summoner} /> */}
 
-          <MatchHistory
+          {/* <MatchHistory
             ddragon={dDragon}
             champions={champions}
             activeSummoner={summoner.summoner}
-          />
+          /> */}
         </React.Fragment>
       )}
     </div>
