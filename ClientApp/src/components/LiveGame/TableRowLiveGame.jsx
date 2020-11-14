@@ -24,6 +24,9 @@ const TableRowLiveGame = (props) => {
           />
         </div>
       </td>
+      <td>
+        <div></div>
+      </td>
     </React.Fragment>
   );
 };

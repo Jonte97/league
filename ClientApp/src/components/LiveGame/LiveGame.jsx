@@ -8,6 +8,7 @@ import "../../StyleSheets/livegame.scss";
 import TableRowLiveGame from "./TableRowLiveGame";
 import { getChampionImageById } from "../../functions/ChampionHelper";
 import { getSummonerSpell } from "../../functions/summonerSpellHelper";
+import { getRunePath } from "../../functions/RunesHelper";
 
 const LiveGame = (props) => {
   const [summoner, setSummoner] = useState(null);
@@ -40,11 +41,21 @@ const LiveGame = (props) => {
       console.log(error);
     }
   };
+
   const getSummoners = (id) => {
-    console.log(id)
-    const spell = getSummonerSpell(id, props.gameReferences.summonerSpells.data);
+    const spell = getSummonerSpell(
+      id,
+      props.gameReferences.summonerSpells.data
+    );
     return spell;
   };
+
+  const getRunes = (id) => {
+    console.log(id);
+    const path = getRunePath(id);
+  };
+  liveGame && getRunes(liveGame.participants[0].perks.perkStyle);
+  liveGame && getRunes(liveGame.participants[0].perks.perkSubStyle);
   return (
     <div className="container">
       <div className="wrapper">
