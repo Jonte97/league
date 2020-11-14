@@ -1,4 +1,6 @@
 $bgColor: #222451;
+$blueBg: #4b50b3;
+$redBg:#9c3d3d;
 $thumbnailMaxHeight: 32px;
 $summonerSpellMaxHeight: 16px;
 
@@ -6,7 +8,6 @@ $summonerSpellMaxHeight: 16px;
   background-color: $bgColor;
   border-radius: 15px;
   min-height: 410px;
-  padding: 1em;
   margin-top: 1em;
   margin-bottom: 2em;
 }
@@ -15,9 +16,38 @@ $summonerSpellMaxHeight: 16px;
   height: $thumbnailMaxHeight;
 }
 
-.summoner-spells-wrapper{
+.summoner-spells-wrapper {
   display: grid;
-  img{
+  img {
     height: $summonerSpellMaxHeight;
+  }
+}
+.runes {
+  .keystone {
+    height: 24px;
+  }
+  .secondary {
+    height: 16px;
+  }
+}
+.banned-champions-wrapper {
+  display: flex;
+  justify-content: space-evenly;
+  
+  .banned-champion {
+    height: $thumbnailMaxHeight;
+    filter: grayscale(1);
+  }
+  .banned-champions-blue-wrapper {
+    display: flex;
+    width: 50%;
+    justify-content: center;
+    background-color: $blueBg;
+  }
+  .banned-champions-red-wrapper {
+    display: flex;
+    width: 50%;
+    justify-content: center;
+    background-color: $redBg;
   }
 }

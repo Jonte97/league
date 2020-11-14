@@ -1,6 +1,25 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { getRuneFromId, getRunePathById } from "../../functions/RunesHelper";
 
 const TableRowLiveGame = (props) => {
+  const [runes, setRunes] = useState(null);
+  useEffect(() => {
+    const setup = () => {
+      const primaryPath = getRunePathById(props.player.perks.perkStyle);
+      const secondaryPath = getRunePathById(props.player.perks.perkSubStyle);
+      const keystone = getRuneFromId(
+        props.player.perks.perkIds[0],
+        primaryPath,
+        0
+      );
+      console.log(keystone);
+      setRunes({ keystone: keystone, secondaryPath: secondaryPath });
+    };
+    setup();
+    console.log("rendering component");
+  }, []);
+  const prependUrl = "https://ddragon.leagueoflegends.com/cdn/img/";
+
   return (
     <React.Fragment>
       <td>
@@ -25,8 +44,22 @@ const TableRowLiveGame = (props) => {
         </div>
       </td>
       <td>
-        <div></div>
+        {runes && (
+          <div className="runes">
+            <img
+              className="keystone"
+              src={`${prependUrl}${runes.keystone.icon}`}
+              alt=""
+            />
+            <img
+              className="secondary"
+              src={`${prependUrl}${runes.secondaryPath.icon}`}
+              alt=""
+            />
+          </div>
+        )}
       </td>
+      <td>{props.player.summonerName}</td>
     </React.Fragment>
   );
 };
