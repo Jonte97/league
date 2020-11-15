@@ -50,47 +50,34 @@ const LiveGame = (props) => {
     <div className="container">
       <div className="wrapper">
         <div className="livegame-table">
-          <table>
-            <thead></thead>
-            <tbody>
-              {liveGame && props.gameReferences ? (
-                <React.Fragment>
-                  {liveGame.participants.map(
-                    (player, key) =>
-                      player.teamId == 100 && (
-                        <tr key={key}>
-                          <TableRowLiveGame
-                            runesRefs={props.gameReferences.runesData}
-                            spell1={getSummoners(player.spell1Id)}
-                            spell2={getSummoners(player.spell2Id)}
-                            version={props.ddragon.version}
-                            champThumbnail={getChampionThumbNail(
-                              player.championId
-                            )}
-                            player={player}
-                          />
-                        </tr>
-                      )
-                  )}
-                  <tr></tr>
-                  {liveGame.participants.map(
-                    (player, key) =>
-                      player.teamId == 200 && (
-                        <tr key={key}>
-                          {/* <TableRowLiveGame
-                            version={props.ddragon.version}
-                            champThumbnail={getChampionThumbNail(
-                              player.championId
-                            )}
-                            player={player}
-                          /> */}
-                        </tr>
-                      )
-                  )}
-                </React.Fragment>
-              ) : null}
-            </tbody>
-          </table>
+          <React.Fragment>
+            <table>
+              <thead></thead>
+              <tbody>
+                {liveGame && props.gameReferences ? (
+                  <React.Fragment>
+                    {liveGame.participants.map(
+                      (player, key) =>
+                        player.teamId == 100 && (
+                          <tr key={key}>
+                            <TableRowLiveGame
+                              runesRefs={props.gameReferences.runesData}
+                              spell1={getSummoners(player.spell1Id)}
+                              spell2={getSummoners(player.spell2Id)}
+                              version={props.ddragon.version}
+                              champThumbnail={getChampionThumbNail(
+                                player.championId
+                              )}
+                              player={player}
+                            />
+                          </tr>
+                        )
+                    )}
+                  </React.Fragment>
+                ) : null}
+              </tbody>
+            </table>
+          </React.Fragment>
           <div className="banned-champions-wrapper">
             <div className="banned-champions-blue-wrapper">
               {liveGame.bannedChampions.map(
@@ -121,6 +108,25 @@ const LiveGame = (props) => {
               )}
             </div>
           </div>
+          <table>
+            <tbody>
+              {liveGame.participants.map(
+                (player, key) =>
+                  player.teamId == 200 && (
+                    <tr key={key}>
+                      <TableRowLiveGame
+                        runesRefs={props.gameReferences.runesData}
+                        spell1={getSummoners(player.spell1Id)}
+                        spell2={getSummoners(player.spell2Id)}
+                        version={props.ddragon.version}
+                        champThumbnail={getChampionThumbNail(player.championId)}
+                        player={player}
+                      />
+                    </tr>
+                  )
+              )}
+            </tbody>
+          </table>
         </div>
       </div>
     </div>

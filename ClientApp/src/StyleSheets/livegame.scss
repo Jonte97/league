@@ -1,6 +1,6 @@
 $bgColor: #222451;
 $blueBg: #4b50b3;
-$redBg:#9c3d3d;
+$redBg: #9c3d3d;
 $thumbnailMaxHeight: 32px;
 $summonerSpellMaxHeight: 16px;
 
@@ -33,7 +33,7 @@ $summonerSpellMaxHeight: 16px;
 .banned-champions-wrapper {
   display: flex;
   justify-content: space-evenly;
-  
+
   .banned-champion {
     height: $thumbnailMaxHeight;
     filter: grayscale(1);
@@ -49,5 +49,26 @@ $summonerSpellMaxHeight: 16px;
     width: 50%;
     justify-content: center;
     background-color: $redBg;
+  }
+  .banned-champion {
+    margin: 0.5em;
+  }
+}
+.ranked-emblem-wrapper {
+  img {
+    height: $thumbnailMaxHeight;
+  }
+}
+.livegame-table {
+  margin: 3em;
+  table {
+    .livegame-summonername {
+      width: 150px;
+    }
+  }
+}
+.ranked-winrate {
+  span {
+    font-size: 10px;
   }
 }

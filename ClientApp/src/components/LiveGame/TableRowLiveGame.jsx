@@ -1,5 +1,11 @@
 import React, { useEffect, useState } from "react";
+import {
+  getLeagueEntries,
+  getSummonerByNameAsync,
+} from "../../functions/promiseHelper";
+import { getEmblem } from "../../functions/RankedEmblemHelper";
 import { getRuneFromId, getRunePathById } from "../../functions/RunesHelper";
+import RankDisplay from "./RankDisplay";
 
 const TableRowLiveGame = (props) => {
   const [runes, setRunes] = useState(null);
@@ -18,6 +24,7 @@ const TableRowLiveGame = (props) => {
     setup();
     console.log("rendering component");
   }, []);
+
   const prependUrl = "https://ddragon.leagueoflegends.com/cdn/img/";
 
   return (
@@ -59,7 +66,8 @@ const TableRowLiveGame = (props) => {
           </div>
         )}
       </td>
-      <td>{props.player.summonerName}</td>
+      <td className="livegame-summonername">{props.player.summonerName}</td>
+      <RankDisplay player={props.player} />
     </React.Fragment>
   );
 };

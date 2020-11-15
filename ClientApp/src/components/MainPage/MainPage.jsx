@@ -104,7 +104,7 @@ const MainPage = ({ match }) => {
 
           {/* <MatchHistory
             ddragon={dDragon}
-            champions={champions}
+            champions={gameReferences.championList}
             activeSummoner={summoner.summoner}
           /> */}
         </React.Fragment>
