@@ -32,7 +32,7 @@ const RankDisplay = (props) => {
 
       setRank({ solo: solo, flex: flex });
     };
-    setup();
+    if(props.player != null) setup();
   }, []);
 
   const OnlyFirstCaptialLetter = (string) => {

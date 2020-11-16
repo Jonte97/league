@@ -9,7 +9,7 @@ const RankWins = (props) => {
 
   const bgcolor = "#e63253";
   const containerStyles = {
-    height: 10,
+    height: 5,
     width: "100px",
     backgroundColor: "#e69b32",
     display: "flex",

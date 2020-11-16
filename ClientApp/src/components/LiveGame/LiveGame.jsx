@@ -59,18 +59,16 @@ const LiveGame = (props) => {
                     {liveGame.participants.map(
                       (player, key) =>
                         player.teamId == 100 && (
-                          <tr key={key}>
-                            <TableRowLiveGame
-                              runesRefs={props.gameReferences.runesData}
-                              spell1={getSummoners(player.spell1Id)}
-                              spell2={getSummoners(player.spell2Id)}
-                              version={props.ddragon.version}
-                              champThumbnail={getChampionThumbNail(
-                                player.championId
-                              )}
-                              player={player}
-                            />
-                          </tr>
+                          <TableRowLiveGame
+                            runesRefs={props.gameReferences.runesData}
+                            spell1={getSummoners(player.spell1Id)}
+                            spell2={getSummoners(player.spell2Id)}
+                            version={props.ddragon.version}
+                            champThumbnail={getChampionThumbNail(
+                              player.championId
+                            )}
+                            player={player}
+                          />
                         )
                     )}
                   </React.Fragment>
@@ -113,16 +111,14 @@ const LiveGame = (props) => {
               {liveGame.participants.map(
                 (player, key) =>
                   player.teamId == 200 && (
-                    <tr key={key}>
-                      <TableRowLiveGame
-                        runesRefs={props.gameReferences.runesData}
-                        spell1={getSummoners(player.spell1Id)}
-                        spell2={getSummoners(player.spell2Id)}
-                        version={props.ddragon.version}
-                        champThumbnail={getChampionThumbNail(player.championId)}
-                        player={player}
-                      />
-                    </tr>
+                    <TableRowLiveGame
+                      runesRefs={props.gameReferences.runesData}
+                      spell1={getSummoners(player.spell1Id)}
+                      spell2={getSummoners(player.spell2Id)}
+                      version={props.ddragon.version}
+                      champThumbnail={getChampionThumbNail(player.championId)}
+                      player={player}
+                    />
                   )
               )}
             </tbody>
