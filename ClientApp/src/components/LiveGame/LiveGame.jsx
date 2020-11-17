@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { livegame } from "../../TestFiles/livegame";
+import { livegame, livegameUnranked } from "../../TestFiles/livegame";
 import "../../StyleSheets/livegame.scss";
 import TableRowLiveGame from "./TableRowLiveGame";
 import { getChampionImageById } from "../../functions/ChampionHelper";
 import { getSummonerSpell } from "../../functions/summonerSpellHelper";
+import { getLiveGame } from "../../functions/promiseHelper";
 
 const LiveGame = (props) => {
   const [summoner, setSummoner] = useState(null);
@@ -19,7 +20,7 @@ const LiveGame = (props) => {
     const setup = async () => {
       //const game = await getLiveGame(summoner.id);
       //!For testing only should fetch by above
-      const game = livegame;
+      const game = livegameUnranked;
       setLiveGame(game);
     };
     if (summoner != null) setup();
