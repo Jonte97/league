@@ -47,7 +47,7 @@ const TableRowLiveGame = (props) => {
   return (
     <React.Fragment>
       <tr>
-        <td>
+        <td id="champion-thumbnail">
           <div className="livegame-thumb-wrapper">
             <img
               className="livegame-thumb-img"
@@ -56,7 +56,7 @@ const TableRowLiveGame = (props) => {
             />
           </div>
         </td>
-        <td>
+        <td id="summoner-spells">
           <div className="summoner-spells-wrapper">
             <img
               alt="Summonerspell 1"
@@ -68,7 +68,7 @@ const TableRowLiveGame = (props) => {
             />
           </div>
         </td>
-        <td>
+        <td id="runes-simple">
           {runes && (
             <div className="runes">
               <img
@@ -86,7 +86,7 @@ const TableRowLiveGame = (props) => {
         </td>
         <td className="livegame-summonername">{props.player.summonerName}</td>
         <RankDisplay player={props.player} />
-        <td>
+        <td id="runes-button">
           <div onClick={handleClick} className="runes-btn">
             <div>Runes</div>
           </div>

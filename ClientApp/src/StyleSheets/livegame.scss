@@ -10,6 +10,9 @@ $summonerSpellMaxHeight: 16px;
   min-height: 410px;
   margin-top: 1em;
   margin-bottom: 2em;
+  table{
+    margin: 1em 0 1em 3em;
+  }
 }
 
 .livegame-thumb-img {
@@ -59,11 +62,16 @@ $summonerSpellMaxHeight: 16px;
     height: $thumbnailMaxHeight;
   }
 }
+
 .livegame-table {
-  margin: 3em;
+  padding-top: 1em;
+  padding-bottom: 1em;
   table {
     .livegame-summonername {
       width: 150px;
+    }
+    tr{
+      height: 40px;
     }
   }
 }
@@ -102,8 +110,18 @@ $summonerSpellMaxHeight: 16px;
   justify-content: flex-end;
   margin: 1em;
 }
-.secondary-path {
-  margin-top: 0.5em;
+.secondary-path-wrapper {
+  margin-top: auto;
 }
-.stat-runes{
+.stat-runes-wrapper {
+  margin-top: auto;
+}
+#rank-display {
+  padding-right: 2em;
+  .ranked-emblem{
+    margin-right: 1em;
+  }
+}
+#winrate {
+  padding-right: 2em;
 }

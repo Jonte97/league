@@ -41,7 +41,7 @@ const RankDisplay = (props) => {
   };
   return (
     <React.Fragment>
-      <td>
+      <td id="rank-display"> 
         <div className="ranked-emblem-wrapper">
           {rank && (
             <React.Fragment>
@@ -54,7 +54,7 @@ const RankDisplay = (props) => {
           )}
         </div>
       </td>
-      <td>{rank ? <RankWins data={rank.solo} /> : <div>No Data</div>}</td>
+      <td id="winrate">{rank ? <RankWins data={rank.solo} /> : <div>No Data</div>}</td>
     </React.Fragment>
   );
 };

@@ -80,9 +80,6 @@ const MainPage = ({ match }) => {
   //   setup();
   // }, []);
 
-  const handleClick = () => {
-    history.push(`/LiveGame/${summoner.summoner.name}`);
-  };
   return (
     <div>
       {summoner && (
@@ -92,9 +89,6 @@ const MainPage = ({ match }) => {
             leagueEntries={summoner.leagueEntries}
             summoner={summoner.summoner}
           />
-          <button id="live-game" className="btn-primary" onClick={handleClick}>
-            Livegame
-          </button>
           <LiveGame
             ddragon={dDragon}
             gameReferences={gameReferences}

@@ -59,48 +59,50 @@ const RuneTree = (props) => {
           ))}
         </div>
       </div>
-      <div className="secondary-path">
-        <div className="rune-row">
-          {props.secondaryPath.slots[1].runes.map((rune, key) => (
-            <div>
-              <img
-                style={selectedRuneStyles(rune.id)}
-                src={`${prependUrl}${rune.icon}`}
-                alt=""
-              />
-            </div>
-          ))}
-        </div>
-        <div className="rune-row">
-          {props.secondaryPath.slots[2].runes.map((rune, key) => (
-            <div>
-              <img
-                style={selectedRuneStyles(rune.id)}
-                src={`${prependUrl}${rune.icon}`}
-                alt=""
-              />
-            </div>
-          ))}
-        </div>
-        <div className="rune-row">
-          {props.secondaryPath.slots[3].runes.map((rune, key) => (
-            <div>
-              <img
-                style={selectedRuneStyles(rune.id)}
-                src={`${prependUrl}${rune.icon}`}
-                alt=""
-              />
-            </div>
-          ))}
-        </div>
-        <div className="stat-runes">
-          <div className="rune-row">
-            {props.statRunes.map((rune, key) => (
+      <div className="secondary-path-wrapper">
+        <div className="secondary-path">
+          <div className="rune-row ">
+            {props.secondaryPath.slots[1].runes.map((rune, key) => (
               <div>
-                <img src={rune} alt="" />
+                <img
+                  style={selectedRuneStyles(rune.id)}
+                  src={`${prependUrl}${rune.icon}`}
+                  alt=""
+                />
               </div>
             ))}
           </div>
+          <div className="rune-row">
+            {props.secondaryPath.slots[2].runes.map((rune, key) => (
+              <div>
+                <img
+                  style={selectedRuneStyles(rune.id)}
+                  src={`${prependUrl}${rune.icon}`}
+                  alt=""
+                />
+              </div>
+            ))}
+          </div>
+          <div className="rune-row">
+            {props.secondaryPath.slots[3].runes.map((rune, key) => (
+              <div>
+                <img
+                  style={selectedRuneStyles(rune.id)}
+                  src={`${prependUrl}${rune.icon}`}
+                  alt=""
+                />
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+      <div className="stat-runes-wrapper">
+        <div className="rune-row stat-runes">
+          {props.statRunes.map((rune, key) => (
+            <div>
+              <img src={rune} alt="" />
+            </div>
+          ))}
         </div>
       </div>
     </div>
