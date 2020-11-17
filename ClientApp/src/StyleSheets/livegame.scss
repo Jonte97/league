@@ -99,7 +99,11 @@ $summonerSpellMaxHeight: 16px;
 }
 .runetree-wrapper {
   display: flex;
+  justify-content: flex-end;
+  margin: 1em;
 }
 .secondary-path {
-  margin-top: 40px;
+  margin-top: 0.5em;
+}
+.stat-runes{
 }

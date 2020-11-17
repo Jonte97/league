@@ -4,7 +4,11 @@ import {
   getSummonerByNameAsync,
 } from "../../functions/promiseHelper";
 import { getEmblem } from "../../functions/RankedEmblemHelper";
-import { getRuneFromId, getRunePathById } from "../../functions/RunesHelper";
+import {
+  getRuneFromId,
+  getRunePathById,
+  getStatRune,
+} from "../../functions/RunesHelper";
 import RankDisplay from "./RankDisplay";
 import RuneTree from "./RuneTree";
 
@@ -19,9 +23,18 @@ const TableRowLiveGame = (props) => {
         primaryPath,
         0
       );
-      setRunes({ keystone: keystone, secondaryPath: secondaryPath });
+      const statRunes = [];
+      for (let index = 0; index < props.player.perks.perkIds.length; index++) {
+        const rune = getStatRune(props.player.perks.perkIds[index]);
+        if (rune != null) statRunes.push(rune);
+      }
+      setRunes({
+        keystone: keystone,
+        secondaryPath: secondaryPath,
+        statRunes: statRunes,
+      });
     };
-    setup();
+    if (props.player != null) setup();
   }, []);
 
   const [showRunes, setShowRunes] = useState(false);
@@ -84,6 +97,7 @@ const TableRowLiveGame = (props) => {
           <td colSpan="12">
             <RuneTree
               runes={props.runesRefs}
+              statRunes={runes.statRunes}
               selectedRunes={props.player.perks.perkIds}
               primaryPathId={props.player.perks.perkStyle}
               secondaryPath={runes.secondaryPath}

@@ -93,6 +93,15 @@ const RuneTree = (props) => {
             </div>
           ))}
         </div>
+        <div className="stat-runes">
+          <div className="rune-row">
+            {props.statRunes.map((rune, key) => (
+              <div>
+                <img src={rune} alt="" />
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
     </div>
   );
