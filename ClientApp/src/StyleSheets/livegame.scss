@@ -72,17 +72,34 @@ $summonerSpellMaxHeight: 16px;
     font-size: 10px;
   }
 }
-.runes-btn{
+.runes-btn {
   border: 2px solid #2c2c2c;
-  a{
+  div {
     padding: 2px 4px 2px 4px;
     color: white;
     text-decoration: none;
     font-size: 12px;
   }
 }
-.runes-btn:hover{
+.runes-btn:hover {
   cursor: pointer;
   border: 2px solid black;
-
+}
+.rune-row {
+  display: flex;
+  img {
+    height: 32px;
+    margin: 5px;
+  }
+}
+.keystone-row {
+  img {
+    height: 40px;
+  }
+}
+.runetree-wrapper {
+  display: flex;
+}
+.secondary-path {
+  margin-top: 40px;
 }

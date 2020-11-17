@@ -6,6 +6,7 @@ import {
 import { getEmblem } from "../../functions/RankedEmblemHelper";
 import { getRuneFromId, getRunePathById } from "../../functions/RunesHelper";
 import RankDisplay from "./RankDisplay";
+import RuneTree from "./RuneTree";
 
 const TableRowLiveGame = (props) => {
   const [runes, setRunes] = useState(null);
@@ -18,11 +19,9 @@ const TableRowLiveGame = (props) => {
         primaryPath,
         0
       );
-      console.log(keystone);
       setRunes({ keystone: keystone, secondaryPath: secondaryPath });
     };
     setup();
-    console.log("rendering component");
   }, []);
 
   const [showRunes, setShowRunes] = useState(false);
@@ -75,20 +74,23 @@ const TableRowLiveGame = (props) => {
         <td className="livegame-summonername">{props.player.summonerName}</td>
         <RankDisplay player={props.player} />
         <td>
-          <div className="runes-btn">
-            <a onClick={handleClick}>Runes</a>
+          <div onClick={handleClick} className="runes-btn">
+            <div>Runes</div>
           </div>
         </td>
       </tr>
       {showRunes && (
         <tr className="runes-page">
-          <td colSpan="5">
-            <div>
-              <h4>runes</h4>
-            </div>
+          <td colSpan="12">
+            <RuneTree
+              runes={props.runesRefs}
+              selectedRunes={props.player.perks.perkIds}
+              primaryPathId={props.player.perks.perkStyle}
+              secondaryPath={runes.secondaryPath}
+            />
           </td>
         </tr>
-      )}{" "}
+      )}
     </React.Fragment>
   );
 };
