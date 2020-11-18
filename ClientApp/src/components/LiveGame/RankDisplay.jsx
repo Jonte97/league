@@ -22,6 +22,7 @@ const RankDisplay = (props) => {
         solo.icon = getEmblem(soloRank.tier);
       } else {
         solo.icon = getEmblem("unranked");
+        solo.tier = "unranked";
       }
 
       if (flexRank != null) {
@@ -50,10 +51,12 @@ const RankDisplay = (props) => {
             <div className="ranked-emblem-wrapper">
               <React.Fragment>
                 <img src={rank.solo.icon} alt="" className="ranked-emblem" />
-                <span>
-                  {OnlyFirstCaptialLetter(rank.solo.tier)} {rank.solo.rank} (
-                  {rank.solo.leaguePoints} lp)
-                </span>
+                {rank.solo.tier != "unranked" ? (
+                  <span>
+                    {OnlyFirstCaptialLetter(rank.solo.tier)} {rank.solo.rank}{" "}
+                    {rank.solo.leaguePoints} lp
+                  </span>
+                ) : null}
               </React.Fragment>
             </div>
           </td>

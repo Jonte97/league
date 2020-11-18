@@ -1,8 +1,9 @@
 $bgColor: #222451;
 $blueBg: #4b50b3;
 $redBg: #9c3d3d;
-$thumbnailMaxHeight: 32px;
+$thumbnailMaxHeight: 40px;
 $summonerSpellMaxHeight: 16px;
+$rankedEmblemHeight: 32px;
 
 .wrapper {
   background-color: $bgColor;
@@ -20,17 +21,24 @@ $summonerSpellMaxHeight: 16px;
 }
 
 .summoner-spells-wrapper {
-  display: grid;
+  display: flex;
+    flex-wrap: wrap;
+    width: min-content;
   img {
     height: $summonerSpellMaxHeight;
+    margin: 2px;
   }
 }
 .runes {
+  display: flex;
+  flex-wrap: wrap;
+  width: min-content;
+  justify-content: center;
   .keystone {
     height: 24px;
   }
   .secondary {
-    height: 16px;
+    height: 12px;
   }
 }
 .banned-champions-wrapper {
@@ -59,7 +67,7 @@ $summonerSpellMaxHeight: 16px;
 }
 .ranked-emblem-wrapper {
   img {
-    height: $thumbnailMaxHeight;
+    height: $rankedEmblemHeight;
   }
 }
 
@@ -69,9 +77,10 @@ $summonerSpellMaxHeight: 16px;
   table {
     .livegame-summonername {
       width: 150px;
+      padding-left: 1em;
     }
     tr{
-      height: 40px;
+      height: 44px;
     }
   }
 }
@@ -93,6 +102,7 @@ $summonerSpellMaxHeight: 16px;
   cursor: pointer;
   border: 2px solid black;
 }
+///RUNE PAGE
 .rune-row {
   display: flex;
   img {

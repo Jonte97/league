@@ -22,10 +22,19 @@ const RankWins = (props) => {
     textAlign: "center",
   };
   //TODO change color on filler if winrate is good/bad
-  return (
+  return props.data.tier != "unranked" ? (
     <div className="ranked-winrate">
       <span>
         {winrate} winr ({totalGames} games)
+      </span>
+      <div style={containerStyles}>
+        <div style={fillerStyles}></div>
+      </div>
+    </div>
+  ) : (
+    <div className="ranked-winrate">
+      <span>
+        Not enough games
       </span>
       <div style={containerStyles}>
         <div style={fillerStyles}></div>
