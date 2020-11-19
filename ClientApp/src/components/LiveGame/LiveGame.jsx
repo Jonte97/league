@@ -48,82 +48,90 @@ const LiveGame = (props) => {
     return spell;
   };
   return liveGame ? (
-    <div className="container">
-      <div className="wrapper">
-        <div className="livegame-table">
-          <React.Fragment>
+    <div>
+      <div className="livegame-button-wrapper">
+        <button class="glow-on-hover" type="button">
+          In game
+        </button>
+      </div>
+
+      <div className="container">
+        <div className="wrapper">
+          <div className="livegame-table">
+            <React.Fragment>
+              <table>
+                <thead></thead>
+                <tbody>
+                  {liveGame && props.gameReferences ? (
+                    <React.Fragment>
+                      {liveGame.participants.map(
+                        (player, key) =>
+                          player.teamId == 100 && (
+                            <TableRowLiveGame
+                              runesRefs={props.gameReferences.runesData}
+                              spell1={getSummoners(player.spell1Id)}
+                              spell2={getSummoners(player.spell2Id)}
+                              version={props.ddragon.version}
+                              champThumbnail={getChampionThumbNail(
+                                player.championId
+                              )}
+                              player={player}
+                            />
+                          )
+                      )}
+                    </React.Fragment>
+                  ) : null}
+                </tbody>
+              </table>
+            </React.Fragment>
+            <div className="banned-champions-wrapper">
+              <div className="banned-champions-blue-wrapper">
+                {liveGame.bannedChampions.map(
+                  (champ, key) =>
+                    champ.teamId == 100 && (
+                      <div key={key} className="banned-champion-blue">
+                        <img
+                          src={getChampionThumbNail(champ.championId)}
+                          alt=""
+                          className="banned-champion"
+                        />
+                      </div>
+                    )
+                )}
+              </div>
+              <div className="banned-champions-red-wrapper">
+                {liveGame.bannedChampions.map(
+                  (champ, key) =>
+                    champ.teamId == 200 && (
+                      <div key={key} className="banned-champion-blue">
+                        <img
+                          src={getChampionThumbNail(champ.championId)}
+                          alt=""
+                          className="banned-champion"
+                        />
+                      </div>
+                    )
+                )}
+              </div>
+            </div>
             <table>
-              <thead></thead>
               <tbody>
-                {liveGame && props.gameReferences ? (
-                  <React.Fragment>
-                    {liveGame.participants.map(
-                      (player, key) =>
-                        player.teamId == 100 && (
-                          <TableRowLiveGame
-                            runesRefs={props.gameReferences.runesData}
-                            spell1={getSummoners(player.spell1Id)}
-                            spell2={getSummoners(player.spell2Id)}
-                            version={props.ddragon.version}
-                            champThumbnail={getChampionThumbNail(
-                              player.championId
-                            )}
-                            player={player}
-                          />
-                        )
-                    )}
-                  </React.Fragment>
-                ) : null}
+                {liveGame.participants.map(
+                  (player, key) =>
+                    player.teamId == 200 && (
+                      <TableRowLiveGame
+                        runesRefs={props.gameReferences.runesData}
+                        spell1={getSummoners(player.spell1Id)}
+                        spell2={getSummoners(player.spell2Id)}
+                        version={props.ddragon.version}
+                        champThumbnail={getChampionThumbNail(player.championId)}
+                        player={player}
+                      />
+                    )
+                )}
               </tbody>
             </table>
-          </React.Fragment>
-          <div className="banned-champions-wrapper">
-            <div className="banned-champions-blue-wrapper">
-              {liveGame.bannedChampions.map(
-                (champ, key) =>
-                  champ.teamId == 100 && (
-                    <div key={key} className="banned-champion-blue">
-                      <img
-                        src={getChampionThumbNail(champ.championId)}
-                        alt=""
-                        className="banned-champion"
-                      />
-                    </div>
-                  )
-              )}
-            </div>
-            <div className="banned-champions-red-wrapper">
-              {liveGame.bannedChampions.map(
-                (champ, key) =>
-                  champ.teamId == 200 && (
-                    <div key={key} className="banned-champion-blue">
-                      <img
-                        src={getChampionThumbNail(champ.championId)}
-                        alt=""
-                        className="banned-champion"
-                      />
-                    </div>
-                  )
-              )}
-            </div>
           </div>
-          <table>
-            <tbody>
-              {liveGame.participants.map(
-                (player, key) =>
-                  player.teamId == 200 && (
-                    <TableRowLiveGame
-                      runesRefs={props.gameReferences.runesData}
-                      spell1={getSummoners(player.spell1Id)}
-                      spell2={getSummoners(player.spell2Id)}
-                      version={props.ddragon.version}
-                      champThumbnail={getChampionThumbNail(player.championId)}
-                      player={player}
-                    />
-                  )
-              )}
-            </tbody>
-          </table>
         </div>
       </div>
     </div>
