@@ -2,7 +2,6 @@ import React from "react";
 import { useState, useEffect } from "react";
 import Profile from "./Profile/Profile";
 import MatchHistory from "./MatchHistory/MatchHistory";
-import { startLeague, startSummoner } from "../../functions/startupHelper";
 import {
   getItemListAsync,
   getRunesData,
@@ -12,13 +11,12 @@ import {
 import Header from "../header/Header";
 import RankedProfile from "./RankedProfileComponents/RankedProfile";
 import { championDictionary } from "../../functions/ChampionHelper";
-import { useHistory } from "react-router";
 import LiveGame from "../LiveGame/LiveGame";
 import { configure } from "../../TestFiles/Configuration";
 import { oldItems } from "../../DataFiles/oldItems";
+import LiveGameComponent from "../LiveGame/LiveGameComponent";
 
 const MainPage = ({ match }) => {
-  const history = useHistory();
   const [dDragon, setDDragon] = useState(null);
   useEffect(() => {
     const setup = async () => {
@@ -71,11 +69,6 @@ const MainPage = ({ match }) => {
     getReferencesAsync();
   }, []);
 
-  const [fetchLiveGame, setFetchLiveGame] = useState(false);
-  const getLiveGame = () => {
-    setFetchLiveGame(true)
-  };
-
   return (
     <div>
       {summoner && (
@@ -85,25 +78,22 @@ const MainPage = ({ match }) => {
             leagueEntries={summoner.leagueEntries}
             summoner={summoner.summoner}
           />
-          <div className="livegame-button-wrapper">
-            <button onClick={getLiveGame} className="glow-on-hover" type="button">
-              In game
-            </button>
-          </div>
-          {fetchLiveGame && (
-            <LiveGame
-              ddragon={dDragon}
-              gameReferences={gameReferences}
-              summoner={summoner.summoner}
-            />
-          )}
-          {/* <RankedProfile championList={champions} summoner={summoner} /> */}
+          <LiveGameComponent
+            ddragon={dDragon}
+            gameReferences={gameReferences}
+            summoner={summoner.summoner}
+          />
 
-          {/* <MatchHistory
+          {/* <RankedProfile
+            championList={gameReferences.championList}
+            summoner={summoner}
+          /> */}
+
+          <MatchHistory
             ddragon={dDragon}
             champions={gameReferences.championList}
             activeSummoner={summoner.summoner}
-          /> */}
+          />
         </React.Fragment>
       )}
     </div>

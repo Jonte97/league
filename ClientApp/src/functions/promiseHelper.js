@@ -180,7 +180,11 @@ export const getLiveGame = async (summonerId) => {
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(summonerId),
   });
-  const data = await response.json();
+  try {
+    const data = await response.json();
 
-  return data;
+    return data;
+  } catch (error) {
+    return null;
+  }
 };

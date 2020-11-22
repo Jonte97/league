@@ -4,28 +4,8 @@ import "../../StyleSheets/livegame.scss";
 import TableRowLiveGame from "./TableRowLiveGame";
 import { getChampionImageById } from "../../functions/ChampionHelper";
 import { getSummonerSpell } from "../../functions/summonerSpellHelper";
-import { getLiveGame } from "../../functions/promiseHelper";
 
 const LiveGame = (props) => {
-  const [summoner, setSummoner] = useState(null);
-  useEffect(() => {
-    const setup = async () => {
-      setSummoner(props.summoner);
-    };
-    setup();
-  }, [props.summoner]);
-
-  const [liveGame, setLiveGame] = useState(null);
-  useEffect(() => {
-    const setup = async () => {
-      //const game = await getLiveGame(summoner.id);
-      //!For testing only should fetch by above
-      const game = livegameUnranked;
-      setLiveGame(game);
-    };
-    if (summoner != null) setup();
-  }, [summoner]);
-
   const getChampionThumbNail = (id) => {
     try {
       if (props.gameReferences != null) {
@@ -48,7 +28,7 @@ const LiveGame = (props) => {
     return spell;
   };
 
-  return liveGame ? (
+  return props.livegame ? (
     <div>
       <div className="container">
         <div className="wrapper">
@@ -57,9 +37,9 @@ const LiveGame = (props) => {
               <table>
                 <thead></thead>
                 <tbody>
-                  {liveGame && props.gameReferences ? (
+                  {props.livegame && props.gameReferences ? (
                     <React.Fragment>
-                      {liveGame.participants.map(
+                      {props.livegame.participants.map(
                         (player, key) =>
                           player.teamId == 100 && (
                             <TableRowLiveGame
@@ -82,7 +62,7 @@ const LiveGame = (props) => {
             </React.Fragment>
             <div className="banned-champions-wrapper">
               <div className="banned-champions-blue-wrapper">
-                {liveGame.bannedChampions.map(
+                {props.livegame.bannedChampions.map(
                   (champ, key) =>
                     champ.teamId == 100 && (
                       <div key={key} className="banned-champion-blue">
@@ -96,7 +76,7 @@ const LiveGame = (props) => {
                 )}
               </div>
               <div className="banned-champions-red-wrapper">
-                {liveGame.bannedChampions.map(
+                {props.livegame.bannedChampions.map(
                   (champ, key) =>
                     champ.teamId == 200 && (
                       <div key={key} className="banned-champion-blue">
@@ -112,7 +92,7 @@ const LiveGame = (props) => {
             </div>
             <table>
               <tbody>
-                {liveGame.participants.map(
+                {props.livegame.participants.map(
                   (player, key) =>
                     player.teamId == 200 && (
                       <TableRowLiveGame

@@ -186,11 +186,12 @@ $rankedEmblemHeight: 32px;
 .glow-on-hover:active:after {
   background: transparent;
 }
-
-.glow-on-hover:before {
+.glow-on-hover:hover:before {
   opacity: 1;
 }
-
+.glow:before {
+  opacity: 1;
+}
 .glow-on-hover:after {
   z-index: -1;
   content: "";
@@ -220,4 +221,19 @@ $rankedEmblemHeight: 32px;
   display: flex;
   margin-top: 1em;
   justify-content: center;
+}
+.not-in-game-wrapper {
+  display: table;
+  margin-top: 2em;
+}
+.not-in-game-msg {
+  display: table-cell;
+  vertical-align: middle; /*Vertically centered*/
+  text-align: center; /* Horizontally centered */
+
+  border-radius: 15px;
+  height: 100px;
+  width: 40%;
+  font-size: 16px;
+  background-color: $bgColor;
 }
