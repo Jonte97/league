@@ -65,9 +65,11 @@ const RankDisplay = (props) => {
           </td>
         </React.Fragment>
       ) : (
-        <div>
-          <BarLoader color="#36D7B7" />
-        </div>
+        <td>
+          <div>
+            <BarLoader color="#36D7B7" />
+          </div>
+        </td>
       )}
     </React.Fragment>
   );

@@ -47,14 +47,9 @@ const LiveGame = (props) => {
     );
     return spell;
   };
+
   return liveGame ? (
     <div>
-      <div className="livegame-button-wrapper">
-        <button class="glow-on-hover" type="button">
-          In game
-        </button>
-      </div>
-
       <div className="container">
         <div className="wrapper">
           <div className="livegame-table">
@@ -68,6 +63,7 @@ const LiveGame = (props) => {
                         (player, key) =>
                           player.teamId == 100 && (
                             <TableRowLiveGame
+                              key={key}
                               runesRefs={props.gameReferences.runesData}
                               spell1={getSummoners(player.spell1Id)}
                               spell2={getSummoners(player.spell2Id)}
@@ -120,6 +116,7 @@ const LiveGame = (props) => {
                   (player, key) =>
                     player.teamId == 200 && (
                       <TableRowLiveGame
+                        key={key}
                         runesRefs={props.gameReferences.runesData}
                         spell1={getSummoners(player.spell1Id)}
                         spell2={getSummoners(player.spell2Id)}

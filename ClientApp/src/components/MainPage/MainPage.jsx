@@ -71,14 +71,10 @@ const MainPage = ({ match }) => {
     getReferencesAsync();
   }, []);
 
-  // const [champions, setChampions] = useState(null);
-  // useEffect(() => {
-  //   const setup = async () => {
-  //     const list = await championDictionary();
-  //     setChampions(list);
-  //   };
-  //   setup();
-  // }, []);
+  const [fetchLiveGame, setFetchLiveGame] = useState(false);
+  const getLiveGame = () => {
+    setFetchLiveGame(true)
+  };
 
   return (
     <div>
@@ -89,11 +85,18 @@ const MainPage = ({ match }) => {
             leagueEntries={summoner.leagueEntries}
             summoner={summoner.summoner}
           />
-          <LiveGame
-            ddragon={dDragon}
-            gameReferences={gameReferences}
-            summoner={summoner.summoner}
-          />
+          <div className="livegame-button-wrapper">
+            <button onClick={getLiveGame} className="glow-on-hover" type="button">
+              In game
+            </button>
+          </div>
+          {fetchLiveGame && (
+            <LiveGame
+              ddragon={dDragon}
+              gameReferences={gameReferences}
+              summoner={summoner.summoner}
+            />
+          )}
           {/* <RankedProfile championList={champions} summoner={summoner} /> */}
 
           {/* <MatchHistory
